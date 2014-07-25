@@ -511,6 +511,16 @@ div#menu li.back .left {
 	border-radius:5px;
 	}
 
+    .usertext input[type=text] {
+        width: 265px;
+        border-radius:5px;
+    }
+
+.usertext input[type=password] {
+    width: 265px;
+    border-radius:5px;
+}
+
     .textinput1 input[type=password] {
     width: 265px;
 	border-radius:5px;

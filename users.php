@@ -1,6 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
+if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
+{
   $_SESSION['in'] ="start";
  header('Location:index.php');
 }
@@ -23,10 +24,13 @@ function cleartext() {
   document.getElementById("verify").value="";
   document.getElementById("name").value="";
 }
-
-function clickSearch(username) {
+function clickSearch(username,name,office) {
+   // alert("clickSearch works");
     document.process.username.value=username;
+    document.process.password.value=name;
+    document.process.name.value=office;
 }
+
 
 function validate() {
 
@@ -86,7 +90,10 @@ $(document).ready(function() {
 
 
 
-});
+    });
+
+
+
     
     
 /*]]>*/
@@ -199,19 +206,19 @@ $(document).ready(function() {
                   	<tr>
                     	<td>Username:</td>
 
-                        <td class="textinput1"><input id="username" name="username" type="text" /> </td>
+                        <td class="usertext"><input id="username" name="username" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Password:</td>
-                        <td class="textinput2"><input id="password" name="password" type="password" /> </td>
+                        <td class="usertext"><input id="password" name="password" type="password" /> </td>
                     </tr>
                     <tr>
                     	<td>Verify:</td>
-                        <td class="textinput3"><input id="verify" name="verify" type="password" /> </td>
+                        <td class="usertext"><input id="verify" name="verify" type="password" /> </td>
                     </tr>
                     <tr>
                     	<td>Name:</td>
-                        <td class="textinput4"><input id="name" name="name" type="text" /> </td>
+                        <td class="usertext"><input id="name" name="name" type="text" /> </td>
                     </tr>
 
                           <tr>

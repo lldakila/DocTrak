@@ -114,11 +114,13 @@ function validate() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last"><?php
+        <li class="last">
+            <?php
           session_start();
           echo "Hi, ".$_SESSION['Security_Name']."";
 
-        ?>  </li>
+        ?>
+        </li>
 
     </ul>
 
