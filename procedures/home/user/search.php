@@ -23,23 +23,28 @@ $rowcolor="blue";
 
      if ($rowcolor=="blue")
      {
-         echo '<tr id="'.$var["SECURITY_USERNAME"].'" bgcolor="#ACE6FB" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\',\''.$var["SECURITY_NAME"].'\',\''.$var["fkSecurity_GroupName"].'\')"> <td>';
+         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\',\''.$var["SECURITY_NAME"].'\',\''.$var["fkSecurity_GroupName"].'\')">';
         // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
          $rowcolor="notblue";
      }
      else
      {
-         echo '<tr id="'.$var["SECURITY_USERNAME"].'" bgcolor="#2CC1F7" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\')"> <td>';
+         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\')">';
         // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
          $rowcolor="blue";
      }
      // print "<tr class=\"d".($i & 1)."\">";
    //  echo "<a onClick=clickSearch(".$var["SECURITY_USERNAME"].")>".$var["SECURITY_USERNAME"]."</a>";
-     echo $var["SECURITY_USERNAME"];
+    
+	
+	
+	echo "<td> <a href='#'>";
+	 echo $var["SECURITY_USERNAME"];
      echo "</td><td>";
 
      echo $var["SECURITY_NAME"];
      echo "</td>";
+	 echo "</a>";
      echo"</tr>";
 
 

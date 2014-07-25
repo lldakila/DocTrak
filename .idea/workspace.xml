@@ -36,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="search.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://Z:/procedures/home/user/search.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="6" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.5788531" vertical-offset="153" max-vertical-offset="1122">
+            <state line="28" column="6" selection-start="1000" selection-end="1000" vertical-scroll-proportion="-12.423077" vertical-offset="153" max-vertical-offset="1122">
               <folding>
                 <marker date="1406274881758" expanded="true" signature="886:982" placeholder="..." />
                 <marker date="1406274881758" expanded="true" signature="1575:1622" placeholder="..." />
@@ -54,6 +54,19 @@
                 <marker date="1406274881758" expanded="true" signature="1684:1837" placeholder="..." />
                 <marker date="1406274881758" expanded="true" signature="1779:1824" placeholder="..." />
                 <marker date="1406274881758" expanded="true" signature="1784:1819" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flowtemplate.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://Z:/flowtemplate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="7" selection-start="974" selection-end="974" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="4692">
+              <folding>
+                <marker date="1406187859811" expanded="true" signature="4933:4984" placeholder="select OFFIC..OFFICE..." />
+                <marker date="1406187859811" expanded="false" signature="5419:5462" placeholder="..." />
+                <marker date="1406187859811" expanded="false" signature="5634:5677" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -376,14 +389,11 @@
     <entry file="file://Z:/flowtemplate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="7" selection-start="974" selection-end="974" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="4692">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/flowtemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="7" selection-start="974" selection-end="974" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="4692">
-          <folding />
+          <folding>
+            <marker date="1406187859811" expanded="true" signature="4933:4984" placeholder="select OFFIC..OFFICE..." />
+            <marker date="1406187859811" expanded="false" signature="5419:5462" placeholder="..." />
+            <marker date="1406187859811" expanded="false" signature="5634:5677" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -417,7 +427,7 @@
     </entry>
     <entry file="file://Z:/procedures/home/user/search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="6" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.5788531" vertical-offset="153" max-vertical-offset="1122">
+        <state line="28" column="6" selection-start="1000" selection-end="1000" vertical-scroll-proportion="-12.423077" vertical-offset="153" max-vertical-offset="1122">
           <folding>
             <marker date="1406274881758" expanded="true" signature="886:982" placeholder="..." />
             <marker date="1406274881758" expanded="true" signature="1575:1622" placeholder="..." />
@@ -432,6 +442,17 @@
             <marker date="1406274881758" expanded="true" signature="1684:1837" placeholder="..." />
             <marker date="1406274881758" expanded="true" signature="1779:1824" placeholder="..." />
             <marker date="1406274881758" expanded="true" signature="1784:1819" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/flowtemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="7" selection-start="974" selection-end="974" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="4692">
+          <folding>
+            <marker date="1406187859811" expanded="true" signature="4933:4984" placeholder="select OFFIC..OFFICE..." />
+            <marker date="1406187859811" expanded="false" signature="5419:5462" placeholder="..." />
+            <marker date="1406187859811" expanded="false" signature="5634:5677" placeholder="..." />
           </folding>
         </state>
       </provider>

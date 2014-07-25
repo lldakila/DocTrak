@@ -356,20 +356,40 @@ div#menu li.back .left {
 }
 
 #postright table#responds {
-	width:400px;
+	width:250px;
 	margin:0 auto;
     line-height: 16px;
+	border-spacing:1px;
 
 }
 
-#postright table#responds tr#search_blue {
-	background-color: #ACE6FB;
-    font-size:12pt;
+#postright tr.usercolor {
+	background-color:#A7DDF7;
+	width:80px;
 }
 
-#postright table#responds tr#search_notblue {
-    background-color: #2CC1F7;
-    font-size:12pt;
+#postright tr.usercolor:hover {
+	background-color:#00acff;
+	width:80px;
+}
+
+#postright tr.usercolor1 {
+	background-color:#3AC7EB;
+	width:80px;
+}
+
+#postright tr.usercolor1:hover {
+	background-color:#008eb2;
+	width:80px;
+}
+
+#postright td a {
+	text-decoration:none;
+	color:#000;
+}
+
+#postright td a:hover {
+	color:#fff;
 }
 
 #postright .scroll {
@@ -649,7 +669,7 @@ select, option { width:130px;
 
 
 td {
-    padding:0 0 0 10px;
+    padding:3px 0 3px 10px;
 
     }
 
