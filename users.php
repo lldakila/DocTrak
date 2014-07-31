@@ -24,30 +24,45 @@ function cleartext() {
   document.getElementById("verify").value="";
   document.getElementById("name").value="";
 }
-function clickSearch(username,name,office) {
-   // alert("clickSearch works");
+function clickSearch(username,name) {
     document.process.username.value=username;
-    document.process.password.value=name;
-    document.process.name.value=office;
+    document.process.name.value=name;
 }
 
 
 function validate() {
+
+    if (document.getElementById('security_user').value=='delete') {
+
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+
+    }
+
+
 
     if (document.process.username.value=="")   {
         alert("Fill up necessary inputs.");
         return false;
     }
     else if (document.process.password.value=="") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
+
+            alert("Fill up necessary inputs.");
+            return false;
+        }
+
     else if (document.process.name.value==""){
         alert("Fill up necessary inputs.");
         return false;
     }
     else if (document.process.group.value=="Select Here") {
-        alert("Select Office.");
+        alert("Select Group.");
         return false;
     }
     else {
@@ -110,7 +125,7 @@ $(document).ready(function() {
     
     	<div class="headerbanner">
         
-        		<img src="images/home/pglu.png" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
+        		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
         
         </div>
 
@@ -149,21 +164,19 @@ $(document).ready(function() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last">
+                <li class="last">
+                    <?php
+                    session_start();
+                    echo "Hi, ".$_SESSION['security_name']."";
 
-        <?php
-          session_start();
-          echo "Hi, ".$_SESSION['Security_Name']."";
-
-        ?>
-
-        </li>
-
-    </ul>
+                    ?>
+                </li>
 
 
 
 
+
+            </ul>
 
 
 

@@ -1,0 +1,57 @@
+<?php
+session_start();
+if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
+  $_SESSION['in'] ="start";
+ header('Location:../../../index.php');
+}
+?>
+
+
+
+
+<?php
+    require_once("../../connection.php");
+    session_start();
+    $query=select_info_multiple_key("select TEMPLATE_NAME,TEMPLATE_DESCRIPTION from DOCUMENT_TEMPLATE  WHERE TEMPLATE_NAME LIKE '%".$_POST['search_string']."%' OR TEMPLATE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY TEMPLATE_NAME");
+   //	echo $_POST['search_string'];
+    echo "<table>";
+	echo "<tr class='bgcolor'>";
+   	echo "<th>Template</th>";
+	echo "<th>Description</th>";
+	echo "</tr>";
+	echo "</table>";
+$rowcolor="blue";
+
+if ($query){
+foreach($query as $var) {
+    if ($rowcolor == "blue") {
+         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor" onClick="clickSearch(\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
+        $rowcolor="notblue";
+    }
+    else
+    {
+       echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
+        $rowcolor="blue";
+    }
+            echo "<td style='width:80px;'>";
+         // print "<tr class=\"d".($i & 1)."\">";
+             echo $var['TEMPLATE_NAME'];
+             ECHO "</td><td>";
+
+            echo $var['TEMPLATE_DESCRIPTION'];
+            echo "</td>";
+             echo"</tr>";
+        // echo "test";
+        }
+
+//echo "<tr> <td>";
+//echo "asdasd";
+    //   echo "</tr> </td>";
+        }
+        else{
+          //  echo"jjjjj";
+        }
+
+
+
+?>

@@ -13,22 +13,27 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     require_once("../../connection.php");
     session_start();
     $query=select_info_multiple_key("select SECURITY_GROUPNAME,SECURITY_NAME from SECURITY_GROUP WHERE SECURITY_GROUPNAME LIKE '%".$_POST['search_string']."%' OR SECURITY_NAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_NAME");
-	echo $_POST['search_string'];
-    echo "<tr>";
-   	echo "<td>Group</td>";
-	echo "<td>Description</td>";
+ //	echo $_POST['search_string'];
+    echo "<table>";
+	echo "<tr class='bgcolor'>";
+   	echo "<th>Group</th>";
+	echo "<th>Description</th>";
 	echo "</tr>";
+	echo "</table>";
 $rowcolor="blue";
 foreach($query as $var) {
-    if ($rowcolor=="blue") {
-        echo "<tr id='search_blue'> <td>";
+    if ($rowcolor == "blue") {
+      echo '<tr id="search_blue" class="usercolor" onClick="clickSearch(\''.$var["SECURITY_GROUPNAME"].'\',\''.$var["SECURITY_NAME"].'\')">';
+
         $rowcolor="notblue";
     }
     else
     {
-        echo "<tr id='search_notblue'> <td>";
+      echo '<tr id="search_notblue" class="usercolor1" onClick="clickSearch(\''.$var["SECURITY_GROUPNAME"].'\',\''.$var["SECURITY_NAME"].'\')">';
+        
         $rowcolor="blue";
     }
+            echo "<td style='width:80px;'>";
          // print "<tr class=\"d".($i & 1)."\">";
              echo $var['SECURITY_GROUPNAME'];
              ECHO "</td><td>";

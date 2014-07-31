@@ -20,14 +20,14 @@ div {
 .header1 {
 	margin:0 auto;
 	width:970px;
-	height:141px;
+	height:181px;
 	background: rgba(0, 0, 0, 0.08);
 }
 
 .headerline {
 	margin:0 auto;
 	width:950px;
-	height:140px;
+	height:180px;
 	border-bottom:1px solid #cfcfcf;
 }
 
@@ -49,7 +49,7 @@ div {
 .headerbanner {
 	margin:0 auto;
 	width:950px;
-	height:100px;
+	height:140px;
 	background: url(../images/home/banner1.png) no-repeat #2392b4;
 }
 
@@ -66,18 +66,18 @@ div {
 
 .headerbanner h2 {
 	margin:0;
-	padding:35px 0 0 92px;
+	padding:55px 0 0 150px;
 	font: bold 22px "Lucida Grande", Tahoma, Verdana, sans-serif;
 	color: #b8e4f2;
 }
 
 .headerbanner img {
-	margin:10px 0 0 10px;
+	margin:8px 0 0 15px;
 }
 
 .headerbanner p {
 	margin:0;
-	padding:0 0 0 92px;
+	padding:0 0 0 150px;
 	font:11px "Lucida Grande", Tahoma, Verdana, sans-serif;
 	color:#FFF;
 }
@@ -356,31 +356,46 @@ div#menu li.back .left {
 }
 
 #postright table#responds {
-	width:250px;
+	width:330px;
 	margin:0 auto;
     line-height: 16px;
 	border-spacing:1px;
 
 }
 
+#postright tr.bgcolor {
+	background-color: #BCBCBC;
+	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
 #postright tr.usercolor {
 	background-color:#A7DDF7;
 	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
 }
 
 #postright tr.usercolor:hover {
 	background-color:#00acff;
 	width:80px;
+	color:#fff;
 }
 
 #postright tr.usercolor1 {
 	background-color:#3AC7EB;
 	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
 }
 
 #postright tr.usercolor1:hover {
 	background-color:#008eb2;
 	width:80px;
+	color:#fff;
+  
 }
 
 #postright td a {
@@ -669,18 +684,20 @@ select, option { width:130px;
 
 
 td {
-    padding:3px 0 3px 10px;
+    padding:3px 0 3px 8px;
+	font-family:tahoma;
+	font-size:12px;
 
     }
 
 
 
-ul #responds{
+ul #responds01{
 	margin:0px;
 	padding: 0px;
 	list-style: none;
 }
-#responds li {
+#responds01 li {
 	list-style: none;
 	padding: 10px;
 	background: rgb(221, 240, 255);
@@ -691,7 +708,7 @@ ul #responds{
 	font-size: 12px;
     margin:5px auto;
 }
-#responds li.sel {
+#responds01 li.sel {
 	background: rgb(255, 221, 221);
 }
 
@@ -700,4 +717,12 @@ ul #responds{
 	max-width: 400px;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.officeselected {
+    margin:0 0 0 190px;
+}
+.officeselected select,option {
+    width: 265px;
+    border-radius: 5px;
 }

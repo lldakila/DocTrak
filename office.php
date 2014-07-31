@@ -16,11 +16,54 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/
-function newoffice() {
-  document.getElementById("office_name").value="";
-  document.getElementById("office_description").value="";
-}
+
 /*]]>*/
+
+function validate() {
+
+
+    if (document.getElementById('office_mode').value=='delete') {
+
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+
+    }
+
+
+    if (document.process.office_name.value == "") {
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else if (document.process.office_description.value == "") {
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else {
+        return true;
+
+    }
+
+
+}
+
+function newoffice() {
+    document.getElementById("office_name").value="";
+    document.getElementById("office_description").value="";
+}
+
+function clickSearch(office,description) {
+
+    document.process.office_name.value=office;
+    document.process.office_description.value=description;
+
+}
+
 
 $(document).ready(function() {
     $("#search_office").click(function (e) {
@@ -47,8 +90,6 @@ $(document).ready(function() {
 });
 
 
-
-
 </script>
 
 </head>
@@ -62,7 +103,7 @@ $(document).ready(function() {
     
     	<div class="headerbanner">
 
-        		<img src="images/home/pglu.png" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
+        		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
         
         </div>
 
@@ -101,17 +142,19 @@ $(document).ready(function() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last">
+
 
 
 
 
           <!--- USERNAME ON MENU START --->
-        <?php
-          session_start();
-          echo "Hi, ".$_SESSION['Security_Name']."";
+                <li class="last">
+                    <?php
+                    session_start();
+                    echo "Hi, ".$_SESSION['security_name']."";
 
-        ?>  </li>
+                    ?>
+                </li>
         <!--- USERNAME ON MENU END --->
 
 
@@ -147,11 +190,11 @@ $(document).ready(function() {
         
         	<div id="post">
             
-            			<div id="post1">
+            			<div id="post10">
                         <h2>OFFICES</h2>
 
 
-                         <form method="post" action="procedures/home/office/process.php">
+                         <form name="process" method="post" action="procedures/home/office/process.php" onsubmit="return validate();">
 
     					<div class="table1">
     				<table border="0">

@@ -17,34 +17,99 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/
+
+function cleartext() {
+  document.getElementById("template_name").value="";
+  document.getElementById("description_name").value="";
+}
+function clickSearch(template_name,description_name,office) {
+document.getElementById("template_name").value=template_name;
+  document.getElementById("description_name").value=description_name;
+}
+
+function validate() {
+
+    if (document.getElementById('security_user').value=='delete') {
+
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+
+    }
+
+
+
+    if (document.process.template_name.value=="")   {
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+
+    else if (document.process.description_name.value==""){
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else if (document.process.office.value=="Select Here") {
+        alert("Select Office.");
+        return false;
+    }
+
+
+
+
+
+}
+
 $(document).ready(function() {
 	//##### send add record Ajax request to response.php #########
 
-    $('.del_wrapper').click(function() {alert();
+  //  $('.del_wrapper').click(function() {
+   //     alert();
         //   var id = $(this).parent().get(0).id;
-        $(this).parent().remove();
-    });
+   //     $(this).parent().remove();
+   // });
 
-	$("#add_office").click(function (e) {
-			e.preventDefault();
-		  // alert("gdg");
-            var myData = 'office='+ $("#Office").val(); //build a post data structure
-			jQuery.ajax({
-			type: "POST", // HTTP method POST or GET
-			url:"procedures/home/flowtemplate/process.php", //Where to make Ajax calls
-			dataType:"text", // Data type, HTML, json etc.
+////	$("#add_office").click(function (e) {
+//	//		e.preventDefault();
+//	//	  // alert("gdg");
+//            var myData = 'office='+ $("#Office").val(); //build a post data structure
+//			jQuery.ajax({
+//			type: "POST", // HTTP method POST or GET
+//			url:"procedures/home/flowtemplate/process.php", //Where to make Ajax calls
+//			dataType:"text", // Data type, HTML, json etc.
+//			data:myData,
+//			    success:function(response){
+//				$("#responds01").append(response);
+//
+//			    },
+//			error:function (xhr, ajaxOptions, thrownError){
+//				alert(thrownError);
+//			}
+//			});
+//	});
+
+    $("#search_flowtemplate").click(function (e) {
+
+    e.preventDefault();
+    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+    jQuery.ajax({
+			type: "POST",
+            url:"procedures/home/flowtemplate/search.php",
+            dataType:"text", // Data type, HTML, json etc.
 			data:myData,
-			    success:function(response){
-				$("#responds").append(response);
+			success:function(response){
+				$("#responds").html(response);
 
-			    },
+			},
 			error:function (xhr, ajaxOptions, thrownError){
 				alert(thrownError);
 			}
 			});
 	});
-
-
 
 });
 
@@ -69,7 +134,7 @@ $(document).ready(function() {
     
     	<div class="headerbanner">
         
-        		<img src="images/home/pglu.png" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
+        		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
         
         </div>
 
@@ -108,20 +173,23 @@ $(document).ready(function() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last"><?php
-          session_start();
-          echo "Hi, ".$_SESSION['Security_Name']."";
 
-        ?>  </li>
+            <li class="last">
+                <?php
+                session_start();
+                echo "Hi, ".$_SESSION['security_name']."";
 
-    </ul>
+                ?>
+            </li>
+            </ul>
 
          <div id="tfheader">
-					<form id="tfnewsearch" method="get" action="http://www.google.com">
-		        	<input type="text" class="tftextinput" placeholder="search..." name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+					<form id="tfnewsearch" method="POST" >
+		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+                    <button id="search_flowtemplate" class="tfbutton">Search </button>
 					</form>
 				<div class="tfclear"></div>
-				</div>   
+				</div>
             
             
         </div>
@@ -147,19 +215,19 @@ $(document).ready(function() {
 
 
 
-                              <form method="post" action="procedures/home/office/process.php">
+                              <form method="post" action="procedures/home/flowtemplate/process.php">
 
     					<div class="table1">
     				<table>
                   	<tr>
                     	<td>Template:</td>
 
-                        <td class="textinput"><input id="office_name" name="office_name" type="text" /> </td>
+                        <td class="textinput"><input id="template_name" name="template_name" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
 
-                        <td class="textinput"><input id="office_name" name="office_name" type="text" /> </td>
+                        <td class="textinput"><input id="description_name" name="description_name" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Office:</td>
@@ -220,13 +288,29 @@ $(document).ready(function() {
                           --->
 
 
-                          <ul id="responds">
+<!--                          <ul id="responds01">-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--                          </ul>-->
+
+                    <div class="officeselected">
 
 
+                            <select id="office" size="10" width="15"	name="decision22" multiple>
+                                <option selected>Plan 1
+                                <option>Plan 2
+                                <option>Plan 3
+                                <option>Plan 4
+                                <option>Plan 5
+                            </select>
+
+                        <input type="button" id="deleteselected" value="Remove"/>
 
 
-
-                          </ul>
+                    </div>
                               <!--- BUTTONS ACTIVITY START --->
 
 
@@ -241,6 +325,15 @@ $(document).ready(function() {
 
 						   </form>
                         </div>
+                        
+                        	<div id="postright">
+                            <div class="scroll">
+                        	<table id="responds">
+                            
+
+                			</table>
+                            </div>
+                         	</div>
 
 
                         <div class="tfclear"></div>

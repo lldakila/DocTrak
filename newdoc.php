@@ -24,7 +24,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     
     	<div class="headerbanner">
         
-        		<img src="images/home/pglu.png" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
+        		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
         
         </div>
 

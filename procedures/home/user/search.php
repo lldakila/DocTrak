@@ -14,10 +14,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     session_start();
     $query=select_info_multiple_key("select SECURITY_USERNAME,SECURITY_NAME,fkSecurity_GroupName from SECURITY_USER WHERE SECURITY_NAME LIKE '%".$_POST['search_string']."%' OR SECURITY_USERNAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_USERNAME");
 	echo $_POST['search_string'];
-    echo "<tr>";
-   	echo "<td>Username</td>";
-	echo "<td>Name</td>";
+    echo "<table>";
+	echo "<tr class='bgcolor'>";
+   	echo "<th>Username</th>";
+	echo "<th>Name</th>";
 	echo "</tr>";
+	echo "</table>";
 $rowcolor="blue";
  foreach($query as $var) {
 
@@ -29,7 +31,7 @@ $rowcolor="blue";
      }
      else
      {
-         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\')">';
+         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\',\''.$var["SECURITY_NAME"].'\',\''.$var["fkSecurity_GroupName"].'\')">';
         // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
          $rowcolor="blue";
      }
@@ -38,13 +40,11 @@ $rowcolor="blue";
     
 	
 	
-	echo "<td> <a href='#'>";
+	echo "<td style='width:80px;'>";
 	 echo $var["SECURITY_USERNAME"];
-     echo "</td><td>";
-
+	 echo "</td><td>";
      echo $var["SECURITY_NAME"];
      echo "</td>";
-	 echo "</a>";
      echo"</tr>";
 
 

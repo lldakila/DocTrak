@@ -46,7 +46,7 @@ session_start();
 
                 echo"<div style='color:#fff; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Invalid Username / Password </div>";
             }else if($_SESSION['in']=='start'){
-                echo"<div style='color:red;font-family: Times New Roman'>**SIGN IN TO CONTINUE**</div>";
+                echo"<div style='color:red; font-family: Times New Roman'>**SIGN IN TO CONTINUE**</div>";
 
                 }
          $_SESSION['login']='clear';

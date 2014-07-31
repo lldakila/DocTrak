@@ -17,10 +17,18 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/
+
+
+
 function cleartext() {
   document.getElementById("group").value="";
   document.getElementById("description").value="";
 }
+function clickSearch(group,description) {
+document.getElementById("group").value=group;
+  document.getElementById("description").value=description;
+}
+
 
 
 $(document).ready(function() {
@@ -50,13 +58,27 @@ $(document).ready(function() {
 function validate() {
 
 
-    if (document.process.group.value=="") {
+    if (document.getElementById("group_mode").value == "delete") {
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    if (document.process.group.value == "") {
         alert("Fill up necessary inputs.");
         return false;
+    }
+    else if (document.process.description.value =="") {
+        alert("Fill up necessary inputs.");
+        return false
     }
     else {
         return true;
     }
+
 
 
 
@@ -75,7 +97,7 @@ function validate() {
     
     	<div class="headerbanner">
         
-        		<img src="images/home/pglu.png" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
+        		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
         
         </div>
 
@@ -117,7 +139,7 @@ function validate() {
         <li class="last">
             <?php
           session_start();
-          echo "Hi, ".$_SESSION['Security_Name']."";
+          echo "Hi, ".$_SESSION['security_name']."";
 
         ?>
         </li>
