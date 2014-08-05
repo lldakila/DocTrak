@@ -11,25 +11,64 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.10.2.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <title>PGLU DOCTRAK</title>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/
+function addoffice() {
+
+    var myForm = document.flowtemlate;
+    var mySel = myForm.officeselection;
+    var myOption;
+    var hiddenContent;
+
+    myOption=document.createElement("Option");
+    myOption.text=document.getElementById("officelist").value;
+    myOption.value=document.getElementById("officelist").value;
+   // mySel.add(myOption);
+    mySel.appendChild(myOption);
+
+    hiddenContent=document.flowtemlate.OfficeArray.value;
+    document.flowtemlate.OfficeArray.value=hiddenContent  +  document.getElementById("officelist").value +"|";
+
+
+
+
+}
+
+function removeoffice(selectbox) {
+
+    var i;
+    for(i=selectbox.options.length-1;i>=0;i--)
+    {
+        if(selectbox.options[i].selected) {
+            selectbox.remove(i);
+            }
+    }
+
+}
+
+
 
 function cleartext() {
   document.getElementById("template_name").value="";
-  document.getElementById("description_name").value="";
+  document.getElementById("template_description").value="";
 }
+
 function clickSearch(template_name,description_name,office) {
 document.getElementById("template_name").value=template_name;
   document.getElementById("description_name").value=description_name;
 }
 
+
+
 function validate() {
 
-    if (document.getElementById('security_user').value=='delete') {
+
+
+    if (document.getElementById('template_mode').value=='delete') {
 
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
@@ -44,19 +83,22 @@ function validate() {
 
 
 
-    if (document.process.template_name.value=="")   {
+    if (document.flowtemlate.template_name.value=="")   {
         alert("Fill up necessary inputs.");
         return false;
     }
 
-    else if (document.process.description_name.value==""){
+    else if (document.flowtemlate.template_description.value==""){
         alert("Fill up necessary inputs.");
         return false;
     }
-    else if (document.process.office.value=="Select Here") {
-        alert("Select Office.");
+
+
+    if (document.flowtemlate.officeselection.length == 0) {
+        alert("Fill up necessary inputs.");
         return false;
     }
+
 
 
 
@@ -160,6 +202,7 @@ $(document).ready(function() {
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>
         <ul>
+                <li><a href="documenttype.php"><span>DOCUMENT TYPE</span></a></li>
                 <li><a href="office.php"><span>OFFICES</span></a></li>
                 <li><a href="flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
                 <li><a href="#" class="parent"><span>SECURITY</span></a>
@@ -215,7 +258,7 @@ $(document).ready(function() {
 
 
 
-                              <form method="post" action="procedures/home/flowtemplate/process.php">
+                              <form name="flowtemlate" method="post" action="procedures/home/flowtemplate/process.php" onsubmit="return validate();">
 
     					<div class="table1">
     				<table>
@@ -227,16 +270,14 @@ $(document).ready(function() {
                     <tr>
                     	<td>Description:</td>
 
-                        <td class="textinput"><input id="description_name" name="description_name" type="text" /> </td>
+                        <td class="textinput"><input id="template_description" name="template_description" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Office:</td>
-                        <td class="select01"><select name='office' id='Office'>
+                        <td class="select01"><select name='officelist' id='officelist'>
         <?php
         require_once("procedures/connection.php");
         session_start();
-      //  $_SESSION['guid']=uniqid();
-       // echo "".$_SESSION['guid']."";
         $_SESSION['number_counter']=0;
         $query=select_info_multiple_key("select OFFICE_NAME from OFFICE ORDER BY OFFICE_NAME");
         foreach($query as $var) {
@@ -244,81 +285,55 @@ $(document).ready(function() {
         }
         ?>
                                 </select>
-                                <button id="add_office">Add Office</button></td>
+<!--                               <button id="add_office" type="button">Add Office</button>-->
+                                <input type="button" value="Add Office" onClick="javascript:addoffice();"/>
+                        </td>
                     </tr>
 
 
                   </table>
 
-                    <?php
-            session_start();
-           if($_SESSION['operation']=='save'){
-
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
-
-            }  elseif($_SESSION['operation']=='delete'){
-
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-                }
-
-               $_SESSION['operation']='clear';
-
-            ?>
 
 
 
 
 
 
-
-     <!---
-    <li class="orange"><a href="#">Download</a></li>
-    <li class="blue"><a href="#">Download</a></li>
-    <li class="green"><a href="#">Download</a></li>
-    <li class="purple"><a href="#">Download</a></li>
-    <li class="gold"><a href="#">Download</a></li>
-        --->
-
-                        <!---
-						 <table id="responds" cellpadding="0" cellspacing="0">
-
-
-
-                         </table>
-                          --->
-
-
-<!--                          <ul id="responds01">-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--                          </ul>-->
 
                     <div class="officeselected">
 
+                            <input type="text" name="OfficeArray" id="OfficeArray">
+                            <select id="officeselect" size="10" width="15" name="officeselection" multiple>
 
-                            <select id="office" size="10" width="15"	name="decision22" multiple>
-                                <option selected>Plan 1
-                                <option>Plan 2
-                                <option>Plan 3
-                                <option>Plan 4
-                                <option>Plan 5
+
                             </select>
 
-                        <input type="button" id="deleteselected" value="Remove"/>
+                        <input type="button" id="deleteselected" value="Remove Office" onclick="removeoffice(officeselection);"/>
 
 
-                    </div>
+                    </div><div class="tfclear"></div>
+                            <?php
+                            session_start();
+                            if($_SESSION['operation']=='save'){
+
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+
+                            }  elseif($_SESSION['operation']=='delete'){
+
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+                            }
+
+                            $_SESSION['operation']='clear';
+
+                            ?>
                               <!--- BUTTONS ACTIVITY START --->
 
 
                         <div class="input">
-                         <input id="office_mode" name="office_mode" type="hidden" value="0"/>
-                         <input type="button" value="Clear" onClick="javascript:newoffice();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('office_mode').value='save';"/>
+                         <input id="template_mode" name="template_mode" type="hidden" value="0"/>
+                         <input type="button" value="Clear" onClick="javascript:cleartext();"/>
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('template_mode').value='delete';"/>
+                         <input type="submit" value="Save" onClick="document.getElementById('template_mode').value='save';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
                            </div>
@@ -326,7 +341,7 @@ $(document).ready(function() {
 						   </form>
                         </div>
                         
-                        	<div id="postright">
+                        	<div id="postright01">
                             <div class="scroll">
                         	<table id="responds">
                             
@@ -352,7 +367,7 @@ $(document).ready(function() {
 	<div class="footer1">
     
     			<div id="footer2">
-                	<p>Copyright &copy; 2014-2015 Sir TJ and Jerome | <a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+                	<p>Copyright &copy; 2014-2015 TJ and Jerome | <a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
                 </div>
     
     </div>

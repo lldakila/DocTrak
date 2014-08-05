@@ -4,7 +4,7 @@
 body {
 	padding:0;
 	margin:0;
-	background: #1fadd9;
+	background:#3F677E;
 }
 
 div {
@@ -415,6 +415,103 @@ div#menu li.back .left {
 	padding:10px 0 10px 0;
 }
 
+#postright01 {
+	width:255px;
+	height:419px;
+	background-color:#FFF;
+	display:block;
+	float:right;
+	margin:10px 10px 0 0;
+	border-radius:5px;
+}
+
+#postright01_group {
+	width:255px;
+	height:419px;
+	background-color:#FFF;
+	display:block;
+	float:right;
+	margin:10px 10px 0 0;
+	border-radius:5px;
+}
+
+#postright01 h2 {
+	margin:0;
+	padding:10px 0 5px 5px;
+	font:18px "Lucida Grande", Tahoma, Verdana, sans-serif;
+	border-bottom:1px solid #ccc;
+	width:240px;
+	margin:0 auto;
+}
+
+#postright01 p {
+	margin:0;
+	padding:10px;
+	font:12px, "Lucida Grande", Tahoma, Verdana, sans-serif;
+	width:240px;
+	margin:0 auto;
+}
+
+#postright01 table#responds {
+	width:330px;
+	margin:0 auto;
+    line-height: 16px;
+	border-spacing:1px;
+
+}
+
+#postright01 tr.bgcolor {
+	background-color: #BCBCBC;
+	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
+#postright01 tr.usercolor {
+	background-color:#A7DDF7;
+	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+}
+
+#postright01 tr.usercolor:hover {
+	background-color:#00acff;
+	width:80px;
+	color:#fff;
+}
+
+#postright01 tr.usercolor1 {
+	background-color:#3AC7EB;
+	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+}
+
+#postright01 tr.usercolor1:hover {
+	background-color:#008eb2;
+	width:80px;
+	color:#fff;
+  
+}
+
+#postright01 td a {
+	text-decoration:none;
+	color:#000;
+}
+
+#postright01 td a:hover {
+	color:#fff;
+}
+
+#postright01 .scroll {
+	overflow:scroll;
+	width:240px;
+	height:380px;
+	margin:10px auto;
+	padding:10px 0 10px 0;
+}
+
 #footer2 {
 	margin:0 auto;
 	width:950px;
@@ -536,6 +633,34 @@ div#menu li.back .left {
    		color:#fff;
 	}
 
+.textinput {
+  font-size: 12px;
+  color: #777;
+  cursor: pointer;
+}
+
+.select01 input {
+  position: relative;
+  bottom: 1px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+
+input[type=checkbox],
+input[type=radio] {
+        border: 1px solid #c0c0c0;
+        margin: 0 0.1em 0 0;
+        padding: 0;
+        font-size: 16px;
+        line-height: 1em;
+        width: 1.25em;
+        height: 1.25em;
+        background: #fff;
+        display: inline-block;
+
+}
+
 	.textinput input[type=text] {
     width: 365px;
 	border-radius:5px;
@@ -563,6 +688,24 @@ div#menu li.back .left {
 	
 	input[type=button] {
 	border-radius:5px;
+        width: 100px;
+		background-color:#E3E1FF;
+	}
+	
+	input[type=button]:hover {
+	background-color:#1fadd9;
+	color:#fff;
+	}
+	
+	button[type=button] {
+	border-radius:5px;
+        width: 100px;
+		background-color:#E3E1FF;
+	}
+	
+	button[type=button]:hover {
+	background-color:#1fadd9;
+	color:#fff;
 	}
 
 	input[type=file] {
@@ -575,7 +718,8 @@ select, option { width:130px;
 .select01 select, option { width:268px;
 					border-radius:5px; }
 
-
+.select02 select, option { width:365px;
+					border-radius:5px; }
 
 
 
@@ -720,9 +864,16 @@ ul #responds01{
 }
 
 .officeselected {
-    margin:0 0 0 190px;
+    margin:0;
+    width: 560px;
 }
 .officeselected select,option {
     width: 265px;
     border-radius: 5px;
+    margin: 0 0 0 190px;
+    float: left;
+}
+
+.officeselected input#deleteselected {
+    float: right;
 }

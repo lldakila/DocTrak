@@ -10,19 +10,16 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-1.10.2.min.js"></script>
 <title>PGLU DOCTRAK</title>
-    <script src="js/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
-/*<![CDATA[*/
 
-/*]]>*/
+<script language="JavaScript" type="text/javascript">
 
 function validate() {
 
-
-    if (document.getElementById('office_mode').value=='delete') {
+    if (document.getElementById('type_mode').value=='delete') {
 
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
@@ -36,58 +33,78 @@ function validate() {
     }
 
 
-    if (document.process.office_name.value == "") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.office_description.value == "") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else {
-        return true;
 
+    if (document.documenttype.document_name.value=="")   {
+        alert("Fill up necessary inputs.");
+        return false;
     }
+    else if (document.documenttype.description.value=="") {
+
+            alert("Fill up necessary inputs.");
+            return false;
+        }
+
+    else if (document.documenttype.name.value==""){
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+
+if (document.getElementById('publicyes').checked) {
+            return true;
+           }
+else if (document.getElementById('publicno').checked) {
+  return true;
+
+  }
+else {
+     alert("Fill up necessary inputs.");
+               return false;
+}
+
+
+
+
+
 
 
 }
 
-function newoffice() {
-    document.getElementById("office_name").value="";
-    document.getElementById("office_description").value="";
-}
-
-function clickSearch(office,description) {
-
-    document.process.office_name.value=office;
-    document.process.office_description.value=description;
+function clickSearch(id,description,priority,docpublic) {
+document.getElementById("document_name").value=id;
+  document.getElementById("description").value=description;
+   document.getElementById("priority").value=priority;
+   // alert(docpublic  );
 
 }
 
 
 $(document).ready(function() {
-    $("#search_office").click(function (e) {
 
-        e.preventDefault();
-        var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-        jQuery.ajax({
-            type: "POST",
-            url:"procedures/home/office/search.php",
+    $("#search_type").click(function (e) {
+
+    e.preventDefault();
+    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+    jQuery.ajax({
+			type: "POST",
+            url:"procedures/home/type/search.php",
             dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            success:function(response){
-                $("#responds").html(response);
+			data:myData,
+			success:function(response){
+				$("#responds").html(response);
 
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    });
-
-
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+			});
+	});
 
 });
+
+
+
+
+
 
 
 </script>
@@ -102,7 +119,7 @@ $(document).ready(function() {
     	<div class="headerline">
     
     	<div class="headerbanner">
-
+        
         		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>PGLU DOCTRAK</h2><p>Management Information System</p>
         
         </div>
@@ -143,40 +160,26 @@ $(document).ready(function() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
+        <li class="last"><?php
+          session_start();
+          echo "Hi, ".$_SESSION['security_name']."";
 
-
-
-
-
-          <!--- USERNAME ON MENU START --->
-                <li class="last">
-                    <?php
-                    session_start();
-                    echo "Hi, ".$_SESSION['security_name']."";
-
-                    ?>
-                </li>
-        <!--- USERNAME ON MENU END --->
-
-
-
+        ?>  </li>
 
     </ul>
 
-            <div id="tfheader">
-                <form id="tfnewsearch" method="POST" action="procedures/home/office/search.php">
-                    <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+         <div id="tfheader">
+                    <form id="tfnewsearch" method="POST">
+		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 
-                    <button id="search_office" class="tfbutton">Search </button>
-                </form>
-                <div class="tfclear">
+                    <button id="search_type" class="tfbutton">Search </button>
+					</form>
+				<div class="tfclear"></div>
+				</div>   
 
-
-                </div>
-            
             
         </div>
-        
+
         </div>
     
     </div>
@@ -192,22 +195,38 @@ $(document).ready(function() {
         	<div id="post">
             
             			<div id="post10">
-                        <h2>OFFICES</h2>
+                        <h2>DOCUMENT TYPE</h2>
+                        
 
-
-                         <form name="process" method="post" action="procedures/home/office/process.php" onsubmit="return validate();">
+                               <form name="documenttype" method="post" action="procedures/home/type/process.php"  onsubmit="return validate();">
 
     					<div class="table1">
     				<table border="0">
                   	<tr>
-                    	<td>Office Name:</td>
+                    	<td>Document Name:</td>
 
-                        <td class="textinput"><input id="office_name" name="office_name" type="text" /> </td>
+                        <td class="textinput"><input id="document_name" name="document_name" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
-                        <td class="textinput"><input id="office_description" name="office_description" type="text" /> </td>
+                        <td class="textinput"><input id="description" name="description" type="text" /> </td>
                     </tr>
+                    <tr>
+                    	<td>Priority: </td>
+                         <td class="select01">
+                             <select id="priority" name="priority">
+                              <option>High</option>
+                              <option>Medium</option>
+                              <option>Low</option>
+
+                              </select>
+                              Public:
+                        <input id="publicyes" name="publicradio" type="radio" value="Yes"/>Yes &nbsp;
+                        <input id="publicno" name="publicradio" type="radio" value="No"/>No
+                               </td>
+
+                    </tr>
+
 
 
                   </table>
@@ -226,44 +245,45 @@ $(document).ready(function() {
                $_SESSION['operation']='clear';
 
 
-
-
-
-
 ?>
 
                   		 <!--- BUTTONS ACTIVITY START --->
 
-                        <div class="input">
-                         <input id="office_mode" name="office_mode" type="hidden" value="0"/>
-                         <input type="button" value="Clear" onClick="javascript:newoffice();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('office_mode').value='save';"/>
-                         </div>
+
+
+                            <div class="input">
+                                <input id="type_mode" name="type_mode" type="hidden" />
+                                <input type="button" value="Clear"/>
+                                <input  type="submit" value="Delete" onclick="getElementById('type_mode').value='delete';" />
+                                <input type="submit" value="Save" onclick="getElementById('type_mode').value='save';"/>
+                            </div>
+
+
                            <!--- BUTTONS ACTIVITY END--->
 
                   </div>
 
 						   </form>
+
+							
                         </div>
-                        
+
                         <div id="postright">
                             <div class="scroll">
-                                <table id="responds"  >
+                                <table id="responds">
 
 
                                 </table>
                             </div>
                         </div>
 
-
                         <div class="tfclear"></div>
 
-
+            
             </div>
-
+        
         </div>
-
+    
     </div>
 
 </div>

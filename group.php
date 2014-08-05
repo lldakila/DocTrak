@@ -123,6 +123,7 @@ function validate() {
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>
         <ul>
+                <li><a href="documenttype.php"><span>DOCUMENT TYPE</span></a></li>
                 <li><a href="office.php"><span>OFFICES</span></a></li>
                 <li><a href="flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
                 <li><a href="#" class="parent"><span>SECURITY</span></a>
@@ -257,7 +258,7 @@ function validate() {
 	<div class="footer1">
     
     			<div id="footer2">
-                	<p>Copyright &copy; 2014-2015 Sir TJ and Jerome | <a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+                	<p>Copyright &copy; 2014-2015 TJ and Jerome | <a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
                 </div>
     
     </div>
