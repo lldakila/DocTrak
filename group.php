@@ -23,10 +23,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 function cleartext() {
   document.getElementById("group").value="";
   document.getElementById("description").value="";
+    document.getElementById("primarykey").value="";
 }
 function clickSearch(group,description) {
 document.getElementById("group").value=group;
   document.getElementById("description").value=description;
+    document.getElementById("primarykey").value=group;
 }
 
 
@@ -59,12 +61,17 @@ function validate() {
 
 
     if (document.getElementById("group_mode").value == "delete") {
+        if (document.getElementById("primarykey").value != "") {
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
         }
         else {
+
             return false;
         }
+    }
+        alert("Nothing to delete.");
+        return false;
     }
 
     if (document.process.group.value == "") {
@@ -183,11 +190,14 @@ function validate() {
                   	<tr>
                     	<td>Group:</td>
 
-                        <td class="textinput1"><input id="group" name="group" type="text" /> </td>
+                        <td class="textinput1">
+                            <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="group" name="group" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
-                        <td class="textinput1"><input id="description" name="description" type="text" /> </td>
+                        <td class="textinput1">
+                            <input id="description" name="description" type="text" /> </td>
                     </tr>
 
 
@@ -204,6 +214,10 @@ function validate() {
 
                      echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
                 }
+           elseif($_SESSION['operation']=='update'){
+
+               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+           }
 
                $_SESSION['operation']='clear';
 
@@ -218,7 +232,7 @@ function validate() {
 
                         <div class="input1">
                          <input id="group_mode" name="group_mode" type="hidden" value="0"/>
-                         <input type="button" value="Clear" onClick="javascript:cleartext();"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();"/>
                          <input  type="submit" value="Delete"  onClick="document.getElementById('group_mode').value='delete';"/>
                          <input type="submit" value="Save" onClick="document.getElementById('group_mode').value='save';"/>
                          </div>

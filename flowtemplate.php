@@ -19,7 +19,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 /*<![CDATA[*/
 function addoffice() {
 
-    var myForm = document.flowtemlate;
+    var myForm = document.flowtemplate;
     var mySel = myForm.officeselection;
     var myOption;
     var hiddenContent;
@@ -29,10 +29,17 @@ function addoffice() {
     myOption.value=document.getElementById("officelist").value;
    // mySel.add(myOption);
     mySel.appendChild(myOption);
+        if (document.flowtemplate.OfficeArray.value!="") {
+            hiddenContent=document.flowtemplate.OfficeArray.value + "|";
+        }
+    else {
+            hiddenContent="";
+        }
 
-    hiddenContent=document.flowtemlate.OfficeArray.value;
-    document.flowtemlate.OfficeArray.value=hiddenContent  +  document.getElementById("officelist").value +"|";
+        document.flowtemplate.OfficeArray.value=hiddenContent  +  document.getElementById("officelist").value;
 
+
+   // alert (document.flowtemplate.OfficeArray.value);
 
 
 
@@ -55,12 +62,53 @@ function removeoffice(selectbox) {
 function cleartext() {
   document.getElementById("template_name").value="";
   document.getElementById("template_description").value="";
+  document.getElementById("primarykey").value="";
 }
 
-function clickSearch(template_name,description_name,office) {
-document.getElementById("template_name").value=template_name;
-  document.getElementById("description_name").value=description_name;
+function clickSearch(template_name,description_name) {
+    document.getElementById("template_name").value=template_name;
+    document.getElementById("description_name").value=description_name;
+    document.getElementById("primarykey").value=template_name;
+    retrieveoffice(template_name);
+    retrieveofficearray(template_name);
 }
+
+    function retrieveoffice(template_name){
+    var myData = 'template_name='+template_name; //build a post data structure
+    jQuery.ajax({
+			type: "POST",
+            url:"procedures/home/flowtemplate/office.php",
+            dataType:"text", // Data type, HTML, json etc.
+			data:myData,
+			success:function(response){
+
+				$("#officeselect").html(response);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+			});
+	}
+
+    function retrieveofficearray(template_name) {
+        var myData = 'template_name='+template_name; //build a post data structure
+        jQuery.ajax({
+            type: "POST",
+            url:"procedures/home/flowtemplate/officehidden.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            success:function(response){
+               // $("#OfficeArray").html(response);
+                document.getElementById('OfficeArray').value=response;
+                //alert(response);
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+    }
+
+
 
 
 
@@ -69,11 +117,16 @@ function validate() {
 
 
     if (document.getElementById('template_mode').value=='delete') {
-
+        if (document.getElementById('primarykey').value!="") {
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
         }
         else {
+            return false;
+        }
+        }
+        else {
+            alert("Nothing to delete.");
             return false;
         }
 
@@ -83,18 +136,18 @@ function validate() {
 
 
 
-    if (document.flowtemlate.template_name.value=="")   {
+    if (document.flowtemplate.template_name.value=="")   {
         alert("Fill up necessary inputs.");
         return false;
     }
 
-    else if (document.flowtemlate.template_description.value==""){
+    else if (document.flowtemplate.template_description.value==""){
         alert("Fill up necessary inputs.");
         return false;
     }
 
 
-    if (document.flowtemlate.officeselection.length == 0) {
+    if (document.flowtemplate.officeselection.length == 0) {
         alert("Fill up necessary inputs.");
         return false;
     }
@@ -152,6 +205,10 @@ $(document).ready(function() {
 			}
 			});
 	});
+
+
+
+
 
 });
 
@@ -258,19 +315,21 @@ $(document).ready(function() {
 
 
 
-                              <form name="flowtemlate" method="post" action="procedures/home/flowtemplate/process.php" onsubmit="return validate();">
+                              <form name="flowtemplate" method="post" action="procedures/home/flowtemplate/process.php" onsubmit="return validate();">
 
     					<div class="table1">
     				<table>
                   	<tr>
                     	<td>Template:</td>
 
-                        <td class="textinput"><input id="template_name" name="template_name" type="text" /> </td>
+                        <td class="textinput">
+                            <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="template_name" name="template_name" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
 
-                        <td class="textinput"><input id="template_description" name="template_description" type="text" /> </td>
+                        <td class="textinput"><input id="description_name" name="template_description" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Office:</td>
@@ -305,7 +364,6 @@ $(document).ready(function() {
                             <input type="text" name="OfficeArray" id="OfficeArray">
                             <select id="officeselect" size="10" width="15" name="officeselection" multiple>
 
-
                             </select>
 
                         <input type="button" id="deleteselected" value="Remove Office" onclick="removeoffice(officeselection);"/>
@@ -322,6 +380,10 @@ $(document).ready(function() {
 
                                 echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
                             }
+                            elseif($_SESSION['operation']=='error'){
+
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Error querry. Save not Successful. </div>";
+                            }
 
                             $_SESSION['operation']='clear';
 
@@ -331,7 +393,7 @@ $(document).ready(function() {
 
                         <div class="input">
                          <input id="template_mode" name="template_mode" type="hidden" value="0"/>
-                         <input type="button" value="Clear" onClick="javascript:cleartext();"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();"/>
                          <input  type="submit" value="Delete"  onClick="document.getElementById('template_mode').value='delete';"/>
                          <input type="submit" value="Save" onClick="document.getElementById('template_mode').value='save';"/>
                          </div>

@@ -6,8 +6,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 }
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="js/jquery-1.10.2.min.js"></script>
@@ -17,10 +16,26 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <script language="JavaScript" type="text/javascript">
 
+function cleartext() {
+  document.getElementById("document_name").value="";
+  document.getElementById("description").value="";
+    document.getElementById("primarykey").value="";
+    if(docpublic==1){
+         document.getElementById("publicyes").checked=true;
+         document.getElementById("publicno").checked=false;
+   }
+   else{
+        document.getElementById("publicyes").checked=false;
+         document.getElementById("publicno").checked=true;
+   }
+}
+
 function validate() {
 
-    if (document.getElementById('type_mode').value=='delete') {
 
+
+    if (document.getElementById('type_mode').value=='delete') {
+          if (document.getElementById("primarykey").value != "") {
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
         }
@@ -31,8 +46,11 @@ function validate() {
 
 
     }
-
-
+       else {
+               alert("Nothing to delete.");
+            return false;
+                   }
+    }
 
     if (document.documenttype.document_name.value=="")   {
         alert("Fill up necessary inputs.");
@@ -46,6 +64,11 @@ function validate() {
 
     else if (document.documenttype.name.value==""){
         alert("Fill up necessary inputs.");
+        return false;
+    }
+
+    else if (document.documenttype.priority.value==""){
+      alert("Fill up necessary inputs.");
         return false;
     }
 
@@ -70,9 +93,20 @@ else {
 }
 
 function clickSearch(id,description,priority,docpublic) {
-document.getElementById("document_name").value=id;
+
+  document.getElementById("document_name").value=id;
   document.getElementById("description").value=description;
-   document.getElementById("priority").value=priority;
+  document.getElementById("priority").value=priority;
+  document.getElementById("primarykey").value=id;
+   if(docpublic==1){
+         document.getElementById("publicyes").checked=true;
+         document.getElementById("publicno").checked=false;
+   }
+   else{
+        document.getElementById("publicyes").checked=false;
+         document.getElementById("publicno").checked=true;
+   }
+
    // alert(docpublic  );
 
 }
@@ -196,16 +230,15 @@ $(document).ready(function() {
             
             			<div id="post10">
                         <h2>DOCUMENT TYPE</h2>
-                        
-
-                               <form name="documenttype" method="post" action="procedures/home/type/process.php"  onsubmit="return validate();">
+                               <form name="documenttype" method="POST" action="procedures/home/type/process.php"  onsubmit="return validate();">
 
     					<div class="table1">
     				<table border="0">
                   	<tr>
                     	<td>Document Name:</td>
-
-                        <td class="textinput"><input id="document_name" name="document_name" type="text" /> </td>
+                        <td class="textinput">
+                                                <input id="primarykey" name="primarykey" type="hidden" />
+                                                <input id="document_name" name="document_name" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
@@ -218,7 +251,6 @@ $(document).ready(function() {
                               <option>High</option>
                               <option>Medium</option>
                               <option>Low</option>
-
                               </select>
                               Public:
                         <input id="publicyes" name="publicradio" type="radio" value="Yes"/>Yes &nbsp;
@@ -241,6 +273,10 @@ $(document).ready(function() {
 
                      echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
                 }
+                 elseif($_SESSION['operation']=='update'){
+
+                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+                }
 
                $_SESSION['operation']='clear';
 
@@ -253,9 +289,9 @@ $(document).ready(function() {
 
                             <div class="input">
                                 <input id="type_mode" name="type_mode" type="hidden" />
-                                <input type="button" value="Clear"/>
-                                <input  type="submit" value="Delete" onclick="getElementById('type_mode').value='delete';" />
-                                <input type="submit" value="Save" onclick="getElementById('type_mode').value='save';"/>
+                                <input type="button" value="New" onClick="javascript:cleartext();"/>
+                                <input  type="submit" value="Delete" onclick="document.getElementById('type_mode').value='delete';" />
+                                <input type="submit" value="Save" onclick="document.getElementById('type_mode').value='save';"/>
                             </div>
 
 

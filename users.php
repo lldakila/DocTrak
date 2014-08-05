@@ -23,17 +23,21 @@ function cleartext() {
   document.getElementById("password").value="";
   document.getElementById("verify").value="";
   document.getElementById("name").value="";
+  document.getElementById("primarykey").value="";
+
 }
 function clickSearch(username,name) {
     document.process.username.value=username;
     document.process.name.value=name;
+    document.getElementById("primarykey").value=username;
+  //  document.getElementById("group").value=username;
 }
 
 
 function validate() {
 
     if (document.getElementById('security_user').value=='delete') {
-
+        if (document.getElementById('primarykey').value != ""){
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
         }
@@ -41,6 +45,11 @@ function validate() {
             return false;
         }
 
+        }
+        else {
+            alert("Nothing to delete.");
+            return false;
+        }
 
 
     }
@@ -220,7 +229,9 @@ $(document).ready(function() {
                   	<tr>
                     	<td>Username:</td>
 
-                        <td class="usertext"><input id="username" name="username" type="text" /> </td>
+                        <td class="usertext">
+                            <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="username" name="username" type="text" /> </td>
                     </tr>
                     <tr>
                     	<td>Password:</td>
@@ -238,7 +249,7 @@ $(document).ready(function() {
                           <tr>
                     	<td>Group: </td>
                          <td class="select01">
-                             <select name="group"> <option>Select Here</option>
+                             <select id="group" name="group"> <option>Select Here</option>
 
        <?php
            require_once("procedures/connection.php");
@@ -268,6 +279,10 @@ $(document).ready(function() {
 
                      echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
                 }
+           elseif($_SESSION['operation']=='update'){
+
+               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+           }
 
                $_SESSION['operation']='clear';
 
@@ -282,7 +297,7 @@ $(document).ready(function() {
 
                         <div class="input1">
                          <input id="security_user" name="security_user" type="hidden" value="0"/>
-                         <input type="button" value="Clear" onClick="javascript:cleartext();"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();"/>
                          <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';"/>
                          <input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';"/>
                          </div>

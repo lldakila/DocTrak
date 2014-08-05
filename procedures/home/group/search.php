@@ -7,8 +7,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 ?>
 
 
-
-
 <?php
     require_once("../../connection.php");
     session_start();
