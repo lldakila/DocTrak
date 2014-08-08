@@ -101,15 +101,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         
                         		<div class="imagestext">
                                 	<img src="images/home/newdoc.jpg" width="136" height="137" />
-    								<div class="lower"><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">New Document</a></div>
+    								<div class="lower"><a href = "javascript:void(0)" onclick = "document.getElementById('tj1').style.display='block';document.getElementById('fade1').style.display='block'">New Document</a></div>
                                 </div>
                                 <div class="imagestext">
                                 	<img src="images/home/receivedoc.jpg" width="136" height="137" />
-    								<div class="lower"><a href = "javascript:tj" onclick = "document.getElementById('tj').style.display='block';document.getElementById('fade').style.display='block'">Received Document</a></div>
+    								<div class="lower"><a href = "javascript:tj" onclick = "document.getElementById('tj2').style.display='block';document.getElementById('fade2').style.display='block'">Received Document</a></div>
                                 </div>
                                 <div class="imagestext">
                                 	<img src="images/home/releasedoc.jpg" width="136" height="137" />
-    								<div class="lower"><a href = "javascript:tj" onclick = "document.getElementById('tj1').style.display='block';document.getElementById('fade').style.display='block'">Release Document</a></div>
+    								<div class="lower"><a href = "javascript:tj" onclick = "document.getElementById('tj3').style.display='block';document.getElementById('fade3').style.display='block'">Release Document</a></div>
                                 </div>
                                 <div class="imagestext">
                                 	<img src="images/home/docstats.jpg" width="136" height="137" />
@@ -123,9 +123,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                 	<img src="images/home/about.jpg" width="136" height="137" />
     								<div class="lower"><a href="#">About</a></div>
                                 </div>
-                                
-                                
-                                <div id="light" class="white_content"><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img src="images/home/icon/download.jpg" width="30" height="30" /></a><table border="0">
+
+
+                                <div id="tj1" class="white_content"><a href = "javascript:void(0)" onclick = "document.getElementById('tj1').style.display='none';document.getElementById('fade1').style.display='none'"><img src="images/home/icon/download.jpg" width="30" height="30" /></a><table border="0">
                   	<tr>
                     	<td>Bar Code No:</td>
                         <td class="textinput"><input type="text" /> </td>
@@ -154,9 +154,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                     
                   </table></div>
-    <div id="fade" class="black_overlay"></div>
-    
-    <div id="tj" class="white_content"><a href = "javascript:void(0)" onclick = "document.getElementById('tj').style.display='none';document.getElementById('fade').style.display='none'"><img src="images/home/icon/download.jpg" width="30" height="30" /></a><table border="0">
+    <div id="fade1" class="black_overlay" onclick = "document.getElementById('tj1').style.display='none';document.getElementById('fade1').style.display='none'"></div>
+
+    <div id="tj2" class="white_content"><a href = "javascript:void(0)" onclick = "document.getElementById('tj2').style.display='none';document.getElementById('fade2').style.display='none'"><img src="images/home/icon/download.jpg" width="30" height="30" /></a><table border="0">
                   	<tr>
                     	<td>Bar Code No:</td>
                         <td class="textinput"><input type="text" /> </td>
@@ -167,12 +167,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                           <tr>
                     	<td>Document Type: </td>
-                         <td><select> <option>Select Here</option> </select> 
-                         Document Flow: 
+                         <td><select> <option>Select Here</option> </select>
+                         Document Flow:
                          <select> <option>Select Here</option> </select> </td>
                     </tr>
-                    
-                   
+
+
                           <tr>
                     	<td>PDF File: </td>
                          <td><input type="file" /> </td>
@@ -182,11 +182,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                          <td></td>
                          <td> <input type="button" value="Receive"/></td>
                     </tr>
-                    
+
                   </table></div>
-    <div id="fade" class="black_overlay"></div>
-    
-    <div id="tj1" class="white_content"><a href = "javascript:void(0)" onclick = "document.getElementById('tj1').style.display='none';document.getElementById('fade').style.display='none'"><img src="images/home/icon/download.jpg" width="30" height="30" /></a><table border="0">
+    <div id="fade2" class="black_overlay" onclick = "document.getElementById('tj2').style.display='none';document.getElementById('fade2').style.display='none'"></div>
+
+    <div id="tj3" class="white_content"><a href = "javascript:void(0)" onclick = "document.getElementById('tj3').style.display='none';document.getElementById('fade3').style.display='none'"><img src="images/home/icon/download.jpg" width="30" height="30" /></a><table border="0">
                   	<tr>
                     	<td>Bar Code No:</td>
                         <td class="textinput"><input type="text" /> </td>
@@ -214,7 +214,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                     
                   </table></div>
-    <div id="fade" class="black_overlay"></div>
+    <div id="fade3" class="black_overlay" onclick = "document.getElementById('tj3').style.display='none';document.getElementById('fade3').style.display='none'"></div>
      
 
                         </div><div class="tfclear"></div>

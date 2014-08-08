@@ -48,12 +48,61 @@ function addoffice() {
 function removeoffice(selectbox) {
 
     var i;
+    var x;
+    var officeArray = [];
+
+    var hiddenContent;
+    var hold1;
+
+    officeArray=document.flowtemplate.OfficeArray.value.split("|");
+    //document.flowtemplate.OfficeArray.value="";
+   // alert (selectbox.options.length);
     for(i=selectbox.options.length-1;i>=0;i--)
     {
         if(selectbox.options[i].selected) {
             selectbox.remove(i);
+            officeArray.splice(i,1);
             }
+
+
+
     }
+//    document.flowtemplate.OfficeArray.value="";
+//    for(x=officeArray.length-1;x>0;x--) {
+//        hold1=officeArray[x];
+//        if (document.flowtemplate.OfficeArray.value!="") {
+//            hiddenContent=document.flowtemplate.OfficeArray.value + "|";
+//        }
+//        else {
+//            hiddenContent="";
+//        }
+//        document.flowtemplate.OfficeArray.value = hiddenContent  +  hold1;
+//    }
+
+}
+
+function officelist() {
+    var z;
+    var hiddenContent;
+
+    document.flowtemplate.OfficeArray.value="";
+
+    for(z=document.flowtemplate.officeselection.options.length-1;z>=0;z--)
+    {
+        //alert (document.flowtemplate.officeselection.options[z].value);
+
+        if (document.flowtemplate.OfficeArray.value!="") {
+            hiddenContent=document.flowtemplate.OfficeArray.value + "|";
+        }
+        else {
+            hiddenContent="";
+        }
+
+        document.flowtemplate.OfficeArray.value=hiddenContent  +  document.flowtemplate.officeselection.options[z].value;
+
+
+    }
+
 
 }
 
@@ -155,7 +204,9 @@ function validate() {
 
 
 
-
+    officelist();
+    //alert (document.flowtemplate.OfficeArray.value);
+    //return true;
 
 }
 
@@ -361,8 +412,8 @@ $(document).ready(function() {
 
                     <div class="officeselected">
 
-                            <input type="text" name="OfficeArray" id="OfficeArray">
-                            <select id="officeselect" size="10" width="15" name="officeselection" multiple>
+                            <input type="hidden" name="OfficeArray" id="OfficeArray">
+                            <select id="officeselect" size="10" width="15" name="officeselection" >
 
                             </select>
 

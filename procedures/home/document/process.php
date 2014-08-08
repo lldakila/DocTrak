@@ -13,7 +13,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
    session_start();
    if ($_POST['security_user']=="save") {
        if ($_POST['primarykey'] == "") {
-        $query=insert_update_delete("INSERT INTO DOCUMENT(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,) VALUES ('".$_POST['username']."','".$_POST['name']."','".$_POST['group']."','".md5($_POST['password'])."')");
+        $query=insert_update_delete("INSERT INTO SECURITY_USER(SECURITY_USERNAME,SECURITY_NAME,FK_SECURITY_GROUPNAME,SECURITY_PASSWORD) VALUES ('".$_POST['username']."','".$_POST['name']."','".$_POST['group']."','".md5($_POST['password'])."')");
         $_SESSION['operation']="save";
          $_SESSION['message']="Save Successfully";
        }

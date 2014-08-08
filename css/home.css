@@ -676,6 +676,12 @@ input[type=radio] {
         border-radius:5px;
     }
 
+    .usertext1 input[type=text] {
+        width: 160px;
+        border-radius:5px;
+    }
+
+
 .usertext input[type=password] {
     width: 265px;
     border-radius:5px;
@@ -762,7 +768,7 @@ select, option { width:130px;
 
 .table1 .input1 {
 	text-align:center;
-	padding:40px 0 0 90px;
+	padding:15px 0 0 90px;
 
 }
 
