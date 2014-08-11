@@ -12,7 +12,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <?php
     require_once("../../connection.php");
     session_start();
-    $query=select_info_multiple_key("select SECURITY_USERNAME,SECURITY_NAME,fk_Security_GroupName from SECURITY_USER WHERE SECURITY_NAME LIKE '%".$_POST['search_string']."%' OR SECURITY_USERNAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_USERNAME");
+    $query=select_info_multiple_key("select SECURITY_USERNAME,SECURITY_NAME,fk_Security_GroupName,fk_Office_Name from SECURITY_USER WHERE SECURITY_NAME LIKE '%".$_POST['search_string']."%' OR SECURITY_USERNAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_USERNAME");
 	echo $_POST['search_string'];
     echo "<table>";
 	echo "<tr class='bgcolor'>";
@@ -25,13 +25,13 @@ $rowcolor="blue";
 
      if ($rowcolor=="blue")
      {
-         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\',\''.$var["SECURITY_NAME"].'\',\''.$var["fkSecurity_GroupName"].'\')">';
+         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\',\''.$var["SECURITY_NAME"].'\',\''.$var["fk_Security_GroupName"].'\',\''.$var["fk_Office_Name"].'\')">';
         // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
          $rowcolor="notblue";
      }
      else
      {
-         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\',\''.$var["SECURITY_NAME"].'\',\''.$var["fkSecurity_GroupName"].'\')">';
+         echo '<tr id="'.$var["SECURITY_USERNAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["SECURITY_USERNAME"].'\',\''.$var["SECURITY_NAME"].'\',\''.$var["fk_Security_GroupName"].'\',\''.$var["fk_Office_Name"].'\')">';
         // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
          $rowcolor="blue";
      }

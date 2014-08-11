@@ -16,8 +16,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <script language="JavaScript" type="text/javascript">
 
+function createBarcode() {
+
+}
+
+
 function cleartext() {
-  document.getElementById("barcode").value="";
+  document.getElementById("barcodeinput").value="";
   document.getElementById("title").value="";
   document.getElementById("description").value="";
   document.getElementById("type").value="";
@@ -26,20 +31,23 @@ function cleartext() {
   document.getElementById("primarykey").value="";
 
 }
-function clickSearch(barcode,title,description,type,template,file) {
+function clickSearch(barcode,title,description,file,template,type,a) {
+   // document.getElementById('primarykey').value=barcode;
     document.process.barcode.value=barcode;
     document.process.title.value=title;
     document.process.description.value=description;
     document.process.type.value=type;
     document.process.template.value=template;
-    document.process.file.value=file;
-    document.getElementById("primarykey").value=username;
+    //document.process.file.value=a;
+    document.process.primarykey.value=barcode;
+
+    //alert (type);
   //  document.getElementById("group").value=username;
 }
 
 function validate() {
 
-    if (document.getElementById('security_document').value=='delete') {
+    if (document.getElementById('document_hidden').value=='delete') {
         if (document.getElementById('primarykey').value != ""){
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
@@ -68,21 +76,12 @@ function validate() {
             alert("Fill up necessary inputs.");
             return false;
         }
-
-    else if (document.process.description.value==""){
-        alert("Fill up necessary inputs.");
+    else if (document.process.type.value=="") {
+        alert("Select Document type.");
         return false;
     }
-    else if (document.process.type.value=="Select Here") {
-        alert("Select Group.");
-        return false;
-    }
-    else if (document.process.template.value=="Select Here") {
-        alert("Select Group.");
-        return false;
-    }
-    else if (document.process.file.value=="Select Here") {
-        alert("Select Group.");
+    else if (document.process.template.value=="") {
+        alert("Select Template.");
         return false;
     }
 
@@ -99,7 +98,7 @@ $(document).ready(function() {
     var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
     jQuery.ajax({
 			type: "POST",
-            url:"procedures/home/document/search.php",
+            url:"procedures/home/document/new/search.php",
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
 			success:function(response){
@@ -112,6 +111,27 @@ $(document).ready(function() {
 			});
 	});
 
+
+
+    $("#generatebarcode").click(function (e) {
+
+        e.preventDefault();
+      //  var myData = 'randbarcode='+ $("#generatebarcode").val(); //build a post data structure
+        jQuery.ajax({
+            type: "POST",
+            url:"procedures/home/document/new/barcode.php",
+            dataType:"text", // Data type, HTML, json etc.
+           // data:myData,
+            success:function(response){
+                //$("#barcodeinput").html(response);
+
+                document.getElementById("barcodeinput").value=response;
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+    });
 
 
     });
@@ -177,7 +197,7 @@ $(document).ready(function() {
     </ul>
 
          <div id="tfheader">
-                    <form id="tfnewsearch" method="POST" action="procedures/home/document/search.php">
+                    <form id="tfnewsearch" method="POST" action="procedures/home/document/new/search.php">
 		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 
                     <button id="search_document" class="tfbutton">Search </button>
@@ -205,7 +225,7 @@ $(document).ready(function() {
             			<div id="post10">
                         <h2>NEW DOCUMENT</h2>
 
-                            <form name="process" method="post" action="procedures/home/user/process.php" onsubmit="return validate();">
+                            <form name="process" method="post" action="procedures/home/document/new/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
     					<div class="table1">
     				<table >
@@ -214,8 +234,8 @@ $(document).ready(function() {
 
                         <td class="usertext1">
                             <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="barcode" name="barcode" type="text" />
-                            <input type="button" value="Generate"/></td>
+                            <input id="barcodeinput" name="barcode" type="text" />
+                            <input id="generatebarcode" type="button" value="Generate"/></td>
                     </tr>
                     <tr>
                     	<td>Title:</td>
@@ -229,7 +249,7 @@ $(document).ready(function() {
                     <tr>
                     	<td>Type: </td>
                          <td class="select01">
-                             <select id="type" name="type"> <option>Select Here</option>
+                             <select id="type" name="type">
 
        <?php
            require_once("procedures/connection.php");
@@ -248,7 +268,7 @@ $(document).ready(function() {
                     <tr>
                     	<td>Template: </td>
                          <td class="select01">
-                             <select id="template" name="template"> <option>Select Here</option>
+                             <select id="template" name="template">
 
        <?php
            require_once("procedures/connection.php");
@@ -266,7 +286,7 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                     	<td>PDF File: </td>
-                         <td><input id="file" name="file" type="file" /> </td>
+                         <td><input id="file" name="file" type="file" accept="application/pdf"/> </td>
                     </tr>
                   </table>
 
@@ -297,10 +317,10 @@ $(document).ready(function() {
                   		 <!--- BUTTONS ACTIVITY START --->
 
                         <div class="input1">
-                         <input id="security_document" name="security_document" type="hidden" value="0"/>
+                         <input id="document_hidden" name="document_hidden" type="hidden" value=""/>
                          <input type="button" value="New" onClick="javascript:cleartext();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('security_document').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('security_document').value='save';"/>
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('document_hidden').value='delete';"/>
+                         <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 

@@ -41,6 +41,8 @@ div {
 	margin:0 auto;
 	width:970px;
 	background: rgba(0, 0, 0, 0.08);
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
 	text-align:center;
 	font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
   color: #ccc;
@@ -157,6 +159,14 @@ div#menu span {
 div#menu li {
 	background: url(../images/home/main-delimiter.png) 98% 4px no-repeat;
 }
+div#menu li.last1 {
+	background: none;
+    padding:12px 0 0 155px;
+    font-size:12px;
+	font:normal 12px Trebuchet MS;
+    color:#fff;
+}
+
 div#menu li.last {
 	background: none;
     padding:12px 0 0 90px;
@@ -173,7 +183,7 @@ div#menu ul ul {
 	left: -999em;
 	width: 163px;
 	padding: 5px 0 0 0;
-	background: rgb(45,45,45);
+	background:rgb(0, 112, 141);
 	margin-top:1px;
 }
 div#menu ul ul a {
@@ -188,7 +198,7 @@ div#menu ul ul span {
 	margin-top: 0;
 	padding-right: 15px;
 	_padding-right: 20px;
-	color: rgb(169,169,169);
+	color: rgb(219, 219, 219);
 }
 div#menu ul ul a:hover span {
 	color: #fff;
@@ -207,7 +217,7 @@ div#menu ul ul ul {
 }
 /* colors */
 div#menu ul ul ul {
-	background: rgb(41,41,41);
+	background: rgb(0, 112, 141);
 }
 div#menu ul ul ul ul {
 	background: rgb(38,38,38);
@@ -234,10 +244,17 @@ div#menu li.back .left {
 
 
 
+.admin {
+	font-size:12px;
+	font:normal 12px Trebuchet MS;
+    color:#fff;
+	padding:12px 280px 0 0;
+}
 
 
-
-
+#tfheader {
+	float:right;
+}
 
 
 
@@ -252,6 +269,8 @@ div#menu li.back .left {
 	margin:0 auto;
 	width:950px;
 	background-color:#e5e5e5;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
 }
 
 #post {
@@ -271,7 +290,7 @@ div#menu li.back .left {
 
 #post10 {
 	width:665px;
-	height:284px;
+	height:305px;
 	background-color:#FFF;
 	display:block;
 	float:left;
@@ -320,7 +339,7 @@ div#menu li.back .left {
 
 #postright {
 	width:255px;
-	height:304px;
+	height:325px;
 	background-color:#FFF;
 	display:block;
 	float:right;
@@ -410,7 +429,7 @@ div#menu li.back .left {
 #postright .scroll {
 	overflow:scroll;
 	width:240px;
-	height:264px;
+	height:285px;
 	margin:10px auto;
 	padding:10px 0 10px 0;
 }
@@ -679,6 +698,16 @@ input[type=radio] {
     .usertext1 input[type=text] {
         width: 160px;
         border-radius:5px;
+    }
+	
+	.usertext2 input[type=text] {
+        width: 180px;
+        border-radius:5px;
+    }
+	
+	.usertext2 input[type=button] {
+        width: 80px;
+		background-color:#E3E1FF;
     }
 
 

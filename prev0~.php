@@ -16,36 +16,30 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <script language="JavaScript" type="text/javascript">
 
-function createBarcode() {
-
-}
-
-
 function cleartext() {
-  document.getElementById("barcodeno").value="";
+  document.getElementById("barcode").value="";
   document.getElementById("title").value="";
-  document.getElementById("documenttype").value="";
+  document.getElementById("description").value="";
+  document.getElementById("type").value="";
   document.getElementById("template").value="";
-  document.getElementById("pdf").value="";
+  document.getElementById("file").value="";
   document.getElementById("primarykey").value="";
 
 }
-function clickSearch(barcodeno,title,documenttype,template,pdf,a) {
-   // document.getElementById('primarykey').value=barcode;
-    document.process.barcodeno.value=barcode;
+function clickSearch(barcode,title,description,type,template,file) {
+    document.process.barcode.value=barcode;
     document.process.title.value=title;
-    document.process.documenttype.value=documenttype;
+    document.process.description.value=description;
+    document.process.type.value=type;
     document.process.template.value=template;
-    //document.process.file.value=a;
-    document.process.primarykey.value=barcodeno;
-
-    //alert (type);
+    document.process.file.value=file;
+    document.getElementById("primarykey").value=username;
   //  document.getElementById("group").value=username;
 }
 
 function validate() {
 
-    if (document.getElementById('receiveddoc_hidden').value=='delete') {
+    if (document.getElementById('security_document').value=='delete') {
         if (document.getElementById('primarykey').value != ""){
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
@@ -65,7 +59,7 @@ function validate() {
 
 
 
-    if (document.process.barcodeno.value=="")   {
+    if (document.process.barcode.value=="")   {
         alert("Fill up necessary inputs.");
         return false;
     }
@@ -74,12 +68,21 @@ function validate() {
             alert("Fill up necessary inputs.");
             return false;
         }
-    else if (document.process.documenttype.value=="") {
+
+    else if (document.process.description.value==""){
         alert("Fill up necessary inputs.");
         return false;
     }
-    else if (document.process.template.value=="") {
-        alert("Fill up necessary inputs.");
+    else if (document.process.type.value=="Select Here") {
+        alert("Select Group.");
+        return false;
+    }
+    else if (document.process.template.value=="Select Here") {
+        alert("Select Group.");
+        return false;
+    }
+    else if (document.process.file.value=="Select Here") {
+        alert("Select Group.");
         return false;
     }
 
@@ -90,13 +93,13 @@ function validate() {
 }
 
 $(document).ready(function() {
-    $("#search_receiveddoc").click(function (e) {
+    $("#search_document").click(function (e) {
 
     e.preventDefault();
     var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
     jQuery.ajax({
 			type: "POST",
-            url:"procedures/home/document/receive/search.php",
+            url:"procedures/home/document/search.php",
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
 			success:function(response){
@@ -114,7 +117,6 @@ $(document).ready(function() {
     });
 
 </script>
-
 </head>
 
 <body>
@@ -175,10 +177,10 @@ $(document).ready(function() {
     </ul>
 
          <div id="tfheader">
-                    <form id="tfnewsearch" method="POST" action="procedures/home/document/receive/search.php">
+                    <form id="tfnewsearch" method="POST" action="procedures/home/document/search.php">
 		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 
-                    <button id="search_receiveddoc" class="tfbutton">Search </button>
+                    <button id="search_document" class="tfbutton">Search </button>
 					</form>
 				<div class="tfclear"></div>
 				</div>   
@@ -201,37 +203,70 @@ $(document).ready(function() {
         	<div id="post">
             
             			<div id="post10">
-                        <h2>RECEIVED DOCUMENT</h2>
+                        <h2>NEW DOCUMENT</h2>
 
-                            <form name="process" method="post" action="procedures/home/document/receive/process.php" onsubmit="return validate();" enctype="multipart/form-data">
+                            <form name="process" method="post" action="procedures/home/d09/process.php" onsubmit="return validate();">
 
     					<div class="table1">
     				<table >
                     <tr>
-                    	<td>BarCode No:</td>
+                    	<td>BarCode:</td>
 
-                        <td class="usertext">
+                        <td class="usertext1">
                             <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" />
-                            </td>
+                            <input id="barcode" name="barcode" type="text" />
+                            <input type="button" value="Generate"/></td>
                     </tr>
                     <tr>
                     	<td>Title:</td>
-                        <td class="usertext"><input id="title" readonly="readonly" name="title" type="text" /> </td>
+                        <td class="usertext"><input id="title" name="title" type="text" /> </td>
                     </tr>
                     <tr>
-                    	<td>Document Type:</td>
-                        <td class="usertext"><input id="documenttype" readonly="readonly" name="documenttype" type="text" /> </td>
+                    	<td>Description:</td>
+                        <td class="usertext"><input id="description" name="description" type="text" /> </td>
+                    </tr>
+
+                    <tr>
+                    	<td>Type: </td>
+                         <td class="select01">
+                             <select id="type" name="type"> <option>Select Here</option>
+
+       <?php
+           require_once("procedures/connection.php");
+
+           $query=select_info_multiple_key("select DOCUMENTTYPE_ID from DOCUMENT_TYPE");
+           foreach($query as $var) {
+              echo "<option>".$var['DOCUMENTTYPE_ID']."</option>";
+           }
+
+
+    ?>
+                              </select>
+                               </td>
+
                     </tr>
                     <tr>
-                    	<td>Template:</td>
-                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" /> </td>
+                    	<td>Template: </td>
+                         <td class="select01">
+                             <select id="template" name="template"> <option>Select Here</option>
+
+       <?php
+           require_once("procedures/connection.php");
+
+           $query=select_info_multiple_key("select TEMPLATE_ID from DOCUMENT_TEMPLATE");
+           foreach($query as $var) {
+              echo "<option>".$var['TEMPLATE_ID']."</option>";
+           }
+
+
+    ?>
+                              </select>
+                               </td>
+
                     </tr>
                     <tr>
                     	<td>PDF File: </td>
-                         <td class="usertext2"> <input id="primarykey" name="primarykey" type="hidden" />
-                                <input id="pdf" readonly="readonly" name="pdf" type="text" />
-                                <input type="button" value="View"/></td>
+                         <td><input id="file" name="file" type="file" /> </td>
                     </tr>
                   </table>
 
@@ -262,10 +297,10 @@ $(document).ready(function() {
                   		 <!--- BUTTONS ACTIVITY START --->
 
                         <div class="input1">
-                         <input id="receiveddoc_hidden" name="document_hidden" type="hidden" value="0"/>
+                         <input id="security_document" name="security_document" type="hidden" value="0"/>
                          <input type="button" value="New" onClick="javascript:cleartext();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('receiveddoc_hidden').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('receiveddoc_hidden').value='save';"/>
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('security_document').value='delete';"/>
+                         <input type="submit" value="Save" onClick="document.getElementById('security_document').value='save';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -273,9 +308,9 @@ $(document).ready(function() {
 
 						   </form>
 
-
-
-
+    
+    
+							
                         </div>
 
                         <div id="postright">
@@ -284,13 +319,11 @@ $(document).ready(function() {
 
 
                 			</table>
-
                             </div>
                          </div>
-							
 
                         <div class="tfclear"></div>
-                      </div>
+
             
             </div>
         
@@ -314,3 +347,4 @@ $(document).ready(function() {
 
 </body>
 </html>
+

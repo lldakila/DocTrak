@@ -1,9 +1,10 @@
 <?php
 session_start();
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
- header('Location:../index.php');
+    header('Location:../index.php');
 }
 ?>
+
 <?php
 $DB_HOST = 'localhost';
 $DB_USER = 'root';

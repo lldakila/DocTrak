@@ -9,7 +9,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <?php
    require_once("../connection.php");
-   $query=select_info_multiple_key("select * from security_user where security_username='".addslashes($_POST['username'])."' AND security_password='".addslashes(md5($_POST['password']))."'");
+   $query=select_info_multiple_key("select security_name,security_username,fk_office_name from security_user where security_username='".addslashes($_POST['username'])."' AND security_password='".addslashes(md5($_POST['password']))."'");
    if($query){
       session_start();
       $u=$_POST['username'];
@@ -18,6 +18,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
       $_SESSION['usr'] =$u;
       $_SESSION['pswd'] =$p;
       $_SESSION['security_name']=$secname;
+      $group=$query[0]['fk_office_name'];
+       $_SESSION['security_group']=$group;
 
        header("Location:../../home.php");
       // echo $secname;

@@ -24,13 +24,19 @@ function cleartext() {
   document.getElementById("verify").value="";
   document.getElementById("name").value="";
   document.getElementById("primarykey").value="";
+  document.getElementById("office").value="Select Here";
+  document.getElementById("group").value="Select Here";
 
 }
-function clickSearch(username,name) {
-    document.process.username.value=username;
+function clickSearch(username,name,groupname,officename) {
+  //alert (officename);
+         document.getElementById("office").value=officename;
+document.process.username.value=username;
     document.process.name.value=name;
     document.getElementById("primarykey").value=username;
-  //  document.getElementById("group").value=username;
+  document.getElementById("group").value=groupname;
+
+    //document.getElementById("verify").value=groupname;
 }
 
 
@@ -74,6 +80,10 @@ function validate() {
         alert("Select Group.");
         return false;
     }
+    else if (document.process.office.value=="Select Here") {
+        alert("Select Office.");
+        return false;
+    }
     else {
 
         if (document.process.password.value != document.process.verify.value){
@@ -104,7 +114,7 @@ $(document).ready(function() {
 			data:myData,
 			success:function(response){
 				$("#responds").html(response);
-
+                   //alert (response);
 			},
 			error:function (xhr, ajaxOptions, thrownError){
 				alert(thrownError);
@@ -246,7 +256,7 @@ $(document).ready(function() {
                         <td class="usertext"><input id="name" name="name" type="text" /> </td>
                     </tr>
 
-                          <tr>
+                    <tr>
                     	<td>Group: </td>
                          <td class="select01">
                              <select id="group" name="group"> <option>Select Here</option>
@@ -257,6 +267,25 @@ $(document).ready(function() {
            $query=select_info_multiple_key("select SECURITY_GROUPNAME from SECURITY_GROUP");
            foreach($query as $var) {
               echo "<option>".$var['SECURITY_GROUPNAME']."</option>";
+           }
+
+
+    ?>
+                              </select>
+                               </td>
+
+                    </tr>
+                    <tr>
+                    	<td>Office: </td>
+                         <td class="select01">
+                             <select id="office" name="office"> <option>Select Here</option>
+
+       <?php
+           require_once("procedures/connection.php");
+
+           $query=select_info_multiple_key("select OFFICE_NAME from OFFICE");
+           foreach($query as $var) {
+              echo "<option>".$var['OFFICE_NAME']."</option>";
            }
 
 

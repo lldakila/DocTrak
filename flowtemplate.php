@@ -110,8 +110,10 @@ function officelist() {
 
 function cleartext() {
   document.getElementById("template_name").value="";
-  document.getElementById("template_description").value="";
+  document.getElementById("description_name").value="";
   document.getElementById("primarykey").value="";
+  document.getElementById("officeselect").innerHTML="";
+
 }
 
 function clickSearch(template_name,description_name) {
@@ -433,7 +435,11 @@ $(document).ready(function() {
                             }
                             elseif($_SESSION['operation']=='error'){
 
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Error querry. Save not Successful. </div>";
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Error query. Save not Successful. </div>";
+                            }
+                            elseif($_SESSION['operation']=='update'){
+
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Update Successful. </div>";
                             }
 
                             $_SESSION['operation']='clear';

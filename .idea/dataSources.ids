@@ -70,6 +70,16 @@
       <column name="year_now" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idyear"/>
     </table>
+    <table name="document" schema="" catalog="doctrak" type="TABLE">
+      <column name="document_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="document_title" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="document_description" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="document_file" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fk_template_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fk_documenttype_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="owner" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="document_id"/>
+    </table>
     <table name="document_template" schema="" catalog="doctrak" type="TABLE">
       <column name="template_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <column name="template_description" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
@@ -83,12 +93,26 @@
       <column name="public" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="documenttype_id"/>
     </table>
+    <table name="generator" schema="" catalog="doctrak" type="TABLE">
+      <column name="generator_name" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="counter" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="generator_name"/>
+    </table>
     <table name="office" schema="" catalog="doctrak" type="TABLE">
       <column name="office_name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12" def="J09GRklDRSc="/>
       <column name="office_description" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
       <column name="transdate" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="office_name"/>
+      <exported-key name="FK_officename" table="security_user" schema="" catalog="doctrak" columns="fk_office_name"/>
       <exported-key name="FK_template_list_office" table="template_list" schema="" catalog="doctrak" columns="fk_office_name"/>
+    </table>
+    <table name="security_audit" schema="" catalog="doctrak" type="TABLE">
+      <column name="transaction_code" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
+      <column name="transaction" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="dml" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <column name="transdate" sqlType="TIMESTAMP" length="19" precision="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="user" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="transaction_code"/>
     </table>
     <table name="security_group" schema="" catalog="doctrak" type="TABLE">
       <column name="security_groupname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
@@ -101,8 +125,10 @@
       <column name="security_name" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <column name="fk_security_groupname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <column name="security_password" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fk_office_name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="security_username"/>
-      <foreign-key name="FK_security_user" columns="fk_security_groupname" ref-table="security_group" ref-schema="" ref-catalog="doctrak" ref-columns="security_groupname" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_officename" columns="fk_office_name" ref-table="office" ref-schema="" ref-catalog="doctrak" ref-columns="office_name" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_security_user" columns="fk_security_groupname" ref-table="security_group" ref-schema="" ref-catalog="doctrak" ref-columns="security_groupname" update-rule="0" delete-rule="3" deferrability="2"/>
     </table>
     <table name="template_list" schema="" catalog="doctrak" type="TABLE">
       <column name="template_list_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>

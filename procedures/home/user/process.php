@@ -13,12 +13,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
    session_start();
    if ($_POST['security_user']=="save") {
        if ($_POST['primarykey'] == "") {
-        $query=insert_update_delete("INSERT INTO DOCUMENT(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,) VALUES ('".$_POST['username']."','".$_POST['name']."','".$_POST['group']."','".md5($_POST['password'])."')");
+        $query=insert_update_delete("INSERT INTO SECURITY_USER(SECURITY_USERNAME,SECURITY_NAME,FK_SECURITY_GROUPNAME,SECURITY_PASSWORD,FK_OFFICE_NAME) VALUES ('".$_POST['username']."','".$_POST['name']."','".$_POST['group']."','".$_POST['office']."','".md5($_POST['password'])."')");
         $_SESSION['operation']="save";
          $_SESSION['message']="Save Successfully";
        }
        else {
-           $query=insert_update_delete("UPDATE SECURITY_USER SET SECURITY_USERNAME='".$_POST['username']."',SECURITY_NAME='".$_POST['name']."',FK_SECURITY_GROUPNAME='".$_POST['group']."',SECURITY_PASSWORD='".md5($_POST['password'])."' WHERE SECURITY_USERNAME = '".$_POST['primarykey']."' ");
+           $query=insert_update_delete("UPDATE SECURITY_USER SET SECURITY_USERNAME='".$_POST['username']."',SECURITY_NAME='".$_POST['name']."',FK_SECURITY_GROUPNAME='".$_POST['group']."',FK_OFFICE_NAME='".$_POST['office']."',SECURITY_PASSWORD='".md5($_POST['password'])."' WHERE SECURITY_USERNAME = '".$_POST['primarykey']."' ");
            $_SESSION['operation']="update";
        }
    }
