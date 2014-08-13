@@ -164,6 +164,7 @@ $(document).ready(function() {
                 <li><a href="newdoc.php"><span>NEW DOCUMENT</span></a></li>
                 <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
                 <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
+                <li><a href="view.php"><span>DOCUMENT TRACKER</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
@@ -286,7 +287,7 @@ $(document).ready(function() {
                     </tr>
                     <tr>
                     	<td>PDF File: </td>
-                         <td><input id="file" name="file" type="file" accept="application/pdf"/> </td>
+                         <td><input id="file" name="pdffile" type="file" accept="application/pdf"/> </td>
                     </tr>
                   </table>
 
@@ -303,6 +304,10 @@ $(document).ready(function() {
            elseif($_SESSION['operation']=='update'){
 
                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+           }
+           elseif($_SESSION['operation']=='error'){
+
+               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Error query. Save not Successful. </div>";
            }
 
                $_SESSION['operation']='clear';

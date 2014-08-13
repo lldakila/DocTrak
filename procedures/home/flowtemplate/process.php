@@ -10,10 +10,10 @@
 
 
 <?php
-  //  require_once("../../connection.php");
+    require_once("../../connection.php");
     session_start();
-    $con=mysqli_connect('localhost','root','passw0rd','doctrak');
-
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     if (mysqli_connect_error()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
 

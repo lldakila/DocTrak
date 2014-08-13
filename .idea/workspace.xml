@@ -23,24 +23,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="validation.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://Z:/procedures/index/validation.php">
+      <file leaf-file-name="process.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://Z:/procedures/home/document/new/process.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="5" selection-start="187" selection-end="187" vertical-scroll-proportion="-3.9230769" vertical-offset="51" max-vertical-offset="663">
+            <state line="97" column="49" selection-start="3948" selection-end="3948" vertical-scroll-proportion="-10.076923" vertical-offset="1387" max-vertical-offset="1921">
+              <folding>
+                <marker date="1407910822236" expanded="true" signature="1226:1294" placeholder="SELECT fk_of..TEMPLATE_LIST..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="doctrak.documentlist_tracker" pinned="false" current="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..documentlist_tracker">
+          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="doctrak.generator" pinned="false" current="true" current-in-tab="true">
-        <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..generator">
+      <file leaf-file-name="newdoc.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://Z:/newdoc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="46" selection-start="205" selection-end="205" vertical-scroll-proportion="0.1310212" vertical-offset="0" max-vertical-offset="519">
-              <folding />
+            <state line="166" column="61" selection-start="4586" selection-end="4586" vertical-scroll-proportion="0.23228346" vertical-offset="2704" max-vertical-offset="6460">
+              <folding>
+                <marker date="1407910942450" expanded="true" signature="7711:7752" placeholder="select DOCUM..DOCUMENT_TYPE..." />
+                <marker date="1407910942450" expanded="true" signature="8280:8321" placeholder="select TEMPL..DOCUMENT_TEMPLATE..." />
+                <marker date="1407910942450" expanded="false" signature="8913:8956" placeholder="..." />
+                <marker date="1407910942450" expanded="false" signature="9128:9171" placeholder="..." />
+                <marker date="1407910942450" expanded="false" signature="9352:9395" placeholder="..." />
+                <marker date="1407910942450" expanded="true" signature="9570:9613" placeholder="..." />
+              </folding>
             </state>
           </provider>
-          <provider editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="template.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://Z:/procedures/home/document/new/template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="2" selection-start="194" selection-end="230" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="391">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -72,15 +99,16 @@
         <option value="Z:/procedures/home/user/search.php" />
         <option value="Z:/users.php" />
         <option value="Z:/flowtemplate.php" />
-        <option value="Z:/procedures/home/flowtemplate/process.php" />
         <option value="Z:/procedures/home/document/process.php" />
-        <option value="Z:/procedures/home/document/new/process.php" />
-        <option value="Z:/procedures/connection.php" />
-        <option value="Z:/procedures/home/document/new/search.php" />
-        <option value="Z:/procedures/home/document/new/barcode.php" />
-        <option value="Z:/newdoc.php" />
         <option value="Z:/procedures/index/validation.php" />
         <option value="Z:/home.php" />
+        <option value="Z:/procedures/connection.php" />
+        <option value="Z:/procedures/home/document/new/template.php" />
+        <option value="Z:/procedures/home/flowtemplate/process.php" />
+        <option value="Z:/procedures/home/document/new/search.php" />
+        <option value="Z:/procedures/home/document/new/barcode.php" />
+        <option value="Z:/procedures/home/document/new/process.php" />
+        <option value="Z:/newdoc.php" />
       </list>
     </option>
   </component>
@@ -136,9 +164,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -185,11 +210,58 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="index" />
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Z" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Z:" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="procedures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="flowtemplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Z" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Z:" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="procedures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="document" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files" />
       </pane>
     </panes>
   </component>
@@ -305,9 +377,9 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25755286" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25755286" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.49919742" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18504532" sideWeight="0.49919742" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1925982" sideWeight="0.49919742" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25075528" sideWeight="0.5008026" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32744783" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -315,11 +387,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -337,9 +409,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.49919742" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18100649" sideWeight="0.49919742" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -361,17 +433,16 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://Z:/procedures/index/validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="5" selection-start="187" selection-end="187" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://Z:/newdoc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="23" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="6001">
-          <folding>
-            <marker date="1407747256795" expanded="true" signature="-1:-1" placeholder="select DOCUM..DOCUMENT_TYPE..." />
-            <marker date="1407747256795" expanded="true" signature="-1:-1" placeholder="select TEMPL..DOCUMENT_TEMPLATE..." />
-            <marker date="1407747256795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1407747256795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1407747256795" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="18" column="23" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="6001" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/group/process.php">
@@ -381,23 +452,17 @@
     </entry>
     <entry file="file://Z:/flowtemplate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="408" column="0" selection-start="11070" selection-end="11070" vertical-scroll-proportion="0.0" vertical-offset="6936" max-vertical-offset="8449">
-          <folding />
-        </state>
+        <state line="408" column="0" selection-start="11070" selection-end="11070" vertical-scroll-proportion="0.0" vertical-offset="6936" max-vertical-offset="8449" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/flowtemplate/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1717">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1717" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="20" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
-          <folding />
-        </state>
+        <state line="10" column="20" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/group/process.php">
@@ -407,23 +472,17 @@
     </entry>
     <entry file="file://Z:/flowtemplate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="0" selection-start="1879" selection-end="1879" vertical-scroll-proportion="0.0" vertical-offset="920" max-vertical-offset="8058">
-          <folding />
-        </state>
+        <state line="65" column="0" selection-start="1879" selection-end="1879" vertical-scroll-proportion="0.0" vertical-offset="920" max-vertical-offset="8058" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/flowtemplate/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0" vertical-offset="265" max-vertical-offset="1717">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="622" selection-end="622" vertical-scroll-proportion="0.0" vertical-offset="265" max-vertical-offset="1717" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="20" selection-start="206" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1241">
-          <folding />
-        </state>
+        <state line="10" column="20" selection-start="206" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1241" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/group/process.php">
@@ -433,53 +492,43 @@
     </entry>
     <entry file="file://Z:/flowtemplate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="24" selection-start="1666" selection-end="1666" vertical-scroll-proportion="0.0" vertical-offset="1054" max-vertical-offset="7582">
-          <folding />
-        </state>
+        <state line="62" column="24" selection-start="1666" selection-end="1666" vertical-scroll-proportion="0.0" vertical-offset="1054" max-vertical-offset="7582" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/flowtemplate/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="47" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.0" vertical-offset="490" max-vertical-offset="1717">
-          <folding />
-        </state>
+        <state line="47" column="47" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.0" vertical-offset="490" max-vertical-offset="1717" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="20" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
-          <folding />
-        </state>
+        <state line="10" column="20" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241" />
       </provider>
     </entry>
     <entry file="file://Z:/flowtemplate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="271" column="0" selection-start="6911" selection-end="6911" vertical-scroll-proportion="0.0" vertical-offset="4352" max-vertical-offset="6528">
-          <folding />
-        </state>
+        <state line="271" column="0" selection-start="6911" selection-end="6911" vertical-scroll-proportion="0.0" vertical-offset="4352" max-vertical-offset="6528" />
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..office">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1156" column="7" selection-start="17347" selection-end="17347" vertical-scroll-proportion="0.33333334" vertical-offset="19453" max-vertical-offset="64821">
-          <folding />
-        </state>
+        <state line="1156" column="7" selection-start="17347" selection-end="17347" vertical-scroll-proportion="0.33333334" vertical-offset="19453" max-vertical-offset="64821" />
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..document_template">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/type/search.php">
@@ -489,9 +538,7 @@
     </entry>
     <entry file="file://Z:/documenttype.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="1" selection-start="746" selection-end="746" vertical-scroll-proportion="-4.423077" vertical-offset="263" max-vertical-offset="4590">
-          <folding />
-        </state>
+        <state line="29" column="1" selection-start="746" selection-end="746" vertical-scroll-proportion="-4.423077" vertical-offset="263" max-vertical-offset="4590" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/type/process.php">
@@ -500,11 +547,11 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..template_list">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255" />
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/flowtemplate/office.php">
@@ -529,9 +576,7 @@
     </entry>
     <entry file="file://Z:/group.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="7" selection-start="1910" selection-end="1961" vertical-scroll-proportion="0.45212767" vertical-offset="969" max-vertical-offset="4913">
-          <folding />
-        </state>
+        <state line="72" column="7" selection-start="1910" selection-end="1961" vertical-scroll-proportion="0.45212767" vertical-offset="969" max-vertical-offset="4913" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/user/process.php">
@@ -559,116 +604,25 @@
         <state line="33" column="189" selection-start="1255" selection-end="1255" vertical-scroll-proportion="-15.692307" vertical-offset="153" max-vertical-offset="1207" />
       </provider>
     </entry>
-    <entry file="file://Z:/users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="56" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.6853933" vertical-offset="195" max-vertical-offset="6035">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/flowtemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="445" column="0" selection-start="12787" selection-end="12787" vertical-scroll-proportion="-16.615385" vertical-offset="7133" max-vertical-offset="8551">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/document.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="54" selection-start="8205" selection-end="8208" vertical-scroll-proportion="-3.25" vertical-offset="2925" max-vertical-offset="5559">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..document_type">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
       </provider>
     </entry>
     <entry file="file://Z:/procedures/home/flowtemplate/sql_statements.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="573">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/procedures/home/flowtemplate/process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="34" selection-start="459" selection-end="459" vertical-scroll-proportion="0.66853935" vertical-offset="0" max-vertical-offset="2312">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/procedures/connection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="231" selection-end="251" vertical-scroll-proportion="-3.3846154" vertical-offset="150" max-vertical-offset="1258">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="573" />
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..security_user">
-      <provider editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
-          <folding />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
       </provider>
-    </entry>
-    <entry file="file://Z:/procedures/home/document/new/process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="159" selection-end="159" vertical-scroll-proportion="-0.9230769" vertical-offset="112" max-vertical-offset="748">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/procedures/home/document/new/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="310" selection-start="1554" selection-end="1554" vertical-scroll-proportion="-17.26923" vertical-offset="112" max-vertical-offset="1207">
-          <folding>
-            <marker date="1407737559963" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/procedures/home/document/new/barcode.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="40" selection-start="945" selection-end="945" vertical-scroll-proportion="-15.961538" vertical-offset="231" max-vertical-offset="867">
-          <folding>
-            <marker date="1407738674382" expanded="true" signature="-1:-1" placeholder="SELECT FK_OF..security_user..." />
-            <marker date="1407738674382" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..GENERATOR..." />
-            <marker date="1407738674382" expanded="true" signature="-1:-1" placeholder="UPDATE GENER..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/newdoc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="235" column="44" selection-start="6718" selection-end="6723" vertical-scroll-proportion="0.33267716" vertical-offset="3826" max-vertical-offset="6375">
-          <folding>
-            <marker date="1407747256795" expanded="true" signature="-1:-1" placeholder="select DOCUM..DOCUMENT_TYPE..." />
-            <marker date="1407747256795" expanded="true" signature="-1:-1" placeholder="select TEMPL..DOCUMENT_TEMPLATE..." />
-            <marker date="1407747256795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1407747256795" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1407747256795" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="6" selection-start="560" selection-end="560" vertical-scroll-proportion="7.1923075" vertical-offset="459" max-vertical-offset="1275">
-          <folding>
-            <marker date="1406536924474" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1406536924474" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289" />
       </provider>
     </entry>
     <entry file="file://Z:/home.php">
@@ -679,30 +633,136 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..document">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..generator">
+      <provider editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="46" selection-start="205" selection-end="205" vertical-scroll-proportion="0.1310212" vertical-offset="0" max-vertical-offset="519" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/users.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="41" selection-start="1229" selection-end="1229" vertical-scroll-proportion="-3.6292136" vertical-offset="2499" max-vertical-offset="6511" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/procedures/index/validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="2" selection-start="933" selection-end="971" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/document.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="314" column="4" selection-start="13855" selection-end="13855" vertical-scroll-proportion="0.5861423" vertical-offset="5025" max-vertical-offset="5559">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="562" selection-end="562" vertical-scroll-proportion="-1.9615384" vertical-offset="255" max-vertical-offset="1275">
+          <folding>
+            <marker date="1406536924474" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1406536924474" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/flowtemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="437" column="181" selection-start="12278" selection-end="12427" vertical-scroll-proportion="0.5543071" vertical-offset="7133" max-vertical-offset="8551">
+          <folding>
+            <marker date="1407474728649" expanded="true" signature="-1:-1" placeholder="select OFFIC..OFFICE..." />
+            <marker date="1407474728649" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1407474728649" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1407474728649" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1407474728649" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/procedures/home/document/new/barcode.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="0" selection-start="542" selection-end="542" vertical-scroll-proportion="0.35018727" vertical-offset="204" max-vertical-offset="1411">
+          <folding>
+            <marker date="1407901275609" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..GENERATOR..." />
+            <marker date="1407901275609" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..GENERATOR..." />
+            <marker date="1407901275609" expanded="true" signature="-1:-1" placeholder="UPDATE GENER..." />
+            <marker date="1407901275609" expanded="true" signature="-1:-1" placeholder="SELECT TRANS..GENERATOR..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/procedures/home/flowtemplate/process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="3" selection-start="3748" selection-end="3768" vertical-scroll-proportion="0.79532164" vertical-offset="1734" max-vertical-offset="2312">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/procedures/connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="31" selection-start="916" selection-end="916" vertical-scroll-proportion="0.85955054" vertical-offset="255" max-vertical-offset="1258">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/procedures/home/document/new/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="200" selection-start="999" selection-end="999" vertical-scroll-proportion="0.64981276" vertical-offset="112" max-vertical-offset="1207">
+          <folding>
+            <marker date="1407898334356" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..documentlist_tracker">
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://Z:/procedures/index/validation.php">
+    <entry file="file://Z:/procedures/home/document/new/template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="5" selection-start="187" selection-end="187" vertical-scroll-proportion="-3.9230769" vertical-offset="51" max-vertical-offset="663">
+        <state line="11" column="2" selection-start="194" selection-end="230" vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="391">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/1593c/018ad10f-9476-496c-b3cf-b9daffef1e93/doctrak..generator">
+    <entry file="file://Z:/procedures/home/document/new/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="46" selection-start="205" selection-end="205" vertical-scroll-proportion="0.1310212" vertical-offset="0" max-vertical-offset="519">
-          <folding />
+        <state line="97" column="49" selection-start="3948" selection-end="3948" vertical-scroll-proportion="-10.076923" vertical-offset="1387" max-vertical-offset="1921">
+          <folding>
+            <marker date="1407910822236" expanded="true" signature="1226:1294" placeholder="SELECT fk_of..TEMPLATE_LIST..." />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
+    </entry>
+    <entry file="file://Z:/newdoc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="166" column="61" selection-start="4586" selection-end="4586" vertical-scroll-proportion="0.23228346" vertical-offset="2704" max-vertical-offset="6460">
+          <folding>
+            <marker date="1407910942450" expanded="true" signature="7711:7752" placeholder="select DOCUM..DOCUMENT_TYPE..." />
+            <marker date="1407910942450" expanded="true" signature="8280:8321" placeholder="select TEMPL..DOCUMENT_TEMPLATE..." />
+            <marker date="1407910942450" expanded="false" signature="8913:8956" placeholder="..." />
+            <marker date="1407910942450" expanded="false" signature="9128:9171" placeholder="..." />
+            <marker date="1407910942450" expanded="false" signature="9352:9395" placeholder="..." />
+            <marker date="1407910942450" expanded="true" signature="9570:9613" placeholder="..." />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

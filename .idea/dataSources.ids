@@ -70,20 +70,11 @@
       <column name="year_now" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idyear"/>
     </table>
-    <table name="document" schema="" catalog="doctrak" type="TABLE">
-      <column name="document_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
-      <column name="document_title" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
-      <column name="document_description" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
-      <column name="document_file" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
-      <column name="fk_template_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
-      <column name="fk_documenttype_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
-      <column name="owner" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="document_id"/>
-    </table>
     <table name="document_template" schema="" catalog="doctrak" type="TABLE">
       <column name="template_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <column name="template_description" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="template_id"/>
+      <exported-key name="FK_document" table="documentlist" schema="" catalog="doctrak" columns="fk_template_id"/>
       <exported-key name="FK_template_list" table="template_list" schema="" catalog="doctrak" columns="fk_template_id"/>
     </table>
     <table name="document_type" schema="" catalog="doctrak" type="TABLE">
@@ -92,10 +83,40 @@
       <column name="priority" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12"/>
       <column name="public" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="documenttype_id"/>
+      <exported-key name="FK_document_documenttype" table="documentlist" schema="" catalog="doctrak" columns="fk_documenttype_id"/>
+    </table>
+    <table name="documentlist" schema="" catalog="doctrak" type="TABLE">
+      <column name="document_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="document_title" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="document_description" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="document_file" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="fk_template_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fk_documenttype_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fk_security_username" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="document_filename" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="document_id"/>
+      <foreign-key name="FK_document" columns="fk_template_id" ref-table="document_template" ref-schema="" ref-catalog="doctrak" ref-columns="template_id" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_documentsecurityuser" columns="fk_security_username" ref-table="security_user" ref-schema="" ref-catalog="doctrak" ref-columns="security_username" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_document_documenttype" columns="fk_documenttype_id" ref-table="document_type" ref-schema="" ref-catalog="doctrak" ref-columns="documenttype_id" update-rule="0" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_documentlist_tracker_documentlist" table="documentlist_tracker" schema="" catalog="doctrak" columns="fk_documentlist_id"/>
+    </table>
+    <table name="documentlist_tracker" schema="" catalog="doctrak" type="TABLE">
+      <column name="fk_documentlist_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="office_name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="sortorder" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="receivedby" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="releasedby" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="transdate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="comment" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="documentlist_tracker_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="documentlist_tracker_id"/>
+      <foreign-key name="fk_documentlist_tracker_documentlist" columns="fk_documentlist_id" ref-table="documentlist" ref-schema="" ref-catalog="doctrak" ref-columns="document_id" update-rule="0" delete-rule="3" deferrability="2"/>
+      <index name="fk_documentlist_tracker_documentlist_idx" unique="false" columns="fk_documentlist_id"/>
     </table>
     <table name="generator" schema="" catalog="doctrak" type="TABLE">
       <column name="generator_name" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
       <column name="counter" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="transdate" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
       <primary-key name="PRIMARY" columns="generator_name"/>
     </table>
     <table name="office" schema="" catalog="doctrak" type="TABLE">
@@ -129,6 +150,7 @@
       <primary-key name="PRIMARY" columns="security_username"/>
       <foreign-key name="FK_officename" columns="fk_office_name" ref-table="office" ref-schema="" ref-catalog="doctrak" ref-columns="office_name" update-rule="0" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_security_user" columns="fk_security_groupname" ref-table="security_group" ref-schema="" ref-catalog="doctrak" ref-columns="security_groupname" update-rule="0" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_documentsecurityuser" table="documentlist" schema="" catalog="doctrak" columns="fk_security_username"/>
     </table>
     <table name="template_list" schema="" catalog="doctrak" type="TABLE">
       <column name="template_list_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
