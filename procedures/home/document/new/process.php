@@ -13,7 +13,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
    require_once("../../../connection.php");
-
+    date_default_timezone_set("Asia/Manila");
    session_start();
  if ($_POST['document_hidden']=="save") {
        if ($_POST['primarykey'] == "") {
@@ -25,7 +25,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
            }
            mysqli_autocommit($con,FALSE);
            $flag=true;
-           $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$_POST['barcode']."')";
+           $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$_POST['barcode']."','".date("Y-m-d H:i:s")."')";
            $RESULT=mysqli_query($con,$query);
            if (!$RESULT) {
                $flag=false;

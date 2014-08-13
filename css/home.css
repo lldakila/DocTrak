@@ -912,3 +912,38 @@ ul #responds01{
 .officeselected input#deleteselected {
     float: right;
 }
+
+#ajaxhistory tr.usercolor {
+    background-color:#A7DDF7;
+    width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+}
+
+#ajaxhistory tr.usercolor:hover {
+    background-color:#00acff;
+    width:80px;
+    color:#fff;
+}
+
+#ajaxhistory tr.usercolor1 {
+    background-color:#3AC7EB;
+    width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+}
+
+#ajaxhistory tr.usercolor1:hover {
+    background-color:#008eb2;
+    width:80px;
+    color:#fff;
+
+}
+
+#ajaxhistory tr.bgcolor {
+    background-color: #BCBCBC;
+    width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+    color:#000;
+}

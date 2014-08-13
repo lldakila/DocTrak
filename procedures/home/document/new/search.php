@@ -12,12 +12,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <?php
     require_once("../../../connection.php");
     session_start();
-    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username from DOCUMENTLIST WHERE DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%' ORDER BY DOCUMENT_ID");
+    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from DOCUMENTLIST WHERE DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%' ORDER BY DOCUMENT_ID");
 	echo $_POST['search_string'];
     echo "<table>";
 	echo "<tr class='bgcolor'>";
-   	echo "<th>Title</th>";
-	echo "<th>Description</th>";
+   	echo "<th>Barcode</th>";
+	echo "<th>Title</th>";
+    echo "<th>Date</th>";
 	echo "</tr>";
 	echo "</table>";
 $rowcolor="blue";
@@ -44,6 +45,9 @@ $rowcolor="blue";
 	 echo $var["DOCUMENT_ID"];
 	 echo "</td><td>";
      echo $var["DOCUMENT_TITLE"];
+     echo "</td><td>";
+     echo $var["transdate"];
+
      echo "</td>";
      echo"</tr>";
 
