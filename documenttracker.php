@@ -29,7 +29,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         var myData = 'documentTracker='+documentID; //build a post data structure
         jQuery.ajax({
             type: "POST",
-            url:"procedures/home/document/tracker/retrievedata.php",
+            url:"procedures/home/doctracker/retrievedata.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
             success:function(response){
@@ -49,7 +49,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
             var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
             jQuery.ajax({
                 type: "POST",
-                url:"procedures/home/document/tracker/search.php",
+                url:"procedures/home/doctracker/search.php",
                 dataType:"text", // Data type, HTML, json etc.
                 data:myData,
                 success:function(response){
@@ -95,6 +95,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
+                            <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
                         </ul>
                     </li>
                     <li><a href="#"><span>REPORT</span></a>
@@ -128,7 +129,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 </ul>
 
                 <div id="tfheader">
-                    <form id="tfnewsearch" method="POST" action="procedures/home/document/new/tracker/search.php">
+                    <form id="tfnewsearch" method="POST" action="procedures/home/doctracker/search.php">
                         <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 
                         <button id="search_document" class="tfbutton">Search </button>
@@ -155,12 +156,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                 <div id="post10">
                     <h2>DOCUMENT TRACKER</h2>
+                    
 
                  <div id="retrievetable">
-                     <table id="ajaxhistory">
+                     <div id="ajaxhistory">
+						
 
 
-                     </table>
+                     </div>
 
 
                  </div>

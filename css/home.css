@@ -375,7 +375,7 @@ div#menu li.back .left {
 }
 
 #postright table#responds {
-	width:330px;
+	width:450px;
 	margin:0 auto;
     line-height: 16px;
 	border-spacing:1px;
@@ -863,9 +863,9 @@ select, option { width:130px;
 
 
 td {
-    padding:3px 0 3px 8px;
+    padding:0px 0 3px 8px;
 	font-family:tahoma;
-	font-size:12px;
+	font-size:11px;
 
     }
 
@@ -913,37 +913,57 @@ ul #responds01{
     float: right;
 }
 
-#ajaxhistory tr.usercolor {
+#retrievetable {
+	width:660px;
+}
+
+table#historydata tr.usercolor {
     background-color:#A7DDF7;
     width:80px;
     font-family: Tahoma;
     font-size: 10px;
 }
 
-#ajaxhistory tr.usercolor:hover {
+table#historydata {
+	border-spacing:1px;
+	margin:20px auto;
+}
+
+table#historydata tr.usercolor:hover {
     background-color:#00acff;
     width:80px;
     color:#fff;
 }
 
-#ajaxhistory tr.usercolor1 {
+table#historydata tr.usercolor1 {
     background-color:#3AC7EB;
     width:80px;
     font-family: Tahoma;
     font-size: 10px;
 }
 
-#ajaxhistory tr.usercolor1:hover {
+table#historydata tr.usercolor1:hover {
     background-color:#008eb2;
     width:80px;
     color:#fff;
 
 }
 
-#ajaxhistory tr.bgcolor {
+table#historydata td {
+	padding:3px 0 3px 8px;
+	font-family:tahoma;
+	font-size:12px;
+	width:5px;
+}
+
+table#historydata tr.bgcolor {
     background-color: #BCBCBC;
     width:80px;
     font-family: Tahoma;
     font-size: 10px;
     color:#000;
+}
+
+#details table {
+	margin:10px auto;
 }

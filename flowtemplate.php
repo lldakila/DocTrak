@@ -300,8 +300,9 @@ $(document).ready(function() {
         <li><a href="#" class="parent"><span>DOCUMENT</span></a>
         	<ul>
                 <li><a href="newdoc.php"><span>NEW DOCUMENT</span></a></li>
-                <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
-                <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
+                            <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
+                            <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
+                            <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>

@@ -168,8 +168,9 @@ $(document).ready(function() {
         <li><a href="#" class="parent"><span>DOCUMENT</span></a>
         	<ul>
                 <li><a href="newdoc.php"><span>NEW DOCUMENT</span></a></li>
-                <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
-                <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
+                            <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
+                            <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
+                            <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
@@ -290,8 +291,8 @@ $(document).ready(function() {
                             <div class="input">
                                 <input id="type_mode" name="type_mode" type="hidden" />
                                 <input type="button" value="New" onClick="javascript:cleartext();"/>
-                                <input  type="submit" value="Delete" onclick="document.getElementById('type_mode').value='delete';" />
-                                <input type="submit" value="Save" onclick="document.getElementById('type_mode').value='save';"/>
+                                <input  type="submit" value="Delete" onClick="document.getElementById('type_mode').value='delete';" />
+                                <input type="submit" value="Save" onClick="document.getElementById('type_mode').value='save';"/>
                             </div>
 
 

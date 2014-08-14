@@ -62,14 +62,15 @@ function dateRotate($daynow) {
 //session_start();
 session_start();
     $now = new DateTime();
-    $year = $now->format("Y");
+    $year = $now->format("y");
     $month = $now->format("m");
+    $day= $now->format("d");
 
     //$val = 5;
     //$val=fetchCounter();
    // echo $val;
    // echo date('Ymd'). "<br>";
-   echo fetchOffice(). "-" .$year.$month. "-" .fetchCounter();
+   echo fetchOffice(). "-" .$year.$month.$day. "-" .fetchCounter();
   //  echo "<br>";
   //   returnstring();
   //  }
