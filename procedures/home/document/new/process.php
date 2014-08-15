@@ -25,7 +25,16 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
            }
            mysqli_autocommit($con,FALSE);
            $flag=true;
-           $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$_POST['barcode']."','".date("Y-m-d H:i:s")."')";
+           // CHECK IF INPUTFILE IS EMPTY START
+           if (empty($_FILES['pdffile']['name'])){
+               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."')";
+
+           }
+           else {
+               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$_POST['barcode']."','".date("Y-m-d H:i:s")."')";
+           }
+           // CHECK IF INPUT FILE IS EMPTY END
+
            $RESULT=mysqli_query($con,$query);
            if (!$RESULT) {
                $flag=false;

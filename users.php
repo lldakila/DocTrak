@@ -185,23 +185,17 @@ $(document).ready(function() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-                <li class="last">
-                    <?php
-                    session_start();
-                    echo "Hi, ".$_SESSION['security_name']."";
-
-                    ?>
-                </li>
-
-
+                </ul>
+		
+        <div id="tfheader">
+        <div class="admin">
+         <?php
+          session_start();
+          echo "Hi, ".$_SESSION['security_name']."";
 
 
-
-            </ul>
-
-
-
-         <div id="tfheader">
+        ?>
+        </div>
 					<form id="tfnewsearch" method="POST" action="procedures/home/user/search.php">
 		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 

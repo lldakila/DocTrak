@@ -558,7 +558,8 @@ div#menu li.back .left {
 
 #tfnewsearch{
 		float:right;
-		padding:7px;
+		padding:0 7px 0 0;
+		margin-top:-23px;
 	}
 	.tftextinput{
 		margin: 0;
@@ -966,4 +967,10 @@ table#historydata tr.bgcolor {
 
 #details table {
 	margin:10px auto;
+}
+
+#details button {
+    border-radius: 5px;
+    width: 80px;
+    background-color: #E3E1FF;
 }

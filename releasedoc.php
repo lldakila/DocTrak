@@ -65,17 +65,21 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last"><?php
+        </ul>
+		
+        <div id="tfheader">
+        <div class="admin">
+         <?php
           session_start();
           echo "Hi, ".$_SESSION['security_name']."";
 
-        ?>  </li>
 
-    </ul>
+        ?>
+        </div>
+                    <form id="tfnewsearch" method="POST" action="procedures/home/document/release/search.php">
+		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 
-         <div id="tfheader">
-					<form id="tfnewsearch" method="get" action="http://www.google.com">
-		        	<input type="text" class="tftextinput" placeholder="search..." name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+                    <button id="search_receiveddoc" class="tfbutton">Search </button>
 					</form>
 				<div class="tfclear"></div>
 				</div>   
@@ -97,16 +101,99 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         
         	<div id="post">
             
-            			<div id="post01">
+            			<div id="post10">
                         <h2>RELEASE DOCUMENT</h2>
-                        
-                        		
+
+                            <form name="process" method="post" action="procedures/home/document/receive/process.php" onsubmit="return validate();" enctype="multipart/form-data">
+
+    					<div class="table1">
+    				<table >
+                    <tr>
+                    	<td>BarCode No:</td>
+
+                        <td class="usertext">
+                            <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" />
+                            </td>
+                    </tr>
+                    <tr>
+                    	<td>Title:</td>
+                        <td class="usertext"><input id="title" readonly="readonly" name="title" type="text" /> </td>
+                    </tr>
+                    <tr>
+                    	<td>Document Type:</td>
+                        <td class="usertext"><input id="documenttype" readonly="readonly" name="documenttype" type="text" /> </td>
+                    </tr>
+                    <tr>
+                    	<td>Template:</td>
+                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" /> </td>
+                    </tr>
+                    <tr>
+                    	<td>PDF File: </td>
+                         <td class="usertext2"> <input id="primarykey" name="primarykey" type="hidden" />
+                                <input id="pdf" readonly="readonly" name="pdf" type="text" />
+                                <input type="button" value="View"/></td>
+                    </tr>
+                  </table>
+
+                    <?php
+            session_start();
+           if($_SESSION['operation']=='save'){
+
+                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+
+            }  elseif($_SESSION['operation']=='delete'){
+
+                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+                }
+           elseif($_SESSION['operation']=='update'){
+
+               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+           }
+
+               $_SESSION['operation']='clear';
+
+
+
+
+
+
+?>
+
+                  		 <!--- BUTTONS ACTIVITY START --->
+
+                        <div class="input1">
+                         <input id="receiveddoc_hidden" name="document_hidden" type="hidden" value="0"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();"/>
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('receiveddoc_hidden').value='delete';"/>
+                         <input type="submit" value="Save" onClick="document.getElementById('receiveddoc_hidden').value='save';"/>
+                         </div>
+                           <!--- BUTTONS ACTIVITY END--->
+
+                  </div>
+
+						   </form>
+
+
+
+
+                        </div>
+
+                        <div id="postright">
+                            <div class="scroll">
+                        	<table id="responds">
+
+
+                			</table>
+
+                            </div>
+                         </div>	
     
     
 							
-                        </div>
+                        
                         <div class="tfclear"></div>
-
+						</div>
             
             </div>
         

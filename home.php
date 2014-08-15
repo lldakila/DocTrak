@@ -64,9 +64,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         </li>
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
-
-        
-
+    
     </ul>
 		
         <div id="tfheader">

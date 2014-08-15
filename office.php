@@ -149,22 +149,17 @@ $(document).ready(function() {
 
 
 
-          <!--- USERNAME ON MENU START --->
-                <li class="last">
-                    <?php
-                    session_start();
-                    echo "Hi, ".$_SESSION['security_name']."";
-
-                    ?>
-                </li>
-        <!--- USERNAME ON MENU END --->
+          </ul>
+		
+        <div id="tfheader">
+        <div class="admin">
+         <?php
+          session_start();
+          echo "Hi, ".$_SESSION['security_name']."";
 
 
-
-
-    </ul>
-
-            <div id="tfheader">
+        ?>
+        </div>
                 <form id="tfnewsearch" method="POST" action="procedures/home/office/search.php">
                     <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 

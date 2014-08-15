@@ -145,17 +145,17 @@ function validate() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last">
-            <?php
+        </ul>
+		
+        <div id="tfheader">
+        <div class="admin">
+         <?php
           session_start();
           echo "Hi, ".$_SESSION['security_name']."";
 
+
         ?>
-        </li>
-
-    </ul>
-
-         <div id="tfheader">
+        </div>
 					<form id="tfnewsearch" method="POST" action="procedures/home/group/search.php">
 		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
                     <button id="search_group" class="tfbutton">Search </button>

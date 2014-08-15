@@ -10,10 +10,10 @@
 <?php
     require_once("../../connection.php");
     session_start();
-    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
+    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name,document_filename from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
 
     echo "<div id='details'>";
-	echo "<table>";
+    echo "<table>";
 	echo "<tr><td>";
     echo "Barcode:"; echo"&nbsp;<b>".$query[0]['document_id'].'</b>';
  	echo "</td><td>"; 
@@ -28,8 +28,18 @@
     echo "Owner:"; echo"&nbsp;<b>".$query[0]['security_name'].'</b>';
 	echo "</td><td>";
     echo "Office:"; echo"&nbsp;<b>".$query[0]['fk_office_name'].'</b>';
-	echo "</td></tr>";
+    echo "</td><td>";
+    echo "Attachment:"; //echo"&nbsp;<b>".$query[0]['document_filename'].'</b>'; document_filename
+    if ($query[0]['document_filename']!=""){
+        echo "<a href='/procedures/home/doctracker/previewfile.php?download_file=".$query[0]['document_filename'].".pdf' target='_blank'>Download</a>";
+    }
+    else {
+        echo "<a href='#'> No Attachment</a>";
+    }
+
+
 	echo "</table>";
+    echo "</td></tr>";
     echo "</div>";
 
     echo "<table id='historydata'>";

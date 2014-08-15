@@ -32,14 +32,14 @@ function cleartext() {
 }
 function clickSearch(barcodeno,title,documenttype,template,pdf,a) {
    // document.getElementById('primarykey').value=barcode;
-    document.process.barcodeno.value=barcode;
+    document.process.barcodeno.value=barcodeno;
     document.process.title.value=title;
     document.process.documenttype.value=documenttype;
     document.process.template.value=template;
     //document.process.file.value=a;
     document.process.primarykey.value=barcodeno;
 
-    //alert (type);
+    alert (type);
   //  document.getElementById("group").value=username;
 }
 
@@ -167,15 +167,17 @@ $(document).ready(function() {
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last"><?php
+        </ul>
+		
+        <div id="tfheader">
+        <div class="admin">
+         <?php
           session_start();
           echo "Hi, ".$_SESSION['security_name']."";
 
-        ?>  </li>
 
-    </ul>
-
-         <div id="tfheader">
+        ?>
+        </div>
                     <form id="tfnewsearch" method="POST" action="procedures/home/document/receive/search.php">
 		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 
@@ -229,10 +231,8 @@ $(document).ready(function() {
                         <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" /> </td>
                     </tr>
                     <tr>
-                    	<td>PDF File: </td>
-                         <td class="usertext2"> <input id="primarykey" name="primarykey" type="hidden" />
-                                <input id="pdf" readonly="readonly" name="pdf" type="text" />
-                                <input type="button" value="View"/></td>
+                    	<td>Comment:</td>
+                        <td class="usertext"><input id="comment" readonly="readonly" name="comment" type="text" /> </td>
                     </tr>
                   </table>
 
@@ -264,9 +264,7 @@ $(document).ready(function() {
 
                         <div class="input1">
                          <input id="receiveddoc_hidden" name="document_hidden" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('receiveddoc_hidden').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('receiveddoc_hidden').value='save';"/>
+                         <input type="submit" value="Receive" onClick="document.getElementById('receiveddoc_hidden').value='save';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 

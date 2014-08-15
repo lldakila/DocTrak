@@ -95,7 +95,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
-                            <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
                         </ul>
                     </li>
                     <li><a href="#"><span>REPORT</span></a>
@@ -120,15 +119,17 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     <li><a href="about.php"><span>ABOUT</span></a></li>
                     <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-                    <li class="last"><?php
-                        session_start();
-                        echo "Hi, ".$_SESSION['security_name']."";
+                    </ul>
+		
+        <div id="tfheader">
+        <div class="admin">
+         <?php
+          session_start();
+          echo "Hi, ".$_SESSION['security_name']."";
 
-                        ?>  </li>
 
-                </ul>
-
-                <div id="tfheader">
+        ?>
+        </div>
                     <form id="tfnewsearch" method="POST" action="procedures/home/doctracker/search.php">
                         <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
 

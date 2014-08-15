@@ -65,15 +65,17 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
 
-        <li class="last"><?php
+        </ul>
+		
+        <div id="tfheader">
+        <div class="admin">
+         <?php
           session_start();
           echo "Hi, ".$_SESSION['security_name']."";
 
-        ?>  </li>
 
-    </ul>
-
-         <div id="tfheader">
+        ?>
+        </div>
 					<form id="tfnewsearch" method="get" action="http://www.google.com">
 		        	<input type="text" class="tftextinput" placeholder="search..." name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
 					</form>
