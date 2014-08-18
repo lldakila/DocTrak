@@ -1,4 +1,0 @@
-DocTrak
-=======
-
-Document Tracker
