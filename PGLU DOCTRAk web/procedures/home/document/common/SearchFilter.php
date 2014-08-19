@@ -30,13 +30,18 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
         }*/
 
-        $query=select_info_multiple_key("SELECT FK_DOCUMENTLIST_ID,SORTORDER FROM DOCUMENTLIST_TRACKER WHERE FK_DOCUMENTLIST_ID = '".$document_id."'");
+        $query=select_info_multiple_key("SELECT DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER FROM DOCUMENTLIST_TRACKER WHERE FK_DOCUMENTLIST_ID = '".$document_id."' ORDER BY SORTORDER ASC");
 
 
 
         foreach ($query as $rows) {
             if ($rows['SORTORDER']==1){
-                
+                return $rows['DOCUMENTLIST_TRACKER_ID'];
+
+            }
+            else {
+                if ($rows[''])
+
             }
 
         }
