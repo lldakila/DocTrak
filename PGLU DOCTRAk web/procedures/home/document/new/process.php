@@ -4,17 +4,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../../index.php');
 }
-?>
 
-
-
-<?php
 
 
 
    require_once("../../../connection.php");
-   date_default_timezone_set("Asia/Manila");
-   session_start();
+   date_default_timezone_set($_SESSION['Timezone']);
+
 
  if ($_POST['document_hidden']=="save") {
        if ($_POST['primarykey'] == "") {

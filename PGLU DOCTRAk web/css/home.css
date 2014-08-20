@@ -55,6 +55,11 @@ div {
 	background: url(../images/home/banner1.png) no-repeat #2392b4;
 }
 
+.headerbanner a {
+	list-style:none;
+	text-decoration:none;
+}
+
 .headerbanner font a {
 	text-decoration:none;
 	font:12px "Lucida Grande", Tahoma, Verdana, sans-serif;
@@ -190,6 +195,7 @@ div#menu ul ul {
 	background:rgb(0, 112, 141);
 	margin-top:1px;
 }
+
 div#menu ul ul a {
 	padding: 0 0 0 0;
 	height: auto;
@@ -253,21 +259,9 @@ div#menu li.back .left {
 	font-size:12px;
 	font:normal 12px Trebuchet MS;
     color:#fff;
-	padding:12px 280px 0 0;
-}
-
-
-#tfheader {
+	padding:12px 20px 0 0;
 	float:right;
 }
-
-
-
-
-
-
-
-
 
 
 .content2 {
@@ -395,6 +389,21 @@ div#menu li.back .left {
 	color:#000;
 }
 
+#postright th.bgcolor1 {
+	background-color: #BCBCBC;
+	width:86px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
+#postright table#respondsth {
+	width:450px;
+	margin:0 auto;
+    line-height: 16px;
+	border-spacing:1px;
+
+}
 #postright tr.usercolor {
 	background-color:#A7DDF7;
 	width:80px;
@@ -434,14 +443,14 @@ div#menu li.back .left {
 #postright .scroll {
 	overflow:scroll;
 	width:240px;
-	height:310px;
+	height:270px;
 	margin:10px auto;
 	padding:10px 0 10px 0;
 }
 
 #postright01 {
 	width:255px;
-	height:419px;
+	height:411px;
 	background-color:#FFF;
 	display:block;
 	float:right;
@@ -531,7 +540,7 @@ div#menu li.back .left {
 #postright01 .scroll {
 	overflow:scroll;
 	width:240px;
-	height:380px;
+	height:340px;
 	margin:10px auto;
 	padding:10px 0 10px 0;
 }
@@ -563,6 +572,16 @@ div#menu li.back .left {
 	vertical-align:middle;
 	}
 
+#tfheader {
+	padding:30px 0 0px 0;
+
+	
+}
+
+#tfheader h2 {
+	padding:0;
+	margin:7px auto;
+}
 
 #tfnewsearch{
 		float:right;
@@ -571,16 +590,19 @@ div#menu li.back .left {
 	}
 	.tftextinput{
 		margin: 0;
-		padding: 5px 15px;
+		padding: 3px 5px;
 		font-family: Arial, Helvetica, sans-serif;
 		font-size:14px;
-		border:1px solid #0076a3; border-right:0px;
+		border:1px solid #0076a3;
 		border-top-left-radius: 5px 5px;
 		border-bottom-left-radius: 5px 5px;
+		width:155px;
+		float:left;
 	}
 	.tfbutton {
 		margin: 0;
-		padding: 5px 15px;
+		margin-right:5px;
+		padding: 3px 10px;
 		font-family: Arial, Helvetica, sans-serif;
 		font-size:14px;
 		outline: none;
@@ -594,6 +616,7 @@ div#menu li.back .left {
 		background: -moz-linear-gradient(top,  #00adee,  #0078a5);
 		border-top-right-radius: 5px 5px;
 		border-bottom-right-radius: 5px 5px;
+		float:right;
 	}
 	.tfbutton:hover {
 		text-decoration: none;

@@ -135,14 +135,14 @@ $(document).ready(function() {
     
     	<div class="headerbanner">
         
-        		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
+        		<a href="index.php"><img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
 				<?php
 						session_start();
 						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
 						echo "</span>";
 				?>
 				
-				</h2><p>Management Information System</p>
+				</h2><p>Management Information System</p></a>
         
         </div>
 
@@ -163,9 +163,11 @@ $(document).ready(function() {
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
-        	<ul>
+        	<ul style="width:265px;">
                 <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-
+				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>
@@ -186,7 +188,7 @@ $(document).ready(function() {
     
     </ul>
 		
-        <div id="tfheader">
+        
         <div class="admin">
          <?php
           session_start();
@@ -195,11 +197,6 @@ $(document).ready(function() {
 
         ?>
         </div>
-					<form id="tfnewsearch" method="get">
-		        	<input type="text" class="tftextinput" placeholder="search..." name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-					</form>
-				<div class="tfclear"></div>
-				</div>   
             
             
         </div>

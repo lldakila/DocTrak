@@ -4,22 +4,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     $_SESSION['in'] ="start";
     header('Location:../../../../index.php');
 }
-?>
 
-
-
-
-<?php
     require_once("../../../connection.php");
-    session_start();
+   
     $query=select_info_multiple_key("select OFFICE_NAME,OFFICE_DESCRIPTION from OFFICE WHERE OFFICE_NAME LIKE '%".$_POST['search_string']."%' OR OFFICE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY OFFICE_NAME");
-	echo "<table>";
-    echo "<tr class='bgcolor'>";
-    echo "<th>Office</th>";
-    echo "<th>Description</th>";
-    echo "</tr>";
-	echo "</table>";
 	
+	 
 if ($query) {
 	
 $rowcolor="blue";

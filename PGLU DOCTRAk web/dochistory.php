@@ -80,7 +80,6 @@ session_start();
 
         </ul>
 		
-        <div id="tfheader">
         <div class="admin">
          <?php
           session_start();
@@ -89,12 +88,6 @@ session_start();
 
         ?>
         </div>
-					<form id="tfnewsearch" method="get" action="http://www.google.com">
-		        	<input type="text" class="tftextinput" placeholder="search..." name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-					</form>
-				<div class="tfclear"></div>
-				</div>   
-            
             
         </div>
         

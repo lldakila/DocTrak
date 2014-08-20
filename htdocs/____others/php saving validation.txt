@@ -1,0 +1,8 @@
+if(($muncode=="")||($mundesc=="")){
+	echo ('All fields are required.')";
+	header("Location: http://localhost/municipality_add.php");
+	exit();
+}
+
+
+ALTER TABLE `municipality` AUTO_INCREMENT = 1;

@@ -197,7 +197,7 @@ $(document).ready(function() {
 
         </ul>
 		
-        <div id="tfheader">
+        
         <div class="admin">
          <?php
           session_start();
@@ -206,13 +206,6 @@ $(document).ready(function() {
 
         ?>
         </div>
-                    <form id="tfnewsearch" method="POST">
-		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-
-                    <button id="search_forrelease" class="tfbutton">Search </button>
-					</form>
-				<div class="tfclear"></div>
-				</div>   
             
             
         </div>
@@ -313,6 +306,15 @@ $(document).ready(function() {
                         </div>
 
                         <div id="postright">
+                        
+                        	<div id="tfheader">
+                            	<form id="tfnewsearch" method="POST">
+		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+                    			<button id="search_forrelease" class="tfbutton">Search </button>
+								</form>								
+                            </div>
+                            <div class="tfclear"></div>
+                            
                             <div class="scroll">
                         	<table id="responds">
 

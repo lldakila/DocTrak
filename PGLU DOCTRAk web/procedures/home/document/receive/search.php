@@ -23,8 +23,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 echo "</table>";
 $rowcolor="blue";
   if ($query) {
- foreach($query as $var) {
 
+      include_once("../common/SearchFilter.php");
+
+
+
+ foreach($query as $var) {
+     if (SortOrder($var["DOCUMENT_ID"],'receive')) {
      if ($rowcolor=="blue")
      {
          echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\')">';
@@ -54,6 +59,10 @@ $rowcolor="blue";
 
 
 
+ }
+ }
+
+
 
   //   echo"
   //   <tr>
@@ -63,7 +72,7 @@ $rowcolor="blue";
   //   ";
 
         }
-  }
+
     else {
         echo "<span style='font:11px trebuchet ms;'>Nothing found.</span>";
 

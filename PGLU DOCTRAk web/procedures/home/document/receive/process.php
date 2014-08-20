@@ -1,39 +1,39 @@
 <?php
-session_start();
-if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
-  $_SESSION['in'] ="start";
- header('Location:../../../../index.php');
-}
-?>
 
+    session_start();
+    if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
+      $_SESSION['in'] ="start";
+     header('Location:../../../../index.php');
+    }
 
-
-<?php
    require_once("../../../connection.php");
-   session_start();
-echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
-   if ($_POST['document_hidden']=="save") {
-       if ($_POST['primarykey'] == "") {
-        $query=insert_update_delete("INSERT INTO DOCUMENT(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['file']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['security_name']."')");
-        $_SESSION['operation']="save";
-        $_SESSION['message']="Save Successful";
+    date_default_timezone_set($_SESSION['Timezone']);
+   global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+   $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+//echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
 
-       }
-       else {
-           echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
-           $query=insert_update_delete("UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ");
+    if ($_SESSION['keytracker']=='') {
+        $_SESSION['operation']=='error';
 
-           $_SESSION['operation']="update";
-           $_SESSION['message']="Update Successful";
-       }
-   }
+    }
+    else {
+        $query="UPDATE DOCUMENTLIST_TRACKER SET RECEIVED_VAL=1,RECEIVED_BY='".$_SESSION['security_name']."',RECEIVED_DATE='".date("Y-m-d H:i:s")."',RECEIVED_COMMENT='".$_POST['comment']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $_SESSION['keytracker']." ";
+        $RESULT=mysqli_query($con,$query);
+        if (!$RESULT) {
+            $_SESSION['operation']='error';
+        }
+        else {
+            $_SESSION['operation']='save';
+            $_SESSION['keytracker']='';
+        }
+        mysqli_free_result($RESULT);
 
-   elseif ($_POST['document_hidden']=="delete") {
+    }
 
-          $query=insert_update_delete("DELETE FROM DOCUMENT WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
-          $_SESSION['operation']="delete";
-          $_SESSION['message']="Delete Successful";
-   }
-   header('Location:../../../../newdoc.php');
+
+
+
+    mysqli_close($con);
+   header('Location:../../../../receiveddoc.php');
 
  ?>

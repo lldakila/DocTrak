@@ -22,7 +22,7 @@ session_start();
 <script language="JavaScript" type="text/javascript">
 
 
-
+/*
 function cleartext() {
   document.getElementById("barcodeno").value="";
   document.getElementById("title").value="";
@@ -31,7 +31,7 @@ function cleartext() {
   document.getElementById("pdf").value="";
   document.getElementById("primarykey").value="";
 
-}
+}*/
 function clickSearch(barcodeno,title,documenttype,template,pdf) {
    // document.getElementById('primarykey').value=barcode;
     document.process.barcodeno.value=barcodeno;
@@ -66,7 +66,12 @@ function retrieveAttachment(barcodeID){
 	
 function validate() {
 
-    if (document.getElementById('receiveddoc_hidden').value=='delete') {
+
+    if (document.process.primarykey.value=="")   {
+        alert("Cannot receive blank info.");
+        return false;
+    }
+  /*  if (document.getElementById('receiveddoc_hidden').value=='delete') {
         if (document.getElementById('primarykey').value != ""){
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
@@ -102,7 +107,7 @@ function validate() {
     else if (document.process.template.value=="") {
         alert("Fill up necessary inputs.");
         return false;
-    }
+    }*/
 
 
 
@@ -198,7 +203,7 @@ $(document).ready(function() {
 
         </ul>
 		
-        <div id="tfheader">
+        
         <div class="admin">
          <?php
           session_start();
@@ -207,13 +212,6 @@ $(document).ready(function() {
 
         ?>
         </div>
-                    <form id="tfnewsearch" method="POST">
-		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-
-                    <button id="search_receiveddoc" class="tfbutton">Search </button>
-					</form>
-				<div class="tfclear"></div>
-				</div>   
             
             
         </div>
@@ -276,15 +274,11 @@ $(document).ready(function() {
             session_start();
            if($_SESSION['operation']=='save'){
 
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Received Successfully </div>";
 
-            }  elseif($_SESSION['operation']=='delete'){
-
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-                }
-           elseif($_SESSION['operation']=='update'){
-
-               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+            }
+           elseif ($_SESSION['operation']=='error') {
+               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
            }
 
                $_SESSION['operation']='clear';
@@ -299,8 +293,8 @@ $(document).ready(function() {
                   		 <!--- BUTTONS ACTIVITY START --->
 
                         <div class="input2">
-                         <input id="receiveddoc_hidden" name="document_hidden" type="hidden" value="0"/>
-                         <input type="submit" value="Receive" onClick="document.getElementById('receiveddoc_hidden').value='receive';"/>
+
+                         <input type="submit" value="Receive"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -314,6 +308,15 @@ $(document).ready(function() {
                         </div>
 
                         <div id="postright">
+                        
+                        	<div id="tfheader">
+                            	<form id="tfnewsearch" method="POST">
+		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+                   				<button id="search_receiveddoc" class="tfbutton">Search </button>
+								</form>		
+                            </div>
+                            <div class="tfclear"></div>
+                                                    
                             <div class="scroll">
                         	<table id="responds">
 

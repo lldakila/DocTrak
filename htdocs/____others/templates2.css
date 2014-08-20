@@ -1,0 +1,169 @@
+/*templates*/
+body{
+	vertical-align: baseline;
+	width: 800px;
+	border-color: #FFFFFF;
+	border-style: solid;
+	border-width: 1px;
+	font:normal 10px/1.5em Tahoma,Arial,Helvetica,sans-serif;
+	margin-left: 40px;
+	
+}
+div {
+	background-color:#2271a0;
+	font:normal 12px/1.5em Tahoma,Arial,Helvetica,sans-serif;
+	color: #FFFFFF;
+}
+
+/*menu*/
+table.menu {
+
+	border-width: 1px;
+	border-color: #267db1;
+	border-style: solid;
+}
+.submenu1 {
+	background-color:#669fc2;
+	width:146px;
+	padding: 8px;
+	font-size: 14px;
+	text-align:center;
+	float:left;
+	border-width: 1px;
+	border-color: #FFFFFF;
+}
+.submenu2 {
+	background-color:#d3e6f6;
+	width:146px;
+	padding: 8px;
+	font-size: 14px;
+	text-align:center;
+	float:left;
+}
+
+.submenu3 {
+	background-color:#d3e6f6;
+	width:200px;
+	padding: 10px;
+	font-size: 14px;
+	text-align:center;
+	float:left;
+}
+
+.submenu4 {
+	background-color:#93bed8;
+	width:200px;
+	padding: 10px;
+	font-size: 14px;
+	text-align:center;
+	float:left;
+}
+/*body*/
+.home{
+	height: 400px;
+	width: 1280px;
+	background-color:#FFFFFF;
+	font:normal 12px/1.5em Tahoma,Arial,Helvetica,sans-serif;
+	border-width: 1px;
+	border-color: #267db1;
+	border-style: solid;
+}
+.sco{
+	height: 400px;
+	width: 1280px;
+	overflow:scroll;
+	background-color:#FFFFFF;
+	font:normal 12px/1.5em Tahoma,Arial,Helvetica,sans-serif;
+	border-width: 1px;
+	border-color: #267db1;
+	border-style: solid;
+}
+
+
+h1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #2271A0;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	font-variant: normal;
+	text-decoration: none;
+}
+
+h2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+}
+p {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: justify;
+	margin: 30px;
+}
+
+.footer{
+	text-align:center;
+	background-color:#2271a0;
+	width: 1282px;
+}
+
+a {
+	color: #267db1;
+	text-decoration: none;
+}
+a:hover {
+	color: #FF0000;
+	text-decoration: underline;
+}
+
+.login {
+	width: 500px;
+	color: #666666;
+}
+
+table.setup {
+	width: 500px; 
+	margin-left: 50px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right:50px;
+	font-size: 11px;
+	border-style: solid; 
+	border-color: #2271a0;
+	border-width: 1px; 
+	border-collapse: collapse;
+	
+}
+
+table.setup th {
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #2271a0;
+} 
+
+table.setup td {
+	border-width: 1px;
+	padding: 1px;
+	border-style: dotted;
+	border-color: #2271a0;
+}
+
+.oddrowcolor {
+	background-color: #FF00FF;
+}
+
+.evenrowcolor{
+	background-color: #FF0000;
+}
+
+.bg-login {
+	margin:200px auto;
+	width:500px;
+	height:250px;
+	background-image:url('images/lueasplogo.jpg');
+	background-color:#ffffff;
+	border:0px;
+}
+  

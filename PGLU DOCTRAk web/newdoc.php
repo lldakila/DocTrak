@@ -21,9 +21,6 @@ session_start();
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <script language="JavaScript" type="text/javascript">
 
-function createBarcode() {
-
-}
 
 
 function cleartext() {
@@ -204,7 +201,7 @@ $(document).ready(function() {
 
         </ul>
 		
-        <div id="tfheader">
+        
         <div class="admin">
          <?php
           session_start();
@@ -213,14 +210,6 @@ $(document).ready(function() {
 
         ?>
         </div>
-                    <form id="tfnewsearch" method="POST" action="procedures/home/document/new/search.php">
-		        	<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-
-                    <button id="search_document" class="tfbutton">Search </button>
-					</form>
-				<div class="tfclear"></div>
-				</div>   
-            
             
         </div>
         
@@ -309,26 +298,27 @@ $(document).ready(function() {
 
                     <?php
             session_start();
+                    echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
            if($_SESSION['operation']=='save'){
 
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+                echo"Saved Successfully";
 
             }  elseif($_SESSION['operation']=='delete'){
 
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+                     echo"Deleted Successfully.";
                 }
            elseif($_SESSION['operation']=='update'){
 
-               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+               echo"Updated Successfully.";
            }
            elseif($_SESSION['operation']=='error'){
 
-               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Error query. Save not Successful. </div>";
+               echo"Error query. Save not Successful.";
            }
 
                $_SESSION['operation']='clear';
 
-
+        echo "</div>";
 
 
 
@@ -355,6 +345,15 @@ $(document).ready(function() {
                         </div>
 
                         <div id="postright">
+                        
+                        	<div id="tfheader">
+                            	<form id="tfnewsearch" method="POST" action="procedures/home/document/new/search.php">
+		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+                    			<button id="search_document" class="tfbutton">Search </button>
+								</form>							
+                            </div>
+                            <div class="tfclear"></div>
+                        
                             <div class="scroll">
                         	<table id="responds">
 

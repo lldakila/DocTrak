@@ -96,6 +96,13 @@ $(document).ready(function() {
 });
 
 
+$(document).ready(function(){
+  $("input").click(function(){
+  $("#fade").fadeTo(1000,0.0);
+  });
+});
+
+
 </script>
 
 </head>
@@ -109,14 +116,14 @@ $(document).ready(function() {
     
     	<div class="headerbanner">
 
-        		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
+        		<a href="index.php"><img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
 				<?php
 						session_start();
 						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
 						echo "</span>";
 				?>
 				
-				</h2><p>Management Information System</p>
+				</h2><p>Management Information System</p></a>
         
         </div>
 
@@ -165,7 +172,7 @@ $(document).ready(function() {
 
           </ul>
 		
-        <div id="tfheader">
+        
         <div class="admin">
          <?php
           session_start();
@@ -174,18 +181,10 @@ $(document).ready(function() {
 
         ?>
         </div>
-                <form id="tfnewsearch" method="POST">
-                    <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-
-                    <button id="search_office" class="tfbutton">Search </button>
-                </form>
-                <div class="tfclear">
-
-
-                </div>
+                
             
             
-        </div>
+        
         
         </div>
     
@@ -200,6 +199,7 @@ $(document).ready(function() {
     	<div class="content2">
         
         	<div id="post">
+            
             
             			<div id="post10">
                         <h2>OFFICES</h2>
@@ -228,11 +228,11 @@ $(document).ready(function() {
             session_start();
            if($_SESSION['operation']=='save'){
 
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
 
             }  elseif($_SESSION['operation']=='delete'){
 
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
                 }
 				
 				elseif($_SESSION['operation']=='update'){
@@ -265,10 +265,29 @@ $(document).ready(function() {
                         </div>
                         
                         <div id="postright">
+                        
+                        		<div id="tfheader">
+                                
+                                <form id="tfnewsearch" method="POST">
+                    				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+									<button id="search_office" class="tfbutton">Search </button>
+                				</form>
+               					<h2></h2>
+                                </div>
+                                
+                                <div class="tfclear"></div>
+                                
                             <div class="scroll">
-                                <table id="responds"  >
-
-
+                                
+								<table id="respondsth">
+ 									<tr class='bgcolor'>
+                                	<th class="bgcolor1">Office</th>
+                                	<th>Description</th>
+                                	</tr>
+                                    </table>
+                                    
+                                <table id="responds">
+                                	
                                 </table>
                             </div>
                         </div>

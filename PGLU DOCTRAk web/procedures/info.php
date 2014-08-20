@@ -13,7 +13,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 	$_SESSION['Copyright']="Copyleft";
 	$_SESSION['Year']="2014-2015";
 	$_SESSION['EncryptionKey']="!@)(#$*&%^";
-
+    $_SESSION['Timezone']="Asia/Manila";
 
 
 ?>
