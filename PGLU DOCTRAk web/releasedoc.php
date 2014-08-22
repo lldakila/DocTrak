@@ -22,7 +22,7 @@ session_start();
 <script language="JavaScript" type="text/javascript">
 
 
-
+/*
 function cleartext() {
   document.getElementById("barcodeno").value="";
   document.getElementById("title").value="";
@@ -31,7 +31,7 @@ function cleartext() {
   document.getElementById("pdf").value="";
   document.getElementById("primarykey").value="";
 
-}
+}*/
 function clickSearch(barcodeno,title,documenttype,template,pdf,a) {
    // document.getElementById('primarykey').value=barcode;
     document.process.barcodeno.value=barcodeno;
@@ -65,8 +65,12 @@ function retrieveAttachment(barcodeID){
 	
 	
 function validate() {
+    if (document.process.primarykey.value="") {
+        alert("Cannot release blank document.");
+        return false;
+    }
 
-    if (document.getElementById('releasedoc_hidden').value=='delete') {
+ /*   if (document.getElementById('releasedoc_hidden').value=='delete') {
         if (document.getElementById('primarykey').value != ""){
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
@@ -102,7 +106,7 @@ function validate() {
     else if (document.process.template.value=="") {
         alert("Fill up necessary inputs.");
         return false;
-    }
+    }*/
 
 
 
@@ -173,10 +177,12 @@ $(document).ready(function() {
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
             </ul>
         </li>
-        <li><a href="#"><span>REPORT</span></a>
-        	<ul>
+       <li><a href="#"><span>REPORT</span></a>
+        	<ul style="width:265px;">
                 <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-
+				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>
@@ -264,29 +270,25 @@ $(document).ready(function() {
                     </tr>
                   </table>
 
-                    <?php
-            session_start();
-           if($_SESSION['operation']=='save'){
+                            <?php
+                            session_start();
+                            if($_SESSION['operation']=='save'){
 
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully </div>";
 
-            }  elseif($_SESSION['operation']=='delete'){
+                            }
+                            elseif ($_SESSION['operation']=='error') {
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
+                            }
 
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-                }
-           elseif($_SESSION['operation']=='update'){
-
-               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
-           }
-
-               $_SESSION['operation']='clear';
+                            $_SESSION['operation']='clear';
 
 
 
 
 
 
-?>
+                            ?>
 
                   		 <!--- BUTTONS ACTIVITY START --->
 
@@ -312,14 +314,22 @@ $(document).ready(function() {
 		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
                     			<button id="search_releasedoc" class="tfbutton">Search </button>
 								</form>	
+                                <h2></h2>
                             </div>
                             <div class="tfclear"></div>
                             
                             <div class="scroll">
-                        	<table id="responds">
-
-
-                			</table>
+                        	<table id="respondsth">
+ 									<tr class='bgcolor'>
+                                	<th class="bgcolor1">Barcode</th>
+                                    <th class="bgcolor2">Title</th>
+                                	<th>Date</th>
+                                	</tr>
+                                    </table>
+                                    
+                                <table id="responds">
+                                	
+                                </table>
 
                             </div>
                          </div>	

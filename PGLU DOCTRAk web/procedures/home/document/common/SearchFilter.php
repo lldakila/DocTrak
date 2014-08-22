@@ -17,23 +17,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     function SortOrder($document_id,$source) {
         //global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
         require_once("../../../connection.php");
-        $_SESSION['keytracker']='';
-       /* $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-        $query="SELECT FK_DOCUMENTLIST_ID FROM DOCUMENTLIST_TRACKER WHERE FK_DOCUMENTLIST_ID = '".$document_id."'";
-        $result=mysqli_query($con,$query);
+        //$_SESSION['keytracker']='';
 
-        while ($row=mysqli_fetch_array($result)) {
-
-
-        }*/
-
-        $query=select_info_multiple_key("SELECT OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER,RELEASED_VAL FROM DOCUMENTLIST_TRACKER WHERE FK_DOCUMENTLIST_ID = '".$document_id."' ORDER BY SORTORDER ASC");
-
+        $query=select_info_multiple_key("SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER FROM DOCUMENTLIST_TRACKER WHERE FK_DOCUMENTLIST_ID = '".$document_id."' ORDER BY SORTORDER ASC");
 
         $counterX=0;
 
+        switch ($source)
 
-        switch ($source){
+        {
 
             case 'receive':
 
@@ -53,14 +45,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         else
                         {
 
-                            if ($query[$counterX-1]['RELEASED_VAL']==1 AND $query[$counterX]['RECEIVED_VAL']!=1)
+                            if ($query[$counterX-1]['RELEASED_VAL']==1 && $rows['RECEIVED_VAL']!=1)
                             {
                                 $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+                                //$_SESSION['keytracker']=$rows['RECEIVED_VAL'];
                                 return true;
                             }
 
                         }
-
 
 
                     }
@@ -69,7 +61,83 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     return false;
                     break;
 
+
+            case 'release':
+
+                foreach ($query as $rows) {
+
+                    if ($rows['OFFICE_NAME']==$_SESSION['security_group'])
+                        {
+
+                        if ($rows['SORTORDER']==1)
+                        {
+                            if ($rows['RELEASED_VAL']!=1 && $rows['RECEIVED_VAL'])
+                            {
+                                $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+                                return true;
+                            }
+
+                        }
+                        else
+                        {
+
+                            if ($rows['RECEIVED_VAL']==1 && $rows['RELEASED_VAL']!=1)
+                            {
+                                $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+                                //$_SESSION['keytracker']=$rows['RECEIVED_VAL'];
+                                return true;
+                            }
+
+                        }
+
+
+                    }
+                    $counterX=$counterX+1;
                 }
+                return false;
+                break;
+
+            case 'forrelease':
+
+                foreach ($query as $rows) {
+
+                    if ($rows['OFFICE_NAME']==$_SESSION['security_group']){
+
+                        if ($rows['SORTORDER']==1)
+                        {
+                            if ($rows['FORRELEASE_VAL']!=1 && $rows['RELEASED_VAL']!=1)
+                            {
+                                $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+                                return true;
+                            }
+
+                        }
+                        else
+                        {
+
+                            if ($rows['RECEIVED_VAL']==1 && $rows['FORRELEASE_VAL']!=1 && $rows['RECEIVED_VAL']!=1)
+                            {
+                                $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+                                //$_SESSION['keytracker']=$rows['RECEIVED_VAL'];
+                                return true;
+                            }
+
+                        }
+
+
+                    }
+                    $counterX=$counterX+1;
+                }
+                return false;
+                break;
+
+
+        }
+
+
+
+
+
 
 
     }

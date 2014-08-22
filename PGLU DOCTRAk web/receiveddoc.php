@@ -41,6 +41,7 @@ function clickSearch(barcodeno,title,documenttype,template,pdf) {
     //document.process.file.value=a;
     document.process.primarykey.value=barcodeno;
 	retrieveAttachment(pdf);
+
     //alert (pdf);
   //  document.getElementById("group").value=username;
 }
@@ -67,50 +68,11 @@ function retrieveAttachment(barcodeID){
 function validate() {
 
 
+
     if (document.process.primarykey.value=="")   {
-        alert("Cannot receive blank info.");
+        alert("Cannot receive blank document.");
         return false;
     }
-  /*  if (document.getElementById('receiveddoc_hidden').value=='delete') {
-        if (document.getElementById('primarykey').value != ""){
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-        }
-        else {
-            alert("Nothing to delete.");
-            return false;
-        }
-
-
-    }
-
-
-
-    if (document.process.barcodeno.value=="")   {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.title.value=="") {
-
-            alert("Fill up necessary inputs.");
-            return false;
-        }
-    else if (document.process.documenttype.value=="") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.template.value=="") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }*/
-
-
-
 
 
 }
@@ -180,9 +142,11 @@ $(document).ready(function() {
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
-        	<ul>
+        	<ul style="width:265px;">
                 <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-
+				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>
@@ -313,15 +277,23 @@ $(document).ready(function() {
                             	<form id="tfnewsearch" method="POST">
 		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
                    				<button id="search_receiveddoc" class="tfbutton">Search </button>
-								</form>		
+								</form>	
+                                <h2></h2>	
                             </div>
                             <div class="tfclear"></div>
                                                     
                             <div class="scroll">
-                        	<table id="responds">
-
-
-                			</table>
+                        	<table id="respondsth">
+ 									<tr class='bgcolor'>
+                                	<th class="bgcolor1">Barcode</th>
+                                    <th class="bgcolor2">Title</th>
+                                	<th>Date</th>
+                                	</tr>
+                                    </table>
+                                    
+                                <table id="responds">
+                                	
+                                </table>
 
                             </div>
                          </div>

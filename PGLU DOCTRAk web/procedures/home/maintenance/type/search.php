@@ -13,16 +13,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     require_once("../../../connection.php");
     session_start();
     $query=select_info_multiple_key("select DOCUMENTTYPE_ID,DESCRIPTION,priority,public from DOCUMENT_TYPE WHERE DESCRIPTION LIKE '%".$_POST['search_string']."%' OR DOCUMENTTYPE_ID LIKE '%".$_POST['search_string']."%' ORDER BY DOCUMENTTYPE_ID");
-   //	echo $_POST['search_string'];
-    echo "<table>";
-	echo "<tr class='bgcolor'>";
-   	echo "<th>TYPE</th>";
-	echo "<th>DESCRIPTION</th>";
-	echo "</tr>";
-	echo "</table>";
+   
 
-$rowcolor="blue";
+
 if ($query) {
+	
+$rowcolor="blue";
  foreach($query as $var) {
 
      if ($rowcolor=="blue")

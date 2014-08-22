@@ -144,9 +144,11 @@ $(document).ready(function(){
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
-        	<ul>
+        	<ul style="width:265px;">
                 <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-
+				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>

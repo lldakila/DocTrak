@@ -111,11 +111,13 @@ session_start();
                         </ul>
                     </li>
                     <li><a href="#"><span>REPORT</span></a>
-                        <ul>
-                            <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-
-                        </ul>
-                    </li>
+        	<ul style="width:265px;">
+                <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
+				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
+            </ul>
+        </li>
                     <li><a href="#"><span>MAINTENANCE</span></a>
                         <ul>
                             <li><a href="documenttype.php"><span>DOCUMENT TYPE</span></a></li>
@@ -187,14 +189,23 @@ session_start();
                         <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
                         <button id="search_document" class="tfbutton">Search </button>
                     	</form>
+                        <h2></h2>
                     </div>
                     <div class="tfclear"></div>
                     
                     <div class="scroll">
-                        <table id="responds">
-
-
-                        </table>
+                        <table id="respondsth">
+ 									<tr class='bgcolor'>
+                                	<th class="bgcolor1">Barcode</th>
+                                    <th class="bgcolor3">Title</th>
+                                    <th class="bgcolor4">Owner</th>
+                                	<th>Date</th>
+                                	</tr>
+                                    </table>
+                                    
+                                <table id="responds">
+                                	
+                                </table>
                     </div>
                 </div>
 

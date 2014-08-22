@@ -12,7 +12,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
 <?php
-session_start();
+
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
@@ -22,17 +22,7 @@ session_start();
 <script language="JavaScript" type="text/javascript">
 
 
-
-function cleartext() {
-  document.getElementById("barcodeno").value="";
-  document.getElementById("title").value="";
-  document.getElementById("documenttype").value="";
-  document.getElementById("template").value="";
-  document.getElementById("pdf").value="";
-  document.getElementById("primarykey").value="";
-
-}
-function clickSearch(barcodeno,title,documenttype,template,pdf,a) {
+function clickSearch(barcodeno,title,documenttype,template,pdf) {
    // document.getElementById('primarykey').value=barcode;
     document.process.barcodeno.value=barcodeno;
     document.process.title.value=title;
@@ -41,8 +31,8 @@ function clickSearch(barcodeno,title,documenttype,template,pdf,a) {
     //document.process.file.value=a;
     document.process.primarykey.value=barcodeno;
 	retrieveAttachment(pdf);
-    //alert (type);
-  //  document.getElementById("group").value=username;
+
+
 }
 
 
@@ -66,47 +56,11 @@ function retrieveAttachment(barcodeID){
 	
 function validate() {
 
-    if (document.getElementById('forrelease_hidden').value=='delete') {
-        if (document.getElementById('primarykey').value != ""){
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
 
-        }
-        else {
-            alert("Nothing to delete.");
-            return false;
-        }
-
-
-    }
-
-
-
-    if (document.process.barcodeno.value=="")   {
-        alert("Fill up necessary inputs.");
+    if (document.process.barcodeno.value=="") {
+        alert("Cannot release blank document.");
         return false;
     }
-    else if (document.process.title.value=="") {
-
-            alert("Fill up necessary inputs.");
-            return false;
-        }
-    else if (document.process.documenttype.value=="") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.template.value=="") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-
-
-
-
 
 }
 
@@ -174,9 +128,11 @@ $(document).ready(function() {
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
-        	<ul>
+        	<ul style="width:265px;">
                 <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-
+				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>
@@ -264,29 +220,20 @@ $(document).ready(function() {
                     </tr>
                   </table>
 
-                    <?php
-            session_start();
-           if($_SESSION['operation']=='save'){
+                            <?php
 
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+                            if($_SESSION['operation']=='save'){
 
-            }  elseif($_SESSION['operation']=='delete'){
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully </div>";
 
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-                }
-           elseif($_SESSION['operation']=='update'){
+                            }
+                            elseif ($_SESSION['operation']=='error') {
+                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
+                            }
 
-               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
-           }
+                            $_SESSION['operation']='clear';
 
-               $_SESSION['operation']='clear';
-
-
-
-
-
-
-?>
+                            ?>
 
                   		 <!--- BUTTONS ACTIVITY START --->
 
@@ -311,15 +258,23 @@ $(document).ready(function() {
                             	<form id="tfnewsearch" method="POST">
 		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
                     			<button id="search_forrelease" class="tfbutton">Search </button>
-								</form>								
+								</form>	
+                                <h2></h2>							
                             </div>
                             <div class="tfclear"></div>
                             
                             <div class="scroll">
-                        	<table id="responds">
-
-
-                			</table>
+                        	<table id="respondsth">
+ 									<tr class='bgcolor'>
+                                	<th class="bgcolor1">Barcode</th>
+                                    <th class="bgcolor2">Title</th>
+                                	<th>Date</th>
+                                	</tr>
+                                    </table>
+                                    
+                                <table id="responds">
+                                	
+                                </table>
 
                             </div>
                          </div>	

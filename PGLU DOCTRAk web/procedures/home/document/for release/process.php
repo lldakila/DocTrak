@@ -6,34 +6,35 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 }
 ?>
 
-
-
 <?php
-   require_once("../../../connection.php");
-   session_start();
-echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
-   if ($_POST['forrelease_hidden']=="save") {
-       if ($_POST['primarykey'] == "") {
-        $query=insert_update_delete("INSERT INTO DOCUMENT(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['file']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['security_name']."')");
-        $_SESSION['operation']="save";
-        $_SESSION['message']="Save Successful";
+session_start();
+    require_once("../../../connection.php");
+    date_default_timezone_set('Asia/Manila');
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 
-       }
-       else {
-           echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
-           $query=insert_update_delete("UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ");
+    if ($_SESSION['keytracker']=='')
+    {
+        $_SESSION['operation']=='error';
+        echo "waley";
 
-           $_SESSION['operation']="update";
-           $_SESSION['message']="Update Successful";
-       }
-   }
+    }
+    else {
+        $query="UPDATE DOCUMENTLIST_TRACKER SET FORRELEASE_VAL=1,FORRELEASE_DATE='".date("Y-m-d H:i:s")."' WHERE DOCUMENTLIST_TRACKER_ID = ". $_SESSION['keytracker']." ";
+        echo $query;
+        $RESULT=mysqli_query($con,$query);
+        if (!$RESULT) {
+            $_SESSION['operation']='error';
+        }
+        else {
+            $_SESSION['operation']='save';
+            $_SESSION['keytracker']='';
+        }
+        mysqli_free_result($RESULT);
 
-   elseif ($_POST['forrelease_hidden']=="delete") {
+    }
 
-          $query=insert_update_delete("DELETE FROM DOCUMENT WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
-          $_SESSION['operation']="delete";
-          $_SESSION['message']="Delete Successful";
-   }
-   header('Location:../../../../newdoc.php');
+    mysqli_close($con);
+   // header('Location:../../../../forreleasedoc.php');
 
  ?>

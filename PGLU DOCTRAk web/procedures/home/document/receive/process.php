@@ -7,13 +7,16 @@
     }
 
    require_once("../../../connection.php");
-    date_default_timezone_set($_SESSION['Timezone']);
+   date_default_timezone_set('Asia/Manila');
    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 //echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
 
-    if ($_SESSION['keytracker']=='') {
+    echo $_SESSION['keytracker'];
+    if ($_SESSION['keytracker']=='')
+    {
         $_SESSION['operation']=='error';
+        echo "waley";
 
     }
     else {
@@ -31,9 +34,7 @@
     }
 
 
-
-
     mysqli_close($con);
-   header('Location:../../../../receiveddoc.php');
+   //header('Location:../../../../receiveddoc.php');
 
  ?>

@@ -397,6 +397,30 @@ div#menu li.back .left {
 	color:#000;
 }
 
+#postright th.bgcolor2 {
+	background-color: #BCBCBC;
+	width:150px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
+#postright th.bgcolor3 {
+	background-color: #BCBCBC;
+	width:99px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
+#postright th.bgcolor4 {
+	background-color: #BCBCBC;
+	width:117px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
 #postright table#respondsth {
 	width:450px;
 	margin:0 auto;
@@ -458,6 +482,38 @@ div#menu li.back .left {
 	border-radius:5px;
 }
 
+#postright01 table#responds {
+	width:450px;
+	margin:0 auto;
+    line-height: 16px;
+	border-spacing:1px;
+
+}
+
+#postright01 table#respondsth {
+	width:450px;
+	margin:0 auto;
+    line-height: 16px;
+	border-spacing:1px;
+
+}
+
+#postright01 tr.bgcolor {
+	background-color: #BCBCBC;
+	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
+#postright01 th.bgcolor1 {
+	background-color: #BCBCBC;
+	width:86px;
+    font-family: Tahoma;
+    font-size: 10px;
+	color:#000;
+}
+
 #postright01_group {
 	width:255px;
 	height:419px;
@@ -486,7 +542,6 @@ div#menu li.back .left {
 }
 
 #postright01 table#responds {
-	width:330px;
 	margin:0 auto;
     line-height: 16px;
 	border-spacing:1px;
@@ -997,7 +1052,7 @@ table#historydata tr.usercolor1:hover {
 table#historydata td {
 	padding:3px 0 3px 8px;
 	font-family:tahoma;
-	font-size:12px;
+	font-size:10px;
 	width:5px;
 }
 

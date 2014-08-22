@@ -57,9 +57,11 @@ session_start();
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
-        	<ul>
+        	<ul style="width:265px;">
                 <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-
+				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>MAINTENANCE</span></a>
@@ -80,7 +82,7 @@ session_start();
 
         </ul>
 		
-        <div id="tfheader">
+       
         <div class="admin">
          <?php
           session_start();
@@ -89,11 +91,7 @@ session_start();
 
         ?>
         </div>
-					<form id="tfnewsearch" method="get" action="http://www.google.com">
-		        	<input type="text" class="tftextinput" placeholder="search..." name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-					</form>
-				<div class="tfclear"></div>
-				</div>   
+					 
             
             
         </div>

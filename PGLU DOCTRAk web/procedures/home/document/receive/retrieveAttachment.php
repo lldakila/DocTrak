@@ -4,14 +4,11 @@
         $_SESSION['in'] ="start";
         header('Location:../../../../index.php');
 }
-?>
 
-
-<?php
 
 	require_once("../../../connection.php");
     require_once("../common/encrypt.php");
-	session_start();
+
 	$query=select_info_multiple_key("SELECT DOCUMENT_FILENAME FROM DOCUMENTLIST WHERE DOCUMENT_FILENAME = '" .$_POST['attachment']. "' ");
 			
 			

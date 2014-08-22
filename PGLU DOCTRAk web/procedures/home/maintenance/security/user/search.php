@@ -13,14 +13,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     require_once("../../../../connection.php");
     session_start();
     $query=select_info_multiple_key("select SECURITY_USERNAME,SECURITY_NAME,fk_Security_GroupName,fk_Office_Name from SECURITY_USER WHERE SECURITY_NAME LIKE '%".$_POST['search_string']."%' OR SECURITY_USERNAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_USERNAME");
-    echo "<table>";
-	echo "<tr class='bgcolor'>";
-   	echo "<th>Username</th>";
-	echo "<th>Name</th>";
-	echo "</tr>";
-	echo "</table>";
-$rowcolor="blue";
+    
+
 if ($query) {
+
+$rowcolor="blue";
  foreach($query as $var) {
 
      if ($rowcolor=="blue")

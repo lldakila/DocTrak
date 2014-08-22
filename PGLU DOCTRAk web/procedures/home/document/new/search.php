@@ -13,16 +13,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     require_once("../../../connection.php");
     session_start();
     $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from DOCUMENTLIST join SECURITY_USER on DOCUMENTLIST.fk_security_username = SECURITY_USER.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%') and (fk_office_name ='".$_SESSION['security_group']."') ORDER BY transdate desc");
-	//echo $_POST['search_string'];
-    echo "<table>";
-	echo "<tr class='bgcolor'>";
-   	echo "<th>Barcode</th>";
-	echo "<th>Title</th>";
-    echo "<th>Date</th>";
-	echo "</tr>";
-	echo "</table>";
-$rowcolor="blue";
+	
+
 if ($query) {
+
+$rowcolor="blue";
  foreach($query as $var) {
 
      if ($rowcolor=="blue")

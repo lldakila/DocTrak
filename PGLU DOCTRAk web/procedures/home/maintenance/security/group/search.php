@@ -11,16 +11,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     require_once("../../../../connection.php");
     session_start();
     $query=select_info_multiple_key("select SECURITY_GROUPNAME,SECURITY_NAME from SECURITY_GROUP WHERE SECURITY_GROUPNAME LIKE '%".$_POST['search_string']."%' OR SECURITY_NAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_NAME");
- //	echo $_POST['search_string'];
-    echo "<table>";
-	echo "<tr class='bgcolor'>";
-   	echo "<th>Group</th>";
-	echo "<th>Description</th>";
-	echo "</tr>";
-	echo "</table>";
-$rowcolor="blue";
+ 
+
 
  if ($query) {
+	 
+$rowcolor="blue";
 foreach($query as $var) {
     if ($rowcolor == "blue") {
       echo '<tr id="search_blue" class="usercolor" onClick="clickSearch(\''.$var["SECURITY_GROUPNAME"].'\',\''.$var["SECURITY_NAME"].'\')">';
