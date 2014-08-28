@@ -12,12 +12,18 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <?php
     require_once("../../../connection.php");
     session_start();
-    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from DOCUMENTLIST join SECURITY_USER on DOCUMENTLIST.fk_security_username = SECURITY_USER.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%') and (fk_office_name ='".$_SESSION['security_group']."') ORDER BY transdate desc");
+    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from DOCUMENTLIST join SECURITY_USER on DOCUMENTLIST.fk_security_username = SECURITY_USER.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%') and fk_office_name ='".$_SESSION['OFFICE']."' ORDER BY transdate desc");
 	
 
 if ($query) {
 
 $rowcolor="blue";
+									echo "<tr class='usercolortest'>
+                                	<th>Barcode</th>
+                                    <th>Owner</th>
+                                	<th>Date</th>
+                                	</tr>";
+
  foreach($query as $var) {
 
      if ($rowcolor=="blue")

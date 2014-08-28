@@ -272,7 +272,14 @@ $(document).ready(function() {
 
 
 
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
 
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
 
 
 /*]]>*/
@@ -316,6 +323,7 @@ $(document).ready(function() {
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
+                            <li><a href="documentprocessing.php"><span>PROCESSING</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
@@ -349,7 +357,7 @@ $(document).ready(function() {
         <div class="admin">
          <?php
           session_start();
-          echo "Hi, ".$_SESSION['security_name']."";
+           echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
         ?>
@@ -438,19 +446,19 @@ $(document).ready(function() {
                             session_start();
                             if($_SESSION['operation']=='save'){
 
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
 
                             }  elseif($_SESSION['operation']=='delete'){
 
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
                             }
                             elseif($_SESSION['operation']=='error'){
 
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Error query. Save not Successful. </div>";
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful. </div>";
                             }
                             elseif($_SESSION['operation']=='update'){
 
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Update Successful. </div>";
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Update Successful. </div>";
                             }
 
                             $_SESSION['operation']='clear';

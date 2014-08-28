@@ -14,6 +14,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
      if ($query) {
 
      $rowcolor="blue";
+	 								echo "<tr class='usercolortest'>
+                                	<th>Barcode</th>
+                                    <th>Title</th>
+                                	<th>Date</th>
+                                	</tr>";
+	 
      include_once("../common/SearchFilter.php");
 
      foreach($query as $var) {

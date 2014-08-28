@@ -17,19 +17,25 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 
 $rowcolor="blue";
 
+									echo "<tr class='usercolortest'>
+                                	<th>Barcode</th>
+                                    <th>Title</th>
+                                	<th>Date</th>
+                                	</tr>";
+
      include_once("../common/SearchFilter.php");
      foreach($query as $var) {
 
          if (SortOrder($var["DOCUMENT_ID"],'release')) {
          if ($rowcolor=="blue")
          {
-             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\')">';
+             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\')">';
             // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
              $rowcolor="notblue";
          }
          else
          {
-             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\')">';
+             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\')">';
             // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
              $rowcolor="blue";
          }

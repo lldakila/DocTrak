@@ -160,6 +160,7 @@ $(document).ready(function() {
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
+                            <li><a href="documentprocessing.php"><span>PROCESSING</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
@@ -192,7 +193,7 @@ $(document).ready(function() {
         <div class="admin">
          <?php
           session_start();
-          echo "Hi, ".$_SESSION['security_name']."";
+           echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
         ?>

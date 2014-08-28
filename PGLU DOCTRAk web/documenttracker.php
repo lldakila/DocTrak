@@ -108,6 +108,7 @@ session_start();
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
+                            <li><a href="documentprocessing.php"><span>PROCESSING</span></a></li>
                         </ul>
                     </li>
                     <li><a href="#"><span>REPORT</span></a>
@@ -140,7 +141,7 @@ session_start();
         <div class="admin">
          <?php
           session_start();
-          echo "Hi, ".$_SESSION['security_name']."";
+           echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
         ?>
@@ -194,18 +195,21 @@ session_start();
                     <div class="tfclear"></div>
                     
                     <div class="scroll">
-                        <table id="respondsth">
- 									<tr class='bgcolor'>
-                                	<th class="bgcolor1">Barcode</th>
-                                    <th class="bgcolor3">Title</th>
-                                    <th class="bgcolor4">Owner</th>
+                        		
+ 									
+                                    
+                                    
+                                	
+                                    <table id="responds">
+                                	<tr class='usercolortest'>
+                                	<th>Barcode</th>
+                                    <th>Title</th>
+                                    <th>Owner</th>
                                 	<th>Date</th>
                                 	</tr>
                                     </table>
-                                    
-                                <table id="responds">
-                                	
-                                </table>
+                                
+                                
                     </div>
                 </div>
 

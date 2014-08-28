@@ -35,6 +35,6 @@
 
 
     mysqli_close($con);
-   //header('Location:../../../../receiveddoc.php');
+   header('Location:../../../../receiveddoc.php');
 
  ?>

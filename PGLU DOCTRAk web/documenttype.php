@@ -144,6 +144,16 @@ $(document).ready(function() {
 });
 
 
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+
+
 </script>
 
 </head>
@@ -182,6 +192,7 @@ $(document).ready(function() {
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
+                            <li><a href="documentprocessing.php"><span>PROCESSING</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
@@ -219,7 +230,7 @@ $(document).ready(function() {
         <div class="admin">
          <?php
           session_start();
-          echo "Hi, ".$_SESSION['security_name']."";
+           echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
         ?>
@@ -285,15 +296,15 @@ $(document).ready(function() {
             session_start();
            if($_SESSION['operation']=='save'){
 
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
 
             }  elseif($_SESSION['operation']=='delete'){
 
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
                 }
                  elseif($_SESSION['operation']=='update'){
 
-                     echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
                 }
 
                $_SESSION['operation']='clear';
@@ -329,15 +340,13 @@ $(document).ready(function() {
                                 <div class="tfclear"></div>
                                 
                             <div class="scroll">
-                                <table id="respondsth">
- 									<tr class='bgcolor'>
-                                	<th class="bgcolor2">Document Name</th>
-                                	<th>Description</th>
-                                	</tr>
-                                    </table>
+                                
                                     
                                 <table id="responds">
-                                	
+                                	<tr class='usercolortest'>
+                                	<th>Document Name</th>
+                                    <th>Description</th>
+                                	</tr>
                                 </table>
                             </div>
                         </div>

@@ -1,6 +1,8 @@
 @charset "utf-8";
 /* CSS Document */
 
+
+
 body {
 	padding:0;
 	margin:0;
@@ -264,6 +266,8 @@ div#menu li.back .left {
 }
 
 
+
+
 .content2 {
 	margin:0 auto;
 	width:950px;
@@ -397,7 +401,35 @@ div#menu li.back .left {
 	color:#000;
 }
 
-#postright th.bgcolor2 {
+#postright table#responds1 {
+	margin:0 auto;
+    line-height: 16px;
+	border-spacing:1px;
+
+}
+
+#postright tr.usercolortest {
+	background-color: #ccc;
+    font-family: Tahoma;
+    font-size: 10px;
+}
+
+
+#postright tr.usercolor1 {
+	background-color:#3AC7EB;
+	width:80px;
+    font-family: Tahoma;
+    font-size: 10px;
+}
+
+#postright tr.usercolor1:hover {
+	background-color:#008eb2;
+	width:80px;
+	color:#fff;
+  
+}
+
+/*#postright th.bgcolor2 {
 	background-color: #BCBCBC;
 	width:150px;
     font-family: Tahoma;
@@ -419,15 +451,15 @@ div#menu li.back .left {
     font-family: Tahoma;
     font-size: 10px;
 	color:#000;
-}
+}*/
 
-#postright table#respondsth {
+/*#postright table#respondsth {
 	width:450px;
 	margin:0 auto;
     line-height: 16px;
 	border-spacing:1px;
 
-}
+}*/
 #postright tr.usercolor {
 	background-color:#A7DDF7;
 	width:80px;
@@ -737,6 +769,13 @@ div#menu li.back .left {
   margin-right: 4px;
   vertical-align: middle;
 }
+
+.usertext input[readonly=readonly] {
+        width: 265px;
+        border-radius:5px;
+		background:rgb(223, 218, 218);
+		font-family:tahoma;
+    }
 
 
 input[type=checkbox],

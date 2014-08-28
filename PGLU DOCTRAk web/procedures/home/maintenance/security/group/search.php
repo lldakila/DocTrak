@@ -17,6 +17,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  if ($query) {
 	 
 $rowcolor="blue";
+									echo "<tr class='usercolortest'>
+                                	<th>Group</th>
+                                    <th>Description</th>
+                                	</tr>";
+
 foreach($query as $var) {
     if ($rowcolor == "blue") {
       echo '<tr id="search_blue" class="usercolor" onClick="clickSearch(\''.$var["SECURITY_GROUPNAME"].'\',\''.$var["SECURITY_NAME"].'\')">';

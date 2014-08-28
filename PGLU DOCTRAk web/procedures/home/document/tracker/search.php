@@ -11,12 +11,18 @@
 
     require_once("../../../connection.php");
     session_start();
-    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%') and  (fk_office_name ='".$_SESSION['security_group']."') ORDER BY DOCUMENT_ID");
+    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%') and  (fk_office_name ='".$_SESSION['OFFICE']."') ORDER BY transdate desc");
     
     
 if ($query){
 	
 $rowcolor="blue";
+									echo "<tr class='usercolortest'>
+                                	<th>Barcode</th>
+                                    <th>Title</th>
+                                    <th>Owner</th>
+                                	<th>Date</th>
+                                	</tr>";
 
     foreach($query as $var) {
 

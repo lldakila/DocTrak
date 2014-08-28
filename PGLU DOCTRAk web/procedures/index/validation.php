@@ -18,8 +18,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
       $_SESSION['usr'] =$u;
       $_SESSION['pswd'] =$p;
       $_SESSION['security_name']=$secname;
-      $group=$query[0]['fk_office_name'];
-      $_SESSION['security_group']=$group;
+      $office=$query[0]['fk_office_name'];
+      $_SESSION['OFFICE']=$office;
 
 	  require_once("../info.php"); 
 	   

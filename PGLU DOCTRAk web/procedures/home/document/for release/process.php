@@ -35,6 +35,6 @@ session_start();
     }
 
     mysqli_close($con);
-   // header('Location:../../../../forreleasedoc.php');
+    header('Location:../../../../forreleasedoc.php');
 
  ?>

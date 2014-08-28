@@ -31,8 +31,26 @@ function clickSearch(barcodeno,title,documenttype,template,pdf) {
     //document.process.file.value=a;
     document.process.primarykey.value=barcodeno;
 	retrieveAttachment(pdf);
+    GetKey(barcodeno);
 
+}
 
+function GetKey(key) {
+    var myData = 'forreceive='+key;
+    jQuery.ajax({
+        type: "POST",
+        url:"procedures/home/document/common/redirectSearch.php",
+        dataType:"text", // Data type, HTML, json etc.
+        data:myData,
+        success:function(response){
+
+            // $("#attachment").html(response);
+            //  alert (response);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            alert(thrownError);
+        }
+    });
 }
 
 
@@ -125,6 +143,7 @@ $(document).ready(function() {
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
+                            <li><a href="documentprocessing.php"><span>PROCESSING</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
@@ -157,7 +176,7 @@ $(document).ready(function() {
         <div class="admin">
          <?php
           session_start();
-          echo "Hi, ".$_SESSION['security_name']."";
+           echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
         ?>
@@ -264,16 +283,13 @@ $(document).ready(function() {
                             <div class="tfclear"></div>
                             
                             <div class="scroll">
-                        	<table id="respondsth">
- 									<tr class='bgcolor'>
-                                	<th class="bgcolor1">Barcode</th>
-                                    <th class="bgcolor2">Title</th>
+                        	                                    
+                                <table id="responds">
+                                	<tr class='usercolortest'>
+                                	<th>Barcode</th>
+                                    <th>Title</th>
                                 	<th>Date</th>
                                 	</tr>
-                                    </table>
-                                    
-                                <table id="responds">
-                                	
                                 </table>
 
                             </div>
