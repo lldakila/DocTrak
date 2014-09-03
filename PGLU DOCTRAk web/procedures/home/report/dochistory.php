@@ -52,6 +52,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			    //var myData2 = 'dateto='+ $("#dateto").val();
 			    var datefrom=document.getElementById('datefrom').value;
 			    var dateto=document.getElementById('dateto').value;
+			    //var dateString = today.format("dd-m-yy");
+			    //var newdateto = new Date();
+
+				//add a day to the date
+			    //newdateto.setDate(newdateto.getDate() + 1);
+			    //alert(newdateto.format("Y-m-d\\TH:i:sP"));
+			   //dateto=newdateto.format("dd-m-yy");
 			    jQuery.ajax({
 				    type: "POST",
 				    url:"history/filter.php",
@@ -59,7 +66,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				    data:'datefrom='+datefrom+'&dateto='+dateto,
 				    success:function(response){
 					    $("#historydata").html(response);
-
+						//alert(response)
 
 				    },
 				    error:function (xhr, ajaxOptions, thrownError){
@@ -194,9 +201,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         		<table>
                                                 	<tr>
                                                     	<td>DATE FROM:</td>
-                                                        <td><input id="datefrom" name="datefrom" type="date" /></td>
+                                                        <td><input id="datefrom" name="datefrom" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td>DATE TO:</td>
-                                                        <td><input id="dateto" name="dateto" type="date" /></td>
+                                                        <td><input id="dateto" name="dateto" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td><button id="filter" name="filter" >Filter </button>
                                                     </tr>
                                                 </table>
@@ -209,6 +216,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			                    <button id="search_document" class="tfbutton">Search </button>
 		                    </div>
 		                        </form>
+                                <div class="tfclear"></div>
 
                         </div>
                         <div id="codetable">

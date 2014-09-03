@@ -31,7 +31,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
 			    jQuery.ajax({
 				    type: "POST",
-				    url:"history/search.php",
+				    url:"persignatory/search.php",
 				    dataType:"text", // Data type, HTML, json etc.
 				    data:myData,
 				    success:function(response){
@@ -54,7 +54,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			    var dateto=document.getElementById('dateto').value;
 			    jQuery.ajax({
 				    type: "POST",
-				    url:"history/filter.php",
+				    url:"persignatory/filter.php",
 				    dataType:"text", // Data type, HTML, json etc.
 				    data:'datefrom='+datefrom+'&dateto='+dateto,
 				    success:function(response){
@@ -194,9 +194,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         		<table>
                                                 	<tr>
                                                     	<td>DATE FROM:</td>
-                                                        <td><input id="datefrom" name="datefrom" type="date" /></td>
+                                                        <td><input id="datefrom" name="datefrom" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td>DATE TO:</td>
-                                                        <td><input id="dateto" name="dateto" type="date" /></td>
+                                                        <td><input id="dateto" name="dateto" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td><button id="filter" name="filter" >Filter </button>
                                                     </tr>
                                                 </table>
@@ -208,7 +208,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     							<button id="search_document" class="tfbutton">Search </button>
 												</div>
                                                 </form>
-                                                
+                                                <div class="tfclear"></div>
                                         
                                
                         </div>

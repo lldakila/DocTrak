@@ -29,11 +29,6 @@
 	if ($query)
 	{
 
-
-
-
-		//include_once("../common/SearchFilter.php");
-
 		foreach($query as $var)
 		{
 

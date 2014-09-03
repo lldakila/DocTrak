@@ -19,63 +19,32 @@ session_start();
 <script src="../../../js/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-
 <script language="JavaScript" type="text/javascript">
 
 
-//function validate() {
 
-	//if (document.getElementById('newpass').value != document.getElementById('verifypass').value)  {
-		
-		//alert ('Password doesnt match.');
-		//return false;
-		
-		//}
+	function OpenMail(MailId){
 
+		var myData = 'MailId='+MailId; //build a post data structure
+		jQuery.ajax({
+			type: "POST",
+			url:"messaging/readmessage.php",
+			dataType:"text", // Data type, HTML, json etc.
+			data:myData,
+			success:function(response){
 
-//}
-
-function validate()
-	{
-		//alert ('Please provide necessary inputs.');
-
-		if ((document.getElementById('currentpass').value=='') || (document.getElementById('newpass').value=='') || (document.getElementById('verifypass').value==''))
-		{
-			alert ('Please provide necessary inputs.');
-			return false;
-		}
-		
-		if (document.getElementById('newpass').value != document.getElementById('verifypass').value)
-		{
-			alert ('Password dont match');
-			return false;
-		}
-		
-		return true;
-
-	}
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-
-document.addEventListener("mousemove", function() {
-		myFunction(event);
-	});
-
-	function myFunction(e) {
-		$("#fade").fadeTo(3000,0.0);
-
+				$("#MailData").html(response);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+		});
 	}
 
 </script>
+
+
+
 </head>
 
 <body>
@@ -141,7 +110,6 @@ document.addEventListener("mousemove", function() {
                 </ul>
                 </li>';
 		            }
-
 	            ?>
 
 	            <li><a href="userinfo.php"><span>USER INFO</span></a></li>
@@ -179,7 +147,7 @@ document.addEventListener("mousemove", function() {
         	<div id="post">
             
             			<div id="post01">
-                        <h2>USER INFO - EDIT PASSWORD</h2>
+                        <h2>INBOX</h2>
                         
                         	<div class="groupnav">
                             
@@ -201,66 +169,58 @@ document.addEventListener("mousemove", function() {
                                         </div>
                                         
                               </div>
-                              <div class="grouptable">
-                              			<form method="post" action="editpassword/process.php" onsubmit="return validate();" enctype="multipart/form-data">
-                                    	<div id="table">
-                              				<table>
-                                            	<tr>	
-                                                    <td>CURRENT PASSWORD:</td>
-                                                    <td><input id="currentpass" type="password" name="currentpass" /></td>
-                                                </tr>
-                                                <tr><td><br /><br /></td>
-                                                                                                </tr>
-                                                <tr>	
-                                                    <td>NEW PASSWORD:</td>
-                                                    <td><input id="newpass" type="password" name="newpass" /></td>
-                                                </tr>
-                                                
-                                                <tr>	
-                                                    <td>VERIFY PASSWORD:</td>
-                                                    <td><input id="verifypass" type="password" name="verifypass" /></td>
-                                                </tr>
-                                                <tr>
-                                                	<td></td>
-                                                	<td style="float:right;"><input type="submit" value="Update" /></td>
-                                                </tr>
-                                            </table>
-                                         </div>
-                                         </form>
-                                         
-                                         <?php
-				                              session_start();
+                              <div class="inbox">
+                              			
+                                        <div id="inboxtable">
+                                        		<table id="MailData" cellpadding="0" class="fix">
+                                                	<tr class="bg1">
+                                                            <td>Sender</td>
+                                                            <td>Messages</td>
+                                                            <td></td>
+                                                            <td>Date</td>
+                                                    </tr>
 
-				                              echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
+			                                        <?php
 
-				                              if($_SESSION['operation']=='save')
-				                              {
+				                                        require_once("../../connection.php");
+				                                        global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+				                                        $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+				                                        $query="SELECT MAIL_ID,MAILCONTENT, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM MAIL JOIN SECURITY_USER ON
+				                                                MAIL.FK_SECURITY_USERNAME_SENDER = SECURITY_USER.SECURITY_USERNAME WHERE FK_SECURITY_USERNAME_OWNER
+				                                                = '".$_SESSION['usr']."'  ORDER BY MAILDATE DESC";
 
-					                              echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully</div>";
+				                                        //echo $query;
+				                                        $RESULT=mysqli_query($con,$query);
+				                                        echo "<input id='mailid' type='hidden'/>";
 
+				                                        while ($row = mysqli_fetch_array($RESULT))
+				                                        {
+					                                        $date = date_create($row['MAILDATE']);
+														if ($class=='bg')
+															{
+				                                            echo "<tr id=".$row["MAIL_ID"]." class='bg' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+															$class='bg01';
+															}
+														else
+															{
+															echo "<tr id=".$row["MAIL_ID"]." class='bg01' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+															$class='bg';
+															}
 
-				                              }
-
-				                              elseif($_SESSION['operation']=='error')
-				                              {
-
-					                              echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful.</div>";
-				                              }
-
-											  elseif($_SESSION['operation']=='passwordValidation')
-											  {
-
-					                              echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Old password verification error.</div>";
-				                              }
-
-	                                       
-				                              $_SESSION['operation']='clear';
-
-				                              echo "</div>";
+                                                        echo    "<td>".$row['SECURITY_NAME']."</td>
+                                                            <td>".$row['MAILTITLE']."<font style='color:#666;'><div class='y6'>".$row['MAILCONTENT']."</font></div></td>
+                                                            <td></td>
+                                                            <td>".date_format($date,'M d, Y-H:i')."</td>
+			                                        		</tr>";
 
 
-	                              ?>
-                                         
+				                                        }
+
+			                                        ?>
+
+
+                                                </table>
+                                        </div> 
                                          
                               </div>
                               <div class="tfclear"></div>	

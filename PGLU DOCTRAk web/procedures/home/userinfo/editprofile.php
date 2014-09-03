@@ -163,7 +163,7 @@
                                         <div id="nav">
                                                 <h4>MESSAGE</h4>
                                                 <ol>
-                                                        <li><a href="inbox.php"><span>IN BOX</span></a></li>
+                                                        <li><a href="inbox.php"><span>INBOX</span></a></li>
                                                         <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
                                                         <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>
                                                 </ol>
@@ -176,11 +176,11 @@
                               				<table>
                                             	<tr>	
                                                     <td>USERNAME:</td>
-                                                    <td><input id="username" type="text" name="username" /></td>
+                                                    <td><input id="username" type="text" name="username" value="<?php echo $_SESSION['usr']; ?>"/></td>
                                                 </tr>
                                                 <tr>	
                                                     <td>FULL NAME:</td>
-                                                    <td><input id="fullname" type="text" name="fullname" /></td>
+                                                    <td><input id="fullname" type="text" name="fullname" value="<?php echo $_SESSION['security_name']; ?>"/></td>
                                                 </tr>
 												<tr>
                                                 	<td></td>

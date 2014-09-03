@@ -128,6 +128,17 @@
       <column name="transdate" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
       <primary-key name="PRIMARY" columns="generator_name"/>
     </table>
+    <table name="mail" schema="" catalog="doctrak" type="TABLE">
+      <column name="mail_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="mailcontent" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
+      <column name="fk_security_username_owner" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="maildate" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="mailstatus" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
+      <column name="fk_security_username_sender" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="mail_id"/>
+      <foreign-key name="FK_mail_security_sender" columns="fk_security_username_sender" ref-table="security_user" ref-schema="" ref-catalog="doctrak" ref-columns="security_username" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_mail_security_owner" columns="fk_security_username_owner" ref-table="security_user" ref-schema="" ref-catalog="doctrak" ref-columns="security_username" update-rule="0" delete-rule="3" deferrability="2"/>
+    </table>
     <table name="office" schema="" catalog="doctrak" type="TABLE">
       <column name="office_name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12" def="J09GRklDRSc="/>
       <column name="office_description" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
@@ -160,6 +171,8 @@
       <foreign-key name="FK_officename" columns="fk_office_name" ref-table="office" ref-schema="" ref-catalog="doctrak" ref-columns="office_name" update-rule="0" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_security_user" columns="fk_security_groupname" ref-table="security_group" ref-schema="" ref-catalog="doctrak" ref-columns="security_groupname" update-rule="0" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_documentsecurityuser" table="documentlist" schema="" catalog="doctrak" columns="fk_security_username"/>
+      <exported-key name="FK_mail_security_sender" table="mail" schema="" catalog="doctrak" columns="fk_security_username_sender"/>
+      <exported-key name="FK_mail_security_owner" table="mail" schema="" catalog="doctrak" columns="fk_security_username_owner"/>
     </table>
     <table name="template_list" schema="" catalog="doctrak" type="TABLE">
       <column name="template_list_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>

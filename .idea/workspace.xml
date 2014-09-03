@@ -22,53 +22,100 @@
     <favorites_list name="" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="search.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/processing/search.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="1311" selection-end="1311" vertical-scroll-proportion="-15.692307" vertical-offset="51" max-vertical-offset="1190">
-              <folding>
-                <marker date="1409128912981" expanded="true" signature="295:685" placeholder="select docum..documentlist..." />
-                <marker date="1409128912981" expanded="true" signature="1171:1258" placeholder="..." />
-                <marker date="1409128912981" expanded="true" signature="1963:1974" placeholder="..." />
-                <marker date="1409128912981" expanded="true" signature="2244:2267" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="documentprocessing.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://Z:/PGLU DOCTRAk web/documentprocessing.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="0" selection-start="2352" selection-end="2352" vertical-scroll-proportion="-11.769231" vertical-offset="867" max-vertical-offset="4318">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/for release/search.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="48" selection-start="916" selection-end="959" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="1105">
-              <folding>
-                <marker date="1409108661448" expanded="true" signature="717:904" placeholder="..." />
-                <marker date="1409108661448" expanded="false" signature="1739:1750" placeholder="..." />
-                <marker date="1409108661448" expanded="false" signature="2030:2053" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchFilter.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/SearchFilter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="78" selection-start="4360" selection-end="4360" vertical-scroll-proportion="2.2734082" vertical-offset="1030" max-vertical-offset="2737">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.48489425">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="readmessage.php" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/messaging/readmessage.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="31" column="0" selection-start="1026" selection-end="1026" vertical-scroll-proportion="0.79588014" vertical-offset="102" max-vertical-offset="748">
+                  <folding>
+                    <marker date="1409732841275" expanded="true" signature="550:653" placeholder="SELECT MAIL_..MAIL..." />
+                    <marker date="1409732841275" expanded="true" signature="550:645" placeholder="SELECT MAIL_..MAIL..." />
+                    <marker date="1409732841275" expanded="true" signature="550:645" placeholder="SELECT MAIL_..MAIL..." />
+                    <marker date="1409732841275" expanded="true" signature="550:643" placeholder="SELECT MAIL_..MAIL..." />
+                    <marker date="1409732841275" expanded="true" signature="550:645" placeholder="SELECT MAIL_..MAIL..." />
+                    <marker date="1409732841275" expanded="true" signature="732:748" placeholder="..." />
+                    <marker date="1409732841275" expanded="true" signature="732:772" placeholder="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="inbox.php" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/inbox.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="27" column="28" selection-start="805" selection-end="811" vertical-scroll-proportion="-3.9230769" vertical-offset="357" max-vertical-offset="4556">
+                  <folding>
+                    <element signature="n#style#0;n#ul#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <marker date="1409731669214" expanded="true" signature="3210:3997" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="3271:3975" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="3606:3953" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="3691:3923" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="9397:9518" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="9421:9518" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="9452:9518" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="9468:9518" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="9468:9517" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="9468:9517" placeholder="..." />
+                    <marker date="1409731669214" expanded="true" signature="9468:9517" placeholder="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="doctrak.mail" pinned="false" current="false" current-in-tab="false">
+            <entry file="dbDummy://dbtable:/1593c/2162a302-ad09-4292-853b-2c07736e1564/doctrak..mail">
+              <provider editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
+                  <folding />
+                </state>
+              </provider>
+              <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+                <state />
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="flowtemplate.php" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/flowtemplate.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="138" column="4" selection-start="3689" selection-end="4127" vertical-scroll-proportion="13.730769" vertical-offset="2703" max-vertical-offset="9503">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="search.php" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/flowtemplate/search.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="36" column="46" selection-start="1334" selection-end="1334" vertical-scroll-proportion="0.7303371" vertical-offset="222" max-vertical-offset="986">
+                  <folding>
+                    <marker date="1408669682628" expanded="false" signature="1151:1162" placeholder="..." />
+                    <marker date="1408669682628" expanded="false" signature="1541:1564" placeholder="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="doctrak.security_user" pinned="false" current="false" current-in-tab="false">
+            <entry file="dbDummy://dbtable:/1593c/2162a302-ad09-4292-853b-2c07736e1564/doctrak..security_user">
+              <provider editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
+                  <folding />
+                </state>
+              </provider>
+              <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+                <state />
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -91,28 +138,41 @@
         <option value="Z:/PGLU DOCTRAk web/procedures/home/document/receive/process.php" />
         <option value="Z:/PGLU DOCTRAk web/procedures/home/document/for release/process.php" />
         <option value="Z:/PGLU DOCTRAk web/procedures/home/document/release/search.php" />
-        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/common/redirectSearch.php" />
-        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/tracker/retrievedata.php" />
-        <option value="Z:/PGLU DOCTRAk web/procedures/index/validation.php" />
         <option value="Z:/PGLU DOCTRAk web/processing.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/new/search.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/processing/search.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/tracker/retrievedata.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/common/previewfile.php" />
+        <option value="Z:/PGLU DOCTRAk web/home.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/common/redirectSearch.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/common/SearchFilter.php" />
         <option value="Z:/PGLU DOCTRAk web/procedures/home/document/tracker/search.php" />
         <option value="Z:/PGLU DOCTRAk web/about.php" />
-        <option value="Z:/PGLU DOCTRAk web/dochistory.php" />
+        <option value="Z:/PGLU DOCTRAk web/documentprocessing.php" />
         <option value="Z:/PGLU DOCTRAk web/documenttracker.php" />
-        <option value="Z:/PGLU DOCTRAk web/documenttype.php" />
-        <option value="Z:/PGLU DOCTRAk web/flowtemplate.php" />
         <option value="Z:/PGLU DOCTRAk web/forreleasedoc.php" />
-        <option value="Z:/PGLU DOCTRAk web/group.php" />
-        <option value="Z:/PGLU DOCTRAk web/home.php" />
-        <option value="Z:/PGLU DOCTRAk web/newdoc.php" />
-        <option value="Z:/PGLU DOCTRAk web/office.php" />
         <option value="Z:/PGLU DOCTRAk web/receiveddoc.php" />
         <option value="Z:/PGLU DOCTRAk web/releasedoc.php" />
+        <option value="Z:/PGLU DOCTRAk web/userinfo.php" />
+        <option value="Z:/PGLU DOCTRAk web/editpassword.php" />
+        <option value="Z:/PGLU DOCTRAk web/dochistory.php" />
+        <option value="Z:/PGLU DOCTRAk web/newdoc.php" />
+        <option value="Z:/PGLU DOCTRAk web/flowtemplate.php" />
+        <option value="Z:/PGLU DOCTRAk web/documenttype.php" />
+        <option value="Z:/PGLU DOCTRAk web/group.php" />
+        <option value="Z:/PGLU DOCTRAk web/office.php" />
         <option value="Z:/PGLU DOCTRAk web/users.php" />
-        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/new/search.php" />
-        <option value="Z:/PGLU DOCTRAk web/documentprocessing.php" />
-        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/processing/search.php" />
-        <option value="Z:/PGLU DOCTRAk web/procedures/home/document/common/SearchFilter.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/userinfo/userinfo.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/userinfo/editprofile/process.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/index/validation.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/userinfo/editpassword/process.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/userinfo/editpassword.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/report/history/search.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/report/history/filter.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/report/dochistory.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/userinfo/editprofile.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/userinfo/inbox.php" />
+        <option value="Z:/PGLU DOCTRAk web/procedures/home/userinfo/messaging/readmessage.php" />
       </list>
     </option>
   </component>
@@ -122,6 +182,22 @@
     <option name="y" value="22" />
     <option name="width" value="1382" />
     <option name="height" value="754" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -149,6 +225,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -207,28 +284,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="index" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z:" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGLU DOCTRAk web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="procedures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="home" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -255,11 +310,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="document" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tracker" />
+              <option name="myItemId" value="userinfo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -285,41 +336,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="document" />
+              <option name="myItemId" value="userinfo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z:" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGLU DOCTRAk web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="procedures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="document" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="receive" />
+              <option name="myItemId" value="messaging" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -345,11 +366,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="document" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="processing" />
+              <option name="myItemId" value="maintenance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -375,71 +392,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="document" />
+              <option name="myItemId" value="maintenance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="new" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z:" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGLU DOCTRAk web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="procedures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="document" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="for release" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Z:" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PGLU DOCTRAk web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="procedures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="home" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="document" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
+              <option name="myItemId" value="flowtemplate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -455,7 +412,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -463,7 +419,11 @@
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
     <property name="TODO_SCOPE" value="All" />
-    <property name="SearchEverywhereHistory" value="PROCESSING" />
+    <property name="SearchEverywhereHistory" value="&#10;PROCESSING" />
+    <property name="options.lastSelected" value="editor.preferences.import" />
+    <property name="options.splitter.main.proportions" value="0.30166668" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -493,6 +453,23 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="60bfa3d2-fc13-41a5-bee2-921ecb164883" name="Default" comment="" />
@@ -522,16 +499,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1382" height="754" extended-state="0" />
+    <frame x="-8" y="22" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23413897" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2673716" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -540,9 +516,10 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32888147" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39899832" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39899832" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -562,47 +539,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/connection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/SearchFilter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="27" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0" vertical-offset="384" max-vertical-offset="1054">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/for release/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="25" selection-start="838" selection-end="838" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="1377" />
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/new/barcode.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="165" selection-end="165" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1428" />
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/new/process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="43" selection-start="2521" selection-end="2521" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2176" />
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/connection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/SearchFilter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="969">
-          <folding />
-        </state>
+        <state line="19" column="0" selection-start="200" selection-end="200" vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="969" />
       </provider>
     </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/new/barcode.php">
@@ -617,19 +556,7 @@
     </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/flowtemplate/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="9" selection-start="1679" selection-end="1772" vertical-scroll-proportion="0.668616" vertical-offset="541" max-vertical-offset="1054" />
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/previewfile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="28" selection-start="217" selection-end="246" vertical-scroll-proportion="-0.76404494" vertical-offset="612" max-vertical-offset="1445" />
+        <state line="11" column="22" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1258" />
       </provider>
     </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/release/retrieveAttachment.php">
@@ -650,13 +577,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/connection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/new/barcode.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="0" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1428" />
@@ -667,52 +587,19 @@
         <state line="13" column="35" selection-start="225" selection-end="225" vertical-scroll-proportion="0.77003485" vertical-offset="0" max-vertical-offset="391" />
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/new/process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="0" selection-start="3505" selection-end="3505" vertical-scroll-proportion="0.04494382" vertical-offset="1421" max-vertical-offset="2108" />
-      </provider>
-    </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/receive/retrieveAttachment.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="10" selection-start="685" selection-end="685" vertical-scroll-proportion="0.5964912" vertical-offset="0" max-vertical-offset="513" />
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/for release/retrieveAttachment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="44" selection-start="731" selection-end="731" vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="510" />
-      </provider>
-    </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/receive/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="33" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="765">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/for release/process.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="3" selection-start="1005" selection-end="1005" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="765">
-          <folding />
-        </state>
+        <state line="14" column="33" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="765" />
       </provider>
     </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/release/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.25468165" vertical-offset="102" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/redirectSearch.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="44" selection-start="630" selection-end="630" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="731" />
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/tracker/retrievedata.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="0" selection-start="3787" selection-end="3787" vertical-scroll-proportion="0.0" vertical-offset="1340" max-vertical-offset="2006">
-          <folding />
-        </state>
+        <state line="14" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.25468165" vertical-offset="102" max-vertical-offset="680" />
       </provider>
     </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/release/search.php">
@@ -720,189 +607,187 @@
         <state line="12" column="4" selection-start="546" selection-end="546" vertical-scroll-proportion="0.38202247" vertical-offset="0" max-vertical-offset="1224" />
       </provider>
     </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/processing/retrievedata.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="44" selection-start="231" selection-end="231" vertical-scroll-proportion="-1.5917603" vertical-offset="1020" max-vertical-offset="2006" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/receive/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="4" selection-start="991" selection-end="1039" vertical-scroll-proportion="0.5411985" vertical-offset="153" max-vertical-offset="1309" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/tracker/retrievedata.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="0" selection-start="2024" selection-end="2024" vertical-scroll-proportion="-24.192308" vertical-offset="0" max-vertical-offset="2023" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/previewfile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="496" selection-end="496" vertical-scroll-proportion="0.5730337" vertical-offset="0" max-vertical-offset="1564" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/redirectSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="40" selection-start="418" selection-end="418" vertical-scroll-proportion="0.5283364" vertical-offset="0" max-vertical-offset="748" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/SearchFilter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="130" column="89" selection-start="4210" selection-end="4279" vertical-scroll-proportion="0.23595506" vertical-offset="2084" max-vertical-offset="2975" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/processing/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="8" selection-start="1350" selection-end="1350" vertical-scroll-proportion="0.63670415" vertical-offset="153" max-vertical-offset="1190" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/about.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="20" selection-start="2578" selection-end="2578" vertical-scroll-proportion="-7.4615383" vertical-offset="1030" max-vertical-offset="2839" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="183" column="40" selection-start="5089" selection-end="5986" vertical-scroll-proportion="-4.8846154" vertical-offset="2857" max-vertical-offset="9520" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="5" selection-start="738" selection-end="738" vertical-scroll-proportion="1.0877514" vertical-offset="0" max-vertical-offset="1258" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/newprocess.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="161" selection-end="161" vertical-scroll-proportion="0.35018727" vertical-offset="0" max-vertical-offset="2210" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/userinfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="157" column="77" selection-start="6314" selection-end="6314" vertical-scroll-proportion="0.35018727" vertical-offset="2482" max-vertical-offset="3808" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/group/process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="8" selection-start="571" selection-end="571" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="714" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/editprofile/process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="23" selection-start="808" selection-end="808" vertical-scroll-proportion="0.76404494" vertical-offset="102" max-vertical-offset="697" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/user/process.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="272" selection-start="954" selection-end="983" vertical-scroll-proportion="0.63670415" vertical-offset="0" max-vertical-offset="646" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="59" selection-start="929" selection-end="948" vertical-scroll-proportion="0.3107861" vertical-offset="459" max-vertical-offset="1496">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/info.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="4" selection-start="133" selection-end="151" vertical-scroll-proportion="0.2797075" vertical-offset="0" max-vertical-offset="547" />
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/tracker/search.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/editpassword/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1139">
+        <state line="47" column="5" selection-start="1087" selection-end="1087" vertical-scroll-proportion="1.0318352" vertical-offset="248" max-vertical-offset="1071" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/editpassword.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="255" column="43" selection-start="9752" selection-end="9752" vertical-scroll-proportion="0.61985016" vertical-offset="4004" max-vertical-offset="5236">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/about.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/documentprocessing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="41" selection-start="1849" selection-end="1871" vertical-scroll-proportion="-4.6538463" vertical-offset="831" max-vertical-offset="2703">
+        <state line="14" column="11" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="4454">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/dochistory.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/users.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="63" selection-start="1871" selection-end="1871" vertical-scroll-proportion="-4.6538463" vertical-offset="831" max-vertical-offset="2652">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-8.563433" vertical-offset="4590" max-vertical-offset="7208">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/documenttype.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/report/history/filter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="63" selection-start="4968" selection-end="4968" vertical-scroll-proportion="-4.6538463" vertical-offset="3177" max-vertical-offset="6664">
-          <folding>
-            <marker date="1409123443909" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443909" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443909" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
+        <state line="33" column="0" selection-start="1293" selection-end="1293" vertical-scroll-proportion="0.76404494" vertical-offset="153" max-vertical-offset="1224" />
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/flowtemplate.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/documenttracker.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="325" column="63" selection-start="8434" selection-end="8434" vertical-scroll-proportion="-4.3846154" vertical-offset="5411" max-vertical-offset="9265">
-          <folding>
-            <marker date="1409123443672" expanded="true" signature="-1:-1" placeholder="select OFFIC..OFFICE..." />
-            <marker date="1409123443672" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443672" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443672" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443672" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/forreleasedoc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="63" selection-start="4170" selection-end="4170" vertical-scroll-proportion="-4.3846154" vertical-offset="2351" max-vertical-offset="5746">
-          <folding>
-            <marker date="1409123443700" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443700" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/group.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="63" selection-start="3763" selection-end="3763" vertical-scroll-proportion="-2.4230769" vertical-offset="2419" max-vertical-offset="5593">
-          <folding>
-            <marker date="1409123443796" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443796" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443796" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/home.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="63" selection-start="4552" selection-end="4552" vertical-scroll-proportion="-4.3846154" vertical-offset="2640" max-vertical-offset="9367">
-          <folding>
-            <marker date="1409123443879" expanded="true" signature="-1:-1" placeholder="select DOCUM..DOCUMENT_TYPE..." />
-            <marker date="1409123443879" expanded="true" signature="-1:-1" placeholder="select TEMPL..DOCUMENT_TEMPLATE..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443879" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/office.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="145" column="63" selection-start="3928" selection-end="3928" vertical-scroll-proportion="-4.3846154" vertical-offset="2351" max-vertical-offset="5695">
-          <folding>
-            <marker date="1409123443606" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443606" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443606" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/receiveddoc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="63" selection-start="4160" selection-end="4160" vertical-scroll-proportion="-4.3846154" vertical-offset="2453" max-vertical-offset="5899">
-          <folding>
-            <marker date="1409123443851" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443851" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/releasedoc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="63" selection-start="5485" selection-end="5485" vertical-scroll-proportion="-4.3846154" vertical-offset="3218" max-vertical-offset="6698">
-          <folding>
-            <marker date="1409123443643" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443643" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="183" column="63" selection-start="4821" selection-end="4821" vertical-scroll-proportion="0.33827892" vertical-offset="2997" max-vertical-offset="6970">
-          <folding>
-            <marker date="1409123443770" expanded="true" signature="-1:-1" placeholder="select SECUR..SECURITY_GROUP..." />
-            <marker date="1409123443770" expanded="true" signature="-1:-1" placeholder="select OFFIC..OFFICE..." />
-            <marker date="1409123443770" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443770" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443770" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/processing/retrievedata.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="44" selection-start="231" selection-end="231" vertical-scroll-proportion="-1.5917603" vertical-offset="1020" max-vertical-offset="2006">
+        <state line="55" column="29" selection-start="1690" selection-end="1690" vertical-scroll-proportion="-8.5" vertical-offset="714" max-vertical-offset="4420">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/documenttracker.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="97" selection-start="3380" selection-end="3449" vertical-scroll-proportion="0.29962546" vertical-offset="1710" max-vertical-offset="4284">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/receive/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="4" selection-start="991" selection-end="1039" vertical-scroll-proportion="0.5411985" vertical-offset="153" max-vertical-offset="1309">
-          <folding>
-            <marker date="1409108777130" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/newdoc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="25" selection-start="2743" selection-end="2743" vertical-scroll-proportion="0.37265918" vertical-offset="1518" max-vertical-offset="7140">
-          <folding>
-            <marker date="1409123443824" expanded="true" signature="-1:-1" placeholder="select DOCUM..DOCUMENT_TYPE..." />
-            <marker date="1409123443824" expanded="true" signature="-1:-1" placeholder="select TEMPL..DOCUMENT_TEMPLATE..." />
-            <marker date="1409123443824" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443824" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443824" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443824" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1409123443824" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/index/validation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="23" selection-start="767" selection-end="773" vertical-scroll-proportion="0.54385966" vertical-offset="78" max-vertical-offset="714">
+        <state line="19" column="6" selection-start="722" selection-end="738" vertical-scroll-proportion="0.41385767" vertical-offset="102" max-vertical-offset="748" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/report/dochistory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="245" column="40" selection-start="8980" selection-end="8980" vertical-scroll-proportion="0.0" vertical-offset="4165" max-vertical-offset="5423">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/editprofile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="183" column="53" selection-start="7105" selection-end="7105" vertical-scroll-proportion="0.7284644" vertical-offset="2722" max-vertical-offset="4471">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/tracker/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="56" selection-start="1326" selection-end="1335" vertical-scroll-proportion="0.23970038" vertical-offset="331" max-vertical-offset="1275" />
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/report/history/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="4" selection-start="186" selection-end="226" vertical-scroll-proportion="-4.8461537" vertical-offset="10" max-vertical-offset="1513">
+          <folding>
+            <marker date="1409621231335" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/1593c/2162a302-ad09-4292-853b-2c07736e1564/doctrak..security_user">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/1593c/2162a302-ad09-4292-853b-2c07736e1564/doctrak..mail">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/new/search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="49" selection-start="924" selection-end="924" vertical-scroll-proportion="0.66853935" vertical-offset="34" max-vertical-offset="1377">
+        <state line="23" column="49" selection-start="924" selection-end="924" vertical-scroll-proportion="0.09550562" vertical-offset="340" max-vertical-offset="1377">
           <folding>
             <marker date="1409125868111" expanded="true" signature="-1:-1" placeholder="..." />
             <marker date="1409125868111" expanded="false" signature="-1:-1" placeholder="..." />
@@ -911,40 +796,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/for release/search.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/newdoc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="48" selection-start="916" selection-end="959" vertical-scroll-proportion="-14.384615" vertical-offset="0" max-vertical-offset="1105">
+        <state line="44" column="0" selection-start="1554" selection-end="1554" vertical-scroll-proportion="0.63670415" vertical-offset="408" max-vertical-offset="7480">
           <folding>
-            <marker date="1409108661448" expanded="true" signature="717:904" placeholder="..." />
-            <marker date="1409108661448" expanded="false" signature="1739:1750" placeholder="..." />
-            <marker date="1409108661448" expanded="false" signature="2030:2053" placeholder="..." />
+            <marker date="1409548503654" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="true" signature="-1:-1" placeholder="select DOCUM..DOCUMENT_TYPE..." />
+            <marker date="1409548503654" expanded="true" signature="-1:-1" placeholder="select TEMPL..DOCUMENT_TEMPLATE..." />
+            <marker date="1409548503654" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1409548503654" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/documentprocessing.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/flowtemplate/officehidden.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="2352" selection-end="2352" vertical-scroll-proportion="-11.769231" vertical-offset="867" max-vertical-offset="4318">
+        <state line="18" column="46" selection-start="504" selection-end="517" vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="578">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/processing/search.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/new/process.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1311" selection-end="1311" vertical-scroll-proportion="-15.692307" vertical-offset="51" max-vertical-offset="1190">
+        <state line="0" column="0" selection-start="0" selection-end="155" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="2108">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/flowtemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="4" selection-start="3689" selection-end="4127" vertical-scroll-proportion="13.730769" vertical-offset="2703" max-vertical-offset="9503">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/maintenance/flowtemplate/search.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="46" selection-start="1334" selection-end="1334" vertical-scroll-proportion="0.7303371" vertical-offset="222" max-vertical-offset="986">
           <folding>
-            <marker date="1409128912981" expanded="true" signature="295:685" placeholder="select docum..documentlist..." />
-            <marker date="1409128912981" expanded="true" signature="1171:1258" placeholder="..." />
-            <marker date="1409128912981" expanded="true" signature="1963:1974" placeholder="..." />
-            <marker date="1409128912981" expanded="true" signature="2244:2267" placeholder="..." />
+            <marker date="1408669682628" expanded="false" signature="1151:1162" placeholder="..." />
+            <marker date="1408669682628" expanded="false" signature="1541:1564" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/document/common/SearchFilter.php">
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/inbox.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="78" selection-start="4360" selection-end="4360" vertical-scroll-proportion="2.2734082" vertical-offset="1030" max-vertical-offset="2737">
-          <folding />
+        <state line="27" column="28" selection-start="805" selection-end="811" vertical-scroll-proportion="-3.9230769" vertical-offset="357" max-vertical-offset="4556">
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#li#2;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1409731669214" expanded="true" signature="3210:3997" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="3271:3975" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="3606:3953" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="3691:3923" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="9397:9518" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="9421:9518" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="9452:9518" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="9468:9518" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="9468:9517" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="9468:9517" placeholder="..." />
+            <marker date="1409731669214" expanded="true" signature="9468:9517" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://Z:/PGLU DOCTRAk web/procedures/home/userinfo/messaging/readmessage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="1026" selection-end="1026" vertical-scroll-proportion="0.79588014" vertical-offset="102" max-vertical-offset="748">
+          <folding>
+            <marker date="1409732841275" expanded="true" signature="550:653" placeholder="SELECT MAIL_..MAIL..." />
+            <marker date="1409732841275" expanded="true" signature="550:645" placeholder="SELECT MAIL_..MAIL..." />
+            <marker date="1409732841275" expanded="true" signature="550:645" placeholder="SELECT MAIL_..MAIL..." />
+            <marker date="1409732841275" expanded="true" signature="550:643" placeholder="SELECT MAIL_..MAIL..." />
+            <marker date="1409732841275" expanded="true" signature="550:645" placeholder="SELECT MAIL_..MAIL..." />
+            <marker date="1409732841275" expanded="true" signature="732:748" placeholder="..." />
+            <marker date="1409732841275" expanded="true" signature="732:772" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

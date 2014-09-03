@@ -193,20 +193,21 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         		<table>
                                                 	<tr>
                                                     	<td>DATE FROM:</td>
-                                                        <td><input id="datefrom" name="datefrom" type="date" /></td>
+                                                        <td><input id="datefrom" name="datefrom" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td>DATE TO:</td>
-                                                        <td><input id="dateto" name="dateto" type="date" /></td>
+                                                        <td><input id="dateto" name="dateto" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td><button id="filter" name="filter" >Filter </button>
                                                     </tr>
                                                 </table>
                                                 </div>
                                                 
-                                                <form name="history">
+                                                <form name="onprocess">
                                                 <div id="headsearch">
 		        								<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
                     							<button id="search_document" class="tfbutton">Search </button>
 												</div>
                                                 </form>
+                                                <div class="tfclear"></div>
                                                 
                                         
                                 
