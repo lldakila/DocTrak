@@ -14,7 +14,7 @@
 			
 		 if ($query[0]['DOCUMENT_FILENAME']!=""){
              $encrypted=urlencode(base64_encode(encryptText($query[0]['DOCUMENT_FILENAME'])));
-             echo "<a href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
+             echo "<a href='common/previewfile.php?download_file=".$encrypted."'>Download</a>";
     }
     else {
         echo "<a href='#'> No Attachment</a>";

@@ -59,6 +59,7 @@ session_start();
         		<img src="../../../images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
 				<?php
 						session_start();
+
 						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
 						echo "</span>";
 				?>
@@ -67,11 +68,10 @@ session_start();
         
         </div>
 
+        <div class="menugroup">
+        
         <div id="menu">
-        	
 
-
-            
             <ul class="menu">
         <li><a href="../../../home.php" class="parent"><span>HOME</span></a></li>
         <li><a href="#" class="parent"><span>DOCUMENT</span></a>
@@ -117,11 +117,23 @@ session_start();
         <li><a href="../logout.php"><span>LOGOUT</span></a></li>
 
         </ul>
+        </div>
 		
        
         <div class="admin">
          <?php
           session_start();
+	         require_once("../../connection.php");
+	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+	         $query="SELECT MAIL_ID FROM MAIL WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+	         $result=mysqli_query($con,$query);
+	         while ($row = mysqli_fetch_array($result))
+	         {
+
+		         echo '<a href="inbox.php"><img src="../../../images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
+
+	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
@@ -196,14 +208,15 @@ session_start();
 				                                        while ($row = mysqli_fetch_array($RESULT))
 				                                        {
 					                                        $date = date_create($row['MAILDATE']);
-														if ($class=='bg')
+														if ($row['MAILSTATUS']==0)
 															{
-				                                            echo "<tr id=".$row["MAIL_ID"]." class='bg' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+				                                            echo "<tr id=".$row["MAIL_ID"]." class='bg01' onClick='OpenMail(".$row['MAIL_ID'].")'>";
 															$class='bg01';
 															}
+
 														else
 															{
-															echo "<tr id=".$row["MAIL_ID"]." class='bg01' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+															echo "<tr id=".$row["MAIL_ID"]." class='bg' onClick='OpenMail(".$row['MAIL_ID'].")'>";
 															$class='bg';
 															}
 

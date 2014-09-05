@@ -27,13 +27,14 @@
 	echo "<tr><td>";
 	echo "Sender: <font style='font-weight:bold;'>".$row['SECURITY_NAME'];
 	echo "</font><br>";
-	echo "Title: <font style='font-weight:bold;'>".$row['MAILTITLE'];
+	echo "Title: <font style='font-weight:bold;'>".$row['MAILDATE'];
+	echo "</font><br>";
+	echo "Date: <font style='font-weight:bold;'>".$row['MAILTITLE'];
 	echo "</font><br><br>";
-
 	echo $row['MAILCONTENT'];
 	}
 
-
-
+	$query="UPDATE MAIL SET MAILSTATUS=1 WHERE MAIL_ID = '".$_POST['MailId']."'";
+	mysqli_query($con,$query);
 
 ?>

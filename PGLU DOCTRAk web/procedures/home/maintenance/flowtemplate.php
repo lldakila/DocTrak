@@ -316,11 +316,10 @@ function myFunction(e) {
         
         </div>
 
+        <div class="menugroup">
+        
         <div id="menu">
-        	
 
-
-            
             <ul class="menu">
         <li><a href="../../../home.php" class="parent"><span>HOME</span></a></li>
         <li><a href="#" class="parent"><span>DOCUMENT</span></a>
@@ -366,11 +365,24 @@ function myFunction(e) {
         <li><a href="../logout.php"><span>LOGOUT</span></a></li>
 
           </ul>
+          </div>
 		
         
         <div class="admin">
-         <?php
+        
+        			<?php
           session_start();
+	         require_once("../../connection.php");
+	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+	         $query="SELECT MAIL_ID FROM MAIL WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+	         $result=mysqli_query($con,$query);
+	         while ($row = mysqli_fetch_array($result))
+	         {
+
+		         echo '<a href="../userinfo/inbox.php"><img src="../../../images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
+
+	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 

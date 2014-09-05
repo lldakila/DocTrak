@@ -33,15 +33,24 @@ function cleartext() {
   document.getElementById("primarykey").value="";
 
 }
-function clickSearch(barcode,title,description,file,template,type,a) {
+function clickSearch(barcode,title,description,file,template,type,a,scrap) {
    // document.getElementById('primarykey').value=barcode;
-    document.process.barcode.value=barcode;
-    document.process.title.value=title;
-    document.process.description.value=description;
-    document.process.type.value=type;
-    document.process.template.value=template;
-    //document.process.file.value=a;
-    document.process.primarykey.value=barcode;
+	if (scrap!=1)
+	{
+		document.process.barcode.value=barcode;
+		document.process.title.value=title;
+		document.process.description.value=description;
+		document.process.type.value=type;
+		document.process.template.value=template;
+		//document.process.file.value=a;
+		document.process.primarykey.value=barcode;
+	}
+	elseif (scrap==1)
+	{
+		alert("Document is scrapped.");
+	}
+
+
 
     //alert (type);
   //  document.getElementById("group").value=username;
@@ -49,6 +58,7 @@ function clickSearch(barcode,title,description,file,template,type,a) {
 
 function validate() {
 
+	//alert (document.getElementById("document_hidden").value);
     if (document.getElementById('document_hidden').value=='delete') {
         if (document.getElementById('primarykey').value != ""){
         if (confirm("Are you sure you want to delete?") == true) {
@@ -66,6 +76,30 @@ function validate() {
 
 
     }
+
+	if (document.getElementById('document_hidden').value=='scrap') {
+		if (document.getElementById('primarykey').value != ""){
+			if (confirm("Are you sure you want to scrap document?") == true) {
+				return true;
+			}
+			else {
+				return false;
+			}
+
+		}
+		else {
+			alert("Nothing to scrap.");
+			return false;
+		}
+
+
+	}
+
+
+
+
+
+
 
 
 
@@ -170,11 +204,10 @@ function myFunction(e) {
         
         </div>
 
+        <div class="menugroup">
+        
         <div id="menu">
-        	
 
-
-            
             <ul class="menu">
         <li><a href="../../../home.php" class="parent"><span>HOME</span></a></li>
         <li><a href="#" class="parent"><span>DOCUMENT</span></a>
@@ -220,11 +253,24 @@ function myFunction(e) {
         <li><a href="../logout.php"><span>LOGOUT</span></a></li>
 
         </ul>
+        </div>
 		
         
         <div class="admin">
-         <?php
+        
+        			<?php
           session_start();
+	         require_once("../../connection.php");
+	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+	         $query="SELECT MAIL_ID FROM MAIL WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+	         $result=mysqli_query($con,$query);
+	         while ($row = mysqli_fetch_array($result))
+	         {
+
+		         echo '<a href="../userinfo/inbox.php"><img src="../../../images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
+
+	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
@@ -336,6 +382,12 @@ function myFunction(e) {
 
                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful.</div>";
            }
+           elseif($_SESSION['operation']=='scrap'){
+
+	           echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Scrapped successfully.</div>";
+           }
+
+
 
                $_SESSION['operation']='clear';
 
@@ -351,11 +403,12 @@ function myFunction(e) {
                         <div class="input1">
                          <input id="document_hidden" name="document_hidden" type="hidden" value=""/>
                          <input type="button" value="New" onClick="javascript:cleartext();"/>
-
+	                     <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';"/>
                     <?php
 	                    if($_SESSION['GROUP']!='USER')
 	                    {
-		                    echo '<input  type="submit" value="Delete"  onClick="document.getElementById("document_hidden").value="delete";"/>';
+		                    $value="document.getElementById('document_hidden').value='delete';";
+		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'"/>';
 	                    }
 
                     ?>
@@ -363,8 +416,8 @@ function myFunction(e) {
 
 
 
+	                     <input type="submit" value="Scrap" onClick="document.getElementById('document_hidden').value='scrap';"/>
 
-                         <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 

@@ -11,7 +11,7 @@
     require_once("../../../connection.php");
     require_once("../common/encrypt.php");
     session_start();
-    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name,document_filename, forrelease_val,forrelease_date from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
+    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name,document_filename, forrelease_val,forrelease_date,fk_office_name_documentlist from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
 
     echo "<div id='details'>";
     echo "<table>";
@@ -28,13 +28,14 @@
 	echo "</td><td>";
     echo "Owner:"; echo"&nbsp;<b>".$query[0]['security_name'].'</b>';
 	echo "</td><td>";
-    echo "Office:"; echo"&nbsp;<b>".$query[0]['fk_office_name'].'</b>';
+    echo "Office:"; echo"&nbsp;<b>".$query[0]['fk_office_name_documentlist'].'</b>';
     echo "</td><td>";
     echo "Attachment:"; //echo"&nbsp;<b>".$query[0]['document_filename'].'</b>'; document_filename
     if ($query[0]['document_filename']!=""){
         $encrypted=urlencode(base64_encode(encryptText($query[0]['document_filename'])));
         //echo "<a href='/procedures/home/document/tracker/previewfile.php?download_file=".$query[0]['document_filename']."' >Download</a>";
        // $xx=base64_encode(encryptText($query[0]['document_filename']));
+
         echo "<a href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
        // echo $query[0]['document_filename']."<br>";
        // echo base64_encode(encryptText($query[0]['document_filename']));
@@ -81,7 +82,7 @@
             // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
             $rowcolor="blue";
         }
-    echo "<td>" .$var['sortorder']. "</td>";
+        echo "<td>" .$var['sortorder']. "</td>";
         echo "<td>" .$var['office_name']. "</td>";
         echo "<td>" .$var['received_by']. "</td>";
         echo "<td>" .$var['received_date']. "</td>";

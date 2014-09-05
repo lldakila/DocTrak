@@ -28,6 +28,7 @@
         else {
             $_SESSION['operation']='save';
             $_SESSION['keytracker']='';
+
         }
         mysqli_free_result($RESULT);
 
@@ -35,6 +36,6 @@
 
 
     mysqli_close($con);
-   header('Location:../../../../receiveddoc.php');
+   header('Location:../receiveddoc.php');
 
  ?>

@@ -24,12 +24,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
            $flag=true;
            // CHECK IF INPUTFILE IS EMPTY START
            if (empty($_FILES['pdffile']['name'])){
-               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."')";
+               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
 
            }
            else {
                $UploadFilename=$_POST['barcode']."$".$_FILES['pdffile']['name'];
-               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$UploadFilename."','".date("Y-m-d H:i:s")."')";
+               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$UploadFilename."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
 
            }
            // CHECK IF INPUT FILE IS EMPTY END
@@ -108,11 +108,21 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
    elseif ($_POST['document_hidden']=="delete") {
 
           $query=insert_update_delete("DELETE FROM DOCUMENTLIST WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
+
           $_SESSION['operation']="delete";
           $_SESSION['message']="Delete Successful";
    }
 
-   header('Location:../../../../newdoc.php');
+elseif ($_POST['document_hidden']=="delete")
+	{
+		$query=insert_update_delete("UPDATE DOCUMENTLIST SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'");
+		//$query=insert_update_delete("DELETE FROM DOCUMENTLIST WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
+
+		$_SESSION['operation']="scrap";
+		$_SESSION['message']="Scrapped Successful";
+	}
+
+   header('Location:../newdoc.php');
 
  ?>
 

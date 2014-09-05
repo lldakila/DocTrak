@@ -16,7 +16,7 @@ session_start();
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<link rel="stylesheet" type="text/css" href="css/home.css" />
+<link rel="stylesheet" media="screen" type="text/css" href="css/home.css" />
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 </head>
 
@@ -39,54 +39,75 @@ session_start();
 				</h2><p>Management Information System</p>
         
         </div>
+        
+        <div class="menugroup">
 
         <div id="menu">
-        	
 
-
-            
             <ul class="menu">
-        <li><a href="index.php" class="parent"><span>HOME</span></a></li>
+        <li><a href="home.php" class="parent"><span>HOME</span></a></li>
         <li><a href="#" class="parent"><span>DOCUMENT</span></a>
         	<ul>
-                <li><a href="newdoc.php"><span>NEW DOCUMENT</span></a></li>
-                            <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
-                            <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
-                            <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
-                            <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
-                            <li><a href="documentprocessing.php"><span>PROCESSING</span></a></li>
+                <li><a href="procedures/home/document/newdoc.php"><span>NEW DOCUMENT</span></a></li>
+                            <li><a href="procedures/home/document/receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
+                            <li><a href="procedures/home/document/releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
+                            <li><a href="procedures/home/document/forreleasedoc.php"><span>FOR RELEASE</span></a></li>
+                            <li><a href="procedures/home/document/documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
+                            <li><a href="procedures/home/document/documentprocessing.php"><span>PROCESSING</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
         	<ul style="width:265px;">
-                <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-				<li><a href="dochistory.php"><span>DOCUMENT ON PROCESS</span></a></li>
-                <li><a href="dochistory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
-                <li><a href="dochistory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
+                <li><a href="procedures/home/report/dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
+				<li><a href="procedures/home/report/doconprocess.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="procedures/home/report/doconprocesspersignatory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="procedures/home/report/docpersignatory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
-        <li><a href="#"><span>MAINTENANCE</span></a>
-        <ul>
-                <li><a href="documenttype.php"><span>DOCUMENT TYPE</span></a></li>
-                <li><a href="office.php"><span>OFFICES</span></a></li>
-                <li><a href="flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
-                <li><a href="#" class="parent"><span>SECURITY</span></a>
-                    <ul>
-                        <li><a href="users.php"><span>USERS</span></a></li>
-                        <li><a href="group.php"><span>GROUP</span></a></li>
-                    </ul>
-                </li>
-        </ul>
-        </li>
+
+    <?php
+        if($_SESSION['GROUP']=='POWER ADMIN')
+            {
+
+                echo '<li><a href="#"><span>MAINTENANCE</span></a>
+                <ul>
+                        <li><a href="procedures/home/maintenance/documenttype.php"><span>DOCUMENT TYPE</span></a></li>
+                        <li><a href="procedures/home/maintenance/office.php"><span>OFFICES</span></a></li>
+                        <li><a href="procedures/home/maintenance/flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
+                        <li><a href="#" class="parent"><span>SECURITY</span></a>
+                            <ul>
+                                <li><a href="procedures/home/maintenance/users.php"><span>USERS</span></a></li>
+                                <li><a href="procedures/home/maintenance/group.php"><span>GROUP</span></a></li>
+                            </ul>
+                        </li>
+                </ul>
+                </li>';
+            }
+    ?>
+
+        <li><a href="procedures/home/userinfo/userinfo.php"><span>USER INFO</span></a></li>
         <li><a href="about.php"><span>ABOUT</span></a></li>
         <li><a href="procedures/home/logout.php"><span>LOGOUT</span></a></li>
-
-        </ul>
+    
+    </ul>
+    </div>
 		
        
         <div class="admin">
-         <?php
+        
+        		<?php
           session_start();
+	         require_once("procedures/connection.php");
+	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+	         $query="SELECT MAIL_ID FROM MAIL WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+	         $result=mysqli_query($con,$query);
+	         while ($row = mysqli_fetch_array($result))
+	         {
+
+		         echo '<a href="procedures/home/userinfo/inbox.php"><img src="images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
+
+	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
@@ -115,8 +136,47 @@ session_start();
                         <h2>ABOUT</h2>
                         
                         		
-    
-    
+    						<div id="pic">
+                					
+                        			<div id="flashContent">
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="930" height="260" id="dtlogo" align="middle">
+				<param name="movie" value="dtlogo.swf" />
+				<param name="quality" value="high" />
+				<param name="bgcolor" value="#ffffff" />
+				<param name="play" value="true" />
+				<param name="loop" value="true" />
+				<param name="wmode" value="window" />
+				<param name="scale" value="showall" />
+				<param name="menu" value="true" />
+				<param name="devicefont" value="false" />
+				<param name="salign" value="" />
+				<param name="allowScriptAccess" value="sameDomain" />
+				<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="dtlogo.swf" width="930" height="260">
+					<param name="movie" value="dtlogo.swf" />
+					<param name="quality" value="high" />
+					<param name="bgcolor" value="#ffffff" />
+					<param name="play" value="true" />
+					<param name="loop" value="true" />
+					<param name="wmode" value="window" />
+					<param name="scale" value="showall" />
+					<param name="menu" value="true" />
+					<param name="devicefont" value="false" />
+					<param name="salign" value="" />
+					<param name="allowScriptAccess" value="sameDomain" />
+				
+				</object>
+				<!--<![endif]-->
+			</object>
+		</div>
+                                    	
+                			</div>
+                            <div id="title">
+                             
+                             <p>&copy; 2014-2015 Designed by: <a href="https://www.facebook.com/wufei0?fref=ts&ref=br_tf">Terry John Apigo</a> and <a href="https://www.facebook.com/aga.muhlach.547?fref=ts">Champ Jerome F. Marzan</p>
+                            </div>
+                            
+                            
 							
                         </div>
                         <div class="tfclear"></div>
