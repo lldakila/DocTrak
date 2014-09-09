@@ -113,11 +113,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
           $_SESSION['message']="Delete Successful";
    }
 
-elseif ($_POST['document_hidden']=="delete")
+elseif ($_POST['document_hidden']=="scrap")
 	{
 		$query=insert_update_delete("UPDATE DOCUMENTLIST SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'");
 		//$query=insert_update_delete("DELETE FROM DOCUMENTLIST WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
-
+		echo "UPDATE DOCUMENTLIST SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'";
 		$_SESSION['operation']="scrap";
 		$_SESSION['message']="Scrapped Successful";
 	}

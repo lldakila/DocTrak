@@ -166,6 +166,7 @@ $(document).ready(function() {
                             <ul>
                                 <li><a href="../maintenance/users.php"><span>USERS</span></a></li>
                                 <li><a href="../maintenance/group.php"><span>GROUP</span></a></li>
+								<li><a href="../maintenance/audittrail.php"><span>AUDIT TRAIL</span></a></li>
                             </ul>
                         </li>
                 </ul>

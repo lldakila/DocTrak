@@ -27,9 +27,9 @@
 	echo "<tr><td>";
 	echo "Sender: <font style='font-weight:bold;'>".$row['SECURITY_NAME'];
 	echo "</font><br>";
-	echo "Title: <font style='font-weight:bold;'>".$row['MAILDATE'];
+	echo "Title: <font style='font-weight:bold;'>".$row['MAILTITLE'];
 	echo "</font><br>";
-	echo "Date: <font style='font-weight:bold;'>".$row['MAILTITLE'];
+	echo "Date: <font style='font-weight:bold;'>".$row['MAILDATE'];
 	echo "</font><br><br>";
 	echo $row['MAILCONTENT'];
 	}

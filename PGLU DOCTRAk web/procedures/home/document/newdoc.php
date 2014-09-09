@@ -45,9 +45,10 @@ function clickSearch(barcode,title,description,file,template,type,a,scrap) {
 		//document.process.file.value=a;
 		document.process.primarykey.value=barcode;
 	}
-	elseif (scrap==1)
+	else if (scrap==1)
 	{
 		alert("Document is scrapped.");
+		cleartext();
 	}
 
 
@@ -57,7 +58,7 @@ function clickSearch(barcode,title,description,file,template,type,a,scrap) {
 }
 
 function validate() {
-
+	//alert (document.getElementById('document_hidden').value);
 	//alert (document.getElementById("document_hidden").value);
     if (document.getElementById('document_hidden').value=='delete') {
         if (document.getElementById('primarykey').value != ""){
@@ -241,6 +242,7 @@ function myFunction(e) {
                             <ul>
                                 <li><a href="../maintenance/users.php"><span>USERS</span></a></li>
                                 <li><a href="../maintenance/group.php"><span>GROUP</span></a></li>
+								<li><a href="../maintenance/audittrail.php"><span>AUDIT TRAIL</span></a></li>
                             </ul>
                         </li>
                 </ul>
@@ -405,19 +407,24 @@ function myFunction(e) {
                          <input type="button" value="New" onClick="javascript:cleartext();"/>
 	                     <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';"/>
                     <?php
-	                    if($_SESSION['GROUP']!='USER')
+	                    if($_SESSION['GROUP']=='ADMIN' or $_SESSION['GROUP']=='POWER ADMIN')
 	                    {
 		                    $value="document.getElementById('document_hidden').value='delete';";
 		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'"/>';
 	                    }
 
-                    ?>
 
 
 
 
-	                     <input type="submit" value="Scrap" onClick="document.getElementById('document_hidden').value='scrap';"/>
 
+						if ($_SESSION['GROUP']!='ADMIN')
+						{
+							$value="document.getElementById('document_hidden').value='scrap';";
+		                    echo '<input  type="submit" value="Scrap"  onClick="'.$value.'"/>';
+						}
+
+					?>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 

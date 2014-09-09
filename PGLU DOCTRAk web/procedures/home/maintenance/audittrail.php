@@ -20,8 +20,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         ?>
     </title>
     <script src="../../../js/jquery-1.10.2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+	<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
     <script language="JavaScript" type="text/javascript">
 
 
@@ -31,7 +31,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
 			    jQuery.ajax({
 				    type: "POST",
-				    url:"onprocesspersignatory/search.php",
+				    url:"history/search.php",
 				    dataType:"text", // Data type, HTML, json etc.
 				    data:myData,
 				    success:function(response){
@@ -52,14 +52,21 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			    //var myData2 = 'dateto='+ $("#dateto").val();
 			    var datefrom=document.getElementById('datefrom').value;
 			    var dateto=document.getElementById('dateto').value;
+			    //var dateString = today.format("dd-m-yy");
+			    //var newdateto = new Date();
+
+				//add a day to the date
+			    //newdateto.setDate(newdateto.getDate() + 1);
+			    //alert(newdateto.format("Y-m-d\\TH:i:sP"));
+			   //dateto=newdateto.format("dd-m-yy");
 			    jQuery.ajax({
 				    type: "POST",
-				    url:"onprocesspersignatory/filter.php",
+				    url:"history/filter.php",
 				    dataType:"text", // Data type, HTML, json etc.
 				    data:'datefrom='+datefrom+'&dateto='+dateto,
 				    success:function(response){
 					    $("#historydata").html(response);
-
+						//alert(response)
 
 				    },
 				    error:function (xhr, ajaxOptions, thrownError){
@@ -105,8 +112,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
             </div>
 
-            <div class="menugroup">
-            
+           <div class="menugroup">
+           
             <div id="menu">
 
                 <ul class="menu">
@@ -123,10 +130,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         </li>
         <li><a href="#"><span>REPORT</span></a>
         	<ul style="width:265px;">
-                <li><a href="dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-				<li><a href="doconprocess.php"><span>DOCUMENT ON PROCESS</span></a></li>
-                <li><a href="doconprocesspersignatory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
-                <li><a href="docpersignatory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
+                <li><a href="../report/dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
+				<li><a href="../report/doconprocess.php"><span>DOCUMENT ON PROCESS</span></a></li>
+                <li><a href="../report/doconprocesspersignatory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
+                <li><a href="../report/docpersignatory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
             </ul>
         </li>
 	            <?php
@@ -135,14 +142,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 			            echo '<li><a href="#"><span>MAINTENANCE</span></a>
                 <ul>
-                        <li><a href="../maintenance/documenttype.php"><span>DOCUMENT TYPE</span></a></li>
-                        <li><a href="../maintenance/office.php"><span>OFFICES</span></a></li>
-                        <li><a href="../maintenance/flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
+                        <li><a href="documenttype.php"><span>DOCUMENT TYPE</span></a></li>
+                        <li><a href="office.php"><span>OFFICES</span></a></li>
+                        <li><a href="flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
                         <li><a href="#" class="parent"><span>SECURITY</span></a>
                             <ul>
-                                <li><a href="../maintenance/users.php"><span>USERS</span></a></li>
-                                <li><a href="../maintenance/group.php"><span>GROUP</span></a></li>
-								<li><a href="../maintenance/audittrail.php"><span>AUDIT TRAIL</span></a></li>
+                                <li><a href="users.php"><span>USERS</span></a></li>
+                                <li><a href="group.php"><span>GROUP</span></a></li>
+								<li><a href="audittrail.php"><span>AUDIT TRAIL</span></a></li>
                             </ul>
                         </li>
                 </ul>
@@ -154,7 +161,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         <li><a href="../../../about.php"><span>ABOUT</span></a></li>
         <li><a href="../logout.php"><span>LOGOUT</span></a></li>
 
-        </ul>
+          </ul>
         </div>
 
 
@@ -198,88 +205,39 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
             <div id="post">
 
                 <div id="post01">
-                    <h2>DOCUMENT ON PROCESS PER SIGNATORY</h2>
+                    <h2>AUDIT TRAIL</h2>
 
 
                     	<div id="headform">
-                        		
+
                                 				<div id="headtable">
                                         		<table>
-                                                	<tr>
-                                                    	<td>DATE FROM:</td>
-                                                        <td><input id="datefrom" name="datefrom" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
-                                                        <td>DATE TO:</td>
-                                                        <td><input id="dateto" name="dateto" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
-                                                        <td><button id="filter" name="filter" >Filter </button>
-                                                    </tr>
+                                                	
                                                 </table>
                                                 </div>
-                                                
-                                                <form name="onprocesspersignatory">
-                                                <div id="headsearch">
-		        								<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    							<button id="search_document" class="tfbutton">Search </button>
-												</div>
-                                                </form>
-                                                <div class="tfclear"></div>
-                                                                                        
-                                
+
+
+		                    <form name="history">
+		                    <div id="headsearch">
+			                    <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+			                    <button id="search_document" class="tfbutton">Search </button>
+		                    </div>
+		                        </form>
+                                <div class="tfclear"></div>
+
                         </div>
                         <div id="codetable">
                         		<table id="historydata">
                                 	<tr>
-                                    	<th>BARCODE</th>
-                                        <th>TITLE</th>
-                                        <th>OFFICE</th>
-                                        <th>OWNER</th>
-                                        <th>DATE</th>
+                                    	<th>USER</th>
+                                        <th>ACTION</th>
                                         <th>TYPE</th>
+                                        <th>DATE</th>
+                                        <th>IP</th>
                                     </tr>
 
 
-			                        <?php
-				                        require_once("../../connection.php");
-				                        if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
-				                        {
-					                        $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name,fk_office_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username ORDER BY transdate desc");
-				                        }
-				                        else
-				                        {
-					                        $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name,fk_office_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE fk_office_name ='".$_SESSION['OFFICE']."' ORDER BY transdate desc");
-				                        }
-
-
-										if ($query)
-										{
-
-
-					                        foreach($query as $var)
-					                        {
-						                        if ($rowcolor=="blue")
-						                        {
-							                        echo "<tr class='usercolor'>";
-							                        $rowcolor="notblue";
-						                        }
-						                        else
-						                        {
-							                        echo "<tr class='usercolor1'>";
-							                        $rowcolor="blue";
-						                        }
-
-						                        echo "<td>".$var['document_id']."</td>";
-						                        echo "<td>".$var['document_title']."</td>";
-						                        echo "<td>".$var['fk_office_name']."</td>";
-						                        echo "<td>".$var['security_name']."</td>";
-						                        echo "<td>".$var['transdate']."</td>";
-						                        echo "<td>".$var['fk_template_id']."</td>";
-
-						                        echo "</tr>";
-					                        }
-										}
-
-
-
-			                        ?>
+			                        
 
                                 </table>
                         </div>

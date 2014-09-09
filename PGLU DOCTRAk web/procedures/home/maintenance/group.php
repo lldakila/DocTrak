@@ -174,6 +174,7 @@ function myFunction(e) {
                             <ul>
                                 <li><a href="users.php"><span>USERS</span></a></li>
                                 <li><a href="group.php"><span>GROUP</span></a></li>
+								<li><a href="audittrail.php"><span>AUDIT TRAIL</span></a></li>
                             </ul>
                         </li>
                 </ul>

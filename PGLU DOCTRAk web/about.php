@@ -78,6 +78,7 @@ session_start();
                             <ul>
                                 <li><a href="procedures/home/maintenance/users.php"><span>USERS</span></a></li>
                                 <li><a href="procedures/home/maintenance/group.php"><span>GROUP</span></a></li>
+								<li><a href="procedures/home/maintenance/audittrail.php"><span>AUDIT TRAIL</span></a></li>
                             </ul>
                         </li>
                 </ul>
@@ -140,7 +141,7 @@ session_start();
                 					
                         			<div id="flashContent">
 			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="930" height="260" id="dtlogo" align="middle">
-				<param name="movie" value="dtlogo.swf" />
+				<param name="movie" value="images/home/flash/dtlogo.swf" />
 				<param name="quality" value="high" />
 				<param name="bgcolor" value="#ffffff" />
 				<param name="play" value="true" />
@@ -152,7 +153,7 @@ session_start();
 				<param name="salign" value="" />
 				<param name="allowScriptAccess" value="sameDomain" />
 				<!--[if !IE]>-->
-				<object type="application/x-shockwave-flash" data="dtlogo.swf" width="930" height="260">
+				<object type="application/x-shockwave-flash" data="images/home/flash/dtlogo.swf" width="930" height="260">
 					<param name="movie" value="dtlogo.swf" />
 					<param name="quality" value="high" />
 					<param name="bgcolor" value="#ffffff" />

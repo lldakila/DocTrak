@@ -184,6 +184,7 @@ $(document).ready(function() {
                             <ul>
                                 <li><a href="procedures/home/maintenance/users.php"><span>USERS</span></a></li>
                                 <li><a href="procedures/home/maintenance/group.php"><span>GROUP</span></a></li>
+								<li><a href="procedures/home/maintenance/audittrail.php"><span>AUDIT TRAIL</span></a></li>
                             </ul>
                         </li>
                 </ul>
