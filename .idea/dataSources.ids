@@ -11,6 +11,7 @@
     <schema name="" catalog="doctrak"/>
     <schema name="" catalog="information_schema"/>
     <schema name="" catalog="jer"/>
+    <schema name="" catalog="lis-pglu"/>
     <schema name="" catalog="mysql"/>
     <table name="tblborrow" schema="" catalog="dbsupply" type="TABLE">
       <column name="idborrow" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -70,6 +71,15 @@
       <column name="year_now" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idyear"/>
     </table>
+    <table name="audit" schema="" catalog="doctrak" type="TABLE">
+      <column name="audit_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="transaction_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5"/>
+      <column name="dml" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="sql_string" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12"/>
+      <column name="fk_security_username" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="transdate" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <primary-key name="PRIMARY" columns="audit_id"/>
+    </table>
     <table name="document_template" schema="" catalog="doctrak" type="TABLE">
       <column name="template_id" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <column name="template_description" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
@@ -95,12 +105,16 @@
       <column name="fk_security_username" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <column name="document_filename" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
       <column name="transdate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="fk_office_name_documentlist" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="scrap" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6" def="MA=="/>
       <primary-key name="PRIMARY" columns="document_id"/>
       <foreign-key name="FK_document" columns="fk_template_id" ref-table="document_template" ref-schema="" ref-catalog="doctrak" ref-columns="template_id" update-rule="0" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_documentsecurityuser" columns="fk_security_username" ref-table="security_user" ref-schema="" ref-catalog="doctrak" ref-columns="security_username" update-rule="0" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_document_documenttype" columns="fk_documenttype_id" ref-table="document_type" ref-schema="" ref-catalog="doctrak" ref-columns="documenttype_id" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_document_office_name" columns="fk_office_name_documentlist" ref-table="office" ref-schema="" ref-catalog="doctrak" ref-columns="office_name" update-rule="0" delete-rule="3" deferrability="2"/>
       <exported-key name="fk_documentlist_tracker_documentlist" table="documentlist_tracker" schema="" catalog="doctrak" columns="fk_documentlist_id"/>
       <index name="document_filename_UNIQUE" unique="true" columns="document_filename"/>
+      <index name="fk_document_office_name_idx" unique="false" columns="fk_office_name_documentlist"/>
     </table>
     <table name="documentlist_tracker" schema="" catalog="doctrak" type="TABLE">
       <column name="documentlist_tracker_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
@@ -132,18 +146,20 @@
       <column name="mail_id" sqlType="BIGINT" length="19" precision="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
       <column name="mailcontent" sqlType="TEXT" length="65535" precision="0" nullable="true" jdbcType="-1"/>
       <column name="fk_security_username_owner" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
-      <column name="maildate" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="maildate" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="mailtitle" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
       <column name="mailstatus" sqlType="TINYINT" length="3" precision="0" nullable="true" jdbcType="-6"/>
       <column name="fk_security_username_sender" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="mail_id"/>
-      <foreign-key name="FK_mail_security_sender" columns="fk_security_username_sender" ref-table="security_user" ref-schema="" ref-catalog="doctrak" ref-columns="security_username" update-rule="0" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_mail_security_owner" columns="fk_security_username_owner" ref-table="security_user" ref-schema="" ref-catalog="doctrak" ref-columns="security_username" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_mail_security_sender" columns="fk_security_username_sender" ref-table="security_user" ref-schema="" ref-catalog="doctrak" ref-columns="security_username" update-rule="0" delete-rule="3" deferrability="2"/>
     </table>
     <table name="office" schema="" catalog="doctrak" type="TABLE">
       <column name="office_name" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12" def="J09GRklDRSc="/>
       <column name="office_description" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
       <column name="transdate" sqlType="TIMESTAMP" length="19" precision="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="office_name"/>
+      <exported-key name="fk_document_office_name" table="documentlist" schema="" catalog="doctrak" columns="fk_office_name_documentlist"/>
       <exported-key name="FK_officename" table="security_user" schema="" catalog="doctrak" columns="fk_office_name"/>
       <exported-key name="FK_template_list_office" table="template_list" schema="" catalog="doctrak" columns="fk_office_name"/>
     </table>
@@ -171,8 +187,8 @@
       <foreign-key name="FK_officename" columns="fk_office_name" ref-table="office" ref-schema="" ref-catalog="doctrak" ref-columns="office_name" update-rule="0" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_security_user" columns="fk_security_groupname" ref-table="security_group" ref-schema="" ref-catalog="doctrak" ref-columns="security_groupname" update-rule="0" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_documentsecurityuser" table="documentlist" schema="" catalog="doctrak" columns="fk_security_username"/>
-      <exported-key name="FK_mail_security_sender" table="mail" schema="" catalog="doctrak" columns="fk_security_username_sender"/>
       <exported-key name="FK_mail_security_owner" table="mail" schema="" catalog="doctrak" columns="fk_security_username_owner"/>
+      <exported-key name="FK_mail_security_sender" table="mail" schema="" catalog="doctrak" columns="fk_security_username_sender"/>
     </table>
     <table name="template_list" schema="" catalog="doctrak" type="TABLE">
       <column name="template_list_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
@@ -397,6 +413,297 @@
       <column name="idnumber" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="Last_name" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="idnumber"/>
+    </table>
+    <table name="forum_answer" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="question_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="a_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="a_name" sqlType="VARCHAR" length="65" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="a_email" sqlType="VARCHAR" length="65" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="a_answer" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="a_datetime" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="question_id"/>
+      <foreign-key name="FK_forum_answer_forum_question" columns="a_id" ref-table="forum_question" ref-schema="" ref-catalog="lis-pglu" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="forum_question" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="topic" sqlType="VARCHAR" length="255" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="detail" sqlType="VARCHAR" length="500" precision="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" length="65" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="email" sqlType="VARCHAR" length="65" precision="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="datetime" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <column name="view" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="reply" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="confirmation" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_forum_answer_forum_question" table="forum_answer" schema="" catalog="lis-pglu" columns="a_id"/>
+    </table>
+    <table name="tbl_activity" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="act_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="act_desc" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="act_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="act_datetime" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="act_id"/>
+      <foreign-key name="FK_tbl_activity_tbl_user" columns="act_by" ref-table="tbl_user" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="act_datetime" unique="false" columns="act_datetime"/>
+    </table>
+    <table name="tbl_agency" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="agency_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="agency_name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="shortname" sqlType="VARCHAR" length="10" precision="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="contact_person" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="contact_num" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="agency_id"/>
+      <exported-key name="FK_tbl_track_ord_tbl_agency" table="tbl_monitor_ord" schema="" catalog="lis-pglu" columns="agency_id"/>
+    </table>
+    <table name="tbl_agenda" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="agenda_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="communications" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="comm_reports" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="session_no" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="session_type" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="sp_batch_no" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="session_time" sqlType="TIME" length="8" precision="0" nullable="false" jdbcType="92"/>
+      <column name="session_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="confirmation" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="agenda_id"/>
+    </table>
+    <table name="tbl_category" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="cat_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="cat_name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="shortname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="cat_id"/>
+      <exported-key name="FK_tbl_communication_tbl_category" table="tbl_communication" schema="" catalog="lis-pglu" columns="cat_id"/>
+    </table>
+    <table name="tbl_comm_meeting_ordi" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="meeting_ordi_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ref_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="action_taken" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date_meeting" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="public_hearing" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="comm_report" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="input_by" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="comm_meeting_stat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="comm_rep_file" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ord_remark" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="archive" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="meeting_ordi_id"/>
+      <foreign-key name="FK_tbl_comm_meeting_ordi_tbl_employee" columns="input_by" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_comm_meeting_ordi_tbl_referral" columns="ref_id" ref-table="tbl_referral" ref-schema="" ref-catalog="lis-pglu" ref-columns="ref_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_tbl_ordinance_tbl_comm_meeting_ordi" table="tbl_ordinance" schema="" catalog="lis-pglu" columns="meeting_ordi_id"/>
+    </table>
+    <table name="tbl_comm_meeting_reso" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="meeting_reso_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ref_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="action_taken" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date_meeting" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="comm_report" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="input_by" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="comm_rep_file" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="comm_meeting_stat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="remark" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="archive" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="meeting_reso_id"/>
+      <foreign-key name="FK_tbl_comm_meeting_reso_tbl_employee" columns="input_by" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK__tbl_referral" columns="ref_id" ref-table="tbl_referral" ref-schema="" ref-catalog="lis-pglu" ref-columns="ref_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_committee" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="comm_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="comm_name" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12"/>
+      <column name="shortname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="chairman" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="v_chairman" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="members" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="comm_id"/>
+      <foreign-key name="FK__tbl_officials" columns="chairman" ref-table="tbl_officials" ref-schema="" ref-catalog="lis-pglu" ref-columns="off_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK__tbl_officials_2" columns="v_chairman" ref-table="tbl_officials" ref-schema="" ref-catalog="lis-pglu" ref-columns="off_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK__tbl_committee" table="tbl_referral" schema="" catalog="lis-pglu" columns="lead_committee"/>
+    </table>
+    <table name="tbl_communication" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="ctrl_no" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="subject_matter" sqlType="VARCHAR" length="1000" precision="0" nullable="false" jdbcType="12"/>
+      <column name="date_received" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="cat_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="orig_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="input_by" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="comm_letter" sqlType="VARCHAR" length="75" precision="0" nullable="false" jdbcType="12"/>
+      <column name="date_agenda" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="type_comm" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="comm_stat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="archive" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ctrl_no"/>
+      <foreign-key name="FK_tbl_communication_tbl_category" columns="cat_id" ref-table="tbl_category" ref-schema="" ref-catalog="lis-pglu" ref-columns="cat_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_communication_tbl_employee" columns="input_by" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_communication_tbl_origin" columns="orig_id" ref-table="tbl_origin" ref-schema="" ref-catalog="lis-pglu" ref-columns="orig_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK__tbl_communication" table="tbl_referral" schema="" catalog="lis-pglu" columns="ctrl_no"/>
+      <exported-key name="FK_tbl_status_tbl_communication" table="tbl_status" schema="" catalog="lis-pglu" columns="ctrl_no"/>
+    </table>
+    <table name="tbl_department" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="dept_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="dept_name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="shortname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="dept_id"/>
+      <exported-key name="FK_tbl_employee_tbl_department" table="tbl_employee" schema="" catalog="lis-pglu" columns="dept_id"/>
+    </table>
+    <table name="tbl_employee" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="emp_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_fname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="emp_mname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="emp_lname" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="position" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="dept_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="contact_num" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="email_add" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="emp_id"/>
+      <foreign-key name="FK_tbl_employee_tbl_department" columns="dept_id" ref-table="tbl_department" ref-schema="" ref-catalog="lis-pglu" ref-columns="dept_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_employee_tbl_position" columns="position" ref-table="tbl_position" ref-schema="" ref-catalog="lis-pglu" ref-columns="pos_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_tbl_comm_meeting_ordi_tbl_employee" table="tbl_comm_meeting_ordi" schema="" catalog="lis-pglu" columns="input_by"/>
+      <exported-key name="FK_tbl_comm_meeting_reso_tbl_employee" table="tbl_comm_meeting_reso" schema="" catalog="lis-pglu" columns="input_by"/>
+      <exported-key name="FK_tbl_communication_tbl_employee" table="tbl_communication" schema="" catalog="lis-pglu" columns="input_by"/>
+      <exported-key name="FK_tbl_track_ord_tbl_employee" table="tbl_monitor_ord" schema="" catalog="lis-pglu" columns="input_by"/>
+      <exported-key name="FK_tbl_officials_tbl_employee" table="tbl_officials" schema="" catalog="lis-pglu" columns="emp_id"/>
+      <exported-key name="FK_tbl_ordinance_tbl_employee" table="tbl_ordinance" schema="" catalog="lis-pglu" columns="input_by"/>
+      <exported-key name="FK__tbl_employee" table="tbl_referral" schema="" catalog="lis-pglu" columns="input_by"/>
+      <exported-key name="FK_tbl_resolution_tbl_employee" table="tbl_resolution" schema="" catalog="lis-pglu" columns="input_by"/>
+      <exported-key name="FK_tbl_user_tbl_employee" table="tbl_user" schema="" catalog="lis-pglu" columns="emp_id"/>
+    </table>
+    <table name="tbl_monitor_ord" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="monitor_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ord_no" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="subj_matter" sqlType="LONGTEXT" length="2147483647" precision="0" nullable="false" jdbcType="-1"/>
+      <column name="agency_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date_furnished" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="action_taken" sqlType="VARCHAR" length="1000" precision="0" nullable="false" jdbcType="12"/>
+      <column name="status" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="problems_encountered" sqlType="VARCHAR" length="1000" precision="0" nullable="true" jdbcType="12"/>
+      <column name="recommendation" sqlType="VARCHAR" length="1000" precision="0" nullable="true" jdbcType="12"/>
+      <column name="date_received" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="input_by" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="monitor_form" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="archive" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="last_updated" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="monitor_id"/>
+      <foreign-key name="FK_tbl_track_ord_tbl_agency" columns="agency_id" ref-table="tbl_agency" ref-schema="" ref-catalog="lis-pglu" ref-columns="agency_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_track_ord_tbl_employee" columns="input_by" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_track_ord_tbl_ordinance" columns="ord_no" ref-table="tbl_ordinance" ref-schema="" ref-catalog="lis-pglu" ref-columns="ord_no" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_officials" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="off_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="emp_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="start_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="end_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="off_id"/>
+      <foreign-key name="FK_tbl_officials_tbl_employee" columns="emp_id" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK__tbl_officials" table="tbl_committee" schema="" catalog="lis-pglu" columns="chairman"/>
+      <exported-key name="FK__tbl_officials_2" table="tbl_committee" schema="" catalog="lis-pglu" columns="v_chairman"/>
+    </table>
+    <table name="tbl_ordinance" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="ord_no" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="meeting_ordi_id" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="subj_matter" sqlType="VARCHAR" length="1000" precision="0" nullable="false" jdbcType="12"/>
+      <column name="date_passed" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="author" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="imp_agency" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="ordi_file" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="input_by" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="archive" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ord_no"/>
+      <foreign-key name="FK_tbl_ordinance_tbl_comm_meeting_ordi" columns="meeting_ordi_id" ref-table="tbl_comm_meeting_ordi" ref-schema="" ref-catalog="lis-pglu" ref-columns="meeting_ordi_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_ordinance_tbl_employee" columns="input_by" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_tbl_track_ord_tbl_ordinance" table="tbl_monitor_ord" schema="" catalog="lis-pglu" columns="ord_no"/>
+    </table>
+    <table name="tbl_origin" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="orig_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="orig_name" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="shortname" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="contact_person" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="contact_num" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="orig_id"/>
+      <exported-key name="FK_tbl_communication_tbl_origin" table="tbl_communication" schema="" catalog="lis-pglu" columns="orig_id"/>
+    </table>
+    <table name="tbl_photo" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="photo_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="gallery_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="file" sqlType="VARCHAR" length="75" precision="0" nullable="false" jdbcType="12"/>
+      <column name="photo_details" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="photo_usage" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="photo_id"/>
+      <foreign-key name="FK_tbl_photo_tbl_photo_gallery" columns="gallery_id" ref-table="tbl_photo_gallery" ref-schema="" ref-catalog="lis-pglu" ref-columns="gallery_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_photo_gallery" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="gallery_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="gallery_name" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date_created" sqlType="DATETIME" length="19" precision="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="gallery_id"/>
+      <exported-key name="FK_tbl_photo_tbl_photo_gallery" table="tbl_photo" schema="" catalog="lis-pglu" columns="gallery_id"/>
+    </table>
+    <table name="tbl_position" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="pos_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pos_name" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="shortname" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="pos_id"/>
+      <exported-key name="FK_tbl_employee_tbl_position" table="tbl_employee" schema="" catalog="lis-pglu" columns="position"/>
+    </table>
+    <table name="tbl_referral" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="ref_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ctrl_no" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="date_referred" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="lead_committee" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="joint_committee" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="ind_letter" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="input_by" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="referral_stat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="archive" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ref_id"/>
+      <foreign-key name="FK__tbl_committee" columns="lead_committee" ref-table="tbl_committee" ref-schema="" ref-catalog="lis-pglu" ref-columns="comm_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK__tbl_communication" columns="ctrl_no" ref-table="tbl_communication" ref-schema="" ref-catalog="lis-pglu" ref-columns="ctrl_no" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK__tbl_employee" columns="input_by" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_tbl_comm_meeting_ordi_tbl_referral" table="tbl_comm_meeting_ordi" schema="" catalog="lis-pglu" columns="ref_id"/>
+      <exported-key name="FK__tbl_referral" table="tbl_comm_meeting_reso" schema="" catalog="lis-pglu" columns="ref_id"/>
+    </table>
+    <table name="tbl_resolution" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="res_no" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="ctrl_no" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="subj_matter" sqlType="VARCHAR" length="1000" precision="0" nullable="false" jdbcType="12"/>
+      <column name="author" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="reso_file" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="input_by" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="date_passed" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="archive" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="res_no"/>
+      <foreign-key name="FK_tbl_resolution_tbl_employee" columns="input_by" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_tbl_resolution_tbl_status" columns="ctrl_no" ref-table="tbl_status" ref-schema="" ref-catalog="lis-pglu" ref-columns="ctrl_no" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_status" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="stat_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ctrl_no" sqlType="VARCHAR" length="20" precision="0" nullable="false" jdbcType="12"/>
+      <column name="comm_stat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="referral_stat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="comm_meeting_stat" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="remarks" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="stat_id"/>
+      <foreign-key name="FK_tbl_status_tbl_communication" columns="ctrl_no" ref-table="tbl_communication" ref-schema="" ref-catalog="lis-pglu" ref-columns="ctrl_no" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_tbl_resolution_tbl_status" table="tbl_resolution" schema="" catalog="lis-pglu" columns="ctrl_no"/>
+    </table>
+    <table name="tbl_sysbackup" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="db_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="db_name" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="date_backed_up" sqlType="DATETIME" length="19" precision="0" nullable="true" jdbcType="93"/>
+      <column name="backed_up_by" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="db_id"/>
+      <foreign-key name="FK__tbl_user" columns="backed_up_by" ref-table="tbl_user" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="tbl_user" schema="" catalog="lis-pglu" type="TABLE">
+      <column name="username" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="emp_id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="role" sqlType="VARCHAR" length="50" precision="0" nullable="false" jdbcType="12"/>
+      <column name="start_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <column name="exp_date" sqlType="DATE" length="10" precision="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="username"/>
+      <foreign-key name="FK_tbl_user_tbl_employee" columns="emp_id" ref-table="tbl_employee" ref-schema="" ref-catalog="lis-pglu" ref-columns="emp_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_tbl_activity_tbl_user" table="tbl_activity" schema="" catalog="lis-pglu" columns="act_by"/>
+      <exported-key name="FK__tbl_user" table="tbl_sysbackup" schema="" catalog="lis-pglu" columns="backed_up_by"/>
     </table>
     <table name="columns_priv" schema="" catalog="mysql" type="SYSTEM TABLE">
       <column name="Host" sqlType="CHAR" length="60" precision="0" nullable="false" jdbcType="1" def="Jyc="/>
