@@ -1,5 +1,7 @@
 <?php
+    if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
     if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
     {
         $_SESSION['in'] ="start";
@@ -12,7 +14,7 @@
         require_once("../../../connection.php");
        //$_SESSION['keytracker']='';
 
-	    $query=select_info_multiple_key("SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER FROM DOCUMENTLIST_TRACKER WHERE FK_DOCUMENTLIST_ID = '".$document_id."' ORDER BY SORTORDER ASC");
+	    $query=select_info_multiple_key("SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER FROM documentlist_tracker WHERE FK_DOCUMENTLIST_ID = '".$document_id."' ORDER BY SORTORDER ASC");
 
         $counterX=0;
 
@@ -98,7 +100,7 @@
 
                         if ($rows['SORTORDER']==1)
                         {
-                            if ($rows['FORRELEASE_VAL']!=1 AND $rows['RELEASED_VAL']!=1)
+                            if ($rows['FORRELEASE_VAL']!=1 AND $rows['RELEASED_VAL']!=1 AND $rows['RECEIVED_VAL']==1)
                             {
                                 $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
                                 return true;

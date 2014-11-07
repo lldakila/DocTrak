@@ -1,5 +1,7 @@
 <?php
-session_start();
+session_start();if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../../index.php');
@@ -15,7 +17,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
     }
     else {
-        $query="UPDATE DOCUMENTLIST_TRACKER SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['comment']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $_SESSION['keytracker']." ";
+        $query="UPDATE documentlist_tracker SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['comment']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $_SESSION['keytracker']." ";
         $RESULT=mysqli_query($con,$query);
 
         if (!$RESULT) {
@@ -30,6 +32,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     }
 
     mysqli_close($con);
-    header('Location:../../../../releasedoc.php');
+    header('Location:../releasedoc.php');
 
  ?>

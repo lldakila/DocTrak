@@ -1,5 +1,7 @@
 <?php
+   if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
     if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         $_SESSION['in'] ="start";
         header('Location:../../../../index.php');
@@ -9,7 +11,7 @@
 	require_once("../../../connection.php");
     require_once("../common/encrypt.php");
 
-	$query=select_info_multiple_key("SELECT DOCUMENT_FILENAME FROM DOCUMENTLIST WHERE DOCUMENT_FILENAME = '" .$_POST['attachment']. "' ");
+	$query=select_info_multiple_key("SELECT DOCUMENT_FILENAME FROM documentlist WHERE DOCUMENT_FILENAME = '" .$_POST['attachment']. "' ");
 			
 			
 		 if ($query[0]['DOCUMENT_FILENAME']!=""){

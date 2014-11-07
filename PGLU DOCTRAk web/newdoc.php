@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:index.php');
@@ -12,7 +14,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
 <?php
-session_start();
+
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
@@ -161,7 +163,7 @@ function myFunction(e) {
         
         		<img src="images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
 				<?php
-						session_start();
+						
 						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
 						echo "</span>";
 				?>
@@ -216,7 +218,7 @@ function myFunction(e) {
         
         <div class="admin">
          <?php
-          session_start();
+          
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
 
@@ -310,7 +312,7 @@ function myFunction(e) {
                   </table>
 
                     <?php
-            session_start();
+           
                     echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
            if($_SESSION['operation']=='save'){
 
@@ -398,7 +400,7 @@ function myFunction(e) {
     			<div id="footer2">
             <p>
 			<?php
-				session_start();
+				
 				echo $_SESSION['Copyright']. "&nbsp;<img src=images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
 				echo "&nbsp|";
 			?>

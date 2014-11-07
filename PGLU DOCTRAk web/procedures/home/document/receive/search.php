@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 {
   $_SESSION['in'] ="start";
@@ -8,18 +10,18 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 
     require_once("../../../connection.php");
 
-    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from DOCUMENTLIST join SECURITY_USER on DOCUMENTLIST.fk_security_username = SECURITY_USER.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')  ORDER BY transdate desc");
+    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')  ORDER BY transdate desc");
 
     
 
       if ($query) {
 
     $rowcolor="blue";
-									echo "<tr class='usercolortest'>
-                                	<th>Barcode</th>
-                                    <th>Title</th>
-                                	<th>Date</th>
-                                	</tr>";
+	echo "<tr class='usercolortest'>
+            <th>Barcode</th>
+            <th>Title</th>
+            <th>Date</th>
+        </tr>";
 
       include_once("../common/SearchFilter.php");
 

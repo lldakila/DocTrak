@@ -4,22 +4,22 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     header('Location:../../index.php');
 }*/
 
-$DB_HOST = 'localhost';
+$DB_HOST = '10.10.5.193';
 $DB_USER = 'root';
-$DB_PASS = 'passw0rd';
+$DB_PASS = 'launi0n@dmin';
 $BD_TABLE = 'doctrak';
 
 
 function insert_update_delete($query)
  {
  global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-mysql_connect($DB_HOST, $DB_USER,$DB_PASS);
-mysql_select_db($BD_TABLE) or die( "Unable to select database");
+$con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
+//mysqli_select_db($BD_TABLE) or die( "Unable to select database");
 
-   mysql_query($query)or die( "Unable to execute query");
+   mysqli_query($con,$query)or die( "Unable to execute query");
 
 
-mysql_close();
+mysqli_close($con);
   }
 
 
@@ -27,16 +27,16 @@ mysql_close();
 function select_info_multiple_key($query)
 {
 global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-mysql_connect($DB_HOST, $DB_USER,$DB_PASS);
-mysql_select_db($BD_TABLE) or die( "Unable to select database");
+$con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
+//mysqli_select_db($BD_TABLE) or die( "Unable to select database");
 
-if($res=mysql_query($query))
+if($res=mysqli_query($con,$query))
     {
-		if(mysql_num_rows($res))
+		if(mysqli_num_rows($res))
         {
 		    $retvalue = array();
           $ctr = 0;
-			while($r=mysql_fetch_array($res,MYSQL_BOTH))
+			while($r=mysqli_fetch_array($res,MYSQL_BOTH))
             {
       $a_keys = array_keys($r);
 	 $retvalue[$ctr] = array();
@@ -61,6 +61,6 @@ else
 	return null;
 	}
 
-mysql_close();
+mysqli_close($con);
 }
 ?>

@@ -1,5 +1,10 @@
-  <?php
-session_start();
+
+
+<?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(isset($_SESSION['usr']) || isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:home.php');
@@ -41,14 +46,18 @@ if(isset($_SESSION['usr']) || isset($_SESSION['pswd'])){
   <div class="login-help">
     <p> <a href="#">Forgot your password?</a></p>
     <?php
-session_start();
+
+        if (isset($_SESSION['login']))
+        {
+            
+     
            if($_SESSION['login']=='invalid'){
 
                 echo"<div style='color:#fff; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Invalid Username / Password </div>";
             }else if($_SESSION['in']=='start'){
                 echo"<div style='color:red; font-family: Times New Roman'>**SIGN IN TO CONTINUE**</div>";
 
-                }
+                }   }
          $_SESSION['login']='clear';
          $_SESSION['in']='clear';
 

@@ -1,9 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     $_SESSION['in'] ="start";
     header('Location:../../../../index.php');
 }
+date_default_timezone_set($_SESSION['Timezone']);
 ?>
 
 
@@ -11,14 +14,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <?php
 
 function fetchDate() {
-    session_start();
+  
     require_once("../../../connection.php");
-    $query=select_info_multiple_key("SELECT COUNTER from GENERATOR WHERE GENERATOR_NAME = 'BARCODE' ");
+    $query=select_info_multiple_key("SELECT counter from generator WHERE GENERATOR_NAME = 'BARCODE' ");
     echo $query[0]['COUNTER'];
 }
 
 function fetchOffice() {
-    session_start();
+   
     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     require_once("../../../connection.php");
     $query=select_info_multiple_key("SELECT FK_OFFICE_NAME from security_user WHERE SECURITY_USERNAME = '".$_SESSION['usr']."' ");
@@ -27,10 +30,10 @@ function fetchOffice() {
 }
 
 function fetchCounter() {
-    session_start();
+
     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     require_once("../../../connection.php");
-    $query=select_info_multiple_key("SELECT COUNTER from GENERATOR WHERE GENERATOR_NAME = 'BARCODE' ");
+    $query=select_info_multiple_key("SELECT COUNTER from generator WHERE GENERATOR_NAME = 'BARCODE' ");
     $gen= $query[0]['COUNTER'];
 
     if (dateRotate(date('Ymd'))) {
@@ -40,14 +43,14 @@ function fetchCounter() {
         $gen=1;
     }
 
-    insert_update_delete("UPDATE GENERATOR SET COUNTER='.$gen.' WHERE GENERATOR_NAME = 'BARCODE'");
+    insert_update_delete("UPDATE generator SET COUNTER='.$gen.' WHERE GENERATOR_NAME = 'BARCODE'");
     return $gen;
 }
 
 function dateRotate($daynow) {
     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     require_once("../../../connection.php");
-    $query=select_info_multiple_key("SELECT TRANSDATE from GENERATOR WHERE GENERATOR_NAME = 'BARCODE' ");
+    $query=select_info_multiple_key("SELECT TRANSDATE from generator WHERE GENERATOR_NAME = 'BARCODE' ");
     //echo $query[0]['TRANSDATE'];
     if (strtotime($query[0]['TRANSDATE']) < strtotime($daynow)) {
         return false;
@@ -60,7 +63,7 @@ function dateRotate($daynow) {
 
 
 //session_start();
-session_start();
+
     $now = new DateTime();
     $year = $now->format("y");
     $month = $now->format("m");

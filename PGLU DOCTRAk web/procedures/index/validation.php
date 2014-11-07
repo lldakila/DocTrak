@@ -22,11 +22,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
       $_SESSION['security_name']=$secname;
       $_SESSION['OFFICE']=$office;
       $_SESSION['GROUP']=$group;
-		echo 1;
+	
 	  require_once("../info.php");
-	   echo 2;
+
 	  require_once("../audit.php");
-	  echo InsertAudit("LOGIN",$_SESSION['security_name'],"sqlquery");
+	  //echo InsertAudit("LOGIN",$_SESSION['security_name'],"sqlquery");
 	   
       header("Location:../../home.php");
       // echo $secname;

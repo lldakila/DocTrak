@@ -1,16 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     $_SESSION['in'] ="start";
     header('Location:../../../../index.php');
 }
-?>
 
-
-
-
-<?php
-session_start();
 //$key=$_SESSION['EncryptionKey'];
 //define("ENCRYPTION_KEY", $_SESSION['EncryptionKey']);
 /*$string = "This is the original data string!";

@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../../index.php');
@@ -11,8 +13,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <?php
     require_once("../../../connection.php");
-    session_start();
-    $query=select_info_multiple_key("select  distinct TEMPLATE_ID,TEMPLATE_DESCRIPTION from DOCUMENT_TEMPLATE join TEMPLATE_LIST on DOCUMENT_TEMPLATE.TEMPLATE_ID = TEMPLATE_LIST.FK_TEMPLATE_ID join OFFICE on TEMPLATE_LIST.FK_OFFICE_NAME = OFFICE.OFFICE_NAME where TEMPLATE_ID LIKE '%".$_POST['search_string']."%' OR TEMPLATE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY TEMPLATE_ID");
+  
+    $query=select_info_multiple_key("select  distinct TEMPLATE_ID,TEMPLATE_DESCRIPTION from document_template join template_list on document_template.TEMPLATE_ID = template_list.FK_TEMPLATE_ID join office on template_list.FK_OFFICE_NAME = office.OFFICE_NAME where TEMPLATE_ID LIKE '%".$_POST['search_string']."%' OR TEMPLATE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY TEMPLATE_ID");
    
 
 

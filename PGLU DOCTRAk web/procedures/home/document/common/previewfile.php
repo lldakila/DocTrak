@@ -1,17 +1,15 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     $_SESSION['in'] ="start";
     header('Location:../../../../index.php');
 }
-?>
 
 
-<?php
-
-session_start();
 require_once("encrypt.php");
-$path = "c:/wamp/www/docs/";
+$path = "D:/OneDrive/Projects/DocTrak/document/";
 //$decryptPath=decryptText($_GET['download_file'],$_SESSION['EncryptionKey']);
 //
 //$xx="M6K%EF%BF%BD-O~%EF%BF%BD%EF%BF%BD%EF%BF%BD!,%EF%BF%BD%EF%BF%BDx";

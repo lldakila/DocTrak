@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 	if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		$_SESSION['in'] ="start";
 		header('Location:../index.php');
@@ -18,8 +20,8 @@
 
 		$query="INSERT INTO AUDIT(TRANSACTION_ID,DML,SQL_STRING,FK_SECURITY_USERNAME) values ($transact_id,'$DML','$SQL_Query','$User')";
 		$result=mysqli_query($con,$query);
-		/*echo $query;
-		echo "<br>";*/
+		echo $query;
+		echo "<br>";
 		if (!$result)
 		{
 
@@ -38,7 +40,7 @@
 
 	function GetTransactionId()
 	{
-		session_start();
+		
 		require_once("connection.php");
 		$query=select_info_multiple_key("SELECT COUNTER from GENERATOR WHERE GENERATOR_NAME = 'TRANSACTION' ");
 		$idgen=$query[0]['COUNTER']+1;

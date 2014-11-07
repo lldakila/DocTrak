@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../../index.php');
@@ -24,12 +26,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
            $flag=true;
            // CHECK IF INPUTFILE IS EMPTY START
            if (empty($_FILES['pdffile']['name'])){
-               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
+               $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
 
            }
            else {
                $UploadFilename=$_POST['barcode']."$".$_FILES['pdffile']['name'];
-               $query="INSERT INTO DOCUMENTLIST(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$UploadFilename."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
+               $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$UploadFilename."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
 
            }
            // CHECK IF INPUT FILE IS EMPTY END
@@ -40,11 +42,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                echo mysqli_error($con);
                echo "<br>";
            }
-           $query="SELECT  fk_office_name,SORT FROM TEMPLATE_LIST WHERE fk_template_id= '".$_POST['template']."' order by sort asc";
+           $query="SELECT  fk_office_name,SORT FROM template_list WHERE fk_template_id= '".$_POST['template']."' order by sort asc";
            $RESULT=mysqli_query($con,$query);
 
            while ($row = mysqli_fetch_array($RESULT)) {
-               $query="INSERT INTO DOCUMENTLIST_TRACKER(OFFICE_NAME,SORTORDER,fk_documentlist_id) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."')";
+               $query="INSERT INTO documentlist_tracker(OFFICE_NAME,SORTORDER,fk_documentlist_id) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."')";
 
                $outcome=mysqli_query($con,$query);
 
@@ -68,7 +70,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
                     //UPLOAD PDF FILE START
-                   $targetfolder="C:/wamp/www/docs/";
+                   $targetfolder="D:/OneDrive/Projects/DocTrak/document/";
                    $targetfolder = $targetfolder . basename( $_FILES['pdffile']['name']);
                    $file_type=$_FILES['pdffile']['type'];
 
@@ -98,7 +100,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
        }
        else {
            //echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
-           $query=insert_update_delete("UPDATE DOCUMENTLIST SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['pdffile']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ");
+           $query=insert_update_delete("UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['pdffile']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ");
 
            $_SESSION['operation']="update";
            $_SESSION['message']="Update Successful";
@@ -107,7 +109,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
    elseif ($_POST['document_hidden']=="delete") {
 
-          $query=insert_update_delete("DELETE FROM DOCUMENTLIST WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
+          $query=insert_update_delete("DELETE FROM documentlist WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
 
           $_SESSION['operation']="delete";
           $_SESSION['message']="Delete Successful";
@@ -115,9 +117,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 elseif ($_POST['document_hidden']=="scrap")
 	{
-		$query=insert_update_delete("UPDATE DOCUMENTLIST SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'");
+		$query=insert_update_delete("UPDATE documentlist SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'");
 		//$query=insert_update_delete("DELETE FROM DOCUMENTLIST WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
-		echo "UPDATE DOCUMENTLIST SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'";
+		echo "UPDATE documentlist SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'";
 		$_SESSION['operation']="scrap";
 		$_SESSION['message']="Scrapped Successful";
 	}

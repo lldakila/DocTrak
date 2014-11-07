@@ -1,15 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     $_SESSION['in'] ="start";
     header('Location:../../../../index.php');
 }
-?>
 
-
-<?php
-
-session_start();
 require_once("encrypt.php");
 $path = "c:/wamp/www/docs/";
 //$decryptPath=decryptText($_GET['download_file'],$_SESSION['EncryptionKey']);

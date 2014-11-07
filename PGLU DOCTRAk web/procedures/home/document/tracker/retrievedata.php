@@ -1,16 +1,15 @@
 <?php
+    if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
     if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         $_SESSION['in'] ="start";
         header('Location:../../../../index.php');
 }
-?>
 
-
-<?php
     require_once("../../../connection.php");
     require_once("../common/encrypt.php");
-    session_start();
+ 
     $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name,document_filename, forrelease_val,forrelease_date,fk_office_name_documentlist from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
 
     echo "<div id='details'>";
@@ -66,6 +65,7 @@
     echo "<th>Released Comment</th>";
     echo "</tr>";
   //  echo "</table>";
+    $rowcolor="blue";
     if ($query) {
 		//echo "<table id='historydata'>";
     foreach($query as $var) {

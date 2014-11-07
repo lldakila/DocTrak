@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../index.php');
@@ -12,7 +14,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
 <?php
-session_start();
+
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
@@ -196,7 +198,7 @@ function myFunction(e) {
         
         		<img src="../../../images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
 				<?php
-						session_start();
+						
 						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
 						echo "</span>";
 				?>
@@ -261,17 +263,17 @@ function myFunction(e) {
         <div class="admin">
         
         			<?php
-          session_start();
+          
 	         require_once("../../connection.php");
 	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-	         $query="SELECT MAIL_ID FROM MAIL WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
-	         $result=mysqli_query($con,$query);
+	         $query="SELECT MAIL_ID FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+	         $result=mysqli_query($con,$query) or die(mysqli_error($con));
 	         while ($row = mysqli_fetch_array($result))
 	         {
 
 		         echo '<a href="../userinfo/inbox.php"><img src="../../../images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
-
+break;
 	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
@@ -328,7 +330,7 @@ function myFunction(e) {
        <?php
            require_once("../../connection.php");
 
-           $query=select_info_multiple_key("select DOCUMENTTYPE_ID from DOCUMENT_TYPE");
+           $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
            foreach($query as $var) {
               echo "<option>".$var['DOCUMENTTYPE_ID']."</option>";
            }
@@ -347,7 +349,7 @@ function myFunction(e) {
        <?php
            require_once("../../connection.php");
 
-           $query=select_info_multiple_key("select TEMPLATE_ID from DOCUMENT_TEMPLATE");
+           $query=select_info_multiple_key("select TEMPLATE_ID from document_template");
            foreach($query as $var)
            {
               echo "<option>".$var['TEMPLATE_ID']."</option>";
@@ -366,7 +368,7 @@ function myFunction(e) {
                   </table>
 
                     <?php
-            session_start();
+            
                     echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
            if($_SESSION['operation']=='save'){
 
@@ -478,7 +480,7 @@ function myFunction(e) {
     			<div id="footer2">
             <p>
 			<?php
-				session_start();
+				
 				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
 				echo "&nbsp|";
 			?>
