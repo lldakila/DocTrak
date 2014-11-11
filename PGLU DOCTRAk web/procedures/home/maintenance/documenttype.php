@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 	if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		$_SESSION['in'] ="start";
 		header('Location:../../../index.php');
@@ -18,7 +20,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
 <?php
-session_start();
+
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
@@ -133,18 +135,24 @@ $(document).ready(function() {
     e.preventDefault();
     var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
     jQuery.ajax({
-			type: "POST",
+            type: "POST",
             url:"type/search.php",
             dataType:"text", // Data type, HTML, json etc.
-			data:myData,
-			success:function(response){
-				$("#responds").html(response);
+            data:myData,
+            beforeSend: function() {
+            $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
 
-			},
-			error:function (xhr, ajaxOptions, thrownError){
-				alert(thrownError);
-			}
-			});
+            }, 
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
 	});
 
 });
@@ -175,7 +183,7 @@ function myFunction(e) {
 
         		<a href="index.php"><img src="../../../images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
 				<?php
-						session_start();
+						
 						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
 						echo "</span>";
 				?>
@@ -240,17 +248,17 @@ function myFunction(e) {
         <div class="admin">
         
         			<?php
-          session_start();
+     
 	         require_once("../../connection.php");
 	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-	         $query="SELECT MAIL_ID FROM MAIL WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+	         $query="SELECT MAIL_ID FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
 	         $result=mysqli_query($con,$query);
 	         while ($row = mysqli_fetch_array($result))
 	         {
 
 		         echo '<a href="../userinfo/inbox.php"><img src="../../../images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
-
+                           break;
 	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
@@ -315,7 +323,7 @@ function myFunction(e) {
                   </table>
 
                     <?php
-            session_start();
+         
            if($_SESSION['operation']=='save'){
 
                 echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
@@ -392,7 +400,7 @@ function myFunction(e) {
     			<div id="footer2">
             <p>
 			<?php
-				session_start();
+				
 				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
 				echo "&nbsp|";
 			?>

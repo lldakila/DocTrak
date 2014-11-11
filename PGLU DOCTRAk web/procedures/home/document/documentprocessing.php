@@ -39,7 +39,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 url:"processing/retrievedata.php",
                 dataType:"text", // Data type, HTML, json etc.
                 data:myData,
-
+                beforeSend: function() {
+		        $("#ajaxhistory").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+                ajaxError: function() {
+		        $("#ajaxhistory").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
                 success:function(response){
 
                     $("#ajaxhistory").html(response);
@@ -60,6 +65,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     url:"processing/search.php",
                     dataType:"text", // Data type, HTML, json etc.
                     data:myData,
+                    beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                     },
+                    ajaxError: function() {
+		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    },
                     success:function(response){
                         $("#responds").html(response);
                       //  alert (response);

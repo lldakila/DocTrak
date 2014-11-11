@@ -109,10 +109,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
    elseif ($_POST['document_hidden']=="delete") {
 
-          $query=insert_update_delete("DELETE FROM documentlist WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
+          $query=select_info_multiple_key("select * from documentlist where document_id='".($_POST['barcode'])."' and complete=1");
+          if ($query)
+          {
+              $_SESSION['operation']="complete";
+          }
+          else
+          {
+              $query=insert_update_delete("DELETE FROM documentlist WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
+               $_SESSION['operation']="delete";
+               $_SESSION['message']="Delete Successful";
+          }
+          
 
-          $_SESSION['operation']="delete";
-          $_SESSION['message']="Delete Successful";
+         
    }
 
 elseif ($_POST['document_hidden']=="scrap")

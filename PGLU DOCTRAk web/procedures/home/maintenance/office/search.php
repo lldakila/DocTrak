@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     $_SESSION['in'] ="start";
     header('Location:../../../../index.php');
@@ -7,7 +9,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
     require_once("../../../connection.php");
    
-    $query=select_info_multiple_key("select OFFICE_NAME,OFFICE_DESCRIPTION from OFFICE WHERE OFFICE_NAME LIKE '%".$_POST['search_string']."%' OR OFFICE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY OFFICE_NAME");
+    $query=select_info_multiple_key("select OFFICE_NAME,OFFICE_DESCRIPTION from office WHERE OFFICE_NAME LIKE '%".$_POST['search_string']."%' OR OFFICE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY OFFICE_NAME");
 	
 	 
 if ($query) {

@@ -66,6 +66,12 @@ function retrieveAttachment(barcodeID){
             url:"receive/retrieveAttachment.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
+            beforeSend: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
             success:function(response){
 
                 $("#attachment").html(response);
@@ -99,19 +105,36 @@ $(document).ready(function() {
             url:"receive/search.php",
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
-			success:function(response){
-				$("#responds").html(response);
+            beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
 
-			},
-			error:function (xhr, ajaxOptions, thrownError){
-				alert(thrownError);
-			}
-			});
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
 	});
 
 
 
     });
+
+
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+
 
 </script>
 
@@ -146,7 +169,7 @@ $(document).ready(function() {
         <li><a href="#" class="parent"><span>DOCUMENT</span></a>
         	<ul>
                 <li><a href="newdoc.php"><span>NEW DOCUMENT</span></a></li>
-                            <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
+                            <li><a href="receiveddoc.php"><span>RECEIVE DOCUMENT</span></a></li>
                             <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
                             <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
                             <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
@@ -229,7 +252,7 @@ break;
         	<div id="post">
             
             			<div id="post10">
-                        <h2>RECEIVED DOCUMENT</h2>
+                        <h2>RECEIVE DOCUMENT</h2>
 
                             <form name="process" method="post" action="receive/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
@@ -272,11 +295,12 @@ break;
          
            if($_SESSION['operation']=='save'){
 
-                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Received Successfully </div>";
 
+echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Received Successfully</div>";
             }
            elseif ($_SESSION['operation']=='error') {
                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
+               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";
            }
 
                $_SESSION['operation']='clear';

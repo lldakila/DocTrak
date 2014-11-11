@@ -74,6 +74,12 @@ function retrieveAttachment(barcodeID){
             url:"release/retrieveAttachment.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
+            beforeSend: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
             success:function(response){
 
                 $("#attachment").html(response);
@@ -145,20 +151,33 @@ $(document).ready(function() {
             url:"release/search.php",
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
-			success:function(response){
-				$("#responds").html(response);
+            beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
 
-			},
-			error:function (xhr, ajaxOptions, thrownError){
-				alert(thrownError);
-			}
-			});
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
 	});
 
 
 
     });
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
 
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
 </script>
 </head>
 
@@ -317,11 +336,12 @@ $(document).ready(function() {
                          
                             if($_SESSION['operation']=='save'){
 
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully </div>";
-
+                                
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully</div>";     
                             }
                             elseif ($_SESSION['operation']=='error') {
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
+                                
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";     
                             }
 
                             $_SESSION['operation']='clear';

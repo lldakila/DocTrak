@@ -583,6 +583,107 @@ div#menu li.back .left {
 	padding-bottom:20px;
 }
 
+#post11 {
+	width:300px;
+	height:330px;
+	background-color:#FFF;
+	display:block;
+	float:left;
+	margin:10px 0 0 10px;
+	border-radius:5px;
+	padding-bottom:20px;
+}
+
+#post11 p {
+    font-size: 12px;
+    margin: 0;
+    font-family: tahoma;
+    padding: 10px 0 0 32px;
+}
+
+#post11 .scroll {
+	overflow:scroll;
+	width:290px;
+	height:290px;
+	margin:0px auto;
+	padding:10px 0 10px 0;
+        
+        
+}
+
+#post11 .scroll table {
+    border-spacing: 1px;
+}
+
+#post11 .scroll table td {
+    font-size: 10px;
+    
+    
+}
+
+#post11 tr.hoverhigh {
+    background-color: #ffbaba;
+   
+}
+
+#post11 tr.hoverhigh:hover {
+    background-color: white;
+}
+
+#post11 tr.hovermed {
+    background-color: #bad4ff;
+   
+}
+
+#post11 tr.hovermed:hover {
+    background-color: white;
+}
+#post11 tr.hoverlow {
+    background-color: #baffc2;
+   
+}
+
+#post11 tr.hoverlow:hover {
+    background-color: white;
+}
+
+
+
+#post11 tr.usercolortest {
+	background-color: #5B5C5C;
+	color:#ccc;
+    font-family: Tahoma;
+    font-size: 10px;
+}
+
+#post12 {
+	width:400px;
+	height:40px;
+	background-color:#FFF;
+	display:block;
+	float:right;
+	margin:10px 10px 0 0;
+	border-radius:5px;
+	padding-bottom:20px;
+}
+
+#post12 .highclr {
+    width: 40px; 
+    height: 15px; 
+    background-color:#ffbaba; 
+    float: left;
+    margin: 0 0 0 15px;
+}
+
+#post12 span {
+    padding-left: 10px;
+}
+
+#post12 h2, p {
+    margin: 0;
+    padding: 5px 0 0 15px;
+}
+
 #post10 h2 {
 	margin:0;
 	padding:10px 0 5px 5px;

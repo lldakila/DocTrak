@@ -136,10 +136,16 @@ $(document).ready(function() {
     e.preventDefault();
     var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
     jQuery.ajax({
-			type: "POST",
+            type: "POST",
             url:"new/search.php",
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
+                         beforeSend: function() {
+		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                        },
+                        ajaxError: function() {
+                                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                        },
 			success:function(response){
 				$("#responds").html(response);
 
@@ -161,6 +167,12 @@ $(document).ready(function() {
             url:"new/barcode.php",
             dataType:"text", // Data type, HTML, json etc.
            // data:myData,
+            beforeSend: function() {
+		        $("#barcodeinput").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#barcodeinput").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
             success:function(response){
                 //$("#barcodeinput").html(response);
 
@@ -390,6 +402,10 @@ break;
 
 	           echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Scrapped successfully.</div>";
            }
+           elseif($_SESSION['operation']=='complete'){
+
+	           echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Document is completed. Delete failed.</div>";
+           }
 
 
 
@@ -409,7 +425,7 @@ break;
                          <input type="button" value="New" onClick="javascript:cleartext();"/>
 	                     <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';"/>
                     <?php
-	                    if($_SESSION['GROUP']=='ADMIN' or $_SESSION['GROUP']=='POWER ADMIN')
+	                    if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
 	                    {
 		                    $value="document.getElementById('document_hidden').value='delete';";
 		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'"/>';
@@ -420,11 +436,11 @@ break;
 
 
 
-						if ($_SESSION['GROUP']!='ADMIN')
-						{
-							$value="document.getElementById('document_hidden').value='scrap';";
-		                    echo '<input  type="submit" value="Scrap"  onClick="'.$value.'"/>';
-						}
+                            if ($_SESSION['GROUP']!='ADMIN')
+                            {
+                                    $value="document.getElementById('document_hidden').value='scrap';";
+                echo '<input  type="submit" value="Scrap"  onClick="'.$value.'"/>';
+                            }
 
 					?>
                          </div>

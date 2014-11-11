@@ -36,15 +36,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         var myData = 'documentTracker='+documentID; //build a post data structure
         jQuery.ajax({
             type: "POST",
-	        beforeSend: function() {
-		        $(this).css( 'cursor', 'progress' );
-	        },
+	                  
+         
             url:"tracker/retrievedata.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
+            beforeSend: function() {
+		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+            ajaxError: function() {
+		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
             success:function(response){
-
-                $("#ajaxhistory").html(response);
+                        $("#ajaxhistory").html(response);
+                
             },
             error:function (xhr, ajaxOptions, thrownError){
                 alert(thrownError);
@@ -62,6 +67,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 url:"tracker/search.php",
                 dataType:"text", // Data type, HTML, json etc.
                 data:myData,
+                beforeSend: function() {
+		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+                ajaxError: function() {
+		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+        
                 success:function(response){
                     $("#responds").html(response);
 

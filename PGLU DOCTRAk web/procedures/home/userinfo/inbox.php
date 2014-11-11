@@ -1,9 +1,12 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../index.php');
 }
+date_default_timezone_set($_SESSION['Timezone']);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,7 +15,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
 <?php
-session_start();
+
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
@@ -31,6 +34,12 @@ session_start();
 			url:"messaging/readmessage.php",
 			dataType:"text", // Data type, HTML, json etc.
 			data:myData,
+                         beforeSend: function() {
+		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                            },
+                        ajaxError: function() {
+                                    $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                            },
 			success:function(response){
 
 				$("#MailData").html(response);
@@ -57,14 +66,14 @@ session_start();
     	<div class="headerbanner">
         
         		<img src="../../../images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
-				<?php
-						session_start();
+        <?php
 
-						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
-						echo "</span>";
-				?>
+
+                        echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
+                        echo "</span>";
+        ?>
 				
-				</h2><p>Management Information System</p>
+                </h2><p>Management Information System</p>
         
         </div>
 
@@ -123,17 +132,18 @@ session_start();
        
         <div class="admin">
          <?php
-          session_start();
+          
 	         require_once("../../connection.php");
 	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-	         $query="SELECT MAIL_ID FROM MAIL WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
-	         $result=mysqli_query($con,$query);
+	         $query="SELECT MAIL_ID FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+	         $result=mysqli_query($con,$query) or die(mysqli_error($con));
+              
 	         while ($row = mysqli_fetch_array($result))
 	         {
 
 		         echo '<a href="inbox.php"><img src="../../../images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
-
+                         break;
 	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
 
@@ -193,44 +203,44 @@ session_start();
                                                             <td>Date</td>
                                                     </tr>
 
-			                                        <?php
+                    <?php
 
-				                                        require_once("../../connection.php");
-				                                        global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-				                                        $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-				                                        $query="SELECT MAIL_ID,MAILCONTENT, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM MAIL JOIN SECURITY_USER ON
-				                                                MAIL.FK_SECURITY_USERNAME_SENDER = SECURITY_USER.SECURITY_USERNAME WHERE FK_SECURITY_USERNAME_OWNER
-				                                                = '".$_SESSION['usr']."'  ORDER BY MAILDATE DESC";
+                            require_once("../../connection.php");
+                            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+                            $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+                            $query="SELECT MAIL_ID,MAILCONTENT, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM mail JOIN security_user ON
+                                    mail.FK_SECURITY_USERNAME_SENDER = security_user.SECURITY_USERNAME WHERE FK_SECURITY_USERNAME_OWNER
+                                    = '".$_SESSION['usr']."'  ORDER BY MAILDATE DESC";
 
-				                                        //echo $query;
-				                                        $RESULT=mysqli_query($con,$query);
-				                                        echo "<input id='mailid' type='hidden'/>";
+                            //echo $query;
+                            $RESULT=mysqli_query($con,$query) or die(mysqli_error($con));
+                            echo "<input id='mailid' type='hidden'/>";
 
-				                                        while ($row = mysqli_fetch_array($RESULT))
-				                                        {
-					                                        $date = date_create($row['MAILDATE']);
-														if ($row['MAILSTATUS']==0)
-															{
-				                                            echo "<tr id=".$row["MAIL_ID"]." class='bg01' onClick='OpenMail(".$row['MAIL_ID'].")'>";
-															$class='bg01';
-															}
+                            while ($row = mysqli_fetch_array($RESULT))
+                            {
+                                    $date = date_create($row['MAILDATE']);
+                                                                    if ($row['MAILSTATUS']==0)
+                                                                            {
+                                echo "<tr id=".$row["MAIL_ID"]." class='bg01' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+                                                                            $class='bg01';
+                                                                            }
 
-														else
-															{
-															echo "<tr id=".$row["MAIL_ID"]." class='bg' onClick='OpenMail(".$row['MAIL_ID'].")'>";
-															$class='bg';
-															}
+                                                                    else
+                                                                            {
+                                                                            echo "<tr id=".$row["MAIL_ID"]." class='bg' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+                                                                            $class='bg';
+                                                                            }
 
-                                                        echo    "<td>".$row['SECURITY_NAME']."</td>
-                                                            <td>".$row['MAILTITLE']."<font style='color:#666;'><div class='y6'>".$row['MAILCONTENT']."</font></div></td>
-                                                            <td></td>
-                                                            <td>".date_format($date,'M d, Y-H:i')."</td>
-			                                        		</tr>";
+            echo    "<td>".$row['SECURITY_NAME']."</td>
+                <td>".$row['MAILTITLE']."<font style='color:#666;'><div class='y6'>".$row['MAILCONTENT']."</font></div></td>
+                <td></td>
+                <td>".date_format($date,'M d, Y-H:i')."</td>
+                                    </tr>";
 
 
-				                                        }
+                            }
 
-			                                        ?>
+                    ?>
 
 
                                                 </table>
@@ -260,7 +270,7 @@ session_start();
     			<div id="footer2">
             <p>
 			<?php
-				session_start();
+				
 				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
 				echo "&nbsp|";
 			?>

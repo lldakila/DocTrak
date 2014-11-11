@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 	if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		$_SESSION['in'] ="start";
 		header('Location:../../../../index.php');
@@ -33,7 +35,7 @@
 	
 	global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 	$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-	$query="UPDATE SECURITY_USER SET SECURITY_PASSWORD = '".md5($_POST['newpass'])."' WHERE SECURITY_USERNAME = '".$_SESSION['usr']."' ";
+	$query="UPDATE security_user SET SECURITY_PASSWORD = '".md5($_POST['newpass'])."' WHERE SECURITY_USERNAME = '".$_SESSION['usr']."' ";
 
 	$RESULT=mysqli_query($con,$query);
 

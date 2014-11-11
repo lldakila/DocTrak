@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 	if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 	{
 		$_SESSION['in'] ="start";
@@ -12,13 +14,13 @@
 	global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 	$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 
-	$query="SELECT MAIL_ID,MAILCONTENT, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM MAIL JOIN SECURITY_USER ON
-	MAIL.FK_SECURITY_USERNAME_SENDER = SECURITY_USER.SECURITY_USERNAME WHERE MAIL_ID
+	$query="SELECT MAIL_ID,MAILCONTENT, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM mail JOIN security_user ON
+	mail.FK_SECURITY_USERNAME_SENDER = security_user.SECURITY_USERNAME WHERE MAIL_ID
 	= '".$_POST['MailId']."'";
 	//$query="SELECT MAIL_ID,MAILCONTENT, MAILTITLE, MAILDATE,MAILSTATUS FROM MAIL WHERE MAIL_ID = '.$_POST[MailId].' ";
 
 	//echo $query;
-	$RESULT=mysqli_query($con,$query);
+	$RESULT=mysqli_query($con,$query) or die(mysqli_error($con));
 	echo "<tr class='bg1'>
           <td>Message</td>
    		  </tr>";
@@ -34,7 +36,7 @@
 	echo $row['MAILCONTENT'];
 	}
 
-	$query="UPDATE MAIL SET MAILSTATUS=1 WHERE MAIL_ID = '".$_POST['MailId']."'";
+	$query="UPDATE mail SET MAILSTATUS=1 WHERE MAIL_ID = '".$_POST['MailId']."'";
 	mysqli_query($con,$query);
 
 ?>

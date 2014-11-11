@@ -1,18 +1,15 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../../index.php');
 }
-?>
 
-
-
-
-<?php
     require_once("../../../connection.php");
-    session_start();
-    $query=select_info_multiple_key("select DOCUMENTTYPE_ID,DESCRIPTION,priority,public from DOCUMENT_TYPE WHERE DESCRIPTION LIKE '%".$_POST['search_string']."%' OR DOCUMENTTYPE_ID LIKE '%".$_POST['search_string']."%' ORDER BY DOCUMENTTYPE_ID");
+
+    $query=select_info_multiple_key("select DOCUMENTTYPE_ID,DESCRIPTION,priority,public from document_type WHERE DESCRIPTION LIKE '%".$_POST['search_string']."%' OR DOCUMENTTYPE_ID LIKE '%".$_POST['search_string']."%' ORDER BY DOCUMENTTYPE_ID");
    
 
 

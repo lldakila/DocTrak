@@ -1,16 +1,15 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../../index.php');
 }
-?>
 
-
-<?php
     require_once("../../../connection.php");
-    session_start();
-    $query=select_info_multiple_key("select SECURITY_GROUPNAME,SECURITY_NAME from SECURITY_GROUP WHERE SECURITY_GROUPNAME LIKE '%".$_POST['search_string']."%' OR SECURITY_NAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_NAME");
+  
+    $query=select_info_multiple_key("select SECURITY_GROUPNAME,SECURITY_NAME from security_group WHERE SECURITY_GROUPNAME LIKE '%".$_POST['search_string']."%' OR SECURITY_NAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_NAME");
  
 
 

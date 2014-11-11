@@ -44,6 +44,7 @@ function GetKey(key) {
         url:"common/redirectSearch.php",
         dataType:"text", // Data type, HTML, json etc.
         data:myData,
+        
         success:function(response){
 
             // $("#attachment").html(response);
@@ -63,6 +64,12 @@ function retrieveAttachment(barcodeID){
             url:"forrelease/retrieveAttachment.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
+            beforeSend: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
             success:function(response){
 
                 $("#attachment").html(response);
@@ -90,18 +97,24 @@ $(document).ready(function() {
     e.preventDefault();
     var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
     jQuery.ajax({
-			type: "POST",
+            type: "POST",
             url:"forrelease/search.php",
             dataType:"text", // Data type, HTML, json etc.
-			data:myData,
-			success:function(response){
-				$("#responds").html(response);
+            data:myData,
+            beforeSend: function() {
+                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
 
-			},
-			error:function (xhr, ajaxOptions, thrownError){
-				alert(thrownError);
-			}
-			});
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
 	});
 
 

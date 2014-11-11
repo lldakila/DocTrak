@@ -145,6 +145,7 @@ function clickSearch(template_name,description_name) {
             url:"flowtemplate/office.php",
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
+              
 			success:function(response){
 
 				$("#officeselect").html(response);
@@ -162,6 +163,7 @@ function clickSearch(template_name,description_name) {
             url:"flowtemplate/officehidden.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
+            
             success:function(response){
                // $("#OfficeArray").html(response);
                 document.getElementById('OfficeArray').value=response;
@@ -263,6 +265,12 @@ $(document).ready(function() {
             url:"flowtemplate/search.php",
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
+                        beforeSend: function() {
+                                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                        },
+                        ajaxError: function() {
+                                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                        },
 			success:function(response){
 				$("#responds").html(response);
 
