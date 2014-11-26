@@ -23,175 +23,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <script src="../../../js/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
 
-
-    function clickRetrieve(document_barcode) {
-
-        retrieveDocumentTracker(document_barcode);
-
-    }
-
-    function retrieveDocumentTracker(documentID){
-        var myData = 'documentTracker='+documentID; //build a post data structure
-        jQuery.ajax({
-            type: "POST",
-	                  
-         
-            url:"tracker/retrievedata.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-            ajaxError: function() {
-		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-            success:function(response){
-                        $("#ajaxhistory").html(response);
-                
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    }
-
-    $(document).ready(function() {
-        $("#search_document").click(function (e) {
-
-            e.preventDefault();
-            var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-            jQuery.ajax({
-                type: "POST",
-                url:"tracker/search.php",
-                dataType:"text", // Data type, HTML, json etc.
-                data:myData,
-                beforeSend: function() {
-		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-                ajaxError: function() {
-		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-        
-                success:function(response){
-                    $("#responds").html(response);
-
-                },
-                error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-                }
-            });
-        });
-
-    });
-
-
-
-</script>
 </head>
 
 <body>
-<div class="header">
-
-    <div class="header1">
-
-        <div class="headerline">
-
-            <div class="headerbanner">
-
-                <img src="../../../images/home/doctraklogo2.png" width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
-				<?php
-						
-						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
-						echo "</span>";
-				?>
-				
-				</h2><p>Management Information System</p>
-
-            </div>
-
-            <div class="menugroup">
-            
-            <div id="menu">
-
-                <ul class="menu">
-        <li><a href="../../../home.php" class="parent"><span>HOME</span></a></li>
-        <li><a href="#" class="parent"><span>DOCUMENT</span></a>
-        	<ul>
-                <li><a href="newdoc.php"><span>NEW DOCUMENT</span></a></li>
-                            <li><a href="receiveddoc.php"><span>RECEIVED DOCUMENT</span></a></li>
-                            <li><a href="releasedoc.php"><span>RELEASE DOCUMENT</span></a></li>
-                            <li><a href="forreleasedoc.php"><span>FOR RELEASE</span></a></li>
-                            <li><a href="documenttracker.php"><span>DOCUMENT TRACKER</span></a></li>
-                            <li><a href="documentprocessing.php"><span>PROCESSING</span></a></li>
-            </ul>
-        </li>
-        <li><a href="#"><span>REPORT</span></a>
-        	<ul style="width:265px;">
-                <li><a href="../report/dochistory.php"><span>DOCUMENT HISTORY</span></a></li>
-				<li><a href="../report/doconprocess.php"><span>DOCUMENT ON PROCESS</span></a></li>
-                <li><a href="../report/doconprocesspersignatory.php"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
-                <li><a href="../report/docpersignatory.php"><span>DOCUMENTS PER SIGNATORY</span></a></li>
-            </ul>
-        </li>
-	            <?php
-		            if($_SESSION['GROUP']=='POWER ADMIN')
-		            {
-
-			            echo '<li><a href="#"><span>MAINTENANCE</span></a>
-                <ul>
-                        <li><a href="../maintenance/documenttype.php"><span>DOCUMENT TYPE</span></a></li>
-                        <li><a href="../maintenance/office.php"><span>OFFICES</span></a></li>
-                        <li><a href="../maintenance/flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
-                        <li><a href="#" class="parent"><span>SECURITY</span></a>
-                            <ul>
-                                <li><a href="../maintenance/users.php"><span>USERS</span></a></li>
-                                <li><a href="../maintenance/group.php"><span>GROUP</span></a></li>
-								<li><a href="../maintenance/audittrail.php"><span>AUDIT TRAIL</span></a></li>
-                            </ul>
-                        </li>
-                </ul>
-                </li>';
-		            }
-	            ?>
-
-	            <li><a href="../userinfo/userinfo.php"><span>USER INFO</span></a></li>
-        <li><a href="../../../about.php"><span>ABOUT</span></a></li>
-        <li><a href="../logout.php"><span>LOGOUT</span></a></li>
-
-        </ul>
-		</div>
-        
-        <div class="admin">
-        
-        			<?php
-        
-	         require_once("../../connection.php");
-	         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-	         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-	         $query="SELECT MAIL_ID FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
-	         $result=mysqli_query($con,$query);
-	         while ($row = mysqli_fetch_array($result))
-	         {
-
-		         echo '<a href="../userinfo/inbox.php"><img src="../../../images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
-                         break;
-	         }
-           echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
-
-
-        ?>
-        </div>
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+<?php
+    $PROJECT_ROOT= '../../../';
+    include_once('../../../header.php');
+?>
 
 <div class="content">
 
@@ -279,6 +118,73 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     </div>
 
 </div>
+    
+    
+<script language="JavaScript" type="text/javascript">
 
+
+    function clickRetrieve(document_barcode) {
+
+        retrieveDocumentTracker(document_barcode);
+
+    }
+
+    function retrieveDocumentTracker(documentID){
+        var myData = 'documentTracker='+documentID; //build a post data structure
+        jQuery.ajax({
+            type: "POST",
+	                  
+         
+            url:"tracker/retrievedata.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() {
+		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+            ajaxError: function() {
+		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+            success:function(response){
+                        $("#ajaxhistory").html(response);
+                
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $("#search_document").click(function (e) {
+
+            e.preventDefault();
+            var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+            jQuery.ajax({
+                type: "POST",
+                url:"tracker/search.php",
+                dataType:"text", // Data type, HTML, json etc.
+                data:myData,
+                beforeSend: function() {
+		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+                ajaxError: function() {
+		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+        
+                success:function(response){
+                    $("#responds").html(response);
+
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+                }
+            });
+        });
+
+    });
+
+
+
+</script>
 </body>
 </html>

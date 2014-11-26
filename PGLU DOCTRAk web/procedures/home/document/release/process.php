@@ -68,6 +68,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     }
 
     mysqli_close($con);
-    //header('Location:../releasedoc.php');
+    header('Location:../releasedoc.php');
 
  ?>

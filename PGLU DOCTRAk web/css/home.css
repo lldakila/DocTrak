@@ -657,22 +657,37 @@ div#menu li.back .left {
 }
 
 #post12 {
-	width:400px;
-	height:40px;
-	background-color:#FFF;
-	display:block;
 	float:right;
-	margin:10px 10px 0 0;
-	border-radius:5px;
-	padding-bottom:20px;
 }
 
-#post12 .highclr {
-    width: 40px; 
-    height: 15px; 
-    background-color:#ffbaba; 
+#post12 #grpclr {
     float: left;
-    margin: 0 0 0 15px;
+    margin: 10px 20px 0 0px;
+}
+
+img#highclr {
+    height: 18px;
+    width: 40px;
+    background: #ffbaba;
+}
+
+img#medclr {
+    height: 18px;
+    width: 40px;
+    background: #bad4ff;
+}
+
+img#lowclr {
+    height: 18px;
+    width: 40px;
+    background: #baffc2;
+}
+
+#grpclr p{
+    margin: 0;
+    padding: 3px 0 0 50px;
+    font-family: tahoma;
+    font-size: 10px;
 }
 
 #post12 span {

@@ -14,98 +14,176 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
    date_default_timezone_set($_SESSION['Timezone']);
 
 
- if ($_POST['document_hidden']=="save") {
-       if ($_POST['primarykey'] == "") {
-           global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-           $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-           if (mysqli_connect_error()) {
-               echo "Failed to connect to MySQL: " . mysqli_connect_error();
+ if ($_POST['document_hidden']=="save") 
+     {
+        global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+        $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+        if (mysqli_connect_error()) 
+        {
+           echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+        mysqli_autocommit($con,FALSE);
+        $flag=true;
+        
+        if ($_POST['primarykey'] == "") 
+        {
 
-           }
-           mysqli_autocommit($con,FALSE);
-           $flag=true;
+
            // CHECK IF INPUTFILE IS EMPTY START
-           if (empty($_FILES['pdffile']['name'])){
-               $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
+            if (empty($_FILES['pdffile']['name']))
+            {
+               
+                $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";   
+              
 
-           }
-           else {
-               $UploadFilename=$_POST['barcode']."$".$_FILES['pdffile']['name'];
-               $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,DOCUMENT_FILENAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['pdffile']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".$UploadFilename."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
+            }
+            else 
+            {
 
-           }
+                $docData=addslashes(file_get_contents($_FILES['pdffile']['tmp_name']));
+                $docInfo= finfo_open(FILEINFO_MIME_TYPE);
+                $docProp=finfo_file($docInfo,$_FILES['pdffile']['tmp_name']);
+          
+                if (filesize($_FILES['pdffile']['tmp_name']) > $_SESSION['MaxUploadSize'])
+                {
+                    $flag=false;
+                    $_SESSION['message']="Maximum allowed document size is ".$_SESSION['MaxUploadSize']." bytes.";
+                }
+               
+                if ($docProp == "application/pdf")
+                {
+                    $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,DOCUMENT_MIME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','{$docData}','".$docProp."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
+                }
+                else
+                {
+                    $flag=false;
+                    $_SESSION['message']="Not supported attachment.";
+                }
+               
+               
+               
+               
+            } 
            // CHECK IF INPUT FILE IS EMPTY END
 
-           $RESULT=mysqli_query($con,$query);
-           if (!$RESULT) {
-               $flag=false;
-               echo mysqli_error($con);
-               echo "<br>";
-           }
-           $query="SELECT  fk_office_name,SORT FROM template_list WHERE fk_template_id= '".$_POST['template']."' order by sort asc";
-           $RESULT=mysqli_query($con,$query);
+            $RESULT=mysqli_query($con,$query);
+            if (!$RESULT) 
+            {
+                $flag=false;
+                echo mysqli_error($con);
+                echo "<br>";
+            }
+            $query="SELECT  fk_office_name,SORT FROM template_list WHERE fk_template_id= '".$_POST['template']."' order by sort asc";
+            $RESULT=mysqli_query($con,$query);
 
-           while ($row = mysqli_fetch_array($RESULT)) {
-               $query="INSERT INTO documentlist_tracker(OFFICE_NAME,SORTORDER,fk_documentlist_id) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."')";
+            while ($row = mysqli_fetch_array($RESULT)) 
+            {
+                $query="INSERT INTO documentlist_tracker(OFFICE_NAME,SORTORDER,fk_documentlist_id) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."')";
+                $outcome=mysqli_query($con,$query);
 
-               $outcome=mysqli_query($con,$query);
-
-               if (!$outcome) {
+                if (!$outcome) 
+                {
                    $flag=false;
                    echo mysqli_error($con);
                    echo "<br>";
                }
-           }
+            }
 
+            $_FILES['pdffile']['name']=$UploadFilename;
+                
+               
 
-          /* foreach ($recset as $value) {
-
-           }*/
-           $_FILES['pdffile']['name']=$UploadFilename;
-           //echo $_FILES['pdffile']['name'];
-           if ($flag) {
-
-               $_SESSION['operation']="save";
-               $_SESSION['message']="Save Successful";
-
-
-                    //UPLOAD PDF FILE START
-                   $targetfolder="D:/OneDrive/Projects/DocTrak/document/";
-                   $targetfolder = $targetfolder . basename( $_FILES['pdffile']['name']);
-                   $file_type=$_FILES['pdffile']['type'];
-
-                    if ($file_type=="application/pdf") {
-                        if(move_uploaded_file($_FILES['pdffile']['tmp_name'], $targetfolder)) {
-                            echo "The file ". basename( $_FILES['file']['name']). " is uploaded";
-
-                        }
-
-                     }
-               mysqli_commit($con);
-
-               echo "commit";
+            echo "commit";
                //UPLOAD PDF FILE END
 
-           }
-           else {
-               mysqli_rollback($con);
-               $_SESSION['operation']="error";
-               $_SESSION['message']="Error";
-               echo "rollback";
-           }
-           mysqli_free_result($RESULT);
-           mysqli_close($con);
 
 
-       }
-       else {
+        }
+        else //UPDATE DOCUMENT
+        {
            //echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
-           $query=insert_update_delete("UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['pdffile']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ");
+           
+            $query="Select FK_TEMPLATE_ID from documentlist where document_id = '".$_POST['primarykey']."' ";
+            $result=  mysqli_query($con,$query);
+            while ($row=  mysqli_fetch_array($result))
+            {
+                if ($row['FK_TEMPLATE_ID']!=$_POST['template'])
+                {
+                    $flag=false;
+                    $_SESSION['message']="Template cannot be changed once saved.";
+                }
 
-           $_SESSION['operation']="update";
-           $_SESSION['message']="Update Successful";
-       }
-   }
+            }
+            
+            if (empty($_FILES['pdffile']['name']))
+            {
+                $query="UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
+            }
+            else
+            {
+                $docData=addslashes(file_get_contents($_FILES['pdffile']['tmp_name']));
+                $docInfo= finfo_open(FILEINFO_MIME_TYPE);
+                $docProp=finfo_file($docInfo,$_FILES['pdffile']['tmp_name']);
+          
+                if (filesize($_FILES['pdffile']['tmp_name']) > $_SESSION['MaxUploadSize'])
+                {
+                    $flag=false;
+                    $_SESSION['message']="Maximum allowed document size is ".$_SESSION['MaxUploadSize']." bytes.";
+                }
+               
+                if ($docProp == "application/pdf")
+                {
+                    $query="UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."',DOCUMENT_FILE='{$docData}',DOCUMENT_MIME='".$docProp."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
+                    //$query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,DOCUMENT_MIME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','{$docData}','".$docProp."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
+                }
+                else
+                {
+                    $flag=false;
+                    $_SESSION['message']="Not supported attachment.";
+                }
+                
+                $RESULT=mysqli_query($con,$query);
+                $_SESSION['message']=mysqli_error($con);
+                if (!$RESULT) 
+                {
+                    $flag=false;
+                    echo mysqli_error($con);
+                    
+                }
+            }
+            
+                
+            
+            
+            
+           $outcome=mysqli_query($con,$query);
+           if (!$outcome) 
+            {
+                $flag=false;
+            }
+            
+            
+           
+           
+          // $_SESSION['operation']="update";
+           //$_SESSION['message']="Update Successful";
+           
+        }
+        if ($flag) 
+            {
+                $_SESSION['operation']="save";
+                $_SESSION['message']="Save Successful";
+                mysqli_commit($con);
+            }
+            else 
+            {
+                mysqli_rollback($con);
+                $_SESSION['operation']="error";
+                echo "rollback";
+            }
+        mysqli_free_result($RESULT);
+        mysqli_close($con);
+    }
 
    elseif ($_POST['document_hidden']=="delete") {
 

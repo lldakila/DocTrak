@@ -40,9 +40,9 @@
 
         $counterX=1;
         $pieces = explode("|",$_POST['OfficeArray']);
-
+        $arrayRev=array_reverse($pieces);
          //  mysqli_commit($con);
-       foreach($pieces as $OfficeList) {
+       foreach($arrayRev as $OfficeList) {
            $query="INSERT INTO template_list(FK_TEMPLATE_ID,FK_OFFICE_NAME,SORT) VALUES ('".$_POST['template_name']."','$OfficeList',$counterX)";
            echo $query;
            $RESULT=mysqli_query($con,$query);
@@ -77,7 +77,7 @@
 
            $counterX=1;
            $pieces = explode("|",$_POST['OfficeArray']);
-
+$arrayRev=array_reverse($pieces);
            $query="UPDATE document_template SET TEMPLATE_ID='".$_POST['template_name']."',TEMPLATE_DESCRIPTION='".$_POST['template_description']."' WHERE TEMPLATE_ID = '".$_POST['primarykey']."' ";
            $RESULT=mysqli_query($con,$query);
            if (!$RESULT) {
@@ -86,7 +86,7 @@
                echo "<br>";
            }
 
-           foreach($pieces as $OfficeList) {
+           foreach($arrayRev as $OfficeList) {
                $query="INSERT INTO template_list(FK_TEMPLATE_ID,FK_OFFICE_NAME,SORT) VALUES ('".$_POST['template_name']."','$OfficeList',$counterX)";
                $counterX++;
                $RESULT=mysqli_query($con,$query);

@@ -94,9 +94,11 @@
 
             case 'forrelease':
 
-                foreach ($query as $rows) {
+                foreach ($query as $rows) 
+                    {
 
-                    if ($rows['OFFICE_NAME']==$_SESSION['OFFICE']){
+                    if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
+                        {
 
                         if ($rows['SORTORDER']==1)
                         {
@@ -154,7 +156,39 @@
 	                }
                    }
                 return false;
-                break;
+               
+                
+                
+            case 'DocumentsOnOffice':
+                foreach ($query as $rows) 
+                {
+//                    if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
+//                    {
+//                        if ($rows['RELEASED_VAL']!=1 AND $rows['RECEIVED_VAL']==1)
+//                            {
+//                                $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+//                                return true;
+//                            }
+//                    }
+//                    else
+//                    {
+                        if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
+                        {
+                            if ($rows['RELEASED_VAL']!=1 AND $rows['RECEIVED_VAL']==1)
+                            {
+                                $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+                                return true;
+                            }
+                        
+                        } 
+//                    }
+                        
+                   
+                }
+                
+                return false;
+              
+            
 
        // }
 

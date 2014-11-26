@@ -1,18 +1,21 @@
 <?php
-	session_start();
-	if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
-		$_SESSION['in'] ="start";
-		header('Location:../../index.php');
-	}
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
+  $_SESSION['in'] ="start";
+ header('Location:index.php');
+}
 
 
-	function InsertAudit($DML,$User,$SQL_Query)
+        require_once("../connection.php");
+	function InsertAudit($DML,$User,$SQL_Query,$PROJECT_ROOT)
 	{
 		$transact_id=GetTransactionId()+1;
 
 
-		session_start();
-		require_once("../connection.php");
+		
+		
 		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 		$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 
@@ -35,8 +38,8 @@
 
 	function GetTransactionId()
 	{
-		session_start();
-		require_once("../connection.php");
+		
+		
 		$query=select_info_multiple_key("SELECT COUNTER from GENERATOR WHERE GENERATOR_NAME = 'TRANSACTION' ");
 		return $query[0]['COUNTER'];
 	}

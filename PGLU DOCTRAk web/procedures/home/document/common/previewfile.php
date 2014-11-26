@@ -9,70 +9,148 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 require_once("encrypt.php");
-$path = "D:/OneDrive/Projects/DocTrak/document/";
-//$decryptPath=decryptText($_GET['download_file'],$_SESSION['EncryptionKey']);
-//
-//$xx="M6K%EF%BF%BD-O~%EF%BF%BD%EF%BF%BD%EF%BF%BD!,%EF%BF%BD%EF%BF%BDx";
-/*echo $_GET['download_file'];
-echo "<br>";
-echo  "encrypt text: ".encryptText("MIS-140814-10");
-$z=encryptText("MIS-140814-10");
-//encryptText($xx,$_SESSION['EncryptionKey']);
-echo "<br>";
-//$bb=encryptText($xx,$_SESSION['EncryptionKey']);
-echo  "orig text: ".decryptText(base64_decode($_GET['download_file']));
-echo "<br>";*/
-
-/*$xx=$_GET['download_file'];*/
-//echo $_GET['download_file']."<br>";
-//echo $path.decryptText($xx,$_SESSION['EncryptionKey'])."<br>";*/
-//$_GET['download_file']=decryptText(base64_decode($_GET['download_file']));
-//echo "this one: ".$_GET['download_file'];
-//$fullPath = $path.decryptText(encryptText($xx,$_SESSION['EncryptionKey']),$_SESSION['EncryptionKey']).".pdf";
-/*echo urldecode($_GET["download_file"]);
-echo "<br>";
-echo "TTZL9y1PfpNGh1KZRTMwn2z2blIb3uvX+n+jrSmnPyY=";
-echo "<br>";
-echo decryptText(base64_decode("TTZL9y1PfpNGh1KZRTMwn2z2blIb3uvX+n+jrSmnPyY="));*/
-$fullPath = $path.urldecode(decryptText(base64_decode($_GET['download_file'])));
-/*echo $fullPath;
-if ($fd = fopen ($fullPath, "r")) {
-    $fsize = filesize($fullPath);
-    $path_parts = pathinfo($fullPath);
-  //  $ext = strtolower($path_parts["extension"]);
-  //  switch ($ext) {
-    //    case "pdf":
-            header("Content-type: application/pdf"); // add here more headers for diff. extensions
-           // header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
-     //       break;
-    //    default;
-    //       header("Content-type: application/octet-stream");
-     //      header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
-  //  }
-  //  header("Content-length: $fsize");
-  //  header("Cache-control: private"); //use this to open files directly
-    output_file($fullPath, ''.$_GET['filename'].'', 'text/plain');
-    while(!feof($fd)) {
-        $buffer = fread($fd, 2048);
-        echo $buffer;
-    }
-}
-fclose ($fd);*/
+//$path = "D:/OneDrive/Projects/DocTrak/document/";
+//$path=$path . decryptText(base64_decode($_GET['download_file']));
+//$val ='D:/OneDrive/Projects/DocTrak/document/PGS-141121-5TEST.pdf';
 $file = $path.urldecode(decryptText(base64_decode($_GET['download_file'])));
-header('Content-Description: File Transfer');
-header('Content-type: application/pdf');
-header("Content-Type: application/force-download");// some browsers need this
-header("Content-Disposition: attachment; filename=\"$file\"");
-header('Expires: 0');
-header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-header('Pragma: public');
-header('Content-Length: ' . filesize($file));
-ob_clean();
-flush();
-readfile($file);
-exit;
+$fullpath=$path.basename(decryptText(base64_decode($_GET['download_file'])));
+
+//echo strcmp($val,"D:/OneDrive/Projects/DocTrak/document/PGS-141121-5TEST.pdf");
+////die;
+//echo "<br>";
+//echo strval($val) ;
+//echo "<br>";
+//echo strval($fullpath);
+//echo "<br>";
+//die;
+//$fname=$var;
+//$path ='D:/OneDrive/Projects/DocTrak/document/PGS-141121-5TEST.pdf';
+//
+//echo $file;
+//echo "<br>";
+$id=decryptText(base64_decode($_GET['download_file']));
+
+require_once("../../../connection.php");
+global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+
+
+$query="select document_file,document_mime from documentlist where document_id = '".$id."'";
+//echo $query;
+$RESULT=mysqli_query($con,$query);
+ while ($row = mysqli_fetch_array($RESULT))
+ {
+     
+//     echo $row['document_mime'];
+//     die;
+     //header('Content-type: "'.$row['document_mime'].'');
+    header("Pragma: public");
+    header("Expires: 0");
+    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+    header("Cache-Control: private",false);
+    header('Content-Type: application/pdf');
+    header('Content-Disposition: attachment; filename="downloaded.pdf"');
+    header("Content-Transfer-Encoding: binary");
+     //header('Content-Disposition: attachment; filename="downloaded.pdf"');
+    ob_clean();
+    flush();
+    echo $row['document_file'];
+     
+  
+ }
+
+
+
+//
+//
+//echo "die";
+//        die;
+//echo "<br>";
+////echo $fullpath;
+//
+//    $file = $path;
+//echo $file;
+//if (file_exists($file))
+//    {
+//    header('Content-Description: File Transfer');
+//    header('Content-Type: application/octet-stream');
+//    header('Content-Disposition: attachment; filename='.basename($file));
+//    header('Expires: 0');
+//    header('Cache-Control: must-revalidate');
+//    header('Pragma: public');
+//    header('Content-Length: ' . filesize($file));
+//    ob_clean();
+//    flush();
+//    readfile($file);
+//    exit;
+//    }
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 
-?>
+
+
+
+
+
+
+
+
+
+
+//echo $fullpath;
+//echo "<br>";
+//echo pathinfo($path .decryptText(base64_decode($_GET['download_file'])));
+//
+//if (file_exists  ($path)) {
+//$fsize = filesize($fullpath);
+//$path_parts = pathinfo($fullpath);
+////echo decryptText(base64_decode($_GET['download_file']));
+////echo  $path.basename(decryptText(base64_decode($_GET['download_file'])));
+////echo "<br>";
+////echo $file;
+//$ext = strtolower($path_parts["extension"]);
+//echo "valid req";
+//die;
+//switch ($ext) {
+//    case "pdf":
+//    header("Content-type: application/pdf"); // add here more headers for diff.     extensions
+//    header("Content-Disposition: attachment; filename=\"".$fullpath."\"");     // use 'attachment' to force a download
+//    break;
+//    default;
+//    header("Content-type: application/octet-stream");
+//    header("Content-Disposition: filename=\"".$fullpath."\"");
+//}
+//header("Content-length: $fsize");
+//header("Cache-control: private"); //use this to open files directly
+//readfile($file);
+//exit;
+//} else {
+//        die("Invalid request");
+//}
+////
+////header('Content-Description: File Transfer');
+////header('Content-type: application/pdf');
+////header("Content-Type: application/force-download");// some browsers need this
+////header("Content-Disposition: attachment; filename=\"$file\"");
+////header('Expires: 0');
+////header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+////header('Pragma: public');
+////header('Content-Length: ' . filesize($file));
+////ob_clean();
+////flush();
+////readfile($file);
+////echo $file;
+////exit;
+
+
+
+
