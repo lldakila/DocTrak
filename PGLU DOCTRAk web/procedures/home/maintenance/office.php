@@ -21,106 +21,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
 <?php
-session_start();
+
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
 <script src="../../../js/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
-/*<![CDATA[*/
 
-/*]]>*/
-
-function cleartext() {
-  document.getElementById("office_name").value="";
-  document.getElementById("office_description").value="";
-    document.getElementById("primarykey").value="";
-}
-function clickSearch(officename,officedescription) {
-document.getElementById("office_name").value=officename;
-  document.getElementById("office_description").value=officedescription;
-    document.getElementById("primarykey").value=officename;
-}
-
-function validate() {
-
-
-    if (document.getElementById("office_mode").value == "delete") {
-        if (document.getElementById("primarykey").value != "") {
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-
-            return false;
-        }
-    }
-        alert("Nothing to delete.");
-        return false;
-    }
-
-    if (document.process.office_name.value == "") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.office_description.value =="") {
-        alert("Fill up necessary inputs.");
-        return false
-    }
-    else {
-        return true;
-    }
-
-
-
-
-};
-
-
-
-$(document).ready(function() {
-    $("#search_office").click(function (e) {
-
-        e.preventDefault();
-        var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-        jQuery.ajax({
-            type: "POST",
-            url:"office/search.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-                $("#responds").html(response);
-
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    });
-
-
-
-});
-
-document.addEventListener("mousemove", function() {
-    myFunction(event);
-});
-
-function myFunction(e) {
-	$("#fade").fadeTo(3000,0.0);
-
-}
-
-
-</script>
 
 </head>
 
@@ -257,6 +165,93 @@ function myFunction(e) {
     </div>
 	
 </div>
+    
+<script language="JavaScript" type="text/javascript">
 
+
+function cleartext() {
+  document.getElementById("office_name").value="";
+  document.getElementById("office_description").value="";
+    document.getElementById("primarykey").value="";
+}
+function clickSearch(officename,officedescription) {
+document.getElementById("office_name").value=officename;
+  document.getElementById("office_description").value=officedescription;
+    document.getElementById("primarykey").value=officename;
+}
+function validate() {
+
+
+    if (document.getElementById("office_mode").value == "delete") {
+        if (document.getElementById("primarykey").value != "") {
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+
+            return false;
+        }
+    }
+        alert("Nothing to delete.");
+        return false;
+    }
+
+    if (document.process.office_name.value == "") {
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else if (document.process.office_description.value =="") {
+        alert("Fill up necessary inputs.");
+        return false
+    }
+    else {
+        return true;
+    }
+
+
+
+
+};
+
+$(document).ready(function() {
+    $("#search_office").click(function (e) {
+
+        e.preventDefault();
+        var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+        jQuery.ajax({
+            type: "POST",
+            url:"office/search.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                $("#responds").html(response);
+
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+    });
+
+});
+
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+
+
+</script>
+    
 </body>
 </html>

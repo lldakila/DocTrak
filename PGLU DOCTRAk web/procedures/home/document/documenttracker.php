@@ -48,7 +48,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     <h2>DOCUMENT TRACKER</h2>
                     
 
-                 <div id="retrievetable">
+                 <div id="retrievetable" >
                      <div id="ajaxhistory">
 						
 

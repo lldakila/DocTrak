@@ -49,7 +49,7 @@
     echo "</td></tr>";
     echo "</div>";
 
-    echo '<table id="historydata" >';
+    echo '<table id="historydata" class="table">';
     echo "<tr class='bgcolor'>";
     echo "<th>No</th>";
     echo "<th>Office</th>";
