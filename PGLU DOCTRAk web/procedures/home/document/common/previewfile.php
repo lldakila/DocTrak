@@ -49,7 +49,7 @@ $RESULT=mysqli_query($con,$query);
     header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
     header("Cache-Control: private",false);
     header('Content-Type: application/pdf');
-    header('Content-Disposition: attachment; filename="downloaded.pdf"');
+    header('Content-Disposition: inline; filename="downloaded.pdf"');
     header("Content-Transfer-Encoding: binary");
      //header('Content-Disposition: attachment; filename="downloaded.pdf"');
     ob_clean();

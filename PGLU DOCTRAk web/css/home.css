@@ -139,6 +139,9 @@ div {
 	padding:5px 5px;
 }
 
+#tableId {
+    font-size: 5px;
+}
 .text {
 	font-size:14px;
 }
@@ -616,18 +619,21 @@ div#menu li.back .left {
 }
 
 #post11 .scroll table td {
-    font-size: 10px;
+    font-size: 9px;
     
     
 }
 
 #post11 tr.hoverhigh {
     background-color: #ffbaba;
+    
    
 }
 
 #post11 tr.hoverhigh:hover {
     background-color: white;
+    cursor:pointer;
+    
 }
 
 #post11 tr.hovermed {
@@ -637,6 +643,7 @@ div#menu li.back .left {
 
 #post11 tr.hovermed:hover {
     background-color: white;
+    cursor:pointer;
 }
 #post11 tr.hoverlow {
     background-color: #baffc2;
@@ -645,6 +652,7 @@ div#menu li.back .left {
 
 #post11 tr.hoverlow:hover {
     background-color: white;
+    cursor:pointer;
 }
 
 
@@ -1587,6 +1595,7 @@ table#historydata tr.bgcolor {
 
 #details table {
 	margin:10px auto;
+        width: 100%;
 }
 
 #details button {

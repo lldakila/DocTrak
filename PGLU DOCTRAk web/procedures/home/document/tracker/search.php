@@ -24,12 +24,12 @@
 if ($query){
 	
 $rowcolor="blue";
-									echo "<tr class='usercolortest'>
-                                	<th>Barcode</th>
-                                    <th>Title</th>
-                                    <th>Owner</th>
-                                	<th>Date</th>
-                                	</tr>";
+            echo "<tr class='usercolortest'>
+            <th>Barcode</th>
+        <th>Title</th>
+        <th>Owner</th>
+            <th>Date</th>
+            </tr>";
 
     foreach($query as $var) {
 

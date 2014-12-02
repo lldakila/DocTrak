@@ -18,11 +18,19 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<link rel="stylesheet" href="css/jquery-ui.min.css">
- <script src="js/jquery-ui.min.js"></script>
-<script src="js/jquery-1.10.2.min.js"></script>
+
+<!-- <script src="js/jquery-ui.min.js"></script> -->
+<link href="css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
+
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
+<script src="js/jquery-1.10.2.min.js"></script>
+
+
+
+
+
+
 
 
    
@@ -33,7 +41,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     <?php
     $PROJECT_ROOT= '';
     include_once('header.php');
-    require_once("/procedures/connection.php");
+    //require_once("/procedures/connection.php");
     ?>
 
 <div class="content">
@@ -64,12 +72,12 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                        
                         <div class="scroll">
                             
-                            <table style="width: 600px;">
+                            <table name="tableId" class='table'  style="width: 600px;">
                                 
                                 <tr class="usercolortest">
                                 <th>Barcode</th>
                                 <th>Title</th>
-                                <th>User</th>
+                                <th>Owner</th>
                                 <th>Date</th>
                                 
                             </tr>
@@ -81,15 +89,15 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
 	         {
                         if (strtoupper($row['priority'])=='HIGH') 
                         {
-                            echo "<tr class='hoverhigh clickableRow' ><td >";
+                            echo "<tr  class='hoverhigh clickableRow' onClick='addRowHandlers(0);' ><td >";
                         }
                         elseif (strtoupper($row['priority'])=='MEDIUM')
                         {
-                            echo "<tr class='hovermed clickableRow' ><td >";
+                            echo "<tr class='hovermed clickableRow' onClick='addRowHandlers(0);'><td >";
                         }
                         elseif (strtoupper($row['priority'])=='LOW')
                         {
-                            echo "<tr class='hoverlow clickableRow' ><td >";
+                            echo "<tr class='hoverlow clickableRow' onClick='addRowHandlers(0);' ><td >";
                         }
                         
                         
@@ -118,6 +126,8 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                          
                     </div>
                     
+           
+                    
                     <div  id="post11" >
                         <?php 
 //                        if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
@@ -132,7 +142,7 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                         ?>
                         <div class="scroll">
                         
-                        <table style="width: 600px;">
+                        <table name="tableId" style="width: 600px;" class="table">
                             <tr class="usercolortest">
                                 <th>Barcode</th>
                                 <th>Title</th>
@@ -162,15 +172,15 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
 
                             if (strtoupper($row['priority'])=='HIGH') 
                                {
-                                   echo "<tr class='hoverhigh'><td>";
+                                   echo "<tr class='hoverhigh' onClick='addRowHandlers(1);' ><td>";
                                }
                                elseif (strtoupper($row['priority'])=='MEDIUM')
                                {
-                                   echo "<tr class='hovermed'><td>";
+                                   echo "<tr class='hovermed' onClick='addRowHandlers(1);' ><td>";
                                }
                                elseif (strtoupper($row['priority'])=='LOW')
                                {
-                                   echo "<tr class='hoverlow'><td >";
+                                   echo "<tr class='hoverlow' onClick='addRowHandlers(1);' ><td >";
                                }
                                
                                echo $row['document_id'];
@@ -218,7 +228,7 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                         ?>
                         <div class="scroll">
                         
-                        <table style="width: 600px;">
+                        <table name="tableId" style="width: 600px;" class="table">
                             <tr class="usercolortest">
                                 <th>Title</th>
                                 <th>Owner</th>
@@ -228,8 +238,8 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                             </tr>
                             <?php
                             
-                            $result=mysqli_query($con,$query)or die(mysqli_error($con));
-	         while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                $result=mysqli_query($con,$query)or die(mysqli_error($con));
+                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 	         {
                      
                      if (SeekFilter($row["document_id"],'ReceivableDocument')) 
@@ -239,15 +249,15 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                      
                      if (strtoupper($row['priority'])=='HIGH') 
                         {
-                            echo "<tr class='hoverhigh'><td >";
+                            echo "<tr class='hoverhigh' onClick='addRowHandlers(2);' ><td >";
                         }
                         elseif (strtoupper($row['priority'])=='MEDIUM')
                         {
-                            echo "<tr class='hovermed'><td >";
+                            echo "<tr class='hovermed' onClick='addRowHandlers(2);' ><td >";
                         }
                         elseif (strtoupper($row['priority'])=='LOW')
                         {
-                            echo "<tr class='hoverlow'><td >";
+                            echo "<tr class='hoverlow' onClick='addRowHandlers(2);' ><td >";
                         }
 		   
                         echo $row['document_title'];
@@ -333,7 +343,9 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
     </div>
 	
 </div>
-            <?php
+  
+    
+               <?php
             function SeekFilter($docid,$filterDefinition)                    
             {
                 
@@ -386,126 +398,101 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                     
                     
                 }
-                return false;
                 
-                
-           
-//            
-//            function GetReveivableOffice($DocumentList_id)
-//            {
-//                require_once("/procedures/connection.php");
-//                $sqlquery=select_info_multiple_key("SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER FROM documentlist_tracker WHERE FK_DOCUMENTLIST_ID = '".$docid."' ORDER BY SORTORDER ASC");
-//                if (!$sqlquery)
-//                {
-//                    return false;
-//                   
-//                }
-//                
-//            }
+     
             ?>
     
     
-    <script language="JavaScript" type="text/javascript">
-jQuery(document).ready(function($) {
-      $(".clickableRow").click(function() {
-            window.document.location = $(this).attr("href");
-      });
-});
+    <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Document History</h4>
+              </div>
+              <div class="modal-body">
+                      <div id="responds">
+                    
+                         </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
-function cleartext() {
-  document.getElementById("barcodeinput").value="";
-  document.getElementById("title").value="";
-  document.getElementById("description").value="";
-  document.getElementById("type").value="";
-  document.getElementById("template").value="";
-  document.getElementById("file").value="";
-  document.getElementById("primarykey").value="";
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- End Modal --> 
 
-}
-function clickSearch(barcode,title,description,file,template,type,a) {
-   // document.getElementById('primarykey').value=barcode;
-    document.process.barcode.value=barcode;
-    document.process.title.value=title;
-    document.process.description.value=description;
-    document.process.type.value=type;
-    document.process.template.value=template;
-    //document.process.file.value=a;
-    document.process.primarykey.value=barcode;
-
-    //alert (type);
-  //  document.getElementById("group").value=username;
-}
-
-function validate() {
-
-    if (document.getElementById('document_hidden').value=='delete') {
-        if (document.getElementById('primarykey').value != ""){
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-        }
-        else {
-            alert("Nothing to delete.");
-            return false;
-        }
-
-
+<script src="js/bootstrap.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+ 
+                
+function addRowHandlers(arrayId)
+{
+    if (arrayId==0)
+    {
+        var table = document.getElementsByName("tableId")[0];
     }
-
-
-
-    if (document.process.barcode.value=="")   {
-        alert("Fill up necessary inputs.");
-        return false;
+    else if (arrayId==1)
+    {
+       var table = document.getElementsByName("tableId")[1]; 
     }
-    else if (document.process.title.value=="") {
-
-            alert("Fill up necessary inputs.");
-            return false;
-        }
-    else if (document.process.type.value=="") {
-        alert("Select Document type.");
-        return false;
+    else
+    {
+        var table = document.getElementsByName("tableId")[2];
     }
-    else if (document.process.template.value=="") {
-        alert("Select Template.");
-        return false;
+    
+    var rows = table.getElementsByTagName("tr");
+    for (i = 0; i < rows.length; i++) {
+        var currentRow = table.rows[i];
+        var createClickHandler = 
+            function(row) 
+            {
+                return function() { 
+                                        var cell = row.getElementsByTagName("td")[0];
+                                        var id = cell.innerHTML;
+                                        //alert(id);
+                                        
+                                       retrieveDocument(id);
+                                       $('#myModal').modal('show');
+                                 };
+            };
+
+        currentRow.onclick = createClickHandler(currentRow);
     }
-
-
-
-
-
 }
 
-$(document).ready(function() {
-	
-	$("#generatebarcode").click(function (e) {
-
-        e.preventDefault();
-      //  var myData = 'randbarcode='+ $("#generatebarcode").val(); //build a post data structure
+function retrieveDocument(BarcodeId){
+        var myData = 'documentTracker='+BarcodeId; //build a post data structure
         jQuery.ajax({
             type: "POST",
-            url:"procedures/home/document/new/barcode.php",
+	    url:"procedures/home/document/tracker/retrievedata.php",
             dataType:"text", // Data type, HTML, json etc.
-           // data:myData,
+            data:myData,
+            beforeSend: function() {
+		        $("#responds").html("<div style='margin:115px 0 0 320px;'><img src='/images/home/ajax-loader.gif' /></div>");
+	        },
+            ajaxError: function() {
+		        $("#responds").html("<div style='margin:115px 0 0 320px;'><img src='/images/home/ajax-loader.gif' /></div>");
+	        },
             success:function(response){
-                //$("#barcodeinput").html(response);
-
-                document.getElementById("barcodeinput").value=response;
+                        $("#responds").html(response);
+                
             },
             error:function (xhr, ajaxOptions, thrownError){
                 alert(thrownError);
             }
         });
+         $(window).load(function(){
+        $('#myModal').modal('show');
     });
+    }
 
 
-    });
+
+
     
     
 

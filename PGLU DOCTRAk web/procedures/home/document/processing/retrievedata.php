@@ -34,7 +34,7 @@ if (session_status() == PHP_SESSION_NONE) {
         $encrypted=urlencode(base64_encode(encryptText($query[0]['document_id'])));
         //echo "<a href='/procedures/home/document/tracker/previewfile.php?download_file=".$query[0]['document_filename']."' >Download</a>";
        // $xx=base64_encode(encryptText($query[0]['document_filename']));
-         echo "<a href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
+         echo "<a target='_blank' href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
        // echo $query[0]['document_filename']."<br>";
        // echo base64_encode(encryptText($query[0]['document_filename']));
 

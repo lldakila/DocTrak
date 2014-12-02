@@ -23,70 +23,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     <script src="../../../js/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-    <script language="JavaScript" type="text/javascript">
-
-
-        function clickRetrieve(document_barcode) {
-
-            retrieveDocumentTracker(document_barcode);
-
-        }
-
-        function retrieveDocumentTracker(documentID){
-            var myData = 'documentTracker='+documentID; //build a post data structure
-            jQuery.ajax({
-                type: "POST",
-                url:"processing/retrievedata.php",
-                dataType:"text", // Data type, HTML, json etc.
-                data:myData,
-                beforeSend: function() {
-		        $("#ajaxhistory").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-                ajaxError: function() {
-		        $("#ajaxhistory").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-                success:function(response){
-
-                    $("#ajaxhistory").html(response);
-                },
-                error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            $("#search_document").click(function (e) {
-
-                e.preventDefault();
-                var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-                jQuery.ajax({
-                    type: "POST",
-                    url:"processing/search.php",
-                    dataType:"text", // Data type, HTML, json etc.
-                    data:myData,
-                    beforeSend: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                     },
-                    ajaxError: function() {
-		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                    },
-                    success:function(response){
-                        $("#responds").html(response);
-                      //  alert (response);
-
-                    },
-                    error:function (xhr, ajaxOptions, thrownError){
-                        alert(thrownError);
-                    }
-                });
-            });
-
-        });
-
-
-
-    </script>
+    
 </head>
 
 <body>
@@ -182,6 +119,73 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     </div>
 
 </div>
+    
+    
+    
+    
+<script language="JavaScript" type="text/javascript">
 
+
+        function clickRetrieve(document_barcode) {
+
+            retrieveDocumentTracker(document_barcode);
+
+        }
+
+        function retrieveDocumentTracker(documentID){
+            var myData = 'documentTracker='+documentID; //build a post data structure
+            jQuery.ajax({
+                type: "POST",
+                url:"processing/retrievedata.php",
+                dataType:"text", // Data type, HTML, json etc.
+                data:myData,
+                beforeSend: function() {
+		        $("#ajaxhistory").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+                ajaxError: function() {
+		        $("#ajaxhistory").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	        },
+                success:function(response){
+
+                    $("#ajaxhistory").html(response);
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $("#search_document").click(function (e) {
+
+                e.preventDefault();
+                var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+                jQuery.ajax({
+                    type: "POST",
+                    url:"processing/search.php",
+                    dataType:"text", // Data type, HTML, json etc.
+                    data:myData,
+                    beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                     },
+                    ajaxError: function() {
+		        $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    },
+                    success:function(response){
+                        $("#responds").html(response);
+                      //  alert (response);
+
+                    },
+                    error:function (xhr, ajaxOptions, thrownError){
+                        alert(thrownError);
+                    }
+                });
+            });
+
+        });
+
+
+
+    </script>
 </body>
 </html>

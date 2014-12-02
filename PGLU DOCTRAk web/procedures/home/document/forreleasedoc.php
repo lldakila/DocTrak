@@ -32,7 +32,7 @@ function clickSearch(barcodeno,title,documenttype,template,pdf) {
     document.process.template.value=template;
     //document.process.file.value=a;
     document.process.primarykey.value=barcodeno;
-	retrieveAttachment(pdf);
+	retrieveAttachment(barcodeno);
     GetKey(barcodeno);
 
 }

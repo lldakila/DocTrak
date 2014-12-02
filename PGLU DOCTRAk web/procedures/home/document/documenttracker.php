@@ -20,10 +20,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
+ <script src="../../../js/jquery-1.10.2.min.js"></script> 
+<!--<link href="../../../css/bootstrap.css" rel="stylesheet"/>-->
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 
+    
+    
+    
 </head>
 
 <body>
@@ -76,7 +80,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                     
                                     
                                 	
-                                    <table id="responds">
+                                    <table id="responds" >
                                 	<tr class='usercolortest'>
                                 	<th>Barcode</th>
                                     <th>Title</th>
@@ -182,6 +186,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         });
 
     });
+
 
 
 
