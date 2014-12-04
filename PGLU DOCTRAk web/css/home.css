@@ -1555,6 +1555,8 @@ table#historydata {
 	width:100%;
 }
 
+
+
 table#historydata tr.usercolor:hover {
     background-color:#CECECE;
 	color: #2E2E2E;

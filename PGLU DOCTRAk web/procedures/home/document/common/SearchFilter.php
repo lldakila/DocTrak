@@ -131,7 +131,8 @@
 
             case 'processing':
 
-                foreach ($query as $rows) {
+                foreach ($query as $rows) 
+                    {
 	                if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
 	                {
 			                if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']!=1)
@@ -191,8 +192,33 @@
             
 
        // }
+            case 'rollback':
+                
+                foreach ($query as $rows) 
+                {
+                    if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
+                    {
+                        if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']==1)
+                        {
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
+                            {
+                                if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']==1)
+                                {
+                                    return true;
+                                }
 
-
+                            }
+                    }
+                }
+                    
+                
+            return false;
+            
 
 
 

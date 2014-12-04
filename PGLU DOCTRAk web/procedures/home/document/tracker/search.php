@@ -1,8 +1,10 @@
 <?php
-    if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-    if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
+    if (session_status() == PHP_SESSION_NONE) 
+    {
+        session_start();
+    }
+    if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
+    {
         $_SESSION['in'] ="start";
         header('Location:../../../../index.php');
     }
@@ -23,25 +25,25 @@
     
 if ($query){
 	
-$rowcolor="blue";
-            echo "<tr class='usercolortest'>
-            <th>Barcode</th>
-        <th>Title</th>
-        <th>Owner</th>
-            <th>Date</th>
-            </tr>";
+    $rowcolor="blue";
+    echo "<tr class='usercolortest'>
+    <th>Barcode</th>
+    <th>Title</th>
+    <th>Owner</th>
+    <th>Date</th>
+    </tr>";
 
     foreach($query as $var) {
 
     if ($rowcolor=="blue")
     {
-        echo '<tr id="'.$var["document_id"].'" class="usercolor" onClick="clickRetrieve(\''.$var["document_id"].'\')">';
+        echo '<tr id="'.$var["document_id"].'" class="usercolor" onClick="retrieveDocumentTracker(\''.$var["document_id"].'\')">';
         // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
         $rowcolor="notblue";
     }
     else
     {
-        echo '<tr id="'.$var["document_id"].'" class="usercolor1" onClick="clickRetrieve(\''.$var["document_id"].'\')">';
+        echo '<tr id="'.$var["document_id"].'" class="usercolor1" onClick="retrieveDocumentTracker(\''.$var["document_id"].'\')">';
         // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
         $rowcolor="blue";
     }

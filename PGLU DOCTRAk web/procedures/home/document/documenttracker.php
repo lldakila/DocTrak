@@ -127,19 +127,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <script language="JavaScript" type="text/javascript">
 
 
-    function clickRetrieve(document_barcode) {
-
-        retrieveDocumentTracker(document_barcode);
-
-    }
+   
 
     function retrieveDocumentTracker(documentID){
         var myData = 'documentTracker='+documentID; //build a post data structure
         jQuery.ajax({
             type: "POST",
-	                  
-         
-            url:"tracker/retrievedata.php",
+            url:"common/retrievedata.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {

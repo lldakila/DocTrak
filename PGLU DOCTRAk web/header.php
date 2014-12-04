@@ -46,8 +46,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/receiveddoc.php"; ?>"><span>RECEIVED DOCUMENT</span></a></li>
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/releasedoc.php"; ?>"><span>RELEASE DOCUMENT</span></a></li>
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/forreleasedoc.php"; ?>"><span>FOR RELEASE</span></a></li>
+                <li><span><hr></span></li>
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documenttracker.php"; ?>"><span>DOCUMENT TRACKER</span></a></li>
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documentprocessing.php"; ?>"><span>PROCESSING</span></a></li>
+                <li><span><hr></span></li>
+                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/rollback.php"; ?>"><span>ROLLBACK</span></a></li>
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>
@@ -101,7 +104,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 	         while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 	         {
 
-		         echo '<a href="procedures/home/userinfo/inbox.php"><img src="'.$PROJECT_ROOT.'images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
+		         echo '<a href="'.$PROJECT_ROOT.'/procedures/home/userinfo/inbox.php"><img src="'.$PROJECT_ROOT.'images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
                          break;
 	         }
            echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";

@@ -29,135 +29,6 @@
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 
-<script language="JavaScript" type="text/javascript">
-/*<![CDATA[*/
-function cleartext() {
-  document.getElementById("username").value="";
-  document.getElementById("password").value="";
-  document.getElementById("verify").value="";
-  document.getElementById("name").value="";
-  document.getElementById("primarykey").value="";
-  document.getElementById("office").value="Select Here";
-  document.getElementById("group").value="Select Here";
-
-}
-function clickSearch(username,name,groupname,officename) {
-  //alert (officename);
-         document.getElementById("office").value=officename;
-document.process.username.value=username;
-    document.process.name.value=name;
-    document.getElementById("primarykey").value=username;
-  document.getElementById("group").value=groupname;
-
-    //document.getElementById("verify").value=groupname;
-}
-
-
-function validate() {
-
-    if (document.getElementById('security_user').value=='delete') {
-        if (document.getElementById('primarykey').value != ""){
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-        }
-        else {
-            alert("Nothing to delete.");
-            return false;
-        }
-
-
-    }
-
-
-
-    if (document.process.username.value=="")   {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.password.value=="") {
-
-            alert("Fill up necessary inputs.");
-            return false;
-        }
-
-    else if (document.process.name.value==""){
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.group.value=="Select Here") {
-        alert("Select Group.");
-        return false;
-    }
-    else if (document.process.office.value=="Select Here") {
-        alert("Select Office.");
-        return false;
-    }
-    else {
-
-        if (document.process.password.value != document.process.verify.value){
-            alert("Check password verification.");
-            return false;
-        }
-            else {
-                return true;
-            }
-
-
-    }
-
-
-
-
-}
-
-$(document).ready(function() {
-    $("#search_user").click(function (e) {
-        
-    e.preventDefault();
-    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-    jQuery.ajax({
-			type: "POST",
-            url:"user/search.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-                    $("#responds").html(response);
-       //alert (response);
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-            }
-            });
-	});
-
-
-
-    });
-
-
-document.addEventListener("mousemove", function() {
-    myFunction(event);
-});
-
-function myFunction(e) {
-	$("#fade").fadeTo(3000,0.0);
-
-}
-    
-    
-/*]]>*/
-</script>
 
 </head>
 
@@ -339,5 +210,135 @@ function myFunction(e) {
 	
 </div>
 
+    
+<script language="JavaScript" type="text/javascript">
+/*<![CDATA[*/
+function cleartext() {
+  document.getElementById("username").value="";
+  document.getElementById("password").value="";
+  document.getElementById("verify").value="";
+  document.getElementById("name").value="";
+  document.getElementById("primarykey").value="";
+  document.getElementById("office").value="Select Here";
+  document.getElementById("group").value="Select Here";
+
+}
+function clickSearch(username,name,groupname,officename) {
+  //alert (officename);
+         document.getElementById("office").value=officename;
+document.process.username.value=username;
+    document.process.name.value=name;
+    document.getElementById("primarykey").value=username;
+  document.getElementById("group").value=groupname;
+
+    //document.getElementById("verify").value=groupname;
+}
+
+
+function validate() {
+
+    if (document.getElementById('security_user').value=='delete') {
+        if (document.getElementById('primarykey').value != ""){
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+        }
+        else {
+            alert("Nothing to delete.");
+            return false;
+        }
+
+
+    }
+
+
+
+    if (document.process.username.value=="")   {
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else if (document.process.password.value=="") {
+
+            alert("Fill up necessary inputs.");
+            return false;
+        }
+
+    else if (document.process.name.value==""){
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else if (document.process.group.value=="Select Here") {
+        alert("Select Group.");
+        return false;
+    }
+    else if (document.process.office.value=="Select Here") {
+        alert("Select Office.");
+        return false;
+    }
+    else {
+
+        if (document.process.password.value != document.process.verify.value){
+            alert("Check password verification.");
+            return false;
+        }
+            else {
+                return true;
+            }
+
+
+    }
+
+
+
+
+}
+
+$(document).ready(function() {
+    $("#search_user").click(function (e) {
+        
+    e.preventDefault();
+    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+    jQuery.ajax({
+			type: "POST",
+            url:"user/search.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
+       //alert (response);
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
+	});
+
+
+
+    });
+
+
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+    
+    
+/*]]>*/
+</script>
 </body>
 </html>

@@ -27,148 +27,7 @@
 <script src="../../../js/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
-/*<![CDATA[*/
 
-/*]]>*/
-
-function cleartext() {
-  document.getElementById("document_name").value="";
-  document.getElementById("description").value="";
-    document.getElementById("primarykey").value="";
-    if(docpublic==1){
-         document.getElementById("publicyes").checked=true;
-         document.getElementById("publicno").checked=false;
-   }
-   else{
-        document.getElementById("publicyes").checked=false;
-         document.getElementById("publicno").checked=true;
-   }
-}
-
-function validate() {
-
-
-
-    if (document.getElementById('type_mode').value=='delete') {
-          if (document.getElementById("primarykey").value != "") {
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-
-
-    }
-       else {
-               alert("Nothing to delete.");
-            return false;
-                   }
-    }
-
-    if (document.documenttype.document_name.value=="")   {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.documenttype.description.value=="") {
-
-            alert("Fill up necessary inputs.");
-            return false;
-        }
-
-    else if (document.documenttype.name.value==""){
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-
-    else if (document.documenttype.priority.value==""){
-      alert("Fill up necessary inputs.");
-        return false;
-    }
-
-if (document.getElementById('publicyes').checked) {
-            return true;
-           }
-else if (document.getElementById('publicno').checked) {
-  return true;
-
-  }
-else {
-     alert("Fill up necessary inputs.");
-               return false;
-}
-
-
-
-
-
-
-
-}
-
-function clickSearch(id,description,priority,docpublic) {
-
-  document.getElementById("document_name").value=id;
-  document.getElementById("description").value=description;
-  document.getElementById("priority").value=priority;
-  document.getElementById("primarykey").value=id;
-   if(docpublic==1){
-         document.getElementById("publicyes").checked=true;
-         document.getElementById("publicno").checked=false;
-   }
-   else{
-        document.getElementById("publicyes").checked=false;
-         document.getElementById("publicno").checked=true;
-   }
-
-   // alert(docpublic  );
-
-}
-
-
-$(document).ready(function() {
-
-    $("#search_type").click(function (e) {
-
-    e.preventDefault();
-    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-    jQuery.ajax({
-            type: "POST",
-            url:"type/search.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-            $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-                    $("#responds").html(response);
-
-            }, 
-            error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-            }
-            });
-	});
-
-});
-
-
-document.addEventListener("mousemove", function() {
-    myFunction(event);
-});
-
-function myFunction(e) {
-	$("#fade").fadeTo(3000,0.0);
-
-}
-
-
-</script>
 
 </head>
 
@@ -314,5 +173,148 @@ function myFunction(e) {
 	
 </div>
 
+    
+    <script language="JavaScript" type="text/javascript">
+/*<![CDATA[*/
+
+/*]]>*/
+
+function cleartext() {
+  document.getElementById("document_name").value="";
+  document.getElementById("description").value="";
+    document.getElementById("primarykey").value="";
+    if(docpublic==1){
+         document.getElementById("publicyes").checked=true;
+         document.getElementById("publicno").checked=false;
+   }
+   else{
+        document.getElementById("publicyes").checked=false;
+         document.getElementById("publicno").checked=true;
+   }
+}
+
+function validate() {
+
+
+
+    if (document.getElementById('type_mode').value=='delete') {
+          if (document.getElementById("primarykey").value != "") {
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+
+
+    }
+       else {
+               alert("Nothing to delete.");
+            return false;
+                   }
+    }
+
+    if (document.documenttype.document_name.value=="")   {
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else if (document.documenttype.description.value=="") {
+
+            alert("Fill up necessary inputs.");
+            return false;
+        }
+
+    else if (document.documenttype.name.value==""){
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+
+    else if (document.documenttype.priority.value==""){
+      alert("Fill up necessary inputs.");
+        return false;
+    }
+
+if (document.getElementById('publicyes').checked) {
+            return true;
+           }
+else if (document.getElementById('publicno').checked) {
+  return true;
+
+  }
+else {
+     alert("Fill up necessary inputs.");
+               return false;
+}
+
+
+
+
+
+
+
+}
+
+function clickSearch(id,description,priority,docpublic) {
+
+  document.getElementById("document_name").value=id;
+  document.getElementById("description").value=description;
+  document.getElementById("priority").value=priority;
+  document.getElementById("primarykey").value=id;
+   if(docpublic==1){
+         document.getElementById("publicyes").checked=true;
+         document.getElementById("publicno").checked=false;
+   }
+   else{
+        document.getElementById("publicyes").checked=false;
+         document.getElementById("publicno").checked=true;
+   }
+
+   // alert(docpublic  );
+
+}
+
+
+$(document).ready(function() {
+
+    $("#search_type").click(function (e) {
+
+    e.preventDefault();
+    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+    jQuery.ajax({
+            type: "POST",
+            url:"type/search.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() {
+            $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
+
+            }, 
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
+	});
+
+});
+
+
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+
+
+</script>
 </body>
 </html>

@@ -21,164 +21,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <script src="../../../js/jquery-1.10.2.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
 
-
-/*
-function cleartext() {
-  document.getElementById("barcodeno").value="";
-  document.getElementById("title").value="";
-  document.getElementById("documenttype").value="";
-  document.getElementById("template").value="";
-  document.getElementById("pdf").value="";
-  document.getElementById("primarykey").value="";
-
-}*/
-function clickSearch(barcodeno,title,documenttype,template,pdf) {
-   // document.getElementById('primarykey').value=barcode;
-    document.process.barcodeno.value=barcodeno;
-    document.process.title.value=title;
-    document.process.documenttype.value=documenttype;
-    document.process.template.value=template;
-    //document.process.file.value=a;
-    document.process.primarykey.value=barcodeno;
-	retrieveAttachment(barcodeno);
-    GetKey(barcodeno);
-    //alert (type);
-  //  document.getElementById("group").value=username;
-}
-
-
-function GetKey(key) {
-    var myData = 'release='+key;
-    jQuery.ajax({
-        type: "POST",
-        url:"common/redirectSearch.php",
-        dataType:"text", // Data type, HTML, json etc.
-        data:myData,
-        success:function(response){
-
-            // $("#attachment").html(response);
-         //     alert (response);
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-            alert(thrownError);
-        }
-    });
-}
-
-function retrieveAttachment(barcodeID){
-        var myData = 'attachment='+barcodeID; //build a post data structure
-        jQuery.ajax({
-            type: "POST",
-            url:"release/retrieveAttachment.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-
-                $("#attachment").html(response);
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    }
-	
-	
-function validate() {
-    if (document.process.primarykey.value="") {
-        alert("Cannot release blank document.");
-        return false;
-    }
-
- /*   if (document.getElementById('releasedoc_hidden').value=='delete') {
-        if (document.getElementById('primarykey').value != ""){
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-        }
-        else {
-            alert("Nothing to delete.");
-            return false;
-        }
-
-
-    }
-
-
-
-    if (document.process.barcodeno.value=="")   {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.title.value=="") {
-
-            alert("Fill up necessary inputs.");
-            return false;
-        }
-    else if (document.process.documenttype.value=="") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.template.value=="") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }*/
-
-
-
-
-
-}
-
-$(document).ready(function() {
-    $("#search_releasedoc").click(function (e) {
-
-    e.preventDefault();
-    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-    jQuery.ajax({
-			type: "POST",
-            url:"release/search.php",
-            dataType:"text", // Data type, HTML, json etc.
-			data:myData,
-            beforeSend: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-                    $("#responds").html(response);
-
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-            }
-            });
-	});
-
-
-
-    });
-document.addEventListener("mousemove", function() {
-    myFunction(event);
-});
-
-function myFunction(e) {
-	$("#fade").fadeTo(3000,0.0);
-
-}
-</script>
 </head>
 
 <body>
@@ -289,7 +132,7 @@ function myFunction(e) {
                                 <table id="responds">
                                 	<tr class='usercolortest'>
                                 	<th>Barcode</th>
-                                    <th>Title</th>
+                                        <th>Title</th>
                                 	<th>Date</th>
                                 	</tr>
                                 </table>
@@ -330,5 +173,108 @@ function myFunction(e) {
 	
 </div>
 
+<script language="JavaScript" type="text/javascript">
+
+function clickSearch(barcodeno,title,documenttype,template,pdf) {
+    document.process.barcodeno.value=barcodeno;
+    document.process.title.value=title;
+    document.process.documenttype.value=documenttype;
+    document.process.template.value=template;
+    document.process.primarykey.value=barcodeno;
+    retrieveAttachment(barcodeno);
+    //GetKey(barcodeno);
+
+}
+
+function GetKey(key) {
+    var myData = 'release='+key;
+    jQuery.ajax({
+        type: "POST",
+        url:"common/redirectSearch.php",
+        dataType:"text", // Data type, HTML, json etc.
+        data:myData,
+        success:function(response){
+
+            // $("#attachment").html(response);
+         //     alert (response);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            alert(thrownError);
+        }
+    });
+}
+
+function retrieveAttachment(barcodeID){
+        var myData = 'attachment='+barcodeID; //build a post data structure
+        jQuery.ajax({
+            type: "POST",
+            url:"release/retrieveAttachment.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+
+                $("#attachment").html(response);
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+    }
+	
+function validate() {
+    if (document.process.primarykey.value="") {
+        alert("Cannot release blank document.");
+        return false;
+    }
+
+
+
+}
+
+$(document).ready(function() {
+    $("#search_releasedoc").click(function (e) {
+
+    e.preventDefault();
+    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+    jQuery.ajax({
+            type: "POST",
+            url:"release/search.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() 
+            {
+                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() 
+            {
+                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response)
+            {
+                $("#responds").html(response);
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
+	});
+
+    });
+    
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+</script>
 </body>
 </html>

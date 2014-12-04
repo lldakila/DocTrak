@@ -10,17 +10,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 
-   require_once("../../../connection.php");
-   date_default_timezone_set($_SESSION['Timezone']);
+require_once("../../../connection.php");
+
+date_default_timezone_set($_SESSION['Timezone']);
 
 
  if ($_POST['document_hidden']=="save") 
      {
+        
         global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
         $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
         if (mysqli_connect_error()) 
         {
            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+           die;
         }
         mysqli_autocommit($con,FALSE);
         $flag=true;
@@ -89,14 +92,23 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                }
             }
 
-            $_FILES['pdffile']['name']=$UploadFilename;
+            //$_FILES['pdffile']['name']=$UploadFilename;
                 
                
 
-            echo "commit";
+            //echo "commit";
                //UPLOAD PDF FILE END
 
 
+            //START INSERT INTO DOCUMENTLIST_HISTORY
+            
+            include ("../common/history.php");
+            if(!InsertHistory($_POST['barcode'],$_SESSION['OFFICE'],'Document Created','','Created by '.$_SESSION['security_name']))
+            {
+                $flag=false;
+            }
+           
+            //END INSERT INTO DOCUMENTLIST_HISTORY
 
         }
         else //UPDATE DOCUMENT
