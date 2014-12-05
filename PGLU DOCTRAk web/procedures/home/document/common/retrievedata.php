@@ -32,13 +32,7 @@
     echo "Attachment:"; //echo"&nbsp;<b>".$query[0]['document_filename'].'</b>'; document_filename
     if ($query[0]['document_mime']!=""){
         $encrypted=urlencode(base64_encode(encryptText($query[0]['document_id'])));
-        //echo "<a href='/procedures/home/document/tracker/previewfile.php?download_file=".$query[0]['document_filename']."' >Download</a>";
-       // $xx=base64_encode(encryptText($query[0]['document_filename']));
-        //echo $_SERVER['SERVER_NAME'];
         echo "<a target='_blank' href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
-       // echo $query[0]['document_filename']."<br>";
-       // echo base64_encode(encryptText($query[0]['document_filename']));
-
     }
     else {
         echo "<a href='#'> No Attachment</a>";
@@ -58,7 +52,6 @@
     echo "<th>Received Comment</th>";
     echo "<th>For Release</th>";
     echo "<th>For Release Date</th>";
-
 
     echo "<th>Released By</th>";
     echo "<th>Released Date</th>";

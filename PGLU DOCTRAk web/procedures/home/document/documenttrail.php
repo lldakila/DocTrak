@@ -45,10 +45,10 @@
             
                     <div id="post10">
                         <h2>DOCUMENT TRAIL</h2>
-                       
+                        <div id="retrievetable" >
                             <div id="ajaxhistory">
                             </div>
-                            
+                            </div>
                         
                         
                        
