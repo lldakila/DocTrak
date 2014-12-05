@@ -47,10 +47,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/releasedoc.php"; ?>"><span>RELEASE DOCUMENT</span></a></li>
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/forreleasedoc.php"; ?>"><span>FOR RELEASE</span></a></li>
                 <li><span><hr></span></li>
+                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/rollback.php"; ?>"><span>ROLLBACK</span></a></li>
+                <li><span><hr></span></li>
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documenttracker.php"; ?>"><span>DOCUMENT TRACKER</span></a></li>
                 <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documentprocessing.php"; ?>"><span>PROCESSING</span></a></li>
-                <li><span><hr></span></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/rollback.php"; ?>"><span>ROLLBACK</span></a></li>
+                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documenttrail.php"; ?>"><span>DOCUMENT TRAIL</span></a></li>
+               
+               
             </ul>
         </li>
         <li><a href="#"><span>REPORT</span></a>

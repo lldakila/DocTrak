@@ -14,17 +14,37 @@
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     if (mysqli_connect_error()) 
     {
-       echo "Failed to connect to MySQL: " . mysqli_connect_error();
-       die;
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        die;
     }
-    
+  
     if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
     {
-            $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%')AND scrap=0 and complete=0  ORDER BY transdate desc";
+        if ($_POST['searchCheck']=='true')
+        {
+            $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%')AND scrap=0 ORDER BY transdate desc";
+          
+        }
+        else
+        {
+            $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%')AND scrap=0 and complete=0   ORDER BY transdate desc";
+           
+            
+        }
+       
+            
     }
     else
     {
-            $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%')AND scrap=0 and  (fk_office_name_documentlist ='".$_SESSION['OFFICE']."')and complete=0 ORDER BY transdate desc";
+        if ($_POST['searchCheck']=='true')
+        {
+            $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%')AND scrap=0 and  (fk_office_name_documentlist ='".$_SESSION['OFFICE']."') ORDER BY transdate desc";
+        }
+        else
+        {
+            $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%')AND scrap=0 and complete=0 and (fk_office_name_documentlist ='".$_SESSION['OFFICE']."') ORDER BY transdate desc";
+        }
+            
     }
     //echo $query;
     $RESULT=mysqli_query($con,$query);

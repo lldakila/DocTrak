@@ -42,33 +42,19 @@
             <div class="content2">
         
                 <div id="post">
-            <form name="process" method="post" action="rollback/process.php"  enctype="multipart/form-data">
+            
                     <div id="post10">
-                        <h2>ROLLBACK DOCUMENT</h2>
+                        <h2>DOCUMENT TRAIL</h2>
                        
                             <div id="ajaxhistory">
                             </div>
-                            <div id="officelist">
-                            </div>
+                            
                         
                         
                        
-                            <?php
-                         
-                            if($_SESSION['operation']=='save')
-                            {
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Rollbacked Successfully</div>";     
-                            }
-                            elseif ($_SESSION['operation']=='error') 
-                            {
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";     
-                            }
-
-                            $_SESSION['operation']='clear';
-                            ?>
                         
                         </div>
-            </form>
+           
                         <div id="postright">
                         
                             <div id="tfheader">
@@ -76,15 +62,9 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                     <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                    <button id="search_rollback" class="btn btn-default" >Search </button>
+                                    <button id="search_trail" class="btn btn-default" >Search </button>
                                     </div>
-                                    <div class="checkbox">
-    
-      <p style="font-size: 13px;">Include Completed Document:</p><input type="checkbox" id="searchCheck" name="searchCheck" />
-      
-      
-  
-                                    </div></div>
+                                   </div>
                                     
                                 </form>	
                                
@@ -139,16 +119,14 @@
 
 $(document).ready(function() {
     
-    $("#search_rollback").click(function (e) {
-    var searchCheckbox=document.getElementById('searchCheck').checked;
-   
+    $("#search_trail").click(function (e) {
     e.preventDefault();
 
     jQuery.ajax({
             type: "POST",
-            url:"rollback/search.php",
+            url:"trail/search.php",
             dataType:"text", // Data type, HTML, json etc.
-            data:{search_string:$("#search_string").val(),searchCheck:searchCheckbox},
+            data:{search_string:$("#search_trail").val()},
             beforeSend: function() 
             {
                 $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
@@ -171,50 +149,29 @@ $(document).ready(function() {
     
    
 
-    function retrieveDocumentTracker(documentID)
+    function retrieveDocument(documentID)
     {
-        var myData = 'documentTracker='+documentID; //build a post data structure
+        var myData = 'documentTrail='+documentID; //build a post data structure
         jQuery.ajax({
             type: "POST",
-            url:"common/retrievedata.php",
+            url:"trail/retrieve.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
-            beforeSend: function() {
+            beforeSend: function() 
+                {
 		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                         $("#officelist").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                         
 	        },
-            ajaxError: function() {
+            ajaxError: function() 
+                {
 		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-		        $("#officelist").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+		        
 	        },
-            success:function(response){
+            success:function(response)
+                {
                         $("#ajaxhistory").html(response);
-                        createList(documentID);
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    }
-    
-    function createList(documentID)
-    {
-        var myData = 'barcodeNo='+documentID; //build a post data structure
-        jQuery.ajax({
-            type: "POST",
-            url:"rollback/createList.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-		        $("#officelist").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-            ajaxError: function() {
-		        $("#officelist").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-            success:function(response){
-                        $("#officelist").html(response);
-                
-            },
+                        
+                },
             error:function (xhr, ajaxOptions, thrownError){
                 alert(thrownError);
             }

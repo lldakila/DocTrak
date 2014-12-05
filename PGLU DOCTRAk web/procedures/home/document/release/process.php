@@ -19,18 +19,22 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     }
     else 
     {
-        $query="UPDATE documentlist_tracker SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['comment']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $_SESSION['keytracker']." ";
+        $query="UPDATE documentlist_tracker SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['comment']."' WHERE DOCUMENTLIST_TRACKER_ID = '". $_SESSION['keytracker']."' ";
         $RESULT=mysqli_query($con,$query);
         
         if (!$RESULT) 
         {
            $flag=false;
         }
-        $query="SELECT max(documentlist_tracker_id),documentlist_tracker_id,fk_documentlist_id FROM documentlist_tracker WHERE fk_documentlist_id= ". $_POST['barcodeno'];
+        $query="SELECT max(documentlist_tracker_id) as max,documentlist_tracker_id,fk_documentlist_id FROM documentlist_tracker WHERE fk_documentlist_id= '". $_POST['barcodeno']."'";
         $queryresult=mysqli_query($con,$query);
         $row=mysqli_fetch_array($queryresult,MYSQLI_ASSOC);
-       
-        if ($_SESSION['keytracker']==$row["documentlist_tracker_id"])
+//        echo $query;
+//        echo "<br><br>";
+//        echo "keytracker: ".$_SESSION['keytracker']."<br>";
+//        echo "tracker id: ".$row['max']."<br>";
+//       die;
+        if ($_SESSION['keytracker']==$row['max'])
         {
             $query="update documentlist set complete=1 where document_id ='".$row['fk_documentlist_id']."'";  
             $RESULT=mysqli_query($con,$query);
