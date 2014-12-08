@@ -35,63 +35,67 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         </div>
 
 		<div class="menugroup">
-
-        <div id="menu">
-
-            <ul class="menu">
-        <li><a href="<?php echo $PROJECT_ROOT."home.php"; ?>" class="parent"><span>HOME</span></a></li>
-        <li><a href="#" class="parent"><span>DOCUMENT</span></a>
-        	<ul>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/newdoc.php"; ?>"><span>NEW DOCUMENT</span></a></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/receiveddoc.php"; ?>"><span>RECEIVED DOCUMENT</span></a></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/releasedoc.php"; ?>"><span>RELEASE DOCUMENT</span></a></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/forreleasedoc.php"; ?>"><span>FOR RELEASE</span></a></li>
-                <li><span><hr></span></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/rollback.php"; ?>"><span>ROLLBACK</span></a></li>
-                <li><span><hr></span></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documenttracker.php"; ?>"><span>DOCUMENT TRACKER</span></a></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documentprocessing.php"; ?>"><span>PROCESSING</span></a></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/document/documenttrail.php"; ?>"><span>DOCUMENT TRAIL</span></a></li>
-               
-               
-            </ul>
-        </li>
-        <li><a href="#"><span>REPORT</span></a>
-        	<ul style="width:265px;">
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/dochistory.php"; ?>"><span>DOCUMENT HISTORY</span></a></li>
-		<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>DOCUMENT ON PROCESS</span></a></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocesspersignatory.php"; ?>"><span>DOCUMENT ON PROCESS PER SIGNATORY</span></a></li>
-                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docpersignatory.php"; ?>"><span>DOCUMENTS PER SIGNATORY</span></a></li>
-            </ul>
-        </li>
-
-    <?php
-        if($_SESSION['GROUP']=='POWER ADMIN')
-            {
-
-                echo '<li><a href="#"><span>MAINTENANCE</span></a>
-                <ul>
-                        <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php"><span>DOCUMENT TYPE</span></a></li>
-                        <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php"><span>OFFICES</span></a></li>
-                        <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php"><span>FLOW TEMPLATE</span></a></li>
-                        <li><a href="#" class="parent"><span>SECURITY</span></a>
-               <ul>
-                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/users.php"><span>USERS</span></a></li>
-                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/group.php"><span>GROUP</span></a></li>
-                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/audittrail.php"><span>AUDIT TRAIL</span></a></li>
-                            </ul>
-                        </li>
-                </ul>
-                </li>';
-            }
-    ?>
-
-        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/userinfo/userinfo.php"; ?>"><span>USER INFO</span></a></li>
-        <li><a href="<?php echo $PROJECT_ROOT."about.php"; ?>"><span>ABOUT</span></a></li>
-        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/logout.php"; ?>"><span>LOGOUT</span></a></li>
-    
-    </ul>
-    </div>
+                    <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="<?php echo $PROJECT_ROOT."home.php"; ?>">Home</a></li>
+                                <li role="presentation" class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                        Document <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/newdoc.php'; ?>">New Document</a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/receiveddoc.php'; ?>"><span>Receive Document</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/releasedoc.php'; ?>"><span>Release Document</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/forreleasedoc.php'; ?>"><span>For Release</span></a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/rollback.php'; ?>"><span>Rollback</span></a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documenttracker.php'; ?>"><span>Document Tracker</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documentprocessing.php'; ?>"><span>Processing</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documenttrail.php'; ?>"><span>Document Trail</span></a></li>
+                                    </ul>
+                                </li>
+                                <li role="presentation" class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                        Report <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/dochistory.php"; ?>"><span>Document History</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>Document on Process</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocesspersignatory.php"; ?>"><span>Document on Process per Signatory</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docpersignatory.php"; ?>"><span>Documents per Signatory</span></a></li>
+                                    </ul>
+                                    
+                                </li>
+                                <li role="presentation" class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                        Maintenance <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/documenttype.php"; ?>"><span>Document Type</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/office.php"; ?>"><span>Office</span></a></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/flowtemplate.php"; ?>"><span>Flow Template</span></a></li>
+                                        <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Security</span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/users.php"; ?>"><span>Users</span></a></li>
+                                                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/group.php"; ?>"><span>Group</span></a></li>
+                                                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/audittrail.php"; ?>"><span>Audit Trail</span></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                
+                                <li>
+                                    <a href="<?php echo $PROJECT_ROOT."procedures/home/userinfo/userinfo.php"; ?>"><span>User Info</span></a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $PROJECT_ROOT."about.php"; ?>"><span>About</span></a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo $PROJECT_ROOT."procedures/home/logout.php"; ?>"><span>Logout</span></a>
+                                </li>
+                              </ul>
+                    </div>
 		
         
         <div class="admin">

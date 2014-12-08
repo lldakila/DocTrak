@@ -18,10 +18,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-
+<script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
 </head>
 
 <body>

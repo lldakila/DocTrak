@@ -18,66 +18,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
+
+
+   <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script> 
+    
 
-<script language="JavaScript" type="text/javascript">
-
-
-//function validate() {
-
-	//if (document.getElementById('newpass').value != document.getElementById('verifypass').value)  {
-		
-		//alert ('Password doesnt match.');
-		//return false;
-		
-		//}
-
-
-//}
-
-function validate()
-	{
-		//alert ('Please provide necessary inputs.');
-
-		if ((document.getElementById('currentpass').value=='') || (document.getElementById('newpass').value=='') || (document.getElementById('verifypass').value==''))
-		{
-			alert ('Please provide necessary inputs.');
-			return false;
-		}
-		
-		if (document.getElementById('newpass').value != document.getElementById('verifypass').value)
-		{
-			alert ('Password dont match');
-			return false;
-		}
-		
-		return true;
-
-	}
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-
-document.addEventListener("mousemove", function() {
-		myFunction(event);
-	});
-
-	function myFunction(e) {
-		$("#fade").fadeTo(3000,0.0);
-
-	}
-
-</script>
 </head>
 
 <body>
@@ -214,5 +163,62 @@ document.addEventListener("mousemove", function() {
 	
 </div>
 
+    
+    <script language="JavaScript" type="text/javascript">
+
+
+//function validate() {
+
+	//if (document.getElementById('newpass').value != document.getElementById('verifypass').value)  {
+		
+		//alert ('Password doesnt match.');
+		//return false;
+		
+		//}
+
+
+//}
+
+function validate()
+	{
+		//alert ('Please provide necessary inputs.');
+
+		if ((document.getElementById('currentpass').value=='') || (document.getElementById('newpass').value=='') || (document.getElementById('verifypass').value==''))
+		{
+			alert ('Please provide necessary inputs.');
+			return false;
+		}
+		
+		if (document.getElementById('newpass').value != document.getElementById('verifypass').value)
+		{
+			alert ('Password dont match');
+			return false;
+		}
+		
+		return true;
+
+	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+
+document.addEventListener("mousemove", function() {
+		myFunction(event);
+	});
+
+	function myFunction(e) {
+		$("#fade").fadeTo(3000,0.0);
+
+	}
+
+</script>
 </body>
 </html>

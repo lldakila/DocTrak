@@ -19,38 +19,12 @@ date_default_timezone_set($_SESSION['Timezone']);
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
+   <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
+<script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script> 
 
-
-
-	function OpenMail(MailId){
-
-		var myData = 'MailId='+MailId; //build a post data structure
-		jQuery.ajax({
-			type: "POST",
-			url:"messaging/readmessage.php",
-			dataType:"text", // Data type, HTML, json etc.
-			data:myData,
-                         beforeSend: function() {
-		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                            },
-                        ajaxError: function() {
-                                    $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                            },
-			success:function(response){
-
-				$("#MailData").html(response);
-			},
-			error:function (xhr, ajaxOptions, thrownError){
-				alert(thrownError);
-			}
-		});
-	}
-
-</script>
 
 
 
@@ -183,5 +157,35 @@ date_default_timezone_set($_SESSION['Timezone']);
 	
 </div>
 
+    
+    <script language="JavaScript" type="text/javascript">
+
+
+
+	function OpenMail(MailId){
+
+		var myData = 'MailId='+MailId; //build a post data structure
+		jQuery.ajax({
+			type: "POST",
+			url:"messaging/readmessage.php",
+			dataType:"text", // Data type, HTML, json etc.
+			data:myData,
+                         beforeSend: function() {
+		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                            },
+                        ajaxError: function() {
+                                    $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                            },
+			success:function(response){
+
+				$("#MailData").html(response);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+		});
+	}
+
+</script>
 </body>
 </html>

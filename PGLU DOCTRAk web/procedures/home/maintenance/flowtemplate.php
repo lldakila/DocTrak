@@ -26,10 +26,191 @@
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
+    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+    <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+
+
+
+
+</head>
+
+<body>
+<?php
+    $PROJECT_ROOT= '../../../';
+    include_once('../../../header.php');
+?>
+
+<div class="content">
+
+	<div class="content1">
+    
+    	<div class="content2">
+        
+        	<div id="post">
+
+            			<div id="post1">
+                        <h2>FLOW TEMPLATE</h2>
+
+
+
+
+
+                              <form name="flowtemplate" method="post" action="flowtemplate/process.php" onsubmit="return validate();">
+
+    					<div class="table1">
+    				<table>
+                  	<tr>
+                    	<td>Template:</td>
+
+                        <td class="textinput">
+                            <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="template_name" name="template_name" type="text" /> </td>
+                    </tr>
+                    <tr>
+                    	<td>Description:</td>
+
+                        <td class="textinput"><input id="description_name" name="template_description" type="text" /> </td>
+                    </tr>
+                    <tr>
+                    	<td>Office:</td>
+                        <td class="select01"><select name='officelist' id='officelist'>
+        <?php
+        //require_once("../../connection.php");
+       
+        $_SESSION['number_counter']=0;
+        //$query=select_info_multiple_key("select office_name from office ORDER BY OFFICE_NAME");
+        $query="select office_name from office ORDER BY OFFICE_NAME";
+	$result=mysqli_query($con,$query)or die(mysqli_error($con));
+        foreach($result as $var) {
+            echo "<option>".$var['office_name']."</option>";
+        }
+        ?>
+                                </select>
+<!--                               <button id="add_office" type="button">Add Office</button>-->
+                                <input type="button" value="Add Office" onClick="javascript:addoffice();"/>
+                        </td>
+                    </tr>
+
+
+                  </table>
+
+
+
+
+
+
+
+
+                    <div class="officeselected">
+
+                            <input type="hidden" name="OfficeArray" id="OfficeArray">
+                            <select id="officeselect" size="10" width="15" name="officeselection" >
+
+                            </select>
+
+                        <input type="button" id="deleteselected" value="Remove Office" onclick="removeoffice(officeselection);"/>
+
+
+                    </div><div class="tfclear"></div>
+                            <?php
+                            
+                            if($_SESSION['operation']=='save'){
+
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+
+                            }  elseif($_SESSION['operation']=='delete'){
+
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+                            }
+                            elseif($_SESSION['operation']=='error'){
+
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful. </div>";
+                            }
+                            elseif($_SESSION['operation']=='update'){
+
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Update Successful. </div>";
+                            }
+
+                            $_SESSION['operation']='clear';
+
+                            ?>
+                              <!--- BUTTONS ACTIVITY START --->
+
+
+                        <div class="input">
+                         <input id="template_mode" name="template_mode" type="hidden" value="0"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();"/>
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('template_mode').value='delete';"/>
+                         <input type="submit" value="Save" onClick="document.getElementById('template_mode').value='save';"/>
+                         </div>
+                           <!--- BUTTONS ACTIVITY END--->
+                           </div>
+
+						   </form>
+                        </div>
+                        
+                        	<div id="postright01">
+                            
+                            		<div id="tfheader">
+                                    	<form id="tfnewsearch" method="POST" >
+		        						<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
+                    					<button id="search_flowtemplate" class="tfbutton">Search </button>
+										</form>	
+                                        <h2></h2>	
+                                    </div>
+                                    <div class="tfclear"></div>
+                                    
+                            <div class="scroll">
+                        	<table id="respondsth">
+ 									<tr class='bgcolor'>
+                                	<th class="bgcolor1">Template</th>
+                                	<th>Description</th>
+                                	</tr>
+                                    </table>
+                                    
+                                <table id="responds">
+                                	
+                                </table>
+                            </div>
+                         	</div>
+
+
+                        <div class="tfclear"></div>
+
+            
+            </div>
+
+        </div>
+    
+    </div>
+
+</div>
+
+<div class="footer">
+
+	<div class="footer1">
+    
+    			<div id="footer2">
+            <p>
+			<?php
+				
+				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
+				echo "&nbsp|";
+			?>
+			
+			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+        </div>
+    
+    </div>
+	
+</div>
+
+    
+    
+    <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/
 function addoffice() {
 
@@ -301,181 +482,5 @@ function myFunction(e) {
 
 /*]]>*/
 </script>
-
-
-
-</head>
-
-<body>
-<?php
-    $PROJECT_ROOT= '../../../';
-    include_once('../../../header.php');
-?>
-
-<div class="content">
-
-	<div class="content1">
-    
-    	<div class="content2">
-        
-        	<div id="post">
-
-            			<div id="post1">
-                        <h2>FLOW TEMPLATE</h2>
-
-
-
-
-
-                              <form name="flowtemplate" method="post" action="flowtemplate/process.php" onsubmit="return validate();">
-
-    					<div class="table1">
-    				<table>
-                  	<tr>
-                    	<td>Template:</td>
-
-                        <td class="textinput">
-                            <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="template_name" name="template_name" type="text" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Description:</td>
-
-                        <td class="textinput"><input id="description_name" name="template_description" type="text" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Office:</td>
-                        <td class="select01"><select name='officelist' id='officelist'>
-        <?php
-        //require_once("../../connection.php");
-       
-        $_SESSION['number_counter']=0;
-        //$query=select_info_multiple_key("select office_name from office ORDER BY OFFICE_NAME");
-        $query="select office_name from office ORDER BY OFFICE_NAME";
-	$result=mysqli_query($con,$query)or die(mysqli_error($con));
-        foreach($result as $var) {
-            echo "<option>".$var['office_name']."</option>";
-        }
-        ?>
-                                </select>
-<!--                               <button id="add_office" type="button">Add Office</button>-->
-                                <input type="button" value="Add Office" onClick="javascript:addoffice();"/>
-                        </td>
-                    </tr>
-
-
-                  </table>
-
-
-
-
-
-
-
-
-                    <div class="officeselected">
-
-                            <input type="hidden" name="OfficeArray" id="OfficeArray">
-                            <select id="officeselect" size="10" width="15" name="officeselection" >
-
-                            </select>
-
-                        <input type="button" id="deleteselected" value="Remove Office" onclick="removeoffice(officeselection);"/>
-
-
-                    </div><div class="tfclear"></div>
-                            <?php
-                            
-                            if($_SESSION['operation']=='save'){
-
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
-
-                            }  elseif($_SESSION['operation']=='delete'){
-
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-                            }
-                            elseif($_SESSION['operation']=='error'){
-
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful. </div>";
-                            }
-                            elseif($_SESSION['operation']=='update'){
-
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Update Successful. </div>";
-                            }
-
-                            $_SESSION['operation']='clear';
-
-                            ?>
-                              <!--- BUTTONS ACTIVITY START --->
-
-
-                        <div class="input">
-                         <input id="template_mode" name="template_mode" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('template_mode').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('template_mode').value='save';"/>
-                         </div>
-                           <!--- BUTTONS ACTIVITY END--->
-                           </div>
-
-						   </form>
-                        </div>
-                        
-                        	<div id="postright01">
-                            
-                            		<div id="tfheader">
-                                    	<form id="tfnewsearch" method="POST" >
-		        						<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    					<button id="search_flowtemplate" class="tfbutton">Search </button>
-										</form>	
-                                        <h2></h2>	
-                                    </div>
-                                    <div class="tfclear"></div>
-                                    
-                            <div class="scroll">
-                        	<table id="respondsth">
- 									<tr class='bgcolor'>
-                                	<th class="bgcolor1">Template</th>
-                                	<th>Description</th>
-                                	</tr>
-                                    </table>
-                                    
-                                <table id="responds">
-                                	
-                                </table>
-                            </div>
-                         	</div>
-
-
-                        <div class="tfclear"></div>
-
-            
-            </div>
-
-        </div>
-    
-    </div>
-
-</div>
-
-<div class="footer">
-
-	<div class="footer1">
-    
-    			<div id="footer2">
-            <p>
-			<?php
-				
-				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
-				echo "&nbsp|";
-			?>
-			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
-        </div>
-    
-    </div>
-	
-</div>
-
 </body>
 </html>

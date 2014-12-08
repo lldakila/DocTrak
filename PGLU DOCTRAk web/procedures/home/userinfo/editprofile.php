@@ -20,34 +20,12 @@ if (session_status() == PHP_SESSION_NONE) {
 	?>
 
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
+   <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
+<script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script> 
 
-	function validate()
-	{
-		//alert ('Please provide necessary inputs.');
-
-		if ((document.getElementById('username').value=='') || (document.getElementById('fullname').value==''))
-		{
-			alert ('Please provide necessary inputs.');
-			return false;
-		}
-
-	}
-
-	document.addEventListener("mousemove", function() {
-		myFunction(event);
-	});
-
-	function myFunction(e) {
-		$("#fade").fadeTo(3000,0.0);
-
-	}
-
-
-</script>
 </head>
 
 <body>
@@ -170,5 +148,31 @@ if (session_status() == PHP_SESSION_NONE) {
 	
 </div>
 
+    
+    <script language="JavaScript" type="text/javascript">
+
+	function validate()
+	{
+		//alert ('Please provide necessary inputs.');
+
+		if ((document.getElementById('username').value=='') || (document.getElementById('fullname').value==''))
+		{
+			alert ('Please provide necessary inputs.');
+			return false;
+		}
+
+	}
+
+	document.addEventListener("mousemove", function() {
+		myFunction(event);
+	});
+
+	function myFunction(e) {
+		$("#fade").fadeTo(3000,0.0);
+
+	}
+
+
+</script>
 </body>
 </html>

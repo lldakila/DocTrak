@@ -18,125 +18,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script language="JavaScript" type="text/javascript">
-
-
-
-function clickSearch(barcodeno,title,documenttype,template,pdf) {
-    document.process.barcodeno.value=barcodeno;
-    document.process.title.value=title;
-    document.process.documenttype.value=documenttype;
-    document.process.template.value=template;
-    document.process.primarykey.value=barcodeno;
-    retrieveAttachment(barcodeno);
-    GetKey(barcodeno);
-
-
-    //alert (pdf);
-  //  document.getElementById("group").value=username;
-}
-
-
-function GetKey(key) {
-    var myData = 'receive='+key;
-    jQuery.ajax({
-        type: "POST",
-        url:"common/redirectSearch.php",
-        dataType:"text", // Data type, HTML, json etc.
-        data:myData,
-        success:function(response){
-
-           // $("#attachment").html(response);
-          //  alert (response);
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-            alert(thrownError);
-        }
-    });
-}
-
-
-function retrieveAttachment(barcodeID){
-        var myData = 'attachment='+barcodeID; //build a post data structure
-        jQuery.ajax({
-            type: "POST",
-            url:"receive/retrieveAttachment.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-
-                $("#attachment").html(response);
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    }
-	
-	
-function validate() {
-
-
-
-    if (document.process.primarykey.value=="")   {
-        alert("Cannot receive blank document.");
-        return false;
-    }
-
-
-}
-
-$(document).ready(function() {
-    $("#search_receiveddoc").click(function (e) {
-
-    e.preventDefault();
-    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-    jQuery.ajax({
-			type: "POST",
-            url:"receive/search.php",
-            dataType:"text", // Data type, HTML, json etc.
-			data:myData,
-            beforeSend: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-                    $("#responds").html(response);
-
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-            }
-            });
-	});
-
-
-
-    });
-
-
-document.addEventListener("mousemove", function() {
-    myFunction(event);
-});
-
-function myFunction(e) {
-	$("#fade").fadeTo(3000,0.0);
-
-}
-
-
-</script>
+<script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
 
 </head>
 
@@ -287,5 +173,123 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
 	
 </div>
 
+
+
+<script language="JavaScript" type="text/javascript">
+
+
+
+function clickSearch(barcodeno,title,documenttype,template,pdf) {
+    document.process.barcodeno.value=barcodeno;
+    document.process.title.value=title;
+    document.process.documenttype.value=documenttype;
+    document.process.template.value=template;
+    document.process.primarykey.value=barcodeno;
+    retrieveAttachment(barcodeno);
+    GetKey(barcodeno);
+
+
+    //alert (pdf);
+  //  document.getElementById("group").value=username;
+}
+
+
+function GetKey(key) {
+    var myData = 'receive='+key;
+    jQuery.ajax({
+        type: "POST",
+        url:"common/redirectSearch.php",
+        dataType:"text", // Data type, HTML, json etc.
+        data:myData,
+        success:function(response){
+
+           // $("#attachment").html(response);
+          //  alert (response);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            alert(thrownError);
+        }
+    });
+}
+
+
+function retrieveAttachment(barcodeID){
+        var myData = 'attachment='+barcodeID; //build a post data structure
+        jQuery.ajax({
+            type: "POST",
+            url:"receive/retrieveAttachment.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#attachment").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+
+                $("#attachment").html(response);
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+    }
+	
+	
+function validate() {
+
+
+
+    if (document.process.primarykey.value=="")   {
+        alert("Cannot receive blank document.");
+        return false;
+    }
+
+
+}
+
+$(document).ready(function() {
+    $("#search_receiveddoc").click(function (e) {
+
+    e.preventDefault();
+    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+    jQuery.ajax({
+			type: "POST",
+            url:"receive/search.php",
+            dataType:"text", // Data type, HTML, json etc.
+			data:myData,
+            beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
+
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
+	});
+
+
+
+    });
+
+
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+
+
+</script>
 </body>
 </html>

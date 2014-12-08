@@ -25,103 +25,13 @@
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-<script src="../../../js/jquery-1.10.2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-
-<script language="JavaScript" type="text/javascript">
-/*<![CDATA[*/
-
+    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+    <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+    <script src="../../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
 
 
-function cleartext() {
-  document.getElementById("group").value="";
-  document.getElementById("description").value="";
-    document.getElementById("primarykey").value="";
-}
-function clickSearch(group,description) {
-document.getElementById("group").value=group;
-  document.getElementById("description").value=description;
-    document.getElementById("primarykey").value=group;
-}
-
-
-
-$(document).ready(function() {
-    $("#search_group").click(function (e) {
-        
-    e.preventDefault();
-    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-    jQuery.ajax({
-            type: "POST",
-            url:"group/search.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:myData,
-            beforeSend: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-                    $("#responds").html(response);
-
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-            }
-            });
-	});
-
-
-
-});
-
-function validate() {
-
-
-    if (document.getElementById("group_mode").value == "delete") {
-        if (document.getElementById("primarykey").value != "") {
-        if (confirm("Are you sure you want to delete?") == true) {
-            return true;
-        }
-        else {
-
-            return false;
-        }
-    }
-        alert("Nothing to delete.");
-        return false;
-    }
-
-    if (document.process.group.value == "") {
-        alert("Fill up necessary inputs.");
-        return false;
-    }
-    else if (document.process.description.value =="") {
-        alert("Fill up necessary inputs.");
-        return false
-    }
-    else {
-        return true;
-    }
-
-
-
-
-};
-
-
-document.addEventListener("mousemove", function() {
-    myFunction(event);
-});
-
-function myFunction(e) {
-	$("#fade").fadeTo(3000,0.0);
-
-}
-    /*]]>*/
-</script>
 
 </head>
 
@@ -259,5 +169,99 @@ function myFunction(e) {
 	
 </div>
 
+    
+    <script language="JavaScript" type="text/javascript">
+/*<![CDATA[*/
+
+
+
+function cleartext() {
+  document.getElementById("group").value="";
+  document.getElementById("description").value="";
+    document.getElementById("primarykey").value="";
+}
+function clickSearch(group,description) {
+document.getElementById("group").value=group;
+  document.getElementById("description").value=description;
+    document.getElementById("primarykey").value=group;
+}
+
+
+
+$(document).ready(function() {
+    $("#search_group").click(function (e) {
+        
+    e.preventDefault();
+    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+    jQuery.ajax({
+            type: "POST",
+            url:"group/search.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:myData,
+            beforeSend: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            ajaxError: function() {
+                    $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            },
+            success:function(response){
+                    $("#responds").html(response);
+
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+            }
+            });
+	});
+
+
+
+});
+
+function validate() {
+
+
+    if (document.getElementById("group_mode").value == "delete") {
+        if (document.getElementById("primarykey").value != "") {
+        if (confirm("Are you sure you want to delete?") == true) {
+            return true;
+        }
+        else {
+
+            return false;
+        }
+    }
+        alert("Nothing to delete.");
+        return false;
+    }
+
+    if (document.process.group.value == "") {
+        alert("Fill up necessary inputs.");
+        return false;
+    }
+    else if (document.process.description.value =="") {
+        alert("Fill up necessary inputs.");
+        return false
+    }
+    else {
+        return true;
+    }
+
+
+
+
+};
+
+
+document.addEventListener("mousemove", function() {
+    myFunction(event);
+});
+
+function myFunction(e) {
+	$("#fade").fadeTo(3000,0.0);
+
+}
+    /*]]>*/
+</script>
 </body>
 </html>

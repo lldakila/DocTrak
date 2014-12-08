@@ -19,77 +19,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         echo $_SESSION['Title']. "" .$_SESSION['Version'];
         ?>
     </title>
+    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+    <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
     <script src="../../../js/jquery-1.10.2.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-	<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-    <script language="JavaScript" type="text/javascript">
-
-
-	    $(document).ready(function() {
-		    $("#search_document").click(function (e) {
-			    e.preventDefault();
-			    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-			    jQuery.ajax({
-				    type: "POST",
-				    url:"history/search.php",
-				    dataType:"text", // Data type, HTML, json etc.
-				    data:myData,
-				    success:function(response){
-					    $("#historydata").html(response);
-
-				    },
-				    error:function (xhr, ajaxOptions, thrownError){
-					    alert(thrownError);
-				    }
-			    });
-		    });
-
-
-
-		    $("#filter").click(function (e) {
-			    e.preventDefault();
-			    //var myData = 'datefrom='+ $("#datefrom").val(); //build a post data structure
-			    //var myData2 = 'dateto='+ $("#dateto").val();
-			    var datefrom=document.getElementById('datefrom').value;
-			    var dateto=document.getElementById('dateto').value;
-			    //var dateString = today.format("dd-m-yy");
-			    //var newdateto = new Date();
-
-				//add a day to the date
-			    //newdateto.setDate(newdateto.getDate() + 1);
-			    //alert(newdateto.format("Y-m-d\\TH:i:sP"));
-			   //dateto=newdateto.format("dd-m-yy");
-			    jQuery.ajax({
-				    type: "POST",
-				    url:"history/filter.php",
-				    dataType:"text", // Data type, HTML, json etc.
-				    data:'datefrom='+datefrom+'&dateto='+dateto,
-				    success:function(response){
-					    $("#historydata").html(response);
-						//alert(response)
-
-				    },
-				    error:function (xhr, ajaxOptions, thrownError){
-					    alert(thrownError);
-				    }
-			    });
-		    });
-
-
-
-
-
-
-	    });
-
-
-
-
-
-
-
-
-    </script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    
 </head>
 
 <body>
@@ -180,5 +115,75 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 </div>
 
+    
+    
+    <script language="JavaScript" type="text/javascript">
+
+
+	    $(document).ready(function() {
+		    $("#search_document").click(function (e) {
+			    e.preventDefault();
+			    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+			    jQuery.ajax({
+				    type: "POST",
+				    url:"history/search.php",
+				    dataType:"text", // Data type, HTML, json etc.
+				    data:myData,
+				    success:function(response){
+					    $("#historydata").html(response);
+
+				    },
+				    error:function (xhr, ajaxOptions, thrownError){
+					    alert(thrownError);
+				    }
+			    });
+		    });
+
+
+
+		    $("#filter").click(function (e) {
+			    e.preventDefault();
+			    //var myData = 'datefrom='+ $("#datefrom").val(); //build a post data structure
+			    //var myData2 = 'dateto='+ $("#dateto").val();
+			    var datefrom=document.getElementById('datefrom').value;
+			    var dateto=document.getElementById('dateto').value;
+			    //var dateString = today.format("dd-m-yy");
+			    //var newdateto = new Date();
+
+				//add a day to the date
+			    //newdateto.setDate(newdateto.getDate() + 1);
+			    //alert(newdateto.format("Y-m-d\\TH:i:sP"));
+			   //dateto=newdateto.format("dd-m-yy");
+			    jQuery.ajax({
+				    type: "POST",
+				    url:"history/filter.php",
+				    dataType:"text", // Data type, HTML, json etc.
+				    data:'datefrom='+datefrom+'&dateto='+dateto,
+				    success:function(response){
+					    $("#historydata").html(response);
+						//alert(response)
+
+				    },
+				    error:function (xhr, ajaxOptions, thrownError){
+					    alert(thrownError);
+				    }
+			    });
+		    });
+
+
+
+
+
+
+	    });
+
+
+
+
+
+
+
+
+    </script>
 </body>
 </html>
