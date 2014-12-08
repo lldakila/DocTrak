@@ -113,7 +113,7 @@ date_default_timezone_set($_SESSION['Timezone']);
         }
         else //UPDATE DOCUMENT
         {
-           //echo "UPDATE DOCUMENT SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',DOCUMENT_FILE='".$_POST['file']."',FK_TEMPLATE_ID='".$_POST['template']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
+           
            
             $query="Select FK_TEMPLATE_ID from documentlist where document_id = '".$_POST['primarykey']."' ";
             $result=  mysqli_query($con,$query);

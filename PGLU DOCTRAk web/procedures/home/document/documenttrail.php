@@ -126,7 +126,7 @@ $(document).ready(function() {
             type: "POST",
             url:"trail/search.php",
             dataType:"text", // Data type, HTML, json etc.
-            data:{search_string:$("#search_trail").val()},
+            data:{search_string:$("#search_string").val()},
             beforeSend: function() 
             {
                 $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
@@ -178,6 +178,7 @@ $(document).ready(function() {
         });
     }
     
+
     
     </script>
     

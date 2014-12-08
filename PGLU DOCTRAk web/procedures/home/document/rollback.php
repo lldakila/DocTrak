@@ -42,7 +42,7 @@
             <div class="content2">
         
                 <div id="post">
-            <form name="process" method="post" action="rollback/process.php"  enctype="multipart/form-data">
+            <form name="process" method="post" action="rollback/process.php"  onsubmit="return validate();" enctype="multipart/form-data">
                     <div id="post10">
                         <h2>ROLLBACK DOCUMENT</h2>
                        
@@ -72,7 +72,7 @@
                         <div id="postright">
                         
                             <div id="tfheader">
-                            	<form id="tfnewsearch" method="POST" class="form-inline">
+                            	<form id="tfnewsearch" method="POST" class="form-inline" >
                                     <div class="form-group">
                                         <div class="input-group">
                                     <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
@@ -221,6 +221,22 @@ $(document).ready(function() {
         });
     }
     
+    document.addEventListener("mousemove", function() {
+        myFunction(event);
+    });
+
+    function myFunction(e) {
+            $("#fade").fadeTo(3000,0.0);
+
+}
+    
+    function validate()
+    {
+     if (confirm("Are you sure you want to rollback? This action is irreversible.") == true) 
+     {  
+         return true;
+     }
+    }
     
     </script>
     

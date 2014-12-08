@@ -104,7 +104,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                     <tr>
                     	<td>PDF File: </td>
-                         <td><input id="file" name="pdffile" type="file" accept=".pdf,.doc,.docx" /> </td>
+                         <td><input id="file" name="pdffile" type="file" accept=".pdf" /> </td>
                     </tr>
                   </table>
 
@@ -168,7 +168,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 
-                            if ($_SESSION['GROUP']!='ADMIN')
+                            if ($_SESSION['GROUP']!='ADMIN') 
                             {
                                     $value="document.getElementById('document_hidden').value='scrap';";
                 echo '<input  type="submit" value="Scrap"  onClick="'.$value.'"/>';
