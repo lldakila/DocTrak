@@ -60,16 +60,16 @@
                     	<td>Document Name:</td>
                         <td class="textinput">
                                                 <input id="primarykey" name="primarykey" type="hidden" />
-                                                <input id="document_name" name="document_name" type="text" /> </td>
+                                                <input id="document_name" name="document_name" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
-                        <td class="textinput"><input id="description" name="description" type="text" /> </td>
+                        <td class="textinput"><input id="description" name="description" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Priority: </td>
                          <td class="select01">
-                             <select id="priority" name="priority">
+                             <select id="priority" name="priority" class="form-control">
                               <option>High</option>
                               <option>Medium</option>
                               <option>Low</option>
@@ -109,9 +109,9 @@
 
                         <div class="input">
                                 <input id="type_mode" name="type_mode" type="hidden" />
-                                <input type="button" value="New" onClick="javascript:cleartext();"/>
-                                <input  type="submit" value="Delete" onClick="document.getElementById('type_mode').value='delete';" />
-                                <input type="submit" value="Save" onClick="document.getElementById('type_mode').value='save';"/>
+                                <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+                                <input  type="submit" value="Delete" onClick="document.getElementById('type_mode').value='delete';" class="btn btn-primary" />
+                                <input type="submit" value="Save" onClick="document.getElementById('type_mode').value='save';" class="btn btn-primary" />
                             </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -124,9 +124,13 @@
                         
                         		<div id="tfheader">
                                 
-                                <form id="tfnewsearch" method="POST">
-		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    			<button id="search_type" class="tfbutton">Search </button>
+                                <form id="tfnewsearch" method="POST" class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+		        				<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                                        <button id="search_type" class="btn btn-default">Search </button>
+                                        </div>
+                                    </div>
 								</form>	
                					<h2></h2>
                                 </div>

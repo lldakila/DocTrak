@@ -398,7 +398,7 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close btn-danger" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Document Tracker</h4>
               </div>
               <div class="modal-body">
@@ -407,7 +407,7 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                          </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
 
               </div>
             </div>
@@ -443,7 +443,7 @@ function addRowHandlers(arrayId)
                 return function() { 
                                         var cell = row.getElementsByTagName("td")[0];
                                         var id = cell.innerHTML;
-                                        //alert(id);
+                                        
                                         
                                        retrieveDocument(id);
                                        $('#myModal').modal('show');
@@ -458,7 +458,7 @@ function retrieveDocument(BarcodeId){
         var myData = 'documentTracker='+BarcodeId; //build a post data structure
         jQuery.ajax({
             type: "POST",
-	    url:"procedures/home/document/tracker/retrievedata.php",
+	    url:"procedures/home/document/common/retrievedata.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {

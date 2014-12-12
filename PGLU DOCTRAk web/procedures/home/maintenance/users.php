@@ -60,25 +60,25 @@
 
                         <td class="usertext">
                             <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="username" name="username" type="text" /> </td>
+                            <input id="username" name="username" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Password:</td>
-                        <td class="usertext"><input id="password" name="password" type="password" /> </td>
+                        <td class="usertext"><input id="password" name="password" type="password" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Verify:</td>
-                        <td class="usertext"><input id="verify" name="verify" type="password" /> </td>
+                        <td class="usertext"><input id="verify" name="verify" type="password" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Fullname:</td>
-                        <td class="usertext"><input id="name" name="name" type="text" /> </td>
+                        <td class="usertext"><input id="name" name="name" type="text" class="form-control" /> </td>
                     </tr>
 
                     <tr>
                     	<td>Group: </td>
                          <td class="select01">
-                             <select id="group" name="group"> <option>Select Here</option>
+                             <select id="group" name="group" class="form-control"> <option>Select Here</option>
 
        <?php
            require_once("../../connection.php");
@@ -97,7 +97,7 @@
                     <tr>
                     	<td>Office: </td>
                          <td class="select01">
-                             <select id="office" name="office"> <option>Select Here</option>
+                             <select id="office" name="office" class="form-control"> <option>Select Here</option>
 
        <?php
            require_once("../../connection.php");
@@ -145,9 +145,9 @@
 
                         <div class="input1">
                          <input id="security_user" name="security_user" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-primary" />
+                         <input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -162,9 +162,13 @@
                         <div id="postright">
                         
                         	<div id="tfheader">
-                            	<form id="tfnewsearch" method="POST">
-		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    			<button id="search_user" class="tfbutton">Search </button>
+                            	<form id="tfnewsearch" method="POST" class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                                <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                                <button id="search_user" class="btn btn-default">Search </button>
+                                        </div>
+                                    </div>
 								</form>	
                                 <h2></h2>
                             </div>

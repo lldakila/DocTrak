@@ -12,7 +12,7 @@
  
     $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name,document_filename, forrelease_val,forrelease_date,fk_office_name_documentlist,document_mime from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
 
-    echo "<div id='details'>";
+    echo "<div id='details' class='retriveDataAllign'>";
     echo "<table >";
     echo "<tr><td>";
     echo "Barcode:"; echo"&nbsp;<b>".$query[0]['document_id'].'</b>';
@@ -43,6 +43,7 @@
     echo "</td></tr>";
     echo "</div>";
     
+    echo "<div id='scroll'>";
     echo '<table id="historydata" class="table scroll">';
     echo "<tr class='bgcolor'>";
     echo "<th>No</th>";
@@ -99,7 +100,7 @@
 	 echo "</table>";
 	}
 
-
+echo "</div>";
 
 ?>
 

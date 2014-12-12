@@ -67,9 +67,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 <div id="postright">
                 
                 	<div id="tfheader">
-                    	<form id="tfnewsearch" method="POST">
-                        <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                        <button id="search_document" class="tfbutton">Search </button>
+                    	<form id="tfnewsearch" method="POST" class="form-inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                    <button id="search_document" class="btn btn-default">Search </button>
+                                </div>
+                            </div>
                     	</form>
                         <h2></h2>
                     </div>

@@ -14,11 +14,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="header">
 
 	<div class="header1">
-    
-    	<div class="headerline">
-    
-    	<div class="headerbanner">
         
+            
+                <div class="headerline">
+                <div class="row">
+                <div class="col-xs-4 col-md-4">
+                <div class="headerbanner">
+
         		<a href="<?php echo $PROJECT_ROOT."index.php"; ?>"><img <?php 
                         $printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png"; 
                         echo $printme;
@@ -32,8 +34,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				
 				</h2><p>Management Information Systems</p></a>
         
-        </div>
-
+                </div>
+                </div>
+         <div class="col-xs-8 col-md-8">
 		<div class="menugroup">
                     <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
@@ -67,33 +70,33 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                     </ul>
                                     
                                 </li>
-                                <li role="presentation" class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                                        Maintenance <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/documenttype.php"; ?>"><span>Document Type</span></a></li>
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/office.php"; ?>"><span>Office</span></a></li>
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/flowtemplate.php"; ?>"><span>Flow Template</span></a></li>
-                                        <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Security</span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/users.php"; ?>"><span>Users</span></a></li>
-                                                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/group.php"; ?>"><span>Group</span></a></li>
-                                                <li><a href="<?php echo $PROJECT_ROOT."procedures/home/maintenance/audittrail.php"; ?>"><span>Audit Trail</span></a></li>
+                                <?php
+                                if($_SESSION['GROUP']=='POWER ADMIN')
+                                {
+                                        echo '<li role="presentation" class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                        Maintenance <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php"><span>Document Type</span></a></li>
+                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php"><span>Office</span></a></li>
+                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php"><span>Flow Template</span></a></li>
+                                                <li class="divider"></li>
+                                                <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Security</span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/users.php"><span>Users</span></a></li>
+                                                        <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/group.php"><span>Group</span></a></li>
+                                                        <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/audittrail.php"><span>Audit Trail</span></a></li>
+                                                    </ul>
+                                                </li>
                                             </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                        </li>';
+                                }
+                                        ?>
                                 
-                                <li>
-                                    <a href="<?php echo $PROJECT_ROOT."procedures/home/userinfo/userinfo.php"; ?>"><span>User Info</span></a>
-                                </li>
                                 <li>
                                     <a href="<?php echo $PROJECT_ROOT."about.php"; ?>"><span>About</span></a>
                                 </li>
-                                <li>
-                                    <a href="<?php echo $PROJECT_ROOT."procedures/home/logout.php"; ?>"><span>Logout</span></a>
-                                </li>
+                 
                               </ul>
                     </div>
 		
@@ -114,14 +117,19 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		         echo '<a href="'.$PROJECT_ROOT.'/procedures/home/userinfo/inbox.php"><img src="'.$PROJECT_ROOT.'images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>&nbsp';
                          break;
 	         }
-           echo "Hi, ".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."";
-
+                 
+                 
+           echo "Hi, <a href=".$PROJECT_ROOT."procedures/home/userinfo/userinfo.php>".$_SESSION['security_name']."</a> of ".$_SESSION['OFFICE']."";
+           echo "<div class='logout'>";
+           echo "<a href=".$PROJECT_ROOT."procedures/home/logout.php>Logout</a>";
+           echo '</div>';
            mysqli_free_result($result);
            ?>
         </div>
             
-         </div>   
-        
+        </div>  
+        </div>
+    </div>
         
         </div>
     

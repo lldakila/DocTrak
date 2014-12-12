@@ -28,7 +28,7 @@
         {
             
        
-        echo "<div id='details'>";
+        echo "<div id='details' class='retriveDataAllign'>";
         echo "<table >";
         echo "<tr><td>";
         echo "Barcode:"; echo"&nbsp;<b>".$var['document_id'].'</b>';
@@ -64,6 +64,7 @@
         
         
      
+    echo '<div id="scroll">';
     echo '<table id="historydata" class="table scroll">';
     echo "<tr class='bgcolor'>";
     echo "<th>No</th>";
@@ -109,6 +110,7 @@
     $intx=$intx+1;
     }
 	 echo "</table>";
+         echo '</div>';
 	
         
         

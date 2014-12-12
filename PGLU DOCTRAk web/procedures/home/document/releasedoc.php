@@ -52,24 +52,24 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <td class="usertext">
                             <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" />
+                            <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
                             </td>
                     </tr>
                     <tr>
                     	<td>Title:</td>
-                        <td class="usertext"><input id="title" readonly="readonly" name="title" type="text" /> </td>
+                        <td class="usertext"><input id="title" readonly="readonly" name="title" type="text" class="form-control"/> </td>
                     </tr>
                     <tr>
                     	<td>Document Type:</td>
-                        <td class="usertext"><input id="documenttype" readonly="readonly" name="documenttype" type="text" /> </td>
+                        <td class="usertext"><input id="documenttype" readonly="readonly" name="documenttype" type="text" class="form-control"/> </td>
                     </tr>
                     <tr>
                     	<td>Template:</td>
-                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" /> </td>
+                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Comment:</td>
-                        <td class="usertext"><textarea rows="5" id="comment" name="comment" type="text"></textarea> </td>
+                        <td class="usertext"><textarea rows="5" id="comment" name="comment" type="text" class="form-control"></textarea> </td>
                     </tr>
                     <tr>
                     	<td>Attachment: </td>
@@ -105,7 +105,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <div class="input2">
                          <input id="releasedoc_hidden" name="document_hidden" type="hidden" value="0"/>
-                         <input type="submit" value="Release" onClick="document.getElementById('releasedoc_hidden').value='release';"/>
+                         <input type="submit" class="btn btn-primary" value="Release" onClick="document.getElementById('releasedoc_hidden').value='release';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -121,22 +121,24 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         <div id="postright">
                         
                         	<div id="tfheader">
-                            	<form id="tfnewsearch" method="POST">
-		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    			<button id="search_releasedoc" class="tfbutton">Search </button>
-								</form>	
-                                <h2></h2>
+                            	<form id="tfnewsearch" method="POST" class="form-inline">
+                                    
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                        <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                        <button id="search_releasedoc" class="btn btn-default">Search </button>
+                                        </div>
+                                    </div>			
+                                
+                                </form>	
+                                
                             </div>
                             <div class="tfclear"></div>
                             
                             <div class="scroll">
                         	                                    
                                 <table id="responds">
-                                	<tr class='usercolortest'>
-                                	<th>Barcode</th>
-                                        <th>Title</th>
-                                	<th>Date</th>
-                                	</tr>
+                                	
                                 </table>
 
                             </div>
@@ -230,7 +232,7 @@ function retrieveAttachment(barcodeID){
     }
 	
 function validate() {
-    if (document.process.primarykey.value="") {
+    if (document.process.primarykey.value=="") {
         alert("Cannot release blank document.");
         return false;
     }
@@ -251,11 +253,11 @@ $(document).ready(function() {
             data:myData,
             beforeSend: function() 
             {
-                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                 $("#responds").html("<div style='margin:95px 0 0 100px;'  ><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             ajaxError: function() 
             {
-                $("#responds").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#responds").html("<div style='margin:95px 0 0 100px;' align='center' ><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response)
             {

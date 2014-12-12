@@ -51,24 +51,24 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <td class="usertext">
                             <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" />
+                            <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control" />
                             </td>
                     </tr>
                     <tr>
                     	<td>Title:</td>
-                        <td class="usertext"><input id="title" readonly="readonly" name="title" type="text" /> </td>
+                        <td class="usertext"><input id="title" readonly="readonly" name="title" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Document Type:</td>
-                        <td class="usertext"><input id="documenttype" readonly="readonly" name="documenttype" type="text" /> </td>
+                        <td class="usertext"><input id="documenttype" readonly="readonly" name="documenttype" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Template:</td>
-                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" /> </td>
+                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Comment:</td>
-                        <td class="usertext"><textarea rows="5" id="comment" name="comment" type="text"></textarea> </td>
+                        <td class="usertext"><textarea rows="5" id="comment" name="comment" type="text" class="form-control"></textarea> </td>
                     </tr>
                     <tr>
                     	<td>Attachment: </td>
@@ -98,7 +98,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <div class="input2">
                          <input id="forrelease_hidden" name="forrelease_hidden" type="hidden" value="0"/>
-                         <input type="submit" value="For Release" onClick="document.getElementById('forrelease_hidden').value='forrelease';"/>
+                         <input type="submit" value="For Release" onClick="document.getElementById('forrelease_hidden').value='forrelease';" class="btn btn-primary" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -114,9 +114,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         <div id="postright">
                         
                         	<div id="tfheader">
-                            	<form id="tfnewsearch" method="POST">
-		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    			<button id="search_forrelease" class="tfbutton">Search </button>
+                            	<form id="tfnewsearch" method="POST" class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+		        				<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                    			<button id="search_forrelease" class="btn btn-default">Search </button>
+                                        </div>
+                                    </div>
 								</form>	
                                 <h2></h2>							
                             </div>

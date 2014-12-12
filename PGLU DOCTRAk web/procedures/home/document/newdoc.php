@@ -51,23 +51,23 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <td class="usertext1">
                             <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="barcodeinput" name="barcode" type="text" />
-                            <input id="generatebarcode" type="button" value="Generate"/></td>
+                            <input id="barcodeinput" name="barcode" type="text" class="form-control" />
+                            <input type="button" value="Generate" class="btn btn-primary"/></td>
                     </tr>
                     <tr>
                     	<td>Title:</td>
-                        <td class="usertext"><input id="title" name="title" type="text" /> </td>
+                        <td class="usertext"><input id="title" name="title" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
-                        <td class="usertext"><input id="description" name="description" type="text" /> </td>
+                        <td class="usertext"><input id="description" name="description" type="text" class="form-control" /> </td>
                     </tr>
 
                     <tr>
 
                     	<td>Type: </td>
                          <td class="select01">
-                             <select id="type" name="type">
+                             <select id="type" name="type" class="form-control">
 
        <?php
            require_once("../../connection.php");
@@ -86,7 +86,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     <tr>
                     	<td>Template: </td>
                          <td class="select01">
-                             <select id="template" name="template">
+                             <select id="template" name="template" class="form-control">
 
        <?php
            //require_once("../../connection.php");
@@ -155,13 +155,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <div class="input1">
                          <input id="document_hidden" name="document_hidden" type="hidden" value=""/>
-                         <input type="button" value="New" onClick="javascript:cleartext();"/>
-	                     <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary"/>
+	                     <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';" class="btn btn-primary"/>
                     <?php
 	                    if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
 	                    {
 		                    $value="document.getElementById('document_hidden').value='delete';";
-		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'"/>';
+		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'" class="btn btn-primary" style="margin-right:5px;"/>';
 	                    }
 
 
@@ -172,7 +172,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             if ($_SESSION['GROUP']!='ADMIN') 
                             {
                                     $value="document.getElementById('document_hidden').value='scrap';";
-                echo '<input  type="submit" value="Scrap"  onClick="'.$value.'"/>';
+                echo '<input  type="submit" value="Scrap"  onClick="'.$value.'" class="btn btn-primary"/>';
                             }
 
 					?>
@@ -191,9 +191,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         <div id="postright">
                         
                         	<div id="tfheader">
-                            	<form id="tfnewsearch" method="POST" action="new/search.php">
-		        				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    			<button id="search_document" class="tfbutton">Search </button>
+                            	<form id="tfnewsearch" method="POST" action="new/search.php" class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+		        				<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                    			<button id="search_document" class="btn btn-default">Search </button>
+                                        </div>
+                                    </div>
 								</form>	
                                 <h2></h2>						
                             </div>

@@ -49,7 +49,8 @@
                        
                             <div id="ajaxhistory">
                             </div>
-                            <div id="officelist">
+                        
+                            <div id="officelist" class="actionButton">
                             </div>
                         
                         
@@ -79,13 +80,11 @@
                                     <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
                                     <button id="search_rollback" class="btn btn-default" >Search </button>
                                     </div>
-                                    <div class="checkbox">
-    
-      <p style="font-size: 13px;">Include Completed Document:</p><input type="checkbox" id="searchCheck" name="searchCheck" />
-      
-      
-  
-                                    </div></div>
+                                    
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" id="searchCheck" name="searchCheck">Include Completed Document:</label>
+                                        </div>
+                                    </div>
                                     
                                 </form>	
                                
@@ -237,6 +236,7 @@ $(document).ready(function() {
      {  
          return true;
      }
+     return false;
     }
     
     </script>

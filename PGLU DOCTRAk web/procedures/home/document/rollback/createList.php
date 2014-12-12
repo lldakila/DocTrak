@@ -32,7 +32,7 @@ while ($row=  mysqli_fetch_array($result))
         echo "<option value=".$row['documentlist_tracker_id'].">".$row['sortorder'].". ".$row['office_name']."</option>";
     }
 }
-echo '</select><p>';
-echo '<input type=submit value="Rollback" />';
+echo '</select>';
+echo '<input type=submit value="Rollback" class="btn btn-primary" />';
 mysqli_free_result($result);
 mysqli_close($con);

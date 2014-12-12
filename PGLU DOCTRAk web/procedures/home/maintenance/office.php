@@ -62,11 +62,11 @@
 
                         <td class="textinput">
                         <input id="primarykey" name="primarykey" type="hidden" />
-                        <input id="office_name" name="office_name" type="text" /> </td>
+                        <input id="office_name" name="office_name" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
-                        <td class="textinput"><input id="office_description" name="office_description" type="text" /> </td>
+                        <td class="textinput"><input id="office_description" name="office_description" type="text" class="form-control" /> </td>
                     </tr>
 
 
@@ -101,9 +101,9 @@
 
                         <div class="input">
                          <input id="office_mode" name="office_mode" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('office_mode').value='save';"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';" class="btn btn-primary" />
+                         <input type="submit" value="Save" onClick="document.getElementById('office_mode').value='save';" class="btn btn-primary" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -116,9 +116,13 @@
                         
                         		<div id="tfheader">
                                 
-                                <form id="tfnewsearch" method="POST">
-                    				<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-									<button id="search_office" class="tfbutton">Search </button>
+                                <form id="tfnewsearch" method="POST"class="form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                    				<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                                <button id="search_office" class="btn btn-default">Search </button>
+                                        </div>
+                                    </div>
                 				</form>
                					<h2></h2>
                                 </div>
