@@ -12,33 +12,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
     
 <div class="header">
-
-	<div class="header1">
+<div class="menubg">
         
-            
-                <div class="headerline">
-                <div class="row">
-                <div class="col-xs-4 col-md-4">
-                <div class="headerbanner">
-
-        		<a href="<?php echo $PROJECT_ROOT."index.php"; ?>"><img <?php 
-                        $printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png"; 
-                        echo $printme;
-                        ?> 
-                                width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
-				<?php
-						
-						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
-						echo "</span>";
-				?>
-				
-				</h2><p>Management Information Systems</p></a>
-        
-                </div>
-                </div>
-         <div class="col-xs-8 col-md-8">
-		<div class="menugroup">
-                    <div class="collapse navbar-collapse">
+            	<div class="menugroup">
+                    
                             <ul class="nav navbar-nav">
                                 <li><a href="<?php echo $PROJECT_ROOT."home.php"; ?>">Home</a></li>
                                 <li role="presentation" class="dropdown">
@@ -98,7 +75,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                 </li>
                  
                               </ul>
-                    </div>
+                    
 		
         
         <div class="admin">
@@ -125,9 +102,36 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
            echo '</div>';
            mysqli_free_result($result);
            ?>
+           
         </div>
             
-        </div>  
+        </div>
+        </div>
+
+	<div class="header1">
+    	
+                <div class="headerline">
+                <div class="row">
+                <div class="col-xs-4 col-md-4">
+                <div class="headerbanner">
+
+        		<a href="<?php echo $PROJECT_ROOT."index.php"; ?>"><img <?php 
+                        $printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png"; 
+                        echo $printme;
+                        ?> 
+                                width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
+				<?php
+						
+						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
+						echo "</span>";
+				?>
+				
+				</h2><p>Management Information Systems</p></a>
+        
+                </div>
+                </div>
+         <div class="col-xs-8 col-md-8">
+			  
         </div>
     </div>
         

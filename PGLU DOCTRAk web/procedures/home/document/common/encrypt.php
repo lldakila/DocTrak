@@ -6,20 +6,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     $_SESSION['in'] ="start";
     header('Location:../../../../index.php');
 }
-?>
 
 
-
-
-<?php
-
-//$key=$_SESSION['EncryptionKey'];
-//define("ENCRYPTION_KEY", $_SESSION['EncryptionKey']);
-/*$string = "This is the original data string!";
-
-echo $encrypted = encrypt($string, ENCRYPTION_KEY);
-echo "<br />";
-echo $decrypted = decrypt($encrypted, ENCRYPTION_KEY);*/
 
 /**
  * Returns an encrypted & utf8-encoded

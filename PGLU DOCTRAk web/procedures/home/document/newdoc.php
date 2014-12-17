@@ -52,7 +52,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         <td class="usertext1">
                             <input id="primarykey" name="primarykey" type="hidden" />
                             <input id="barcodeinput" name="barcode" type="text" class="form-control" />
-                            <input type="button" value="Generate" class="btn btn-primary"/></td>
+                            <input id="generatebarcode" type="button" value="Generate" class="btn btn-primary"/></td>
                     </tr>
                     <tr>
                     	<td>Title:</td>
@@ -393,14 +393,13 @@ $(document).ready(function() {
             dataType:"text", // Data type, HTML, json etc.
            // data:myData,
             beforeSend: function() {
-		        $("#barcodeinput").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#barcodeinput").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             ajaxError: function() {
-                    $("#barcodeinput").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#barcodeinput").html("<div style='margin:95px 0 0 100px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response){
                 //$("#barcodeinput").html(response);
-
                 document.getElementById("barcodeinput").value=response;
             },
             error:function (xhr, ajaxOptions, thrownError){

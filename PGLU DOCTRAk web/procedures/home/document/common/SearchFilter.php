@@ -54,7 +54,7 @@
                         $counterX=$counterX+1;
                     }
                     return false;
-                    break;
+              
 
 
             case 'release':
@@ -63,34 +63,18 @@
 
                     if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
                         {
-
-                        if ($rows['SORTORDER']==1)
-                        {
-                            if ($rows['RELEASED_VAL']!=1 AND $rows['RECEIVED_VAL'])
+                                     
+                            if (($rows['RELEASED_VAL']!=1) AND ($rows['RECEIVED_VAL']==1))
                             {
                                 $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
                                 return true;
                             }
 
-                        }
-                        else
-                        {
-
-                            if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']!=1)
-                            {
-                                $_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
-                                //$_SESSION['keytracker']=$rows['RECEIVED_VAL'];
-                                return true;
-                            }
-
-                        }
-
+                        } 
 
                     }
-                    $counterX=$counterX+1;
-                }
                 return false;
-                break;
+                
 
             case 'forrelease':
 

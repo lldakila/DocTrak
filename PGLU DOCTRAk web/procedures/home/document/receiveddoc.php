@@ -46,12 +46,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             <form name="process" method="post" action="receive/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
     					<div class="table1">
-    				<table >
+    				<table>
                     <tr>
                     	<td>BarCode No:</td>
 
                         <td class="usertext">
                             <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="barcode" name="barcode" type="hidden" />
                             <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
                             </td>
                     </tr>
@@ -183,14 +184,16 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
 
 
 
-function clickSearch(barcodeno,title,documenttype,template,pdf) {
+function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_id) {
     document.process.barcodeno.value=barcodeno;
     document.process.title.value=title;
     document.process.documenttype.value=documenttype;
     document.process.template.value=template;
-    document.process.primarykey.value=barcodeno;
+    document.process.primarykey.value=tracker_id;
+    document.process.barcode.value=document_id;
     retrieveAttachment(barcodeno);
-    GetKey(barcodeno);
+    
+    //GetKey(barcodeno);
 
 
     //alert (pdf);
@@ -198,23 +201,23 @@ function clickSearch(barcodeno,title,documenttype,template,pdf) {
 }
 
 
-function GetKey(key) {
-    var myData = 'receive='+key;
-    jQuery.ajax({
-        type: "POST",
-        url:"common/redirectSearch.php",
-        dataType:"text", // Data type, HTML, json etc.
-        data:myData,
-        success:function(response){
-
-           // $("#attachment").html(response);
-          //  alert (response);
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-            alert(thrownError);
-        }
-    });
-}
+//function GetKey(key) {
+//    var myData = 'receive='+key;
+//    jQuery.ajax({
+//        type: "POST",
+//        url:"common/redirectSearch.php",
+//        dataType:"text", // Data type, HTML, json etc.
+//        data:myData,
+//        success:function(response){
+//
+//           // $("#attachment").html(response);
+//          //  alert (response);
+//        },
+//        error:function (xhr, ajaxOptions, thrownError){
+//            alert(thrownError);
+//        }
+//    });
+//}
 
 
 function retrieveAttachment(barcodeID){

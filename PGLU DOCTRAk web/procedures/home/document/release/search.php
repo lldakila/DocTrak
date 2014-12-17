@@ -26,35 +26,45 @@ $rowcolor="blue";
                                 	</tr>";
 
      include_once("../common/SearchFilter.php");
+     require_once("../common/encrypt.php");
+     
      foreach($query as $var) {
 
-         if (SortOrder($var["DOCUMENT_ID"],'release')) {
-         if ($rowcolor=="blue")
-         {
-             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\')">';
-            // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
-             $rowcolor="notblue";
-         }
-         else
-         {
-             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\')">';
-            // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
-             $rowcolor="blue";
-         }
+         if (SortOrder($var["DOCUMENT_ID"],'release')) 
+        {
+            
+            $encrypt_trackerid=base64_encode(encryptText($_SESSION['keytracker']));
+            $encrypt_documentid=base64_encode(encryptText($var["DOCUMENT_ID"]));
+            $document_id=$var["DOCUMENT_ID"];
+            $document_title=$var["DOCUMENT_TITLE"];
+            $document_type=$var["FK_DOCUMENTTYPE_ID"];
+            $template=$var["FK_TEMPLATE_ID"];
+            
+            if ($rowcolor=="blue")
+            {
+                echo '<tr id="'.$encrypt_documentid.'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
+                $rowcolor="notblue";
+                //echo "xx id="".$template."''xxx'.$document_filename.' xx";
+            }
+            else
+            {
+                echo '<tr id="'.$encrypt_documentid.'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
+                $rowcolor="blue";
+            }
          // print "<tr class=\"d".($i & 1)."\">";
        //  echo "<a onClick=clickSearch(".$var["SECURITY_USERNAME"].")>".$var["SECURITY_USERNAME"]."</a>";
 
 
 
         echo "<td style='width:80px;'>";
-         echo $var["DOCUMENT_ID"];
-         echo "</td><td>";
-         echo $var["DOCUMENT_TITLE"];
-         echo "</td><td>";
-         echo $var["transdate"];
+        echo $var["DOCUMENT_ID"];
+        echo "</td><td>";
+        echo $var["DOCUMENT_TITLE"];
+        echo "</td><td>";
+        echo $var["transdate"];
 
-         echo "</td>";
-         echo"</tr>";
+        echo "</td>";
+        echo"</tr>";
 
 
 

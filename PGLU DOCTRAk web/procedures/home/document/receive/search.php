@@ -24,19 +24,28 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
         </tr>";
 
       include_once("../common/SearchFilter.php");
+      require_once("../common/encrypt.php");
 
  foreach($query as $var) {
-     if (SortOrder($var["DOCUMENT_ID"],'receive')) {
+    if (SortOrder($var["DOCUMENT_ID"],'receive'))
+    {
 
+        $encrypt_trackerid=base64_encode(encryptText($_SESSION['keytracker']));
+        $encrypt_documentid=base64_encode(encryptText($var["DOCUMENT_ID"]));
+        $document_id=$var["DOCUMENT_ID"];
+        $document_title=$var["DOCUMENT_TITLE"];
+        $document_type=$var["FK_DOCUMENTTYPE_ID"];
+        $template=$var["FK_TEMPLATE_ID"];
+            
          if ($rowcolor=="blue")
          {
-             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\')">';
+             echo '<tr id="'.$encrypt_documentid.'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
             // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
              $rowcolor="notblue";
          }
          else
          {
-             echo '<tr id="'.$var["DOCUMENT_ID"].'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$var["DOCUMENT_FILENAME"].'\')">';
+             echo '<tr id="'.$encrypt_documentid.'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
             // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
              $rowcolor="blue";
          }

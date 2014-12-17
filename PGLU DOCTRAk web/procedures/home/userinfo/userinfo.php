@@ -75,19 +75,19 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 	                                                <tr>
 	                                                    <td>USERNAME:</td>
 
-	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='username' readonly='readonly' type='text' name='username' class='text' value ='".$query[0]['SECURITY_USERNAME']."'/></font></td>
+	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='username' readonly='readonly' type='text' name='username' class='form-control' value ='".$query[0]['SECURITY_USERNAME']."'/></font></td>
 	                                                </tr>
 	                                                <tr>
 	                                                    <td>FULL NAME:</td>
-	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='fullname' readonly='readonly' type='text' name='fullname' class='text' value ='".$query[0]['SECURITY_NAME']."'/></font></td>
+	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='fullname' readonly='readonly' type='text' name='fullname' class='form-control' value ='".$query[0]['SECURITY_NAME']."'/></font></td>
 	                                                </tr>
 	                                                <tr>
 	                                                    <td>OFFICE:</td>
-	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='office' readonly='readonly' type='text' name='office' class='text' value ='".$query[0]['FK_OFFICE_NAME']."'/></font></td>
+	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='office' readonly='readonly' type='text' name='office' class='form-control' value ='".$query[0]['FK_OFFICE_NAME']."'/></font></td>
 	                                                </tr>
 	                                                <tr>
 	                                                    <td>GROUP:</td>
-	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='group' readonly='readonly' type='text' name='group' class='text' value='".$query[0]['FK_SECURITY_GROUPNAME']."'/></font></td>
+	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='group' readonly='readonly' type='text' name='group' class='form-control' value='".$query[0]['FK_SECURITY_GROUPNAME']."'/></font></td>
 	                                                </tr>";
 
 												?>

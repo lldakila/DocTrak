@@ -52,6 +52,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <td class="usertext">
                             <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="barcode" name="barcode" type="hidden" />
                             <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
                             </td>
                     </tr>
@@ -104,7 +105,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                   		 <!--- BUTTONS ACTIVITY START --->
 
                         <div class="input2">
-                         <input id="releasedoc_hidden" name="document_hidden" type="hidden" value="0"/>
+                        
                          <input type="submit" class="btn btn-primary" value="Release" onClick="document.getElementById('releasedoc_hidden').value='release';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
@@ -179,34 +180,37 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <script language="JavaScript" type="text/javascript">
 
-function clickSearch(barcodeno,title,documenttype,template,pdf) {
+function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_id) {
     document.process.barcodeno.value=barcodeno;
     document.process.title.value=title;
     document.process.documenttype.value=documenttype;
     document.process.template.value=template;
-    document.process.primarykey.value=barcodeno;
+    document.process.primarykey.value=tracker_id;
+    document.process.barcode.value=document_id;
+    
     retrieveAttachment(barcodeno);
+  
     //GetKey(barcodeno);
 
 }
 
-function GetKey(key) {
-    var myData = 'release='+key;
-    jQuery.ajax({
-        type: "POST",
-        url:"common/redirectSearch.php",
-        dataType:"text", // Data type, HTML, json etc.
-        data:myData,
-        success:function(response){
-
-            // $("#attachment").html(response);
-         //     alert (response);
-        },
-        error:function (xhr, ajaxOptions, thrownError){
-            alert(thrownError);
-        }
-    });
-}
+//function GetKey(key) {
+//    var myData = 'release='+key;
+//    jQuery.ajax({
+//        type: "POST",
+//        url:"common/redirectSearch.php",
+//        dataType:"text", // Data type, HTML, json etc.
+//        data:myData,
+//        success:function(response){
+//
+//            // $("#attachment").html(response);
+//         //     alert (response);
+//        },
+//        error:function (xhr, ajaxOptions, thrownError){
+//            alert(thrownError);
+//        }
+//    });
+//}
 
 function retrieveAttachment(barcodeID){
         var myData = 'attachment='+barcodeID; //build a post data structure

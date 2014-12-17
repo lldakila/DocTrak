@@ -9,25 +9,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 require_once("encrypt.php");
-//$path = "D:/OneDrive/Projects/DocTrak/document/";
-//$path=$path . decryptText(base64_decode($_GET['download_file']));
-//$val ='D:/OneDrive/Projects/DocTrak/document/PGS-141121-5TEST.pdf';
-$file = $path.urldecode(decryptText(base64_decode($_GET['download_file'])));
-$fullpath=$path.basename(decryptText(base64_decode($_GET['download_file'])));
 
-//echo strcmp($val,"D:/OneDrive/Projects/DocTrak/document/PGS-141121-5TEST.pdf");
-////die;
-//echo "<br>";
-//echo strval($val) ;
-//echo "<br>";
-//echo strval($fullpath);
-//echo "<br>";
-//die;
-//$fname=$var;
-//$path ='D:/OneDrive/Projects/DocTrak/document/PGS-141121-5TEST.pdf';
-//
-//echo $file;
-//echo "<br>";
 $id=decryptText(base64_decode($_GET['download_file']));
 
 require_once("../../../connection.php");
