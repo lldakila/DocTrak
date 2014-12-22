@@ -154,28 +154,26 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                   		 <!--- BUTTONS ACTIVITY START --->
 
                         <div class="input1">
-                         <input id="document_hidden" name="document_hidden" type="hidden" value=""/>
-                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary"/>
-	                     <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';" class="btn btn-primary"/>
-                    <?php
-	                    if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
+                            
+                             <?php
+	                 
+
+                            if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
 	                    {
 		                    $value="document.getElementById('document_hidden').value='delete';";
-		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'" class="btn btn-primary" style="margin-right:5px;"/>';
+		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'" class="btn btn-danger" />';
 	                    }
-
-
-
-
-
-
                             if ($_SESSION['GROUP']!='ADMIN') 
                             {
                                     $value="document.getElementById('document_hidden').value='scrap';";
-                echo '<input  type="submit" value="Scrap"  onClick="'.$value.'" class="btn btn-primary"/>';
+                                    echo '<input  type="submit" value="Scrap"  onClick="'.$value.'" class="btn btn-primary"/>';
                             }
-
 					?>
+                         <input id="document_hidden" name="document_hidden" type="hidden" value=""/>
+                         <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';" class="btn btn-primary"/>
+                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary"/>
+	                     
+                   
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -198,7 +196,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     			<button id="search_document" class="btn btn-default">Search </button>
                                         </div>
                                     </div>
-								</form>	
+                                    </form>
+                                    <!--AUTOSUGGEST SEARCH START-->
+                                     <div id="display"></div>
+                                     <!--AUTOSUGGEST SEARCH END-->
                                 <h2></h2>						
                             </div>
                             <div class="tfclear"></div>
@@ -216,8 +217,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                          </div>
 
                         <div class="tfclear"></div>
-
-            
+           
             </div>
         
         </div>
@@ -419,6 +419,39 @@ function myFunction(e) {
 	$("#fade").fadeTo(3000,0.0);
 
 }
+
+// Autosuggest search//
+
+    function fill(Value)
+    {
+        $('#search_string').val(Value);
+        $('#display').hide();
+    }
+    
+    $(document).ready(function()
+    {
+        $("#search_string").keyup(function() 
+        {
+            var name = $('#search_string').val();
+            var searchtype = 'newDoc';
+            if(name=="")
+            {
+                $("#display").html("");
+            }
+            else
+            {
+                $.ajax({
+                type: "POST",
+                url: "common/autosuggest.php",
+                data: {search_string:name ,searchtype:searchtype},
+                success: function(html){
+                $("#display").html(html).show();
+               
+                }
+                });
+            }
+        });
+    });
 
 </script>
 </body>

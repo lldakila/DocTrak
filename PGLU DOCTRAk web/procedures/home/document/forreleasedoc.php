@@ -44,8 +44,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                             <form name="process" method="post" action="forrelease/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
-    					<div class="table1">
-    				<table >
+                                <div class="table1">
+    				<table>
                     <tr>
                     	<td>BarCode No:</td>
 
@@ -84,11 +84,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                             if($_SESSION['operation']=='save'){
 
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully </div>";
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully </div>";
 
                             }
                             elseif ($_SESSION['operation']=='error') {
-                                echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
                             }
 
                             $_SESSION['operation']='clear';
@@ -105,10 +105,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                   </div>
 
-						   </form>
-
-
-
+                        </form>
 
                         </div>
 
@@ -118,11 +115,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             	<form id="tfnewsearch" method="POST" class="form-inline">
                                     <div class="form-group">
                                         <div class="input-group">
-		        				<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                    			<button id="search_forrelease" class="btn btn-default">Search </button>
+                                            <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                            
+                                            <button id="search_forrelease" class="btn btn-default">Search </button>
                                         </div>
                                     </div>
-								</form>	
+                                </form>	
+                                    <!--AUTOSUGGEST SEARCH START-->
+                                    <div id="display"></div>
+                                    <!--AUTOSUGGEST SEARCH END-->
                                 <h2></h2>							
                             </div>
                             <div class="tfclear"></div>
@@ -172,6 +173,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     </div>
 	
 </div>
+
+
 
 
 
@@ -275,6 +278,52 @@ $(document).ready(function() {
 
 
     });
+
+    document.addEventListener("mousemove", function() {
+        myFunction(event);
+    });
+
+    function myFunction(e) {
+            $("#fade").fadeTo(3000,0.0);
+
+    }
+
+
+// Autosuggest search//
+
+    function fill(Value)
+    {
+        $('#search_string').val(Value);
+        $('#display').hide();
+    }
+    
+    $(document).ready(function()
+    {
+        $("#search_string").keyup(function() 
+        {
+            var name = $('#search_string').val();
+            var searchtype = 'forRelease';
+            if(name=="")
+            {
+                $("#display").html("");
+            }
+            else
+            {
+                $.ajax({
+                type: "POST",
+                url: "common/autosuggest.php",
+                data: {search_string:name ,searchtype:searchtype},
+                success: function(html){
+                $("#display").html(html).show();
+                }
+                });
+            }
+        });
+    });
+
+
+
+
 
 </script>
 </body>

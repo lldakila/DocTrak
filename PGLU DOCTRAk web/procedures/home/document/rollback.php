@@ -87,6 +87,9 @@
                                     </div>
                                     
                                 </form>	
+                        <!--AUTOSUGGEST SEARCH START-->
+                            <div id="display"></div>
+                            <!--AUTOSUGGEST SEARCH END-->
                                
                             </div>
                             <div class="tfclear"></div>
@@ -239,6 +242,40 @@ $(document).ready(function() {
      return false;
     }
     
+    
+    
+// Autosuggest search//
+
+    function fill(Value)
+    {
+        $('#search_string').val(Value);
+        $('#display').hide();
+    }
+    
+    $(document).ready(function()
+    {
+        $("#search_string").keyup(function() 
+        {
+            var name = $('#search_string').val();
+            var searchtype = 'Rollback';
+            if(name=="")
+            {
+                $("#display").html("");
+            }
+            else
+            {
+                $.ajax({
+                type: "POST",
+                url: "common/autosuggest.php",
+                data: {search_string:name ,searchtype:searchtype},
+                success: function(html){
+                $("#display").html(html).show();
+                }
+                });
+            }
+        });
+    });
+
     </script>
     
     

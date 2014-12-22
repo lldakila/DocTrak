@@ -808,6 +808,41 @@ img#lowclr {
 	z-index:0;
 }
 
+table.fixedheader th{
+    padding: 5px 12px;
+    font-size: 10px;
+}
+table.fixedwidth th{ 
+    table-layout:fixed; 
+    
+}
+#display table.fixedwidth td { 
+    font-size: 10px;
+}
+
+
+#display ul {
+    position: absolute;
+    list-style: none;
+    background: rgb(218, 218, 221);
+    margin-left:15px;
+    padding: 0;
+    width: 331px;
+}
+
+#display li {
+    position: relative;
+    background: rgb(231, 231, 231);
+    padding: 5px 5px;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+    
+}
+
+#display  li:hover {
+    background: #BCBCBC;
+}
+
 .checkbox {
     float:right;
     padding-top: 5px;
@@ -1403,7 +1438,7 @@ input[type=radio] {
     }
 
     .usertext1 input[type=text] {
-        width: 300px;
+        width: 514px;
         border-radius:5px;
         float:left;
         margin-right: 5px;
@@ -1443,8 +1478,23 @@ input[type=radio] {
 select, option { width:130px;
 					border-radius:5px; }
 
-.select01 select, option { width:600px;
-					border-radius:5px; }
+.select01 select, option { 
+        width:600px;
+        border-radius:5px;
+
+}
+
+.select1 select, option { 
+        width:475px;
+        border-radius:5px;
+        float:left;
+        margin-right: 8px;
+
+}
+
+.select1 input[type=button] {
+    padding: 6px 27px;
+}
 
 .select02 select, option { width:365px;
 					border-radius:5px; }

@@ -74,11 +74,14 @@
                               <option>Medium</option>
                               <option>Low</option>
                               </select>
-                              Public:
-                        <input id="publicyes" name="publicradio" type="radio" value="Yes"/>Yes &nbsp;
-                        <input id="publicno" name="publicradio" type="radio" value="No"/>No
-                               </td>
-
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Public:</td>
+                        <td><input id="publicyes" name="publicradio" type="radio" value="Yes"/>Yes &nbsp;
+                        <input id="publicno" name="publicradio" type="radio" value="No" checked="checked"/>No
+                        </td>
+                        
                     </tr>
 
 
@@ -109,9 +112,11 @@
 
                         <div class="input">
                                 <input id="type_mode" name="type_mode" type="hidden" />
-                                <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-                                <input  type="submit" value="Delete" onClick="document.getElementById('type_mode').value='delete';" class="btn btn-primary" />
+                                <input  type="submit" value="Delete" onClick="document.getElementById('type_mode').value='delete';" class="btn btn-danger" />
+                                
                                 <input type="submit" value="Save" onClick="document.getElementById('type_mode').value='save';" class="btn btn-primary" />
+                                <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+                                
                             </div>
                            <!--- BUTTONS ACTIVITY END--->
 

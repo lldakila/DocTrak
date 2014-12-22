@@ -57,11 +57,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                 </div>
 
 
-		                    <form name="history">
-		                    <div id="headsearch">
-			                    <input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-			                    <button id="search_document" class="tfbutton">Search </button>
-		                    </div>
+		                    <form name="history" class="form-inline">
+                                        <div id="headsearch">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                                    <button id="search_document" class="btn btn-default">Search </button>
+                                                </div>
+                                            </div>
+                                        </div>
 		                        </form>
                                 <div class="tfclear"></div>
 

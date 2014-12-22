@@ -101,9 +101,9 @@
 
                         <div class="input">
                          <input id="office_mode" name="office_mode" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';" class="btn btn-primary" />
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';" class="btn btn-danger" />
                          <input type="submit" value="Save" onClick="document.getElementById('office_mode').value='save';" class="btn btn-primary" />
+                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 

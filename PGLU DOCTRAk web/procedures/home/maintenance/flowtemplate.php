@@ -51,7 +51,7 @@
         
         	<div id="post">
 
-            			<div id="post1">
+            			<div id="post10">
                         <h2>FLOW TEMPLATE</h2>
 
 
@@ -67,16 +67,16 @@
 
                         <td class="textinput">
                             <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="template_name" name="template_name" type="text" /> </td>
+                            <input id="template_name" name="template_name" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Description:</td>
 
-                        <td class="textinput"><input id="description_name" name="template_description" type="text" /> </td>
+                        <td class="textinput"><input id="description_name" name="template_description" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
                     	<td>Office:</td>
-                        <td class="select01"><select name='officelist' id='officelist'>
+                        <td class="select1"><select name='officelist' id='officelist' class="form-control">
         <?php
         //require_once("../../connection.php");
        
@@ -90,7 +90,7 @@
         ?>
                                 </select>
 <!--                               <button id="add_office" type="button">Add Office</button>-->
-                                <input type="button" value="Add Office" onClick="javascript:addoffice();"/>
+                                <input type="button" value="Add Office" onClick="javascript:addoffice();" class="btn btn-primary" />
                         </td>
                     </tr>
 
@@ -111,7 +111,7 @@
 
                             </select>
 
-                        <input type="button" id="deleteselected" value="Remove Office" onclick="removeoffice(officeselection);"/>
+                        <input type="button" id="deleteselected" value="Remove Office" onclick="removeoffice(officeselection);" class="btn btn-primary" />
 
 
                     </div><div class="tfclear"></div>
@@ -142,9 +142,11 @@
 
                         <div class="input">
                          <input id="template_mode" name="template_mode" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('template_mode').value='delete';"/>
-                         <input type="submit" value="Save" onClick="document.getElementById('template_mode').value='save';"/>
+                         <input  type="submit" value="Delete"  onClick="document.getElementById('template_mode').value='delete';" class="btn btn-danger" />
+                         
+                         
+                         <input type="submit" value="Save" onClick="document.getElementById('template_mode').value='save';" class="btn btn-primary" />
+                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
                            </div>
@@ -152,27 +154,29 @@
 						   </form>
                         </div>
                         
-                        	<div id="postright01">
+                        	<div id="postright">
                             
                             		<div id="tfheader">
-                                    	<form id="tfnewsearch" method="POST" >
-		        						<input id="search_string" type="text" name="search_string" class="tftextinput" placeholder="search..." />
-                    					<button id="search_flowtemplate" class="tfbutton">Search </button>
-										</form>	
+                                    	<form id="tfnewsearch" method="POST" class="form-inline">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                                    <button id="search_flowtemplate" class="btn btn-default">Search </button>
+                                                </div>
+                                            </div>
+                                        </form>	
                                         <h2></h2>	
                                     </div>
                                     <div class="tfclear"></div>
                                     
                             <div class="scroll">
-                        	<table id="respondsth">
- 									<tr class='bgcolor'>
-                                	<th class="bgcolor1">Template</th>
-                                	<th>Description</th>
-                                	</tr>
-                                    </table>
+                        	
                                     
                                 <table id="responds">
-                                	
+                                    <tr class='usercolortest'>
+                                	<th>Template</th>
+                                        <th>Description</th>
+                                    </tr>	
                                 </table>
                             </div>
                          	</div>
