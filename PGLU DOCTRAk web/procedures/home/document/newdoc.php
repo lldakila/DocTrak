@@ -27,6 +27,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <body>
 <?php
+
     $PROJECT_ROOT= '../../../';
     include_once('../../../header.php');
 ?>
@@ -90,11 +91,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
        <?php
            //require_once("../../connection.php");
-
-           $query=select_info_multiple_key("select TEMPLATE_ID from document_template");
+          
+           $query=select_info_multiple_key("select TEMPLATE_ID, template_name from document_template where fk_office_name = '".$_SESSION['OFFICE']."' ");
            foreach($query as $var)
            {
-              echo "<option>".$var['TEMPLATE_ID']."</option>";
+              echo "<option value=".$var["TEMPLATE_ID"].">".$var["template_name"]."</option>";
            }
 
 

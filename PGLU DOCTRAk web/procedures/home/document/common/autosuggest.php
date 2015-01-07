@@ -246,8 +246,8 @@ if(isset($_POST['search_string']))
                 }
             break;
             
-        case 'docTrail':
-            $query="select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0";
+        case 'docTracker':
+            $query="select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0 and fk_office_name_documentlist ='".$_SESSION['OFFICE']."'";
             $RESULT=mysqli_query($con,$query);
             if ($RESULT)
             {
@@ -261,6 +261,100 @@ if(isset($_POST['search_string']))
                        <col width="80px" />
                       <tr><th>Barcode</th><th>Title</th><th>Date</th></tr>
                       </table>';
+                    
+            while ($rows=mysqli_fetch_array($RESULT))
+            {
+               
+            ?>
+            <li>
+                <table class="fixedwidth">
+                     <col width="100px" />
+                      <col width="150px" />
+                       <col width="80px" />
+                    <tr onclick='fill("<?php echo $rows['DOCUMENT_ID']; ?>")'>
+                        <td>
+                    <?php echo $rows['DOCUMENT_ID']; ?>
+                        </td>
+                        <td>
+                            <?php echo $rows['DOCUMENT_TITLE']; ?>
+                        </td>
+                             <td>
+                    <?php echo $rows['transdate']; ?>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </li>
+            
+            <?php
+                }
+                }
+                
+                
+                break;
+                
+        case 'docTrail':
+            $query="select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0 and fk_office_name_documentlist ='".$_SESSION['OFFICE']."'";
+            $RESULT=mysqli_query($con,$query);
+            if ($RESULT)
+            {
+                
+            
+            echo "<ul>";
+            echo '
+            <table class="fixedheader">
+                    <col width="100px" />
+                    <col width="150px" />
+                    <col width="80px" />
+                    <tr><th>Barcode</th><th>Title</th><th>Date</th></tr>
+                    </table>';
+                    
+            while ($rows=mysqli_fetch_array($RESULT))
+            {
+               
+            ?>
+            <li>
+                <table class="fixedwidth">
+                     <col width="100px" />
+                      <col width="150px" />
+                       <col width="80px" />
+                    <tr onclick='fill("<?php echo $rows['DOCUMENT_ID']; ?>")'>
+                        <td>
+                    <?php echo $rows['DOCUMENT_ID']; ?>
+                        </td>
+                        <td>
+                            <?php echo $rows['DOCUMENT_TITLE']; ?>
+                        </td>
+                             <td>
+                    <?php echo $rows['transdate']; ?>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </li>
+            
+            <?php
+                }
+                }
+                
+                
+                break;
+                
+        case 'newProcess':
+            $query="select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username  WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0 and fk_office_name_documentlist ='".$_SESSION['OFFICE']."'";
+            $RESULT=mysqli_query($con,$query);
+            if ($RESULT)
+            {
+                
+            
+            echo "<ul>";
+            echo '
+            <table class="fixedheader">
+                    <col width="100px" />
+                    <col width="150px" />
+                    <col width="80px" />
+                    <tr><th>Barcode</th><th>Title</th><th>Date</th></tr>
+                    </table>';
                     
             while ($rows=mysqli_fetch_array($RESULT))
             {

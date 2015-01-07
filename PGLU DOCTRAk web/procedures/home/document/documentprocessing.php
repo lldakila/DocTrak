@@ -72,6 +72,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                 </div>
                             </div>
                         </form>
+                            <!--AUTOSUGGEST SEARCH START-->
+                             <div id="display"></div>
+                             <!--AUTOSUGGEST SEARCH END-->
                         <h2></h2>
                     </div>
                     <div class="tfclear"></div>
@@ -190,6 +193,38 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         });
 
 
+// Autosuggest search//
+
+    function fill(Value)
+    {
+        $('#search_string').val(Value);
+        $('#display').hide();
+    }
+    
+    $(document).ready(function()
+    {
+        $("#search_string").keyup(function() 
+        {
+            var name = $('#search_string').val();
+            var searchtype = 'newProcess';
+            if(name=="")
+            {
+                $("#display").html("");
+            }
+            else
+            {
+                $.ajax({
+                type: "POST",
+                url: "common/autosuggest.php",
+                data: {search_string:name ,searchtype:searchtype},
+                success: function(html){
+                $("#display").html(html).show();
+               
+                }
+                });
+            }
+        });
+    });
 
     </script>
 </body>

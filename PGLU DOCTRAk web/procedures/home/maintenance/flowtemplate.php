@@ -315,16 +315,16 @@ function cleartext() {
 
 }
 
-function clickSearch(template_name,description_name) {
+function clickSearch(template_id,template_name,description_name) {
     document.getElementById("template_name").value=template_name;
     document.getElementById("description_name").value=description_name;
-    document.getElementById("primarykey").value=template_name;
-    retrieveoffice(template_name);
-    retrieveofficearray(template_name);
+    document.getElementById("primarykey").value=template_id;
+    retrieveoffice(template_id);
+    retrieveofficearray(template_id);
 }
 
-    function retrieveoffice(template_name){
-    var myData = 'template_name='+template_name; //build a post data structure
+        function retrieveoffice(template_id){
+    var myData = 'template_name='+template_id; //build a post data structure
     jQuery.ajax({
 			type: "POST",
             url:"flowtemplate/office.php",
@@ -341,8 +341,8 @@ function clickSearch(template_name,description_name) {
 			});
 	}
 
-    function retrieveofficearray(template_name) {
-        var myData = 'template_name='+template_name; //build a post data structure
+    function retrieveofficearray(template_id) {
+        var myData = 'template_name='+template_id; //build a post data structure
         jQuery.ajax({
             type: "POST",
             url:"flowtemplate/officehidden.php",
@@ -368,7 +368,8 @@ function validate() {
 
 
 
-    if (document.getElementById('template_mode').value=='delete') {
+    if (document.getElementById('template_mode').value=='delete') 
+    {
         if (document.getElementById('primarykey').value!="") {
         if (confirm("Are you sure you want to delete?") == true) {
             return true;
@@ -393,10 +394,11 @@ function validate() {
         return false;
     }
 
-    else if (document.flowtemplate.template_description.value==""){
-        alert("Fill up necessary inputs.");
-        return false;
-    }
+//    else if (document.flowtemplate.template_description.value=="")
+//    {
+//        alert("Fill up necessary inputs.");
+//        return false;
+//    }
 
 
     if (document.flowtemplate.officeselection.length == 0) {
@@ -482,6 +484,9 @@ function myFunction(e) {
 	$("#fade").fadeTo(3000,0.0);
 
 }
+
+
+
 
 
 /*]]>*/

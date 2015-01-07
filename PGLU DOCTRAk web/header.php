@@ -48,15 +48,17 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                     
                                 </li>
                                 <?php
-                                if($_SESSION['GROUP']=='POWER ADMIN')
-                                {
+                                
                                         echo '<li role="presentation" class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                         Maintenance <span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">
-                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php"><span>Document Type</span></a></li>
+                                                
+                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php"><span>Flow Template</span></a></li>';
+                                        if($_SESSION['GROUP']=='POWER ADMIN')
+                                {
+                                                echo '<li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php"><span>Document Type</span></a></li>
                                                 <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php"><span>Office</span></a></li>
-                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php"><span>Flow Template</span></a></li>
                                                 <li class="divider"></li>
                                                 <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Security</span></a>
                                                     <ul class="dropdown-menu">
@@ -64,10 +66,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                         <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/group.php"><span>Group</span></a></li>
                                                         <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/audittrail.php"><span>Audit Trail</span></a></li>
                                                     </ul>
-                                                </li>
-                                            </ul>
-                                        </li>';
-                                }
+                                                </li>';
+                                            }
+                                        echo ' </ul></li>';
+                                
                                         ?>
                                 
                                 <li>
@@ -122,11 +124,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                 width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
 				<?php
 						
-						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp;" .$_SESSION['Version'];
+						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp; " .$_SESSION['Version'];
 						echo "</span>";
 				?>
 				
-				</h2><p>Management Information Systems</p></a>
+				</h2><p>Management Information Systems Division</p></a>
         
                 </div>
                 </div>

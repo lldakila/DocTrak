@@ -23,4 +23,3 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 
-?>
