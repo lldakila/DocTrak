@@ -28,7 +28,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     else 
     {
         
-        $query="UPDATE documentlist_tracker SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['comment']."' WHERE DOCUMENTLIST_TRACKER_ID = '". $doc_tracker_id."' ";
+        $query="UPDATE documentlist_tracker SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['commenttext']."' WHERE DOCUMENTLIST_TRACKER_ID = '". $doc_tracker_id."' ";
     
         $RESULT=mysqli_query($con,$query);
         
@@ -60,7 +60,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         //START INSERT INTO DOCUMENTLIST_HISTORY
 
         include ("../common/history.php");
-        if(!InsertHistory($doc_documentid,$_SESSION['OFFICE'],'Document Released',$_POST['comment'],'Released by '.$_SESSION['security_name']))
+        if(!InsertHistory($doc_documentid,$_SESSION['OFFICE'],'Document Released',$_POST['commenttext'],'Released by '.$_SESSION['security_name']))
         {
             $flag=false;
         }

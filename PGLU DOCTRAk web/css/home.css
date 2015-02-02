@@ -40,6 +40,11 @@ div {
 	display:block;
 }
 
+table {
+    border-color: #fff;
+    display: table;
+}
+
 .content1 {
 	margin:0 auto;
 	width:1300px;
@@ -773,6 +778,7 @@ img#lowclr {
 	height:265px;
 	width:930px;
 	overflow:hidden;
+        margin: auto;
 }
 
 #pic img{

@@ -73,7 +73,7 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                             
                             <?php
                             
-                            $result=mysqli_query($con,$query)or die(mysqli_error($con));
+                            $result=mysqli_query($con,$query);
 	         while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 	         {
                         if (strtoupper($row['priority'])=='HIGH') 
@@ -475,7 +475,7 @@ function retrieveDocument(BarcodeId){
             }
         });
          $(window).load(function(){
-        $('#myModal').modal('show');
+        //$('#myModal').modal('show');
     });
     }
 

@@ -45,8 +45,11 @@
             $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE (document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%')AND scrap=0 and complete=0 and (fk_office_name_documentlist ='".$_SESSION['OFFICE']."') ORDER BY transdate desc";
         }
             
+        
     }
-    //echo $query;
+//    echo $query;
+//    die;
+      
     $RESULT=mysqli_query($con,$query);
     include_once("../common/SearchFilter.php");
     $rowcolor="blue";
@@ -56,6 +59,7 @@
         <th>Owner</th>
         <th>Date</th>
     </tr>";
+ 
     while($var=mysqli_fetch_array($RESULT))
     {
         if (SortOrder($var["document_id"],'rollback')) {

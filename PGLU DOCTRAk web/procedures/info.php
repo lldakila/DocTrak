@@ -6,7 +6,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     header('Location:../index.php');
 }
 
-	$_SESSION['Title']="PGLU DOCTAK";
+	$_SESSION['Title']="PGLU DOCTRAK";
 	$_SESSION['Version']="v0.5dev";
 	$_SESSION['Developer']="TJ and Jerome";
 	$_SESSION['Copyright']="Copyleft";

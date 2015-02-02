@@ -70,8 +70,31 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                     <tr>
                     	<td>Comment:</td>
-                        <td class="usertext"><textarea rows="5" id="comment" name="comment" type="text" class="form-control"></textarea> </td>
+                        <td>
+                        <?php
+                        
+                            require_once("../../connection.php");
+                            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+                            $con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
+                            $query="SELECT Message FROM message WHERE Message_Module = 'tracking' ORDER BY Message";
+                            $result=mysqli_query($con,$query);
+                            echo '<select id="comment" class="form-control input-size">';
+                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                            {
+                                echo '<option>';
+                                echo $row['Message'];
+                                echo '</option>';
+                            }
+                            echo '<option value="other">Other</option>';
+                            echo '</select>';
+                        ?>
+                        </td>
+                        
                     </tr>
+                     <tr>
+                    	<td></td>
+                        <td class="usertext"><textarea rows="5" id="commenttext" readonly="readonly" name="commenttext" type="text" class="form-control"></textarea> </td>
+                    </tr> 
                     <tr>
                     	<td>Attachment: </td>
                          <td id="attachment">
@@ -319,6 +342,29 @@ function myFunction(e) {
             }
         });
     });
+    
+    
+   $('#comment').change(function () {
+   if (document.getElementById('comment').value=='other')
+   {
+       $('#commenttext').get(0).removeAttribute("readonly");
+     
+    document.getElementById('commenttext').value='';
+    $('#commenttext').get(0).setAttribute("style", "display:block");
+   }
+   else
+   {
+       var e = document.getElementById("comment");
+    var strUser = e.options[e.selectedIndex].text;
+       $('#commenttext').get(0).setAttribute("readonly", "readonly");
+       $('#commenttext').get(0).setAttribute("style", "display:none");
+       document.getElementById('commenttext').value=strUser;
+       
+       
+       
+   }
+}).change();
+
 </script>
 </body>
 </html>

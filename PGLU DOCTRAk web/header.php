@@ -28,11 +28,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/releasedoc.php'; ?>"><span>Release Document</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/forreleasedoc.php'; ?>"><span>For Release</span></a></li>
                                         <li class="divider"></li>
-                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/rollback.php'; ?>"><span>Rollback</span></a></li>
-                                        <li class="divider"></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documenttracker.php'; ?>"><span>Document Tracker</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documentprocessing.php'; ?>"><span>Processing</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documenttrail.php'; ?>"><span>Document Trail</span></a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/rollback.php'; ?>"><span>Rollback</span></a></li>
                                     </ul>
                                 </li>
                                 <li role="presentation" class="dropdown">
@@ -49,16 +49,17 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                 </li>
                                 <?php
                                 
-                                        echo '<li role="presentation" class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                 if($_SESSION['GROUP']=='POWER ADMIN')
+                                        {
+                                        echo '<li role="presentation" class="dropdown">';
+                                        echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                         Maintenance <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">
+                                        <ul class="dropdown-menu" role="menu">';
                                                 
-                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php"><span>Flow Template</span></a></li>';
-                                        if($_SESSION['GROUP']=='POWER ADMIN')
-                                {
-                                                echo '<li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php"><span>Document Type</span></a></li>
-                                                <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php"><span>Office</span></a></li>
+                                                echo '<li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php"><span>Flow Template</span></a></li>
+                                                     <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php"><span>Document Type</span></a></li>
+                                                      <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php"><span>Office</span></a></li>
+                                                     
                                                 <li class="divider"></li>
                                                 <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Security</span></a>
                                                     <ul class="dropdown-menu">
@@ -67,8 +68,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                         <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/audittrail.php"><span>Audit Trail</span></a></li>
                                                     </ul>
                                                 </li>';
+                                                echo ' </ul></li>';
                                             }
-                                        echo ' </ul></li>';
+                                        
                                 
                                         ?>
                                 
@@ -103,6 +105,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
            echo "<a href=".$PROJECT_ROOT."procedures/home/logout.php>Logout</a>";
            echo '</div>';
            mysqli_free_result($result);
+           
            ?>
            
         </div>

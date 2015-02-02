@@ -15,7 +15,7 @@
        //$_SESSION['keytracker']='';
 
 	    $query=select_info_multiple_key("SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER FROM documentlist_tracker WHERE FK_DOCUMENTLIST_ID = '".$document_id."' ORDER BY SORTORDER ASC");
-
+            
         $counterX=0;
 
         switch ($source)
@@ -180,7 +180,7 @@
                 
                 foreach ($query as $rows) 
                 {
-                    if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
+                    if ( $_SESSION['GROUP']=='POWER ADMIN')
                     {
                         if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']==1)
                         {
@@ -189,14 +189,16 @@
                     }
                     else
                     {
-                        if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
+                       // if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
+                        //{
+                    
+                       
+                            if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']==1)
                             {
-                                if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']==1)
-                                {
-                                    return true;
-                                }
-
+                                return true;
                             }
+
+                       // }
                     }
                 }
                     
@@ -214,3 +216,7 @@
 
 
 ?>
+
+
+
+

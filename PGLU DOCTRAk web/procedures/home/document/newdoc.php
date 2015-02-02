@@ -92,10 +92,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
        <?php
            //require_once("../../connection.php");
           
-           $query=select_info_multiple_key("select TEMPLATE_ID, template_name from document_template where fk_office_name = '".$_SESSION['OFFICE']."' ");
-           foreach($query as $var)
+                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name from document_template ");
+           foreach($query1 as $var)
            {
-              echo "<option value=".$var["TEMPLATE_ID"].">".$var["template_name"]."</option>";
+              echo "<option value='".$var['TEMPLATE_ID']."'>".$var['template_name']."</option>";
            }
 
 

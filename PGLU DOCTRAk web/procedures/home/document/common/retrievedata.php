@@ -10,7 +10,7 @@
     require_once("../../../connection.php");
     require_once("../common/encrypt.php");
  
-    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name,document_filename, forrelease_val,forrelease_date,fk_office_name_documentlist,document_mime from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
+    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,fk_office_name,document_filename, forrelease_val,forrelease_comment,forrelease_date,fk_office_name_documentlist,document_mime from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username where document_id = '".$_POST['documentTracker']."' ");
 
     echo "<div id='details' class='retriveDataAllign'>";
     echo "<table >";
@@ -52,6 +52,8 @@
     echo "<th>Received Date</th>";
     echo "<th>Received Comment</th>";
     echo "<th>For Release</th>";
+    echo "<th>For Release Comment</th>";
+   
     echo "<th>For Release Date</th>";
 
     echo "<th>Released By</th>";
@@ -88,7 +90,7 @@
         else {
             echo "<td></td>";
         }
-
+echo "<td>" .$var['forrelease_comment']. "</td>";
         echo "<td>" .$var['forrelease_date']. "</td>";
 
 
