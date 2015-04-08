@@ -11,7 +11,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 require_once("../../../connection.php");
-
+include ("../common/history.php");
 date_default_timezone_set($_SESSION['Timezone']);
 
 
@@ -102,7 +102,7 @@ date_default_timezone_set($_SESSION['Timezone']);
 
             //START INSERT INTO DOCUMENTLIST_HISTORY
             
-            include ("../common/history.php");
+            
             if(!InsertHistory($_POST['barcode'],$_SESSION['OFFICE'],'Document Created','','Created by '.$_SESSION['security_name']))
             {
                 $flag=false;
@@ -217,12 +217,28 @@ date_default_timezone_set($_SESSION['Timezone']);
 
 elseif ($_POST['document_hidden']=="scrap")
 	{
+     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+        $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+        if (mysqli_connect_error()) 
+        {
+           echo "Failed to connect to MySQL: " . mysqli_connect_error();
+           die;
+        }
+        
+     if(!InsertHistory($_POST['barcode'],$_SESSION['OFFICE'],'Document Scrapped','','Scrapped by '.$_SESSION['security_name']))
+            {
+                die;
+            }
 		$query=insert_update_delete("UPDATE documentlist SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'");
 		//$query=insert_update_delete("DELETE FROM DOCUMENTLIST WHERE DOCUMENT_ID ='".($_POST['barcode'])."' ");
 		echo "UPDATE documentlist SET SCRAP=1 WHERE DOCUMENT_ID ='".($_POST['barcode'])."'";
 		$_SESSION['operation']="scrap";
 		$_SESSION['message']="Scrapped Successful";
-	}
+                
+               // InsertHistory($_POST['barcode'],$_SESSION['OFFICE'],'Document Scrapped','','Scrapped by '.$_SESSION['security_name']);
+	mysqli_close($con);
+                
+            }
 
    header('Location:../newdoc.php');
 

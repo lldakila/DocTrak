@@ -5,11 +5,14 @@ session_start();
 // header('Location:../../index.php');
 // //   echo $_SESSION['usr'];
 //}
-
+ $_SESSION['timeout']=time();
    require_once("../connection.php");
    $query=select_info_multiple_key("select security_name,security_username,fk_office_name,fk_security_groupname from security_user where security_username='".addslashes($_POST['username'])."' AND security_password='".addslashes(md5($_POST['password']))."'");
    if($query){
+      //SESSION EXPIRE
       
+        $_SESSION['expiretime']=1000;
+       //
       $u=$_POST['username'];
       $p=$_POST['password'];
       $secname=$query[0]['security_name'];

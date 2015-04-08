@@ -1,10 +1,27 @@
 <?php
-/*session_start();
-if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
-    header('Location:../../index.php');
-}*/
+//session_start();
+//if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
+//    header('Location:../../index.php');
+//}
+//
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-$DB_HOST = '10.10.5.193';
+//SESSION
+$session_life = time() -  $_SESSION['timeout']; 
+if($session_life > $_SESSION['expiretime']) {
+
+   session_destroy(); 
+   //header("Location: index.php");
+   header("Location: ".$_SERVER['PHP_SELF']);
+
+}
+ $_SESSION['timeout']=time();
+ ///
+ 
+
+$DB_HOST = '10.10.5.11';
 $DB_USER = 'root';
 $DB_PASS = 'launi0n@dmin';
 $BD_TABLE = 't-doctrak';

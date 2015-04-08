@@ -7,10 +7,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  header('Location:index.php');
 }
 
+
+
+//$_SESSION['timeout']=time();
+
 ?>
 
 
-    
+<a href="index.php"></a>
 <div class="header">
 <div class="menubg">
         

@@ -32,7 +32,7 @@
     mysqli_free_result($Result);
 
 
-    $query="select received_val,received_by,received_date,received_comment,released_val,released_by,released_date,released_comment,forrelease_val,forrelease_date,forrelease_comment,sortorder,documentlist_tracker_id from documentlist_tracker where  fk_documentlist_id='$barcode' order by sortorder desc";
+    $query="select received_val,received_by,received_date,received_comment,released_val,released_by,released_date,released_comment,forrelease_val,forrelease_date,forrelease_comment,sortorder,documentlist_tracker_id, office_name from documentlist_tracker where  fk_documentlist_id='$barcode' order by sortorder desc";
   //echo $query;
     $Result=  mysqli_query($con, $query);
     while ($row = mysqli_fetch_array($Result))
@@ -40,6 +40,7 @@
         if ( $row['sortorder']>=$sortorder)
         {
             $query = "update documentlist_tracker set received_val=NULL,received_by=NULL,received_date=NULL,received_comment=NULL,released_val=NULL,released_by=NULL,released_date=NULL,released_comment=NULL,forrelease_val=NULL,forrelease_date=NULL,forrelease_comment=NULL where documentlist_tracker_id = '".$row["documentlist_tracker_id"]."' ";
+            $officeRollback=$row["office_name"];
 //            echo $query;
 //            echo '<br>';
             $result=  mysqli_query($con, $query);
@@ -63,7 +64,7 @@
          //START INSERT INTO DOCUMENTLIST_HISTORY
 
         include ("../common/history.php");
-        if(!InsertHistory($barcode,$_SESSION['OFFICE'],'Document Rollbacked','','Rollbacked by '.$_SESSION['security_name']))
+        if(!InsertHistory($barcode,$_SESSION['OFFICE'],'Document Rollbacked in '.$officeRollback,'','Rollbacked by '.$_SESSION['security_name']))
         {
             $flag=false;
         }

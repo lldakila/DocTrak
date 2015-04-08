@@ -121,9 +121,9 @@
                                         		<table>
                                                 	<tr>
                                                     	<td>DATE FROM:</td>
-                                                        <td><input id="datefrom" name="datefrom" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
+                                                        <td><input id="datefrom" class="form-control" name="datefrom" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td>DATE TO:</td>
-                                                        <td><input id="dateto" name="dateto" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
+                                                        <td><input id="dateto" class="form-control" name="dateto" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
                                                         <td><button id="filter" name="filter" class="btn btn-primary">Filter </button>
                                                     </tr>
                                                 </table>
@@ -166,6 +166,8 @@
 				                        {
 					                        $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name,fk_office_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE fk_office_name ='".$_SESSION['OFFICE']."' ORDER BY transdate desc");
 				                        }
+                                                        
+                                                        $rowcolor="notblue";
 
 
 										if ($query)
@@ -174,7 +176,7 @@
 
 					                        foreach($query as $var)
 					                        {
-						                        if ($rowcolor="blue")
+						                        if ($rowcolor=="blue")
 						                        {
 							                        echo "<tr class='usercolor'>";
 							                        $rowcolor="notblue";

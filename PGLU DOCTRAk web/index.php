@@ -5,6 +5,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+// $_SESSION['timeout']=time();
 if(isset($_SESSION['usr']) || isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:home.php');

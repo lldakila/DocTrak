@@ -34,6 +34,19 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     ?>
 
 <div class="content">
+    
+<div id="leftmenu">
+<nav class="social">
+          <ul>
+              <li><a href="javascript:newDocument()">New Document<i><img src="images/home/icon/newdoc1.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="#">Receive Document<i><img src="images/home/icon/receivedoc1.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="#">Release Document<i><img src="images/home/icon/releasedoc.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="#">For Pickup<i><img src="images/home/icon/forpickup.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="#">BAC<i><img src="images/home/icon/forpickup.gif" width="28px" height="30px" /></i></a></li>
+
+          </ul>
+      </nav>
+</div>
 
 	<div class="content1">
     
@@ -205,12 +218,12 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                         <?php 
                         if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
                         {
-                            echo"<p>Receivable Documents </p>"; 
+                            echo"<p>For Pickup Documents </p>"; 
                             $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name,priority from documentlist join security_user on documentlist.fk_security_username = security_user.security_username join document_type on documentlist.fk_documenttype_id = document_type.documenttype_id WHERE scrap=0 and complete=0 order by transdate desc";
                         }
                         else
                         {
-                           echo"<p>Receivable Documents of ".$_SESSION['OFFICE']. "</p>";  
+                           echo"<p>For Pickup Documents of ".$_SESSION['OFFICE']. "</p>";  
                            $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name,priority from documentlist join security_user on documentlist.fk_security_username = security_user.security_username join document_type on documentlist.fk_documenttype_id = document_type.documenttype_id WHERE scrap=0 and complete=0 and fk_office_name_documentlist = '".$_SESSION['OFFICE']."' order by transdate desc";
                         }
                         
@@ -274,6 +287,8 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
                         </div>
                          
                     </div>
+                    
+                       
                     <div  id="post12" >
                         
                         
@@ -313,7 +328,7 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
 
 <div class="footer">
 
-	<div class="footer1">
+	<div class="footerbg">
     
     			<div id="footer2">
             <p>
@@ -412,7 +427,29 @@ join document_type on documentlist.fk_documenttype_id = document_type.documentty
             </div>
           </div>
         </div>
+    
+          <div class="modal fade" id="myModals" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" style="width: 600px;">
+            <div class="modal-content ">
+              <div class="modal-header">
+                <button type="button" class="close btn-danger" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabels">Document Tracker</h4>
+              </div>
+              <div class="modal-body">
+                      <div id="myModalsBody">
+                    
+                         </div>
+              </div>
+              <div class="modal-footer">
+                
+
+              </div>
+            </div>
+          </div>
+        </div>
 <!-- End Modal --> 
+
+
 
 
 <script language="JavaScript" type="text/javascript">
@@ -453,7 +490,8 @@ function addRowHandlers(arrayId)
     }
 }
 
-function retrieveDocument(BarcodeId){
+function retrieveDocument(BarcodeId)
+{
         var myData = 'documentTracker='+BarcodeId; //build a post data structure
         jQuery.ajax({
             type: "POST",
@@ -477,10 +515,39 @@ function retrieveDocument(BarcodeId){
          $(window).load(function(){
         //$('#myModal').modal('show');
     });
+    
     }
 
 
-
+function newDocument()
+{
+    
+    
+    var module='renderNewDoc';
+    jQuery.ajax({
+            type: "POST",
+	    url:"quickNav.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:{module_name:module},
+            beforeSend: function() {
+		        $("#myModalsBody").html("<div style='margin:115px 0 0 320px;'><img src='/images/home/ajax-loader.gif' /></div>");
+	        },
+            ajaxError: function() {
+		        $("#myModalsBody").html("<div style='margin:115px 0 0 320px;'><img src='/images/home/ajax-loader.gif' /></div>");
+	        },
+            success:function(response){
+                        $("#myModalsBody").html(response);
+                
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
+         $('#myModals').modal('show');
+         document.getElementById('myModalLabels').innerHTML='New Document';
+         
+   
+}
 
     
     
