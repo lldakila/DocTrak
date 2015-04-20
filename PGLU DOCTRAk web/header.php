@@ -26,16 +26,16 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                         Document <span class="caret"></span>
                                     </a>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu down-bgcolor" role="menu">
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/newdoc.php'; ?>">New Document</a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/receiveddoc.php'; ?>"><span>Receive Document</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/releasedoc.php'; ?>"><span>Release Document</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/forreleasedoc.php'; ?>"><span>For Release</span></a></li>
-                                        <li class="divider"></li>
+                                        <li class="divider linebgcolor"></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documenttracker.php'; ?>"><span>Document Tracker</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documentprocessing.php'; ?>"><span>Processing</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/documenttrail.php'; ?>"><span>Document Trail</span></a></li>
-                                        <li class="divider"></li>
+                                        <li class="divider linebgcolor"></li>
                                         <li><a href="<?php echo $PROJECT_ROOT.'procedures/home/document/rollback.php'; ?>"><span>Rollback</span></a></li>
                                     </ul>
                                 </li>
@@ -43,7 +43,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                         Report <span class="caret"></span>
                                     </a>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu down-bgcolor" role="menu">
                                         <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/dochistory.php"; ?>"><span>Document History</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>Document on Process</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocesspersignatory.php"; ?>"><span>Document on Process per Signatory</span></a></li>
@@ -58,15 +58,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         echo '<li role="presentation" class="dropdown">';
                                         echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                         Maintenance <span class="caret"></span></a>
-                                        <ul class="dropdown-menu" role="menu">';
+                                        <ul class="dropdown-menu down-bgcolor" role="menu">';
                                                 
                                                 echo '<li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php"><span>Flow Template</span></a></li>
                                                      <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php"><span>Document Type</span></a></li>
                                                       <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php"><span>Office</span></a></li>
                                                      
-                                                <li class="divider"></li>
+                                                <li class="divider linebgcolor"></li>
                                                 <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Security</span></a>
-                                                    <ul class="dropdown-menu">
+                                                    <ul class="dropdown-menu down-bgcolor">
                                                         <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/users.php"><span>Users</span></a></li>
                                                         <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/group.php"><span>Group</span></a></li>
                                                         <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/audittrail.php"><span>Audit Trail</span></a></li>
@@ -118,34 +118,36 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         </div>
 
 	<div class="header1">
+    <div id="headerlinebg">
     	
                 <div class="headerline">
                 <div class="row">
-                <div class="col-xs-4 col-md-4">
-                <div class="headerbanner">
+                        <div class="col-xs-4 col-md-4">
+                        <div class="headerbanner">
 
-        		<a href="<?php echo $PROJECT_ROOT."index.php"; ?>"><img <?php 
-                        $printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png"; 
-                        echo $printme;
-                        ?> 
-                                width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
-				<?php
-						
-						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp; " .$_SESSION['Version'];
-						echo "</span>";
-				?>
-				
-				</h2><p>Management Information Systems Division</p></a>
+                		<a href="<?php echo $PROJECT_ROOT."index.php"; ?>"><img <?php
+                                $printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png";
+                                echo $printme;
+                                ?>
+                                        width="125" height="120" alt="PGLU" title="PGLU" align="left" /><h2>
+        				<?php
+
+        						echo $_SESSION['Title']. "<span style='font-size:12px;'>&nbsp; " .$_SESSION['Version'];
+        						echo "</span>";
+        				?>
+
+        				</h2><p>Management Information Systems Division</p></a>
+
+                        </div>
+                        </div>
+                     <div class="col-xs-8 col-md-8">
+
+                    </div>
+                </div>
         
                 </div>
-                </div>
-         <div class="col-xs-8 col-md-8">
-			  
-        </div>
-    </div>
-        
-        </div>
     
+    </div>
     </div>
 
 </div>

@@ -64,8 +64,10 @@
                     <tr>
                     	<td>Module:</td>
                         <td class="textinput1">
-                            <select >
-                            <input id="module" name="description" type="text" class="form-control" /> </td>
+                            <select>
+                            <input id="module" name="description" type="text" class="form-control" />
+                            </select>
+                        </td>
                     </tr>
 
 
@@ -170,7 +172,6 @@
     </div>
 	
 </div>
-
     
     <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/

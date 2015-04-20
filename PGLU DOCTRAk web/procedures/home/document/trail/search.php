@@ -53,7 +53,7 @@
          $rowcolor="blue";
         }
 
-        echo "<td style='width:80px;'>";
+        echo "<td style='width:150px;'>";
         echo $var["document_id"];
        //echo $_SESSION['keytracker'];
         echo "</td><td>";
@@ -68,3 +68,5 @@
         
     mysqli_free_result($RESULT);
     mysqli_close($con);
+
+    ?>

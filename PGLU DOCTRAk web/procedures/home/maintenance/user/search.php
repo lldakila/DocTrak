@@ -39,7 +39,7 @@ $rowcolor="blue";
     
 	
 	
-	echo "<td style='width:80px;'>";
+	echo "<td style='width:150px;'>";
 	 echo $var["SECURITY_USERNAME"];
 	 echo "</td><td>";
      echo $var["SECURITY_NAME"];

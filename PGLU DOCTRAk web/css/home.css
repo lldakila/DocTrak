@@ -27,17 +27,25 @@ div {
 .header1 {
 	margin:0 auto;
 	width:1300px;
-	height:140px;
+	height:115px;
 	background: rgba(0, 0, 0, 0.08);
 	
 }
 
+#headerlinebg {
+  margin:0 auto;
+  width: 1260px;
+  height: 115px;
+  background-color:#e5e5e5;
+}
+
 .headerline {
-	margin:40px auto;
+	margin:0 auto;
 	width:1260px;
-	height:140px;
+	height:100px;
 	background: url(../images/home/banner1.png) no-repeat #2392b4;
 	display:block;
+    box-shadow: 0 20px 16px -16px black;
 }
 
 table {
@@ -49,6 +57,9 @@ table {
 	margin:0 auto;
 	width:1300px;
 	background: rgba(0, 0, 0, 0.08);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height:550px;
 }
 
 .footer1 {
@@ -72,7 +83,7 @@ background: #3A3A3A;
 
 .headerbanner {
 	width:400px;
-	height:140px;
+	height:100px;
         float: left;
 }
 
@@ -100,7 +111,9 @@ background: #3A3A3A;
 }
 
 .headerbanner img {
-	margin:8px 0 0 15px;
+	margin:11px 0 0 15px;
+    position: fixed;
+    z-index:1;
 }
 
 .headerbanner p {
@@ -215,7 +228,7 @@ div.actionButton {
 #inboxtable {
 	margin:10px 10px 0 0;
 	overflow:scroll;
-	height:330px;
+	height:450px;
 }
 
 #inboxtable table {
@@ -411,6 +424,7 @@ div.actionButton {
 	position:fixed;
 	top:0;
 	z-index:1;
+    opacity:.8;
 	
 }
 
@@ -422,7 +436,7 @@ div.actionButton {
 }
 
 .menugroup ul.nav {
-    
+    margin-left:135px;
 }
 
 div#menu {
@@ -608,6 +622,7 @@ div#menu li.back .left {
 .content2 {
 	margin:0 auto;
 	width:1260px;
+    height:540px;
 	background-color:#e5e5e5;
 	border-bottom-left-radius:10px;
 	border-bottom-right-radius:10px;
@@ -630,11 +645,11 @@ div#menu li.back .left {
 
 #post10 {
 	width:870px;
-	height:430px;
+	height:530px;
 	background-color:#FFF;
 	display:block;
 	float:left;
-	margin:10px 0 0 10px;
+	margin:0px 0 0 10px;
 	border-radius:5px;
 	padding-bottom:20px;
 }
@@ -762,7 +777,7 @@ img#lowclr {
 
 #post10 h2 {
 	margin:0;
-	padding:10px 0 5px 5px;
+	padding:15px 0 5px 5px;
 	font:18px "Lucida Grande", Tahoma, Verdana, sans-serif;
 	border-bottom:1px solid #ccc;
 	width:835px;
@@ -775,10 +790,21 @@ img#lowclr {
 	background-color:#FFF;
 	display:block;
 	float:left;
-	margin:10px 0 0 10px;
+	margin:0px 0 0 10px;
 	border-radius:5px;
 	padding-bottom:20px;
-	height:430px;
+	height:530px;
+}
+
+#postHOME {
+	width:1240px;
+	background-color:#FFF;
+	display:block;
+	float:left;
+	margin:0px 0 0 10px;
+	border-radius:5px;
+	padding-bottom:20px;
+	height:530px;
 }
 
 #pic {
@@ -830,7 +856,7 @@ table.fixedwidth th{
     table-layout:fixed; 
     
 }
-#display table.fixedwidth td { 
+#display table.fixedwidth td {
     font-size: 10px;
 }
 
@@ -859,25 +885,30 @@ table.fixedwidth th{
 
 .checkbox {
     float:right;
-    padding-top: 5px;
+    padding-top: 10px;
 }
 
 .checkbox label {
     font-size: 10px;
     margin: 0;
+    width:160px;
 }
 
-
+.checkbox label p {
+  padding:0;
+  padding-top:2px;
+}
 
 .checkbox input[type=checkbox] {
     width: 16px;
-    height: 13px;
+    height: 16px;
+    float:left;
 }
 
 #scroll {
     overflow: scroll;
     width: 840px;
-    height: 270px;
+    height: 366px;
     margin: 10px auto;
 }
 
@@ -924,13 +955,20 @@ table.fixedwidth th{
 	
 #codetable {
 	width:1205px;
-	margin:10px auto;
+	margin:20px auto;
 }
 
 #codetable .scroll {
     overflow: scroll;
     width: 1205px;
-    height: 310px;
+    height: 400px;
+    margin: 10px auto;
+}
+
+#codetable .scrollHOME {
+    overflow: scroll;
+    width: 1205px;
+    height: 450px;
     margin: 10px auto;
 }
 
@@ -939,12 +977,17 @@ table.fixedwidth th{
 	border-spacing:1px;
 }
 
+#codetable table#HOMEdata {
+	width:1450px;
+	border-spacing:1px;
+}
+
 #codetable th {
 	background-color:#5B5C5C;
 	color: #ccc;
 	font-family: Tahoma;
     font-size: 11px;
-	padding:3px 3px;
+	padding:10px 10px;
 }
 
 #post1 h2 {
@@ -958,7 +1001,7 @@ table.fixedwidth th{
 
 #post01 h2 {
 	margin:0;
-	padding:10px 0 5px 5px;
+	padding:15px 0 5px 5px;
 	font:18px "Lucida Grande", Tahoma, Verdana, sans-serif;
 	border-bottom:1px solid #ccc;
 	width:1205px;
@@ -967,11 +1010,11 @@ table.fixedwidth th{
 
 #postright {
 	width:355px;
-	height:430px;
+	height:530px;
 	background-color:#FFF;
 	display:block;
 	float:right;
-	margin:10px 10px 0 0;
+	margin:0px 10px 0 0;
 	border-radius:5px;
 }
 
@@ -1098,6 +1141,7 @@ table.fixedwidth th{
 	width:80px;
     font-family: Tahoma;
     font-size: 10px;
+    cursor: pointer;
 }
 
 #postright tr.usercolor:hover {
@@ -1113,6 +1157,7 @@ table.fixedwidth th{
 	width:80px;
     font-family: Tahoma;
     font-size: 10px;
+    cursor: pointer;
 }
 
 #postright tr.usercolor1:hover {
@@ -1135,7 +1180,7 @@ table.fixedwidth th{
 #postright .scroll {
 	overflow:scroll;
 	width:340px;
-	height:355px;
+	height:440px;
 	margin:10px auto;
 }
 
@@ -1278,7 +1323,7 @@ table.fixedwidth th{
 
 #footer2 p {
 	margin:0;
-	padding:10px 0 5px 0;
+	padding:5px 0 5px 0;
 	text-align:center;
 	font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
   	color: #fff;
@@ -1299,7 +1344,7 @@ table.fixedwidth th{
 	}
 
 #tfheader {
-	padding:30px 0 0px 0;
+	padding:35px 0 0px 0;
 
 	
 }
@@ -1526,7 +1571,7 @@ select#officeRollback {
 }
 
 .table1 table{
-		margin:10px auto;
+		margin:20px auto;
 		padding:20px 0 0 0;
 	}
 	
@@ -1657,11 +1702,15 @@ select#officeRollback {
 
 
 td {
-    padding:0px 0 3px 8px;
+    padding:5px 0 5px 8px;
 	font-family:tahoma;
 	font-size:11px;
 
     }
+
+th {
+  padding: 4px 0 4px 3px;
+}
     
     td#attachment a {
         color: #1800ac;
@@ -1756,10 +1805,32 @@ table#historydata tr.usercolor1:hover {
 }
 
 table#historydata td {
-	padding:3px 0 3px 8px;
+	padding:10px 0 10px 8px;
 	font-family:tahoma;
 	font-size:10px;
 	width:5px;
+}
+
+table#HOMEdata td {
+  padding: 10px 0 10px 5px;
+}
+
+table#HOMEdata tr.bgcolor1 {
+  background-color:#CECECE;
+  cursor: pointer;
+}
+
+table#HOMEdata tr.bgcolor1:hover {
+  background-color:#dcdcdc;
+}
+
+table#HOMEdata tr.bgcolor2 {
+  background-color:#E6E6E6;
+  cursor: pointer;
+}
+
+table#HOMEdata tr.bgcolor2:hover {
+  background-color:#f3f3f3;
 }
 
 table#historydata tr.bgcolor {
@@ -1796,7 +1867,7 @@ table#historydata tr.bgcolor {
     margin-top: -6px;
     margin-left: -1px;
     -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
+    -moz-border-radius: 0 6px 6px 6px;
     border-radius: 0 6px 6px 6px;
 }
 
@@ -1860,7 +1931,8 @@ table#historydata tr.bgcolor {
 
 .social {
   position: fixed;
-  top:50px;
+  top:130px;
+  width: 100px;
 }
 .social ul {
   padding: 0px;
@@ -1934,4 +2006,56 @@ table#historydata tr.bgcolor {
 
 .social ul li i img {
   margin-top:-4px;
+}
+
+.alignRIGHT {
+  float: left;
+  width: 15%;
+}
+
+
+.down-bgcolor {
+  background-color: #000;
+}
+
+.down-bgcolor > li > a {
+  color: #fff;
+}
+
+.down-bgcolor .linebgcolor {
+  background-color:#3A3A3A;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: #000;
+  color:#fff;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color:#000;
+  border-color: #3a3a3a;
+}
+
+.btn-size {
+  height: 34px;
+}
+
+.well strong{
+  float:left;
+  padding-right:10px;
+}
+
+.wellbottom {
+  margin-bottom: 10px;
+}
+
+.well p {
+  margin:0;
+  padding:0;
+  padding-left:90px;
+}
+
+.col-bottom {
+  padding-bottom: 7px;
+  padding-top:7px;
 }

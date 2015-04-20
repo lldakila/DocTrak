@@ -50,7 +50,7 @@ if ($query){
 
 
 
-    echo "<td style='width:80px;'>";
+    echo "<td style='width:150px;'>";
     echo $var["document_id"];
     echo "</td><td>";
     echo $var["document_title"];

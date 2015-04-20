@@ -43,7 +43,7 @@ foreach($query as $var)
                 echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
                 $rowcolor="blue";
             }
-        echo "<td style='width:80px;'>";
+        echo "<td style='width:150px;'>";
         echo $var['TEMPLATE_NAME'];
         ECHO "</td><td>";
         echo $var['TEMPLATE_DESCRIPTION'];
@@ -64,7 +64,7 @@ foreach($query as $var)
                 echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
                 $rowcolor="blue";
             }
-            echo "<td style='width:80px;'>";
+            echo "<td style='width:150px;'>";
             echo $var['TEMPLATE_NAME'];
             ECHO "</td><td>";
             echo $var['TEMPLATE_DESCRIPTION'];
@@ -87,4 +87,4 @@ foreach($query as $var)
         }
 
 
-
+  ?>

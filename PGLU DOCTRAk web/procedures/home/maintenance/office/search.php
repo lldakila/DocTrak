@@ -30,7 +30,7 @@ foreach($query as $var) {
     {
         echo '<tr id="search_notblue" class="usercolor1" onClick="clickSearch(\''.$var["OFFICE_NAME"].'\',\''.$var["OFFICE_DESCRIPTION"].'\')">';
 
-        echo "<td style='width:80px;'>";
+        echo "<td style='width:150px;'>";
         $rowcolor="blue";
     }
 
@@ -48,6 +48,6 @@ foreach($query as $var) {
 }
 
 	else {
-	echo "<span style='font:11px trebuchet ms;'>Nothing found.</span>";	
+	echo "<span style='font:11px trebuchet ms;'>Nothing found.</span>";
 	}
 ?>

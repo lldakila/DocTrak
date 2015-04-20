@@ -47,7 +47,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
          }
 
 
-	echo "<td style='width:80px;'>";
+	echo "<td style='width:150px;'>";
 	 echo $var["DOCUMENT_ID"];
      // echo $_SESSION['keytracker'];
 	 echo "</td><td>";

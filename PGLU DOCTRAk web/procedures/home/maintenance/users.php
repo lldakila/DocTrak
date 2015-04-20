@@ -42,6 +42,19 @@
 
 <div class="content">
 
+<div id="leftmenu">
+<nav class="social">
+          <ul>
+              <li><a href="javascript:newDocument()">New Document<i><img src="../../../images/home/icon/newdoc1.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="javascript:receiveDocument()">Receive Document<i><img src="../../../images/home/icon/receivedoc1.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="javascript:releaseDocument()">Release Document<i><img src="../../../images/home/icon/releasedoc.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="javascript:forpickupDocument()">For Pickup<i><img src="../../../images/home/icon/forpickup.gif" width="28px" height="30px" /></i></a></li>
+              <li><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="28px" height="30px" /></i></a></li>
+
+          </ul>
+      </nav>
+</div>
+
 	<div class="content1">
     
     	<div class="content2">
@@ -199,7 +212,7 @@
 
 <div class="footer">
 
-	<div class="footer1">
+	<div class="footerbg">
     
     			<div id="footer2">
             <p>
@@ -216,6 +229,11 @@
 	
 </div>
 
+<!-- Modal -->
+       <?php
+       include('../../../modal.php');
+       ?>
+<!-- End Modal -->
     
 <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/

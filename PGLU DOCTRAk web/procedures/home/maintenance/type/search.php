@@ -37,7 +37,7 @@ $rowcolor="blue";
 
 	
 	
-	echo "<td style='width:80px;'>";
+	echo "<td style='width:150px;'>";
 	 echo $var["DOCUMENTTYPE_ID"];
 	 echo "</td><td>";
      echo $var["DESCRIPTION"];

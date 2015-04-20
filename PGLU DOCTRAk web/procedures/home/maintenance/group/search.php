@@ -33,7 +33,7 @@ foreach($query as $var) {
         
         $rowcolor="blue";
     }
-            echo "<td style='width:80px;'>";
+            echo "<td style='width:150px;'>";
          // print "<tr class=\"d".($i & 1)."\">";
              echo $var['SECURITY_GROUPNAME'];
              ECHO "</td><td>";
