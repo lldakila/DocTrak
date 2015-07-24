@@ -152,7 +152,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
        include('../../../modal.php');
        ?>
 <!-- End Modal -->
-    
+
+<script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
 <script language="JavaScript" type="text/javascript">
 
 
@@ -196,7 +198,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     dataType:"text", // Data type, HTML, json etc.
                     data:myData,
                     beforeSend: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                        $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
                      },
                     ajaxError: function() {
 		        $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
@@ -249,7 +251,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     });
 
     </script>
-    <script src="../../../js/jquery-1.10.2.min.js"></script>
-<script src="../../../js/bootstrap.min.js"></script>
+
 </body>
 </html>

@@ -75,7 +75,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                         
                                         <div id="nav">
                                                 <h4>MESSAGE</h4>
-                                                <ol>
+                                                <ol style="height: 345px;">
                                                         <li><a href="inbox.php"><span>INBOX</span></a></li>
                                                         <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
                                                         <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>

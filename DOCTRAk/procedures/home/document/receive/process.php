@@ -13,7 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
     $doc_documentid=decryptText(base64_decode($_POST['barcode']));
     
     require_once("../../../connection.php");
-    require_once("../../../audit.php");
+    require_once("../../../../audit.php");
     date_default_timezone_set($_SESSION['Timezone']);
     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);

@@ -40,6 +40,12 @@ session_start();
         require_once("../../audit.php");
         log_audit(get_key(),'Login from '.$_SERVER['REMOTE_ADDR'].'','Login',''.$_SESSION['security_name'].'');  
         
+//        //CHECK BAC DEADLINES
+//        require_once("../../procedures/home/bac/crud.php");
+//        checkDocumentDeadline();
+//        updateStatusIcon();
+        
+        
     //REDIRECT TO HOME.PHP
       header("Location:../../home.php");
       // echo $secname;

@@ -78,7 +78,7 @@ date_default_timezone_set($_SESSION['Timezone']);
                                         
                                         <div id="nav">
                                                 <h4>MESSAGE</h4>
-                                                <ol>
+                                                <ol style="height: 345px;">
                                                         <li><a href="inbox.php"><span>INBOX</span></a></li>
                                                         <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
                                                         <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>
@@ -189,16 +189,16 @@ date_default_timezone_set($_SESSION['Timezone']);
 
 
 	function OpenMail(MailId){
-
-		var myData = 'MailId='+MailId; //build a post data structure
+                var module_name='OpenMail';
+		var mail_id = MailId; //build a post data structure
 		jQuery.ajax({
 			type: "POST",
 			url:"messaging/readmessage.php",
 			dataType:"text", // Data type, HTML, json etc.
-			data:myData,
+			data:{MailId:mail_id,module:module_name},
                          beforeSend: function() {
                              $("#MailData").html("<div id='loading'><img src='../../../images/home/ajax-loader.gif' /></div>");
-//		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+		        $("#ajaxhistory").html("<div style='margin:115px 0 0 320px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
                             },
                         ajaxError: function() {
                                     $("#MailData").html("<div id='loading'><img src='../../../images/home/ajax-loader.gif' /></div>");
@@ -206,12 +206,34 @@ date_default_timezone_set($_SESSION['Timezone']);
 			success:function(response){
 
 				$("#MailData").html(response);
+                                CheckMail();
 			},
 			error:function (xhr, ajaxOptions, thrownError){
 				alert(thrownError);
 			}
+                        
 		});
 	}
+        
+        function CheckMail()
+        {
+            
+                var module_name='CheckMail';
+		jQuery.ajax({
+			type: "POST",
+			url:"messaging/readmessage.php",
+			dataType:"text", // Data type, HTML, json etc.
+			data:{module:module_name},
+			success:function(response)
+                        {
+                            $('#mailNoti').html(response);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+                        
+		});
+        }
 
 </script>
 </body>

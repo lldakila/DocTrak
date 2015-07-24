@@ -200,7 +200,7 @@ $(document).ready(function() {
             data:{module:module_name,docId:document_id},
              beforeSend: function() 
             {
-                $("#BacHistory").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#BacHistory").html("<div id='loading'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response)
             {
@@ -244,15 +244,36 @@ function checkMeIn()
                      $.growl.notice({ message: 'Document Updated' });
                      $("#BacHistory").html(response);
                 }
-               
+              CheckDeadlineIcon();
             },
             error:function (xhr, ajaxOptions, thrownError)
             {
                 $.growl.error({ message: thrownError });
             }
             });
-	
+	 
         }
+        
+//        function CheckDeadlineIcon()
+//        {
+//                var module_name='updateDeadlineIcon';
+//                var document_id='updateDeadlineIcon';
+//                //var module_name = 'documentTracker='+BarcodeId; //build a post data structure
+//		jQuery.ajax({
+//			type: "POST",
+//			url:"crud.php",
+//			dataType:"text", // Data type, HTML, json etc.
+//			data:{module:module_name,docId:document_id},
+//			success:function(response)
+//                        {
+//                            $('#deadlineNoti').html(response);
+//			},
+//			error:function (xhr, ajaxOptions, thrownError){
+//				alert(thrownError);
+//			}
+//                        
+//		});
+//        }
 
 </script>
 </body>

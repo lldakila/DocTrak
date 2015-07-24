@@ -15,13 +15,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <?php
 
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
+       
 ?>
 </title>
+
 <link href="css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.growl.js"></script>
+
+
+
 
 </head>
 
@@ -163,6 +170,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                   <option value='Approved'>Approved Documents</option>
                                               </select>
                                             </div>
+                                        <p>*Double click document to view full details.</p>
                                     </div>
                       </div>
 
@@ -398,13 +406,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 dataType:"text", // Data type, HTML, json etc.
                 data:myData,
                 beforeSend: function() {
-                            $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
+                    $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
                     },
                 ajaxError: function() {
-                            $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
+                    $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
                     },
                 success:function(response){
-                            $("#responds").html(response);
+                    $("#responds").html(response);
+                
 
                 },
                 error:function (xhr, ajaxOptions, thrownError){

@@ -6,8 +6,9 @@ if (session_status() == PHP_SESSION_NONE) {
 //    header('Location:../index.php');
 //}
 
-	$_SESSION['Title']="PGLU DOCTRAK";
-	$_SESSION['Version']="v0.9dev";
+	$_SESSION['Title']="DocTrack";
+        $_SESSION['HeaderTitle']="Document Tracker";
+	$_SESSION['Version']=" v0.9dev";
 	$_SESSION['Developer']="Terry and Jerome";
 	$_SESSION['Copyright']="Copyleft";
 	$_SESSION['Year']="2014-2015";

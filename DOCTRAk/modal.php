@@ -130,12 +130,8 @@ function newDocument()
             dataType:"text", // Data type, HTML, json etc.
             data:{module_name:module},
             beforeSend: function() {
-
                 document.getElementById('footerNote').innerHTML="";
                    $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
-
-
-
 	        },
             ajaxError: function() {
 		        $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
@@ -155,61 +151,52 @@ function newDocument()
 
     function forpickupDocument()
     {
-         var module='renderForpickupDoc';
-//    document.getElementById("myModalLabels").innerHTML="New Document";
-//    myModalsBody.innerHTML="<input type=text>";
-    
+    var module='renderForpickupDoc';
     jQuery.ajax({
             type: "POST",
 	    url:"<?php echo $PROJECT_ROOT; ?>quickNav.php",
             dataType:"text", // Data type, HTML, json etc.
             data:{module_name:module},
-            beforeSend: function() {
-
+            beforeSend: function() 
+            {
                 document.getElementById('footerNote').innerHTML="";
-                   $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
-
-	        },
-            ajaxError: function() {
-		        $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
-	        },
-            success:function(response){
-                        $("#myModalsBody").html(response);
-
+                $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+            },
+            ajaxError: function() 
+            {
+                $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+            },
+            success:function(response)
+            {
+                $("#myModalsBody").html(response);
             },
             error:function (xhr, ajaxOptions, thrownError){
                 alert(thrownError);
             }
         });
          $('#myModals').modal('show');
-        //$('#myModal').modal('show');
         document.getElementById('myModalLabels').innerHTML='For Pickup';
     }
 
     function bacDocument()
     {
         var module='renderBacDoc';
-//    document.getElementById("myModalLabels").innerHTML="New Document";
-//    myModalsBody.innerHTML="<input type=text>";
-
     jQuery.ajax({
             type: "POST",
 	    url:"<?php echo $PROJECT_ROOT; ?>quickNav.php",
             dataType:"text", // Data type, HTML, json etc.
             data:{module_name:module},
-            beforeSend: function() {
-
-
-                   $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
-
-
-
-	        },
-            ajaxError: function() {
-		        $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
-	        },
-            success:function(response){
-                        $("#myModalsBody").html(response);
+            beforeSend: function() 
+            {
+                $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+            },
+            ajaxError: function() 
+            {
+                $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+            },
+            success:function(response)
+            {
+                $("#myModalsBody").html(response);
 
             },
             error:function (xhr, ajaxOptions, thrownError){
@@ -217,7 +204,108 @@ function newDocument()
             }
         });
          $('#myModals').modal('show');
-        //$('#myModal').modal('show');
         document.getElementById('myModalLabels').innerHTML='BAC';
     }
-</script>
+
+//////////////////////////
+//BAC MONITORING MODAL START
+//////////////////////////
+    
+    
+//RENDER FORM    
+    function RenderBacMonitor(docId)
+    {
+        var module='RenderBacMonitor';
+        var id=docId;
+        jQuery.ajax
+        ({
+            type: "POST",
+	    url:"<?php echo $PROJECT_ROOT; ?>quickNav.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:{module_name:module,document_id:id},
+            beforeSend: function() 
+            {
+                $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+            },
+            ajaxError: function() 
+            {
+                $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+            },
+            success:function(response)
+            {
+                $("#myModalsBody").html(response);
+            },
+            error:function (xhr, ajaxOptions, thrownError)
+            {
+                alert(thrownError);
+            }
+        });
+        
+        $('#myModals').modal('show');
+        document.getElementById('myModalLabels').innerHTML='BAC Backlog';
+    }
+    
+    
+//BUTTON SAVE FUNCTION
+
+    function bacMonitorSave()
+    {
+        var module='saveBacMonitor';
+        var id=document.getElementById('tracker_id').value;
+        var remark=document.getElementById('remarkText').value;
+// 
+
+        jQuery.ajax
+        ({
+            type: "POST",
+	    url:"<?php echo $PROJECT_ROOT; ?>quickNav.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:{module_name:module,tracker_id:id,remarkText:remark},
+            beforeSend: function() 
+            {
+                $("#btnUpdateBacklog").html('Saving.....');
+            },
+            ajaxError: function() 
+            {
+                //$("#btnUpdateBacklog").html('Saving.....');
+            },
+            success:function(response)
+            {
+                //$("#myModalsBody").html(response);
+                $.growl.notice({ message: 'Backlog status updated.' });
+                $('#myModals').modal('hide');
+            },
+            error:function (xhr, ajaxOptions, thrownError)
+            {
+                $.growl.error({ message: thrownError });
+            }
+        });
+        CheckDeadlineIcon();
+        //$('#myModals').modal('show');
+        //document.getElementById('myModalLabels').innerHTML='BAC Backlog';
+    }
+    
+    function CheckDeadlineIcon()
+        {
+                var module_name='updateDeadlineIcon';
+                var path="<?php echo $PROJECT_ROOT; ?>";
+                //var module_name = 'documentTracker='+BarcodeId; //build a post data structure
+		jQuery.ajax({
+			type: "POST",
+			url:"crud.php",
+			dataType:"text", // Data type, HTML, json etc.
+			data:{module:module_name,imgPath:path},
+			success:function(response)
+                        {
+                            $('#deadlineNoti').html(response);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+                        
+		});
+        }
+//////////////////////////
+//BAC MONITORING MODAL END
+//////////////////////////
+    </script>
