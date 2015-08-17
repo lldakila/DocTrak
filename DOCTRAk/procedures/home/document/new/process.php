@@ -37,7 +37,7 @@ if (mysqli_connect_error())
            // CHECK IF INPUTFILE IS EMPTY START
             if (empty($_FILES['pdffile']['name']))
             {
-                $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['security_name']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";   
+                $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";   
         
             }
             else 
@@ -64,7 +64,8 @@ if (mysqli_connect_error())
                 }
                
              
-               
+               echo $query;
+	       die();
                
             } 
            // CHECK IF INPUT FILE IS EMPTY END

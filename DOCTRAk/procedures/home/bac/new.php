@@ -8,22 +8,22 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 }
 
     //CHECK IF USER IS POWERADMIN AND HE/SHE IS BAC EMPLOYEE
-if ($_SESSION['BAC']!=1)
-	{
-            if ($_SESSION['GROUP']!='POWER ADMIN')
-            {
-                header('Location:../../../index.php');
-            }
-             
-	}
-        else if ($_SESSION['GROUP']!='POWER ADMIN')
-        {
-            
-            if ($_SESSION['BAC']!=1)
-            {
-                header('Location:../../../index.php');
-            }
-        }
+//if ($_SESSION['BAC']!=1)
+//	{
+//            if ($_SESSION['GROUP']!='POWER ADMIN')
+//            {
+//                header('Location:../../../index.php');
+//            }
+//             
+//	}
+//        else if ($_SESSION['GROUP']!='POWER ADMIN')
+//        {
+//            
+//            if ($_SESSION['BAC']!=1)
+//            {
+//                header('Location:../../../index.php');
+//            }
+//        }
 
 date_default_timezone_set($_SESSION['Timezone']);
 ?>
@@ -62,7 +62,7 @@ date_default_timezone_set($_SESSION['Timezone']);
                <?php
                  if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
                 {
-              echo '<li><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
+              echo '<li class="quickNavMargin"><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
                 }
               ?>
 
@@ -76,7 +76,7 @@ date_default_timezone_set($_SESSION['Timezone']);
                         <div id="post10">
                             <h2>NEW BAC Document</h2>
 
-                            <form method="post" ">
+                            <form method="post">
 
                             <div class="table1">
                                 <table>
@@ -107,7 +107,14 @@ date_default_timezone_set($_SESSION['Timezone']);
                                  <!--- BUTTONS ACTIVITY START --->
 
                                         <div class="input1">
-                                            <button id="bacDelete" type="button"  class="btn btn-danger" onclick="javascript:deleteMe()" >Delete</button>
+					    <?php
+						if (($_SESSION['GROUP']=='POWER ADMIN') OR ($_SESSION['GROUP']=='POWER USER'))
+						{
+						    echo "<button id='bacDelete' type='button'  class='btn btn-danger' onclick='javascript:deleteMe()' >Delete</button>";
+						}
+						?>
+					    
+					    <button id="bacScrap" type="button"  class="btn btn-primary" onclick="javascript:scrapMe()" >Scrap</button>
                                             <button id="bacSave" type="button"  class="btn btn-primary"  onclick="return submitSave()">Save</button>
                                             <button type="button"  class="btn btn-primary" onclick="javascript:newMe()">New</button>
                                         </div>
@@ -279,7 +286,7 @@ $('#searchform').submit(function () {
         }
         jQuery.ajax({
             type: "POST",
-            url:"crud.php",
+            url:"search.php",
             dataType:'text',
             data:{module:module_name,pkey:key,docId:doc_id,docDesc:title,docuAmount:doc_amount,docuDate:doc_date},
              beforeSend: function()
@@ -319,10 +326,10 @@ $('#searchform').submit(function () {
       function SearchDoc(search_text)
       {
         var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
-        var module_name="searchDoc";
+        var module_name="SearchNew";
         jQuery.ajax({
             type: "POST",
-            url:"crud.php",
+            url:"search.php",
             dataType:"text",
             data:{module:module_name,searchText:search_text},
              beforeSend: function()
@@ -407,7 +414,7 @@ function deleteMe()
   var doc_id=document.getElementById('barcodenoKey').value
    jQuery.ajax({
             type: "POST",
-            url:"crud.php",
+            url:"search.php",
             dataType:'text',
             data:{module:module_name,docId:doc_id},
              beforeSend: function()
@@ -419,12 +426,13 @@ function deleteMe()
                   if (response=='Document deleted.')
                 {
                      $.growl.notice({ message: response });
+		     newMe();
                 }
                 else
                 {
                     $.growl.error({ message: response });
                 }
-                 newMe();
+                 
                  $("#bacDelete").html('Delete');
             },
             error:function (xhr, ajaxOptions, thrownError){
@@ -433,6 +441,14 @@ function deleteMe()
             }
         });
    
+}
+
+////////////////////////////////////
+//SCRAP DOCUMENT RECORD
+////////////////////////////////////
+function scrapMe()
+{
+    
 }
  
  //ENTER TRIGGERS

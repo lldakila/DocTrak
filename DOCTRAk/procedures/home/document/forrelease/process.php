@@ -38,7 +38,6 @@ if ($_SESSION['keytracker']=='')
 }
 
 
-    
 else 
 {
     $query="UPDATE documentlist_tracker SET FORRELEASE_VAL=1,FORRELEASE_DATE='".date("Y-m-d H:i:s")."',forrelease_comment='".$_POST['commenttext']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $doc_tracker_id." ";
@@ -52,11 +51,12 @@ else
   
    
     log_audit($KEY,$query,'For Release Document',''.$_SESSION['security_name'].'');  
-    $query="SELECT fk_office_name_documentlist,FK_SECURITY_USERNAME,DOCUMENT_ID,DOCUMENT_TITLE,TRANSDATE,FK_DOCUMENTTYPE_ID FROM documentlist JOIN documentlist_tracker ON documentlist.DOCUMENT_ID = documentlist_tracker.FK_DOCUMENTLIST_ID WHERE DOCUMENTLIST_TRACKER_ID = ".$docid;
+    $query="SELECT fk_office_name_documentlist,FK_SECURITY_USERNAME,DOCUMENT_ID,DOCUMENT_TITLE,TRANSDATE,FK_DOCUMENTTYPE_ID,OFFICE_NAME FROM documentlist JOIN documentlist_tracker ON documentlist.DOCUMENT_ID = documentlist_tracker.FK_DOCUMENTLIST_ID WHERE DOCUMENTLIST_TRACKER_ID = ".$docid;
     $RESULT=mysqli_query($con,$query);
     while ($rows=mysqli_fetch_array($RESULT))
     {
         $document_office=$rows['fk_office_name_documentlist'];
+        $office_receiving=$rows['OFFICE_NAME'];
         $document_owner = $rows['FK_SECURITY_USERNAME'];
         $document_id=$rows['DOCUMENT_ID'];
         $document_title=$rows['DOCUMENT_TITLE'];
@@ -64,7 +64,6 @@ else
         $document_documenttype=$rows['FK_DOCUMENTTYPE_ID'];
         $document_message = $_SESSION['AutoMessage1'];
         $document_message = $document_message . '<br><br>Barcode: <font style="font-weight:bold;">'.$document_id.'</font><br>Title:<font style="font-weight:bold;">'.$document_title.'</font><br>Type:<font style="font-weight:bold;">'.$document_documenttype.'</font><br>Date:<font style="font-weight:bold;">'.$document_transdate.'</font><br><br>'.$_SESSION['AutoMessage2'];
-
     }
 
 //    $query="INSERT INTO mail(MAILCONTENT,FK_SECURITY_USERNAME_OWNER,MAILDATE,MAILTITLE,FK_SECURITY_USERNAME_SENDER,MAILSTATUS) VALUES ('".$document_message."','".$document_owner."','".date("Y-m-d H:i:s")."','".$document_title."','".$_SESSION['usr']."',0)";

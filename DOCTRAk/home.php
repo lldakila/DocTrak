@@ -15,7 +15,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <?php
 
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
-       
+
+	
 ?>
 </title>
 
@@ -54,7 +55,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
               <?php
                  if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
                 {
-              echo '<li><a href="javascript:bacDocument()">BAC<i><img src="images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
+              echo '<li class="quickNavMargin"><a href="javascript:bacDocument()">BAC<i><img src="images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
                 }
               ?>
 
@@ -168,6 +169,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                   <option value='All'>All Documents</option>
                                                   <option value='Pending'>Pending Documents</option>
                                                   <option value='Approved'>Approved Documents</option>
+						<?php // <option value='Processing'>On Process Documents</option> ?>
                                               </select>
                                             </div>
                                         <p>*Double click document to view full details.</p>

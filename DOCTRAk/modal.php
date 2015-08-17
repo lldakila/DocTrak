@@ -305,7 +305,41 @@ function newDocument()
                         
 		});
         }
+        
+     //HYPERLINK FOR TRANSACTION DETAILS   
+    function clickTransDetail(transDetailId)
+    {
+        var module_name='renderTransDetail';
+        var trans_id=transDetailId;
+        //var module_name = 'documentTracker='+BarcodeId; //build a post data structure
+        jQuery.ajax({
+                type: "POST",
+                url:"search.php",
+                dataType:"text", // Data type, HTML, json etc.
+                data:{module:module_name,transId:trans_id},
+                beforeSend: function() 
+                {
+                    $("#myModalsBody").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+                },
+                success:function(response)
+                {
+                    $('#myModalsBody').html(response);
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                        alert(thrownError);
+                }
+
+        });
+        $('#myModals').modal('show');
+    }
+        
+        
+        
+        
 //////////////////////////
 //BAC MONITORING MODAL END
 //////////////////////////
+
+
+
     </script>

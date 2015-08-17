@@ -61,7 +61,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                <?php
                  if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
                 {
-              echo '<li><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
+              echo '<li class="quickNavMargin"><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
                 }
               ?>
 
@@ -241,8 +241,9 @@ function checkMeIn()
                 }
                  else
                 {
-                     $.growl.notice({ message: 'Document Updated' });
-                     $("#BacHistory").html(response);
+		    $.growl.notice({ message: 'Document Updated' });
+		    //$.growl.notice({ message: response });
+		    $("#BacHistory").html(response);
                 }
               CheckDeadlineIcon();
             },
@@ -254,26 +255,27 @@ function checkMeIn()
 	 
         }
         
-//        function CheckDeadlineIcon()
-//        {
-//                var module_name='updateDeadlineIcon';
-//                var document_id='updateDeadlineIcon';
-//                //var module_name = 'documentTracker='+BarcodeId; //build a post data structure
-//		jQuery.ajax({
-//			type: "POST",
-//			url:"crud.php",
-//			dataType:"text", // Data type, HTML, json etc.
-//			data:{module:module_name,docId:document_id},
-//			success:function(response)
-//                        {
-//                            $('#deadlineNoti').html(response);
-//			},
-//			error:function (xhr, ajaxOptions, thrownError){
-//				alert(thrownError);
-//			}
-//                        
-//		});
-//        }
+        function CheckDeadlineIcon()
+        {
+                var module_name='updateDeadlineIcon';
+                var imageloc='<?php echo $PROJECT_ROOT; ?>';
+              
+                //var module_name = 'documentTracker='+BarcodeId; //build a post data structure
+		jQuery.ajax({
+			type: "POST",
+			url:"crud.php",
+			dataType:"text", // Data type, HTML, json etc.
+			data:{module:module_name,imgPath:imageloc},
+			success:function(response)
+                        {
+                            $('#deadlineNoti').html(response);
+			},
+			error:function (xhr, ajaxOptions, thrownError){
+				alert(thrownError);
+			}
+                        
+		});
+        }
 
 </script>
 </body>

@@ -28,6 +28,10 @@ if (session_status() == PHP_SESSION_NONE) {
         case 'Approved':
             renderForm('Approved');
             break;
+	
+	case 'Processing':
+            renderForm('Processing');
+            break;
         
     }
     
@@ -80,6 +84,8 @@ function renderForm($action)
                 on documentlist.document_id=documentlist_tracker.fk_documentlist_id WHERE scrap=0 and complete=0 
                 and fk_office_name_documentlist = '".$_SESSION['OFFICE']."' group by document_id order by transdate desc";
             }
+//	    echo $SQLquery;
+//	    die();
                 $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
                 $rowcolor='';
                 while ($row = mysqli_fetch_array($result))
@@ -225,6 +231,47 @@ function SummaryFilter($docid,$module)
                             AND forrelease_date IS NOT NULL
                             ORDER BY sortorder DESC LIMIT 1';
                 
+                $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
+                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+                {
+                    $dateReceived=$row['received_date'];
+                    $dateReleased=$row['released_date'];
+                    $dateForrelease=$row['forrelease_date'];
+                    $docLocation=$row['office_name'];
+                    
+//                    if ($row['released_date']<>'')
+//                    {
+//                        $docStatus='Released';
+//                        $docRemarks=$row['released_comment'];
+//                        return true;
+//                    }
+//                    elseif (($row['forrelease_date']<>'') AND ($row['released_date']=='')) 
+//                    {
+                        $docStatus='For Pickup';
+                        $docRemarks=$row['forrelease_comment'];
+                        return true;
+//                    }
+//                    else
+//                    {
+//                        $docStatus='On Process';
+//                        $docRemarks=$row['received_comment'];
+//                        return true;
+//                    }
+//                   
+                }
+                break;
+		
+		case 'Processing':
+                $SQLquery='SELECT received_date,released_date,forrelease_date,office_name,
+                            released_comment,forrelease_comment,received_comment
+                            FROM documentlist_tracker JOIN documentlist on documentlist_tracker.fk_documentlist_id
+			    = documentlist.document_id 
+			    
+			    WHERE fk_documentlist_id = "'.$docid.'"  AND
+                            received_date IS NOT null AND  released_date IS NULL
+                            ORDER BY sortorder DESC LIMIT 1';
+//                echo $SQLquery;
+//		die();
                 $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
                 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
                 {

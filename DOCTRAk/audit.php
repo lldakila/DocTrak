@@ -8,6 +8,7 @@
         date_default_timezone_set($_SESSION['Timezone']);
         $sqlQuery='INSERT INTO security_audit(transaction,sqlquery,dml,user) VALUE ("'.$TransactionNumber.'","'.$SQL.'","'.$DML.'","'.$UserName.'")';
         $query=  mysqli_query($con, $sqlQuery);
+	
         mysqli_close($con);
       
     }

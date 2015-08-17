@@ -47,7 +47,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
               <?php
                  if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
                 {
-              echo '<li><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
+              echo '<li class="quickNavMargin"><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
                 }
               ?>
 

@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,6 +6,24 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../index.php');
 }
+
+if ($_SESSION['BAC']!=1)
+	{
+            if ($_SESSION['GROUP']!='POWER ADMIN')
+            {
+                header('Location:../../../index.php');
+            }
+             
+	}
+        else if ($_SESSION['GROUP']!='POWER ADMIN')
+        {
+            
+            if ($_SESSION['BAC']!=1)
+            {
+                header('Location:../../../index.php');
+            }
+        }
+
 
 ?>
 
@@ -54,7 +71,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     	<div class="content2">
             <div id="post">
                 <div id="post10">
-                    <h2>BAC Archive</h2>
+                    <h2>Release</h2>
                     <div id="BacHistory">
                         <!--AJAX DATA INSERTED HERE-->
                     </div>
@@ -142,10 +159,10 @@ $(document).ready(function()
     $("#search_document").click(function (e) {
     e.preventDefault();
     var search_Text=document.getElementById('search_string').value;
-    var module_name = 'SearchArchive';
+    var module_name = 'searchRelease';
     jQuery.ajax({
             type: "POST",
-            url:"search.php",
+            url:"crud.php",
             dataType:"text", // Data type, HTML, json etc.
             data:{module:module_name,searchText:search_Text},
             beforeSend: function() 
@@ -169,16 +186,16 @@ $(document).ready(function()
 function clickSearch(doc_Id,docDetail,docCost,docDate)
 {
      
-    var module_name="historyCheckin";
+    var module_name="renderRelease";
     var document_id=doc_Id;
     jQuery.ajax({
             type: "POST",
-            url:"search.php",
+            url:"crud.php",
             dataType:"text", // Data type, HTML, json etc.
             data:{module:module_name,docId:document_id},
             beforeSend: function() 
             {
-                $("#BacHistory").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#BacHistory").html("<div id='loading'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response)
             {
@@ -190,6 +207,40 @@ function clickSearch(doc_Id,docDetail,docCost,docDate)
             }
         });
             
+ }
+ 
+ function releaseDoc(id)
+ {
+    var module_name="releaseBacDocument";
+    //var document_id=doc_Id;
+    jQuery.ajax({
+            type: "POST",
+            url:"crud.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:{module:module_name,docId:id},
+            beforeSend: function() 
+            {
+                $("#btnRelease").html('Releasing..');
+            },
+            success:function(response)
+            {
+		if (response=="")
+		{
+		    $.growl.notice({ message: 'Document Released' }); 
+		}
+		else
+		{
+		    $.growl.error({ message: response });
+		}
+                
+		$("#btnRelease").html('Released');
+		
+            },
+            error:function (xhr, ajaxOptions, thrownError)
+            {
+                $.growl.error({ message: thrownError });
+            }
+        });
  }
 
 </script>

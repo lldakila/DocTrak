@@ -43,7 +43,7 @@ switch($formModule)
     case 'saveBacMonitor':
         saveBacMonitor($_POST['tracker_id']);
         break;
-    
+
         
 }
 
@@ -466,9 +466,7 @@ function renderBacMonitor($document_id)
 
              <p style='float:left; margin-right:34px; margin-left:8px; padding-top:7px; padding-bottom:10px;'>Reason:</p>
              <div class='fixinput' style='width:84.5%; padding-top:8px; margin-bottom:10px;'>
-                <textarea id='remarkText' class='form-control' name='comment'>
-
-                </textarea>
+                <textarea id='remarkText' class='form-control' name='comment'></textarea>
              </div>
              <div class='buttonright'>
                 <button id='btnUpdateBacklog' type='button' class='btn btn-primary' onclick='javascript:bacMonitorSave()'>Save</button>
@@ -552,6 +550,7 @@ function saveBacMonitor($tracker_id)
     }
     
 }
+
 
 //UPDATE BAC NOTIFICATION ICON
 //function updateStatusIcon()

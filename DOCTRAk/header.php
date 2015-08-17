@@ -51,11 +51,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                     if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
                                     {
                                     echo '
-                                        
-                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/checkin.php><span>Check In</span></a></li>
-                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/backlog.php><span>Backlog</span></a></li>
+                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/receive.php><span>Receive Doc</span></a></li>
+                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/release.php><span>Release Doc</span></a></li>
+					<li><a href='.$PROJECT_ROOT.'procedures/home/bac/checkin.php><span>Check In</span></a></li>
                                         <li class="divider linebgcolor"></li>';
                                     }
+                                    //<li><a href='.$PROJECT_ROOT.'procedures/home/bac/backlog.php><span>Backlog</span></a></li>
                                     echo '
                                         <li><a href='.$PROJECT_ROOT.'procedures/home/bac/monitor.php><span>Monitoring</span></a></li>
                                         <li><a href='.$PROJECT_ROOT.'procedures/home/bac/archive.php><span>Archive</span></a></li>
@@ -291,7 +292,7 @@ function checkDocumentDeadline()
 //        echo '<br>';
 //     echo date_create($expirationDay.' 00:00:00');
 //     die;
-        if (checkDuplicate($rows['bacdocumentlist_tracker_id'])==false AND checkStatusUpdatedToday($rows["bacdocumentlist_tracker_id"])==false)
+        if (checkDuplicate($rows['bacdocumentlist_tracker_id'])==false AND checkStatusUpdatedToday($rows["bacdocumentlist_tracker_id"])==false AND $rows["expire_days"]<>0)
         {
             if (strtotime($expirationDay)<=strtotime($dateNow))
             {
