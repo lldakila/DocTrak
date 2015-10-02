@@ -39,21 +39,31 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="content">
 
 <div id="leftmenu">
-<nav class="social">
-          <ul>
-              <li><a href="javascript:newDocument()">New<i><img src="images/home/icon/newdoc1.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:receiveDocument()">Receive<i><img src="images/home/icon/receivedoc1.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:releaseDocument()">Release<i><img src="images/home/icon/releasedoc.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:forpickupDocument()">For Pickup<i><img src="images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>
-               <?php
-                 if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-                {
-              echo '<li class="quickNavMargin"><a href="javascript:bacDocument()">BAC<i><img src="images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
-                }
-              ?>
+		<div id='cssmenu'>
+		<ul>
+		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+		      <ul>
+			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
+			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+		      </ul>
+		   </li>
+		   <?php
+		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+		   {
+		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      <ul>
+			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+			 <li><a href="#"><span>Check In</span></a></li>
+		 <li><a href="#"><span>Backlog</span></a></li>
+		      </ul>
+		   </li>';
+		   }
+		   ?>
 
-          </ul>
-      </nav>
+		</ul>
+	    </div>
 </div>
 
 	<div class="content1">
@@ -68,7 +78,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         		
     						<div id="pic">
                 					
-                        			<div id="flashContent">
+						    <div id="image">
+							<img src="images/home/doctraklogo.jpg" width="250" height="250" align="left"/><p>DOCTRACK</p>
+						    </div>
+<!--                        			<div id="flashContent">
 			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="930" height="260" id="dtlogo" align="middle">
 				<param name="movie" value="images/home/flash/dtlogo.swf" />
 				<param name="quality" value="high" />
@@ -81,7 +94,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				<param name="devicefont" value="false" />
 				<param name="salign" value="" />
 				<param name="allowScriptAccess" value="sameDomain" />
-				<!--[if !IE]>-->
+				[if !IE]>
 				<object type="application/x-shockwave-flash" data="images/home/flash/dtlogo.swf" width="930" height="260">
 					<param name="movie" value="dtlogo.swf" />
 					<param name="quality" value="high" />
@@ -96,9 +109,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 					<param name="allowScriptAccess" value="sameDomain" />
 				
 				</object>
-				<!--<![endif]-->
+				<![endif]
 			</object>
-		</div>
+		</div>-->
                                     	
                 			</div>
                             <div id="title">

@@ -30,8 +30,6 @@ if (mysqli_connect_error())
  if ($_POST['document_hidden']=="save") 
      {
         
-
-        
         if ($_POST['primarykey'] == "") 
         {
            // CHECK IF INPUTFILE IS EMPTY START

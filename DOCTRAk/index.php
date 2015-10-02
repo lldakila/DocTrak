@@ -49,11 +49,9 @@ if(isset($_SESSION['usr']) || isset($_SESSION['pswd'])){
   <div class="login-help">
     
     <?php
-
+ 
         if (isset($_SESSION['login']))
         {
-            
-     
            if($_SESSION['login']=='invalid'){
 
                 echo"<div style='color:#fff; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Invalid Username / Password </div>";
@@ -63,9 +61,7 @@ if(isset($_SESSION['usr']) || isset($_SESSION['pswd'])){
                 }   }
          $_SESSION['login']='clear';
          $_SESSION['in']='clear';
-
-
-
+	
 
 
 ?>

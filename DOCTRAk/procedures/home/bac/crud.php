@@ -432,7 +432,7 @@ function insertMail($bacdocumentId)
     $document_cost=$recordSet['prcost'];
     $document_date=$recordSet['pr_date'];
     $document_message = $_SESSION['AutoMessage1'];
-    $document_message=$document_message . '<br><br>Barcode: <font style="font-weight:bold;">'.$document_id.'</font><br>Detail:<font style="font-weight:bold;">'.$document_detail.'</font><br>Cost:<font style="font-weight:bold;">'.$document_cost.'</font><br>Date:<font style="font-weight:bold;">'.$document_date.'</font><br><br>'.$_SESSION['AutoMessage2'];
+    $document_message=$document_message . '<br><br>Barcode: <font style="font-weight:bold;">'.$document_id.'</font><br>Detail: <font style="font-weight:bold;">'.$document_detail.'</font><br>Cost: <font style="font-weight:bold;">'.$document_cost.'</font><br>Date: <font style="font-weight:bold;">'.$document_date.'</font><br><br>'.$_SESSION['AutoMessage2'];
     
     $sql="SELECT security_username FROM security_user WHERE fk_office_name = '$document_office'";
     $secNameQuery=mysqli_query($con,$sql);
@@ -440,7 +440,7 @@ function insertMail($bacdocumentId)
     
     while ($secNameResult=mysqli_fetch_array($secNameQuery))
     {
-        $query="INSERT INTO mail(MAILCONTENT,FK_SECURITY_USERNAME_OWNER,MAILDATE,MAILTITLE,FK_SECURITY_USERNAME_SENDER,MAILSTATUS,fk_table,fk_key) VALUES ('".$document_message."','".$secNameResult['security_username']."','".date("Y-m-d H:i:s")."','BAC Document','".$_SESSION['usr']."',0,'bacdocument','".$document_id."')";
+        $query="INSERT INTO mail(MAILCONTENT,FK_SECURITY_USERNAME_OWNER,MAILDATE,MAILTITLE,FK_SECURITY_USERNAME_SENDER,MAILSTATUS,fk_table,fk_key) VALUES ('".$document_message."','".$secNameResult['security_username']."','".date("Y-m-d H:i:s")."','BAC Document','".$_SESSION['usr']."',0,'BAC Document','".$document_id."')";
         $RESULT=mysqli_query($con,$query);
         //echo $query;      
 	if (!$RESULT)

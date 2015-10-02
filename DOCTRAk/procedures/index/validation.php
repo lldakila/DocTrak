@@ -47,9 +47,10 @@ session_start();
         
         
     //REDIRECT TO HOME.PHP
-      header("Location:../../home.php");
+     header("Location:../../home.php");
+      //header("location:javascript://history.go(-2)");
       // echo $secname;
-
+      exit;
    }
    else{
 	   echo 3;

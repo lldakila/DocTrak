@@ -53,21 +53,31 @@ date_default_timezone_set($_SESSION['Timezone']);
 <div class="content">
 
 <div id="leftmenu">
-<nav class="social">
-          <ul>
-              <li><a href="javascript:newDocument()">New<i><img src="../../../images/home/icon/newdoc1.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:receiveDocument()">Receive<i><img src="../../../images/home/icon/receivedoc1.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:releaseDocument()">Release<i><img src="../../../images/home/icon/releasedoc.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:forpickupDocument()">For Pickup<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>
-               <?php
-                 if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-                {
-              echo '<li class="quickNavMargin"><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
-                }
-              ?>
+		<div id='cssmenu'>
+		<ul>
+		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+		      <ul>
+			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
+			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+		      </ul>
+		   </li>
+		   <?php
+		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+		   {
+		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      <ul>
+			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+			 <li><a href="#"><span>Check In</span></a></li>
+		 <li><a href="#"><span>Backlog</span></a></li>
+		      </ul>
+		   </li>';
+		   }
+		   ?>
 
-          </ul>
-      </nav>
+		</ul>
+	    </div>
 </div>
 
     
@@ -334,14 +344,14 @@ $('#searchform').submit(function () {
             data:{module:module_name,searchText:search_text},
              beforeSend: function()
             {
-                //$("#responds").html("<tr class='usercolortest'><th>Barcode</th><th>Detail</th><th>Cost</th><th>Date</th></tr>");
                 $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response)
             {
                 $("#responds").html(response);
             },
-            error:function (xhr, ajaxOptions, thrownError){
+            error:function (xhr, ajaxOptions, thrownError)
+	    {
                 $.growl.error({ message: thrownError });
             }
         });
@@ -423,7 +433,7 @@ function deleteMe()
             },
             success:function(response)
             {
-                  if (response=='Document deleted.')
+		if (response=='Document deleted.')
                 {
                      $.growl.notice({ message: response });
 		     newMe();

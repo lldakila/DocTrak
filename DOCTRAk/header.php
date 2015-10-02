@@ -65,6 +65,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                 
                                 
                                 ?>
+				
+				
+				<li role="presentation" class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                        Communication <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu down-bgcolor" role="menu">
+                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/communication/letter.php"; ?>"><span>Letter</span></a></li>
+					<li><a href="<?php echo $PROJECT_ROOT."procedures/home/communication/monitoring.php"; ?>"><span>Letter Monitoring</span></a></li>
+                                        
+                                    </ul>
+                                    
+                                </li>
+				
                                 <li role="presentation" class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                         Report <span class="caret"></span>
@@ -156,7 +170,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             ///START BAC NOTIFICATION
                             /////////////////
                             $sqlQuery='SELECT bacdocument_id,fk_officename_bacdocumentlist,bacdocumentdetail,activity,prcost FROM bacdocument_monitoring JOIN bacdocumentlist_tracker ON bacdocument_monitoring.fk_bacdocumentlist_tracker_id = bacdocumentlist_tracker.bacdocumentlist_tracker_id JOIN bacdocumentlist ON bacdocumentlist_tracker.fk_bacdocumentlist_id = bacdocumentlist.bacdocument_id';
-
+				
                          $recSet=mysqli_query($con,$sqlQuery);
                             //$resultSet=  mysqli_fetch_array($recSet);
                             $rowCounter=1;

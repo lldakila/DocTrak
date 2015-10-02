@@ -40,21 +40,31 @@ date_default_timezone_set($_SESSION['Timezone']);
 <div class="content">
 
 <div id="leftmenu">
-<nav class="social">
-          <ul>
-              <li><a href="javascript:newDocument()">New<i><img src="../../../images/home/icon/newdoc1.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:receiveDocument()">Receive<i><img src="../../../images/home/icon/receivedoc1.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:releaseDocument()">Release<i><img src="../../../images/home/icon/releasedoc.gif" width="25px" height="25px" /></i></a></li>
-              <li><a href="javascript:forpickupDocument()">For Pickup<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>
-              <?php
-                 if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-                {
-              echo '<li class="quickNavMargin"><a href="javascript:bacDocument()">BAC<i><img src="../../../images/home/icon/forpickup.gif" width="25px" height="25px" /></i></a></li>';
-                }
-              ?>
+		<div id='cssmenu'>
+		<ul>
+		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+		      <ul>
+			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
+			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+		      </ul>
+		   </li>
+		   <?php
+		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+		   {
+		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      <ul>
+			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+			 <li><a href="#"><span>Check In</span></a></li>
+		 <li><a href="#"><span>Backlog</span></a></li>
+		      </ul>
+		   </li>';
+		   }
+		   ?>
 
-          </ul>
-      </nav>
+		</ul>
+	    </div>
 </div>
 
 	<div class="content1">
@@ -92,6 +102,7 @@ date_default_timezone_set($_SESSION['Timezone']);
                                         		<table id="MailData" cellpadding="0" class="fix">
                                                 	<tr class="bg1">
                                                             <td>Sender</td>
+							    <td>Document</td>
                                                             <td>Title</td>
                                                             <td>Message</td>
                                                             <td></td>
@@ -103,7 +114,7 @@ date_default_timezone_set($_SESSION['Timezone']);
                             require_once("../../connection.php");
                             global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
                             $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-                            $query="SELECT MAIL_ID,MAILCONTENT, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM mail JOIN security_user ON
+                            $query="SELECT MAIL_ID,MAILCONTENT, FK_TABLE, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM mail JOIN security_user ON
                                     mail.FK_SECURITY_USERNAME_SENDER = security_user.SECURITY_USERNAME WHERE FK_SECURITY_USERNAME_OWNER
                                     = '".$_SESSION['usr']."'  ORDER BY MAILDATE DESC";
                                     
@@ -128,6 +139,7 @@ date_default_timezone_set($_SESSION['Timezone']);
                                             }
 
             echo    "<td>".$row['SECURITY_NAME']."</td>
+		<td>".$row['FK_TABLE']."</td>
                 <td>".$row['MAILTITLE']."</td><td><font style='color:#666;'><div class='y6'>".substr($row['MAILCONTENT'],0,60)."</font></div></td>
                 <td></td>
                 <td>".date_format($date,'M d, Y-H:i')."</td>

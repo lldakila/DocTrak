@@ -8,24 +8,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 }
 ?>
 
-
-
-
 <?php
     require_once("../../../connection.php");
   
     $query=select_info_multiple_key("select  distinct TEMPLATE_ID,TEMPLATE_NAME,TEMPLATE_DESCRIPTION,document_template.FK_OFFICE_NAME from document_template join template_list on document_template.TEMPLATE_ID = template_list.FK_TEMPLATE_ID join office on template_list.FK_OFFICE_NAME = office.OFFICE_NAME where TEMPLATE_ID LIKE '%".$_POST['search_string']."%' OR TEMPLATE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY TEMPLATE_ID");
    
 
-
 if ($query){
 
 $rowcolor="blue";
 
 echo "<tr class='usercolortest'>
-                                	<th>Template</th>
-                                    <th>Description</th>
-                                	</tr>";
+	<th>Template</th>
+    <th>Description</th>
+	</tr>";
 
 foreach($query as $var) 
     {
@@ -73,18 +69,12 @@ foreach($query as $var)
         }
         
     }
-    
-    
-        // echo "test";
+
     }
 
-//echo "<tr> <td>";
-//echo "asdasd";
-    //   echo "</tr> </td>";
         }
         else{
           echo "<span style='font:11px trebuchet ms;'>Nothing found.</span>";
         }
-
 
   ?>
