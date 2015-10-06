@@ -16,11 +16,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
      if ($query) {
 
      $rowcolor="blue";
-	 								echo "<tr class='usercolortest'>
-                <th>Barcode</th>
-            <th>Title</th>
-                <th>Date</th>
-                </tr>";
+    echo "<tr class='usercolortest'>
+	<th class='sizeBARCODE'>BARCODE</th>
+	<th class='sizeTITLE'>TITLE</th>
+	<th>DATE</th>
+    </tr>";
 	 
      include_once("../common/SearchFilter.php");
      require_once("../common/encrypt.php");
@@ -47,7 +47,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
          }
 
 
-	echo "<td style='width:150px;'>";
+	echo "<td>";
 	 echo $var["DOCUMENT_ID"];
      // echo $_SESSION['keytracker'];
 	 echo "</td><td>";

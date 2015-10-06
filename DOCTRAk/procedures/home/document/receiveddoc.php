@@ -49,13 +49,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -193,9 +193,9 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
                         	                                    
                                 <table id="responds">
                                 	<tr class='usercolortest'>
-                                	<th>Barcode</th>
-                                    <th>Title</th>
-                                	<th>Date</th>
+					    <th class="sizeBARCODE">BARCODE</th>
+					    <th class="sizeTITLE">TITLE</th>
+					    <th>DATE</th>
                                 	</tr>
                                 </table>
 
@@ -226,7 +226,7 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>
@@ -326,10 +326,10 @@ $(document).ready(function() {
             dataType:"text", // Data type, HTML, json etc.
 			data:myData,
             beforeSend: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             ajaxError: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response){
                     $("#responds").html(response);

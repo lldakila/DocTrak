@@ -71,7 +71,7 @@ function SearchDoc($queryText)
     $result=mysqli_query($con, $SQLstring);
     
             
-    echo"<tr class='usercolortest'><th>Barcode</th><th>Detail</th><th>Cost</th><th>Date</th></tr>";
+    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
     $rowcolor="blue";
     while ($rows=mysqli_fetch_array($result))
     {
@@ -129,7 +129,7 @@ function SearchNew($queryText)
     $result=mysqli_query($con, $SQLstring);
     
             
-    echo"<tr class='usercolortest'><th>Barcode</th><th>Detail</th><th>Cost</th><th>Date</th></tr>";
+    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
     $rowcolor="blue";
     while ($rows=mysqli_fetch_array($result))
     {
@@ -244,12 +244,12 @@ function historyCheckin($searchText)
                 echo '<div id="checkinScroll">';
                 echo '<table id="historydata" class="table scroll">';
                 echo '<tr class="bgcolor">';
-                    echo '<th style="width:2%;">Step</th>';
-                    echo '<th style="width:25%;">Activity</th>';
-                    echo '<th style="width:15%;">Checked-In</th>';
-                    echo '<th style="width:15%;">Checked-Out</th>';
-                    echo '<th style="width:15%;">Responsible</th>';
-                    echo '<th style="width:15%;">Details</th>';
+                    echo '<th style="width:2%;">STEP</th>';
+                    echo '<th style="width:25%;">ACTIVITY</th>';
+                    echo '<th style="width:15%;">CHECKED-IN</th>';
+                    echo '<th style="width:15%;">CHECKED-OUT</th>';
+                    echo '<th style="width:15%;">RESPONSIBLE</th>';
+                    echo '<th style="width:15%;">DETAILS</th>';
                 echo '</tr>';
                
                 
@@ -335,7 +335,7 @@ function SearchArchive($queryText)
     $result=mysqli_query($con, $SQLstring);
     
             
-    echo"<tr class='usercolortest'><th>Barcode</th><th>Detail</th><th>Cost</th><th>Date</th></tr>";
+    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
     $rowcolor="blue";
     while ($rows=mysqli_fetch_array($result))
     {

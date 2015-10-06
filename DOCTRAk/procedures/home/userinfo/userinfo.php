@@ -47,13 +47,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -84,8 +84,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                 <h4>MESSAGE</h4>
                                                 <ol style="height: 345px;">
                                                         <li><a href="inbox.php"><span>INBOX</span></a></li>
-                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
-                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>
+<!--                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
+                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
                                                 </ol>
                                         </div>
                                         
@@ -101,20 +101,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                                     $query=select_info_multiple_key('SELECT SECURITY_USERNAME, SECURITY_NAME, FK_SECURITY_GROUPNAME,FK_OFFICE_NAME FROM security_user WHERE SECURITY_USERNAME = "'.$_SESSION['usr'].'" ');
                                                                     echo "
 	                                                <tr>
-	                                                    <td>USERNAME:</td>
+	                                                    <td>Username:</td>
 
 	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='username' readonly='readonly' type='text' name='username' class='form-control' value ='".$query[0]['SECURITY_USERNAME']."'/></font></td>
 	                                                </tr>
 	                                                <tr>
-	                                                    <td>FULL NAME:</td>
+	                                                    <td>Full Name:</td>
 	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='fullname' readonly='readonly' type='text' name='fullname' class='form-control' value ='".$query[0]['SECURITY_NAME']."'/></font></td>
 	                                                </tr>
 	                                                <tr>
-	                                                    <td>OFFICE:</td>
+	                                                    <td>Office:</td>
 	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='office' readonly='readonly' type='text' name='office' class='form-control' value ='".$query[0]['FK_OFFICE_NAME']."'/></font></td>
 	                                                </tr>
 	                                                <tr>
-	                                                    <td>GROUP:</td>
+	                                                    <td>Group:</td>
 	                                                    <td><font style='font-weight:bold; font-size:12px;'><input id='group' readonly='readonly' type='text' name='group' class='form-control' value='".$query[0]['FK_SECURITY_GROUPNAME']."'/></font></td>
 	                                                </tr>";
 
@@ -157,7 +157,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>

@@ -53,13 +53,13 @@ date_default_timezone_set($_SESSION['Timezone']);
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -90,8 +90,8 @@ date_default_timezone_set($_SESSION['Timezone']);
                                                 <h4>MESSAGE</h4>
                                                 <ol style="height: 345px;">
                                                         <li><a href="inbox.php"><span>INBOX</span></a></li>
-                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
-                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>
+<!--                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
+                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
                                                 </ol>
                                         </div>
                                         
@@ -101,12 +101,12 @@ date_default_timezone_set($_SESSION['Timezone']);
                                         <div id="inboxtable">
                                         		<table id="MailData" cellpadding="0" class="fix">
                                                 	<tr class="bg1">
-                                                            <td>Sender</td>
-							    <td>Document</td>
-                                                            <td>Title</td>
-                                                            <td>Message</td>
-                                                            <td></td>
-                                                            <td>Date</td>
+                                                            <td>SENDER</td>
+							    <td>DOCUMENT</td>
+                                                            <td>TITLE</td>
+                                                            <td>MESSAGE</td>
+                                                            
+                                                            <td>DATE</td>
                                                     </tr>
 
                     <?php
@@ -141,7 +141,7 @@ date_default_timezone_set($_SESSION['Timezone']);
             echo    "<td>".$row['SECURITY_NAME']."</td>
 		<td>".$row['FK_TABLE']."</td>
                 <td>".$row['MAILTITLE']."</td><td><font style='color:#666;'><div class='y6'>".substr($row['MAILCONTENT'],0,60)."</font></div></td>
-                <td></td>
+               
                 <td>".date_format($date,'M d, Y-H:i')."</td>
                                     </tr>";
 
@@ -183,7 +183,7 @@ date_default_timezone_set($_SESSION['Timezone']);
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>

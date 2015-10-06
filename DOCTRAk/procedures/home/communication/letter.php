@@ -64,13 +64,13 @@
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -84,7 +84,7 @@
         
         	<div id="post">
 
-		    <div id="post10">
+		    <div id="post01">
 		    <h2>LETTER</h2>
 
 		    <form id="data" name="data" method="post"  enctype="multipart/form-data">
@@ -142,7 +142,7 @@
         ?>
                                 </select>
 <!--                               <button id="add_office" type="button">Add Office</button>-->
-                                <input type="button" value="Add Office" onClick="javascript:addoffice();" class="btn btn-primary" />
+                                <input type="button" value="+" onClick="javascript:addoffice();" class="btn btn-primary" />
                         </td>
                     </tr>
 
@@ -157,19 +157,12 @@
 
                             </select>
 
-                        <input type="button" id="deleteselected" value="Delete Office" onclick="removeoffice(officeselection);" class="btn btn-primary" />
+                        <input type="button" id="deleteselected" value="-" onclick="removeoffice(officeselection);" class="btn btn-danger" />
 
 
-                    </div>
-
-                    <div class="table1" style="padding: 0; margin:0 0 0 -360px;">
-                      <table>
-                          <tr>
-                          	<td>File: </td>
-                               <td><input id="filepdf" name="filepdf" type="file" accept=".pdf" /> </td>
-                          </tr>
-                      </table>
                     </div><div class="tfclear"></div>
+
+                   
 
 <!--
 
@@ -200,48 +193,29 @@
 
                         <div class="input">
 			    <input id="template_mode" name="template_mode" type="hidden" value="0"/>
-                         <input  type="button" value="Delete"  onClick="document.getElementById('template_mode').value='delete';" class="btn btn-danger" />
+                         
                          
                          
 <!--                         <button id="letterSave"  type="button"  onclick="return submitSave()" class="btn btn-primary"> Save</button>    -->
 
 			<button id="SaveLetter" class="btn btn-primary">Save</button>
-                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+                         
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
                            </div>
+			<div class="tableFILE">
+                      <table>
+                          <tr>
+                          	<td>File: </td>
+                               <td><input id="filepdf" name="filepdf" type="file" accept=".pdf" /> </td>
+                          </tr>
+                      </table>
+                    </div>
 
 						   </form>
                         </div>
                         
-                        	<div id="postright">
-                            
-                            		<div id="tfheader">
-                                    	<form id="tfnewsearch" method="post" class="form-inline">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                                    <button id="search_letter" class="btn btn-default">Search </button>
-                                                </div>
-                                            </div>
-                                        </form>	
-                                        <h2></h2>	
-                                    </div>
-                                    <div class="tfclear"></div>
-                                    
-                            <div class="scroll">
                         	
-                                    
-                                <table id="responds">
-                                    <tr class='usercolortest'>
-                                	<th style="width:90px;">Title</th>
-                                        <th>Type</th>
-					<th>Owner</th>
-					<th>Date</th>
-                                    </tr>	
-                                </table>
-                            </div>
-                         	</div>
 
 
                         <div class="tfclear"></div>
@@ -267,7 +241,7 @@
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>

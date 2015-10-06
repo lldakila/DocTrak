@@ -62,13 +62,13 @@
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -97,7 +97,7 @@
                     	<td>Template:</td>
 
                         <td class="textinput">
-                            <input id="primarykey" name="primarykey" type="text" />
+                            <input id="primarykey" name="primarykey" type="hidden" />
                             <input id="template_name" name="template_name" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
@@ -107,7 +107,7 @@
                     </tr>
                     <tr>
                     	<td>Office:</td>
-                        <td class="select1"><select name='officelist' id='officelist' class="form-control selectpicker">
+                        <td class="selectFLOW"><select name='officelist' id='officelist' class="form-control selectpicker">
         <?php
         //require_once("../../connection.php");
 
@@ -121,7 +121,7 @@
         ?>
                                 </select>
 <!--                               <button id="add_office" type="button">Add Office</button>-->
-                                <input type="button" value="Add Office" onClick="javascript:addoffice();" class="btn btn-primary" />
+                                <input type="button" value="+" onClick="javascript:addoffice();" class="btn btn-primary" />
                         </td>
                     </tr>
 
@@ -135,14 +135,14 @@
 
 
 
-                    <div class="officeselected">
+                    <div class="officeselectedFLOW">
 
                             <input type="hidden" name="OfficeArray" id="OfficeArray">
                             <select id="officeselect" size="10" width="15" name="officeselection" >
 
                             </select>
 
-                        <input type="button" id="deleteselected" value="Remove Office" onclick="removeoffice(officeselection);" class="btn btn-primary" />
+                        <input type="button" id="deleteselected" value="-" onclick="removeoffice(officeselection);" class="btn btn-danger" />
 
 
                     </div><div class="tfclear"></div>
@@ -205,8 +205,8 @@
                                     
                                 <table id="responds">
                                     <tr class='usercolortest'>
-                                	<th>Template</th>
-                                        <th>Description</th>
+					<th class="sizeTEMPLATE">TEMPLATE</th>
+                                        <th class="sizeDESCR">DESCRIPTION</th>
                                     </tr>	
                                 </table>
                             </div>
@@ -236,7 +236,7 @@
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>

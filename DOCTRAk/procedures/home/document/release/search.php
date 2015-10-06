@@ -19,11 +19,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 
 $rowcolor="blue";
 
-									echo "<tr class='usercolortest'>
-                                	<th>Barcode</th>
-                                    <th>Title</th>
-                                	<th>Date</th>
-                                	</tr>";
+echo "<tr class='usercolortest'>
+		<th class='sizeBARCODE'>BARCODE</th>
+		<th class='sizeTITLE'>TITLE</th>
+		<th>DATE</th>
+		</tr>";
 
      include_once("../common/SearchFilter.php");
      require_once("../common/encrypt.php");
@@ -56,7 +56,7 @@ $rowcolor="blue";
 
 
 
-        echo "<td style='width:150px;'>";
+        echo "<td>";
         echo $var["DOCUMENT_ID"];
         echo "</td><td>";
         echo $var["DOCUMENT_TITLE"];

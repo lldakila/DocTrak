@@ -16,10 +16,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 if ($query) {
 	
 $rowcolor="blue";
-									echo "<tr class='usercolortest'>
-                                	<th>Document Name</th>
-                                    <th>Description</th>
-                                	</tr>";
+	echo "<tr class='usercolortest'>
+	    <th class='sizeDOCNAME'>DOCUMENT NAME</th>
+	    <th class='sizeDESCR'>DESCRIPTION</th>
+        </tr>";
 
  foreach($query as $var) {
 

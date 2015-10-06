@@ -54,10 +54,10 @@
     include_once("../common/SearchFilter.php");
     $rowcolor="blue";
     echo "<tr class='usercolortest'>
-        <th>Barcode</th>
-        <th>Title</th>
-        <th>Owner</th>
-        <th>Date</th>
+        <th class='sizeBARCODE2'>BARCODE</th>
+	<th class='sizeTITLE2'>TITLE</th>
+	<th class='sizeOWNER2'>OWNER</th>
+	<th>DATE</th>
     </tr>";
  
     while($var=mysqli_fetch_array($RESULT))
@@ -77,7 +77,7 @@
             }
       
     
-        echo "<td style='width:150px;'>";
+        echo "<td>";
         echo $var["document_id"];
        //echo $_SESSION['keytracker'];
         echo "</td><td>";

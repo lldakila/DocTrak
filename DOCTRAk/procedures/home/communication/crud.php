@@ -197,11 +197,11 @@ function SearchLetter()
 		    JOIN commail_con ON commail.commail_id= commail_con.fk_commail_id 
 		    JOIN mail ON commail_con.fk_mail_id = mail.mail_id WHERE (title LIKE 
 		    '%".$searchString."%' OR note LIKE '%".$searchString."%') AND 
-		    fk_office_name='".$_SESSION['OFFICE']."' ORDER BY transdate desc";
+		    `commail`.fk_office_name='".$_SESSION['OFFICE']."' ORDER BY transdate desc";
     }
- 
+
     $result=mysqli_query($con,$sqlString);
-    echo"<tr class='usercolortest'><th>Title</th><th>Type</th><th>Owner</th><th>Date</th></tr>";
+    echo"<tr class='usercolortest'><th style='width:120px;'>TITLE</th><th style='width:150px;'>TYPE</th><th style='width:150px;'>OWNER</th><th>DATE</th></tr>";
     $rowcolor="notblue";
     
     while($recordSet=mysqli_fetch_array($result))
@@ -338,7 +338,7 @@ function getOffices()
 //		join commail on commail_con.fk_commail_id=commail.commail_id
 //		join comoffice_con on commail.commail_id=comoffice_con.fkcommail_id where fkcommail_id=".$variable." ORDER BY mail_id ASC";
     
-    $sqlstring="select fk_commail_id,fk_office_name,mailstatus from commail_con join mail on commail_con.fk_mail_id=mail.mail_id where fk_commail_id=".$variable." ";
+    $sqlstring="select fk_commail_id,fk_office_name,mailstatus from commail_con join mail on commail_con.fk_mail_id=mail.mail_id where fk_commail_id=".$variable." ORDER BY fk_office_name ASC";
     $query=  mysqli_query($con, $sqlstring);
   
     //echo "<table><tr>";

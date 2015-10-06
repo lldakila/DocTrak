@@ -52,13 +52,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		     /*  echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -72,14 +72,16 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         
         	<div id="post">
             
-            			<div id="post01">
+            			<div id="postABOUT">
                         <h2>ABOUT</h2>
                         
                         		
     						<div id="pic">
                 					
 						    <div id="image">
-							<img src="images/home/doctraklogo.jpg" width="250" height="250" align="left"/><p>DOCTRACK</p>
+							<img src="images/home/doctraklogo.jpg" width="250" height="250" align="left"/>
+							<h1>Document Tracking</h1>
+							<p>Provincial Government of La Union</p>
 						    </div>
 <!--                        			<div id="flashContent">
 			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="930" height="260" id="dtlogo" align="middle">
@@ -114,10 +116,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		</div>-->
                                     	
                 			</div>
-                            <div id="title">
+<!--                            <div id="title">
                              
                              <p>&copy; 2014-2015 Designed by: <a href="https://www.facebook.com/wufei0?fref=ts&ref=br_tf">Terry</a> and <a href="https://www.facebook.com/aga.muhlach.547?fref=ts">Jerome F. Marzan</a></p>
-                            </div>
+                            </div>-->
                             
                             
 							
@@ -145,7 +147,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Contact Us</a> | <a href="#">Scroll Top</a></p>
         </div>
     
     </div>

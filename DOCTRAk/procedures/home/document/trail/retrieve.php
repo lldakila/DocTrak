@@ -67,12 +67,12 @@
     echo '<div id="scroll">';
     echo '<table id="historydata" class="table scroll">';
     echo "<tr class='bgcolor'>";
-    echo "<th>Step</th>";
-    echo "<th>Office</th>";
-    echo "<th>Process</th>";
-    echo "<th>Details</th>";
-    echo "<th>Comment</th>";
-    echo "<th>Date</th>";
+    echo "<th>STEP</th>";
+    echo "<th>OFFICE</th>";
+    echo "<th>PROCESS</th>";
+    echo "<th>DETAILS</th>";
+    echo "<th>COMMENT</th>";
+    echo "<th>DATE</th>";
     echo "</tr>";
 
     $rowcolor="blue";

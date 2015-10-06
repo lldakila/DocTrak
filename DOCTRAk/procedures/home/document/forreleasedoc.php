@@ -182,11 +182,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             <div class="scroll">
                         	                                    
                                 <table id="responds">
-                                	<tr class='usercolortest'>
-                                	<th>Barcode</th>
-                                    <th>Title</th>
-                                	<th>Date</th>
-                                	</tr>
+				    <tr class='usercolortest'>
+                                	<th class="sizeBARCODE">BARCODE</th>
+					<th class="sizeTITLE">TITLE</th>
+					<th>DATE</th>
+				    </tr>
                                 </table>
 
                             </div>
@@ -216,7 +216,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>
@@ -313,10 +313,10 @@ $(document).ready(function() {
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
-                $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             ajaxError: function() {
-                $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response){
                     $("#responds").html(response);

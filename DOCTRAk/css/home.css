@@ -258,6 +258,10 @@ div.actionButton {
 	height:450px;
 }
 
+#inboxtable a {
+    color:#2587C1 ;
+}
+
 #inboxtable table {
 	width:100%;
 }
@@ -875,10 +879,10 @@ img#lowclr {
 	margin:0px 0 0 10px;
 	border-radius:5px;
 	padding-bottom:20px;
-	height:530px;
+/*	height:530px;*/
 }
 
-#postHOME {
+#postABOUT {
 	width:1240px;
 	background-color:#FFF;
 	display:block;
@@ -889,18 +893,59 @@ img#lowclr {
 	height:530px;
 }
 
+#postABOUT h2 {
+	margin:0;
+	padding:15px 0 5px 5px;
+	font:18px "Lucida Grande", Tahoma, Verdana, sans-serif;
+	border-bottom:1px solid #ccc;
+	width:1205px;
+	margin:0 auto;
+}
+
+#postHOME {
+	width:1240px;
+	background-color:#FFF;
+	display:block;
+	float:left;
+	margin:0px 0 0 10px;
+	border-radius:5px;
+	padding-bottom:20px;
+/*	height:530px;*/
+}
+
 #pic {
-	margin-bottom:10px;
+	padding-bottom:20px;
 	width:1205px;
 	overflow:hidden;
-        margin: auto;
+        margin:50px auto;
 }
 
 #pic img{
-	margin:20px 0 0 100px;
+	margin:20px 0 0 200px;
 	/*box-shadow:0px 8px 7px #ccc;*/
 	border-radius:190px;
 	border:2px solid #fff;
+}
+
+#pic h1 {
+    margin: 0;
+    padding: 98px 0 0 470px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    color:#2392b4;
+    font-size: 50px;
+    text-shadow: 4px 4px 4px #CDCACA;
+}
+
+#pic p {
+    margin: 0;
+    margin-left: 472px;
+    padding:0;
+    font-size: 20px;
+    font-family: Copperplate Gothic Bold;
+    font-weight: bolder;
+    text-transform:uppercase;
+    color:#7D7C7C;
 }
 
 #pic img.test {
@@ -1022,7 +1067,7 @@ table.fixedwidth th{
  /*INSERTED */
 
 #details table a {
-    color:blue;
+    color:#2587C1;
 }
 
 .input-group button.btn {
@@ -1091,8 +1136,8 @@ table.fixedwidth th{
 	background-color:#5B5C5C;
 	color: #ccc;
 	font-family: Tahoma;
-    font-size: 11px;
-	padding:10px 10px;
+    font-size: 10px;
+	padding:5px 5px;
 }
 
 .SHOWinput p {
@@ -1163,7 +1208,7 @@ table.fixedwidth th{
 }
 
 #postright table#responds {
-	width:650px;
+	width:580px;
 	margin:0 auto;
     line-height: 14px;
 	border-spacing:1px;
@@ -1200,6 +1245,53 @@ table.fixedwidth th{
     font-size: 10px;
 }
 
+th.sizeBARCODE {
+    width:125px;
+}
+
+th.sizeTITLE {
+    width:250px;
+}
+
+th.sizeBARCODE2 {
+    width:120px;
+}
+
+th.sizeTITLE2 {
+    width:200px;
+}
+
+th.sizeOWNER2 {
+    width:130px;
+}
+
+th.sizeDETAIL {
+    width:200px;
+}
+
+th.sizeCOST {
+    width:130px;
+}
+
+th.sizeTEMPLATE {
+    width: 150px;
+}
+
+th.sizeDOCNAME {
+    width: 150px;
+}
+
+th.sizeOFFICE {
+    width: 150px;
+}
+
+th.sizeUSERname {
+    width: 150px;
+}
+
+th.sizeGROUP {
+    width:150px;
+}
 
 #postright tr.usercolor1 {
 	background-color:#3AC7EB;
@@ -1443,7 +1535,7 @@ table.fixedwidth th{
 	margin:0;
 	padding:5px 0 5px 0;
 	text-align:center;
-	font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+	font: 10px/14px "Lucida Grande", Tahoma, Verdana, sans-serif;
   	color: #fff;
 }
 
@@ -1580,6 +1672,17 @@ table.fixedwidth th{
     }
 
 
+#officeList input[type=checkbox] {
+    border: 1px solid #c0c0c0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1em;
+    width: 13px;
+    height: 1.25em;
+    background: #fff;
+    display: inline-block;
+}
+    
 input[type=checkbox],
 input[type=radio] {
         border: 1px solid #c0c0c0;
@@ -1615,7 +1718,7 @@ input[type=radio] {
     }
 
     .usertext1 input[type=text] {
-        width: 514px;
+        /*width: 514px;*/
         border-radius:5px;
         float:left;
         margin-right: 5px;
@@ -1670,11 +1773,50 @@ select, option { width:130px;
 }
 
 .select1 .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
-  width:475px;
+  width:516px;
 }
 
 .select1 input[type=button] {
-    padding: 6px 27px;
+    width: 80px;
+}
+
+.select1 input[value]{
+    font-weight: bolder;
+}
+
+.selectFLOW select, option { 
+        width:475px;
+        border-radius:5px;
+        float:left;
+        margin-right: 8px;
+
+}
+
+.selectFLOW .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
+  width:516px;
+}
+
+.selectFLOW input[type=button]{
+    width: 80px;
+    font-weight: bolder;
+}
+
+.select2 select, option { 
+        width:475px;
+        border-radius:5px;
+        float:left;
+        margin-right: 8px;
+
+}
+
+.select2 .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
+  width:516px;
+}
+
+.select2 button {
+/*    padding: 6px 27px;*/
+width:80px;
+height: 34px;
 }
 
 .select02 select, option { width:365px;
@@ -1688,13 +1830,23 @@ select#officeRollback {
 
 
 }
+
+.lettertable table {
+    margin:0 auto;
+    width:662px;
+}
+
+.tableFILE table {
+    margin-left: 316px;
+}
+
 .table1 {
 	margin:0 auto;
 }
 
 .table1 table{
-		margin:20px auto;
-		padding:20px 0 0 0;
+    margin:10px auto;
+    padding:20px 0 0 0;
 	}
         
 .table1 table td {
@@ -1703,12 +1855,26 @@ select#officeRollback {
     font-size:11px;
 }
 
+.table1 .LETTERinput {
+    width: 662px;
+    margin:auto;
+}
+
+.table1 .LETTERinput button {
+    float:right;
+}
+
 .table1 .input {
 	margin:5px auto;
-	width:681px;
+	width:660px;
 }
 
 .table1 .input input {
+	float:right;
+	margin-left:5px;
+}
+
+.table1 .input button {
 	float:right;
 	margin-left:5px;
 }
@@ -1791,6 +1957,11 @@ select#officeRollback {
 	color:#fff; 
 }
 
+.table1 #fileAttachment a {
+    color:#2587C1;
+    font-weight: bold;
+}
+
 
 .imagestext{
     width:136px;
@@ -1838,7 +2009,7 @@ select#officeRollback {
 td {
     padding:5px 0 5px 8px;
     font-family:tahoma;
-    font-size:11px;
+    font-size:10px;
 
     }
 
@@ -1847,8 +2018,8 @@ th {
 }
     
     td#attachment a {
-        color: #1800ac;
-        font-size:14px;
+        color: #2587C1;
+        font-weight:bolder;
     }
     
     .admin a {
@@ -1884,16 +2055,56 @@ ul #responds01{
 	margin-left: auto;
 }
 
+.letterselected {
+    margin: 0 auto;
+    width: 662px;
+    padding-left: 60px;
+}
+
+.letterselected select,option {
+    width: 516px;
+    float: left;
+}
+
+.letterselected button#deleteselected {
+	margin:0 0 0 5px;
+        width:80px;
+        height: 34px;
+}
+
 .officeselected {
-    margin:0 0 0 175px;
+    margin:0 0 0 350px;
 }
 .officeselected select,option {
-    width: 470px;
+    width: 516px;
     float: left;
 }
 
 .officeselected input#deleteselected {
 	margin:0 0 0 5px;
+        width: 80px;
+}
+
+.officeselected input[value]{
+    font-weight: bolder;
+}
+
+
+.officeselectedFLOW {
+    margin:0 0 0 172px;
+}
+.officeselectedFLOW select,option {
+    width: 516px;
+    float: left;
+}
+
+.officeselectedFLOW input#deleteselected {
+	margin:0 0 0 5px;
+        width: 80px;
+}
+
+.officeselectedFLOW input[value]{
+    font-weight: bolder;
 }
 
 #retrievetable {
@@ -1961,14 +2172,21 @@ table#historydata tr.usercolor1 a:hover {
 }
 
 table#historydata td {
-	padding:10px 0 10px 8px;
+	padding:5px 0 5px 5px;
 	font-family:tahoma;
 	font-size:10px;
 	/*width:5px;*/
 }
 
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 5px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
 table#HOMEdata td {
-  padding: 10px 0 10px 5px;
+  padding: 5px 0 5px 5px;
 }
 
 table#HOMEdata tr.bgcolor1 {
@@ -2445,9 +2663,9 @@ border-bottom:1.5px solid #49A2BD;
     margin:0;
     padding:0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.42857143;
-  color: #333;
+    font-size: 10px;
+    line-height: 1.42857143;
+    color: #333;
 }
 
 #myModalsBody textarea {

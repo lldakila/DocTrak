@@ -14,8 +14,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 require_once('../document/common/encrypt.php');
 
 $id=decryptText(base64_decode($_GET['download_file']));
-echo $id;
-die();
+
 require_once('../../../procedures/connection.php');
 global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);

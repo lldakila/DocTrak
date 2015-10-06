@@ -47,13 +47,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -96,9 +96,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                         <table id="responds">
                             <tr class='usercolortest'>
-                                <th>Barcode</th>
-                                <th>Title</th>
-                                <th>Date</th>
+                                <th class='sizeBARCODE2'>BARCODE</th>
+				<th class='sizeDETAIL'>DETAIL</th>
+				<th class='sizeCOST'>COST</th>
+				<th>DATE</th>
                             </tr>
                         </table>
                     </div>

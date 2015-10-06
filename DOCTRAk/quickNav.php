@@ -428,7 +428,7 @@ function renderBacMonitor($document_id)
         <div>
             <table border='0' style='width:100%;'>
                 <tr>
-                    <td>Barcode No.:</td>
+                    <td style='width:85px;'>Barcode No.:</td>
                     <td><strong>".$resultSet["bacdocument_id"]."</strong></td>
                     <td>Detail:</td>
                     <td><strong>".$resultSet["bacdocumentdetail"]."</strong></td>
@@ -457,14 +457,14 @@ function renderBacMonitor($document_id)
                    <strong><input id='tracker_id' type='hidden' value='".$resultSet["bacdocumentlist_tracker_id"]."'></strong>
                     <td style='width:14%;'>Check-in Date:</td>
                     <td style='width:30%;'><strong><input type='text' readonly='readonly' class='form-control' value='".date("F j, Y",strtotime($resultSet["checkin_date"]))."'></strong></td>
-                    <td style='width:10%;'>Alloted Day/s:</td>
-                    <td style='width:20%;'><strong><input type='text' readonly='readonly' class='form-control' value='".$resultSet["expire_days"]." day(s)'></strong></td>
-                    <td style='width:10%;'>Day/s Over:</td>
-                    <td style='width:20%;'><strong><input type='text' readonly='readonly' class='form-control' value='".format_interval($difference)."'></strong></td>
+                    <td style='width:8%;'>Alloted Day/s:</td>
+                    <td style='width:15%;'><strong><input type='text' readonly='readonly' class='form-control' value='".$resultSet["expire_days"]." day(s)'></strong></td>
+                    <td style='width:8%;'>Day/s Over:</td>
+                    <td style='width:25%;'><strong><input type='text' readonly='readonly' class='form-control' value='".format_interval($difference)."'></strong></td>
                 </tr>
              </table>
 
-             <p style='float:left; margin-right:34px; margin-left:8px; padding-top:7px; padding-bottom:10px;'>Reason:</p>
+             <p style='float:left; margin-right:41px; margin-left:8px; padding-top:7px; padding-bottom:10px;'>Reason:</p>
              <div class='fixinput' style='width:84.5%; padding-top:8px; margin-bottom:10px;'>
                 <textarea id='remarkText' class='form-control' name='comment'></textarea>
              </div>

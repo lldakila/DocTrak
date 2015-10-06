@@ -60,13 +60,13 @@
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -95,7 +95,7 @@
                     	<td>Title:</td>
 
                         <td class="textinput">
-                            <input id="primarykey" name="primarykey"  />
+                            <input id="primarykey" name="primarykey" type="hidden"  />
                             <input id="header_monitoring" name="header_monitoring" type="text" class="form-control" readonly="readonly"/> </td>
                     </tr>
                     <tr>
@@ -121,8 +121,7 @@
                         <td>Status:</td>
                         <td>
 			    <span id="officeList">
-				<label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
-				<label ><input type='checkbox' value=''  checked>asdasd</label>
+				
 				
 			    </span>
                         </td>
@@ -157,10 +156,10 @@
                                     
                                 <table id="responds">
                                     <tr class='usercolortest'>
-                                	<th style="width:120px;">Title</th>
-                                        <th>Type</th>
-					<th>Owner</th>
-					<th>Date</th>
+                                	<th style="width:120px;">TITLE</th>
+                                        <th style="width:150px;">TYPE</th>
+					<th style="width:150px;">OWNER</th>
+					<th>DATE</th>
                                     </tr>	
                                 </table>
                             </div>
@@ -190,7 +189,7 @@
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>
@@ -333,9 +332,6 @@ $(document).ready(function() {
 	}
 	});
 	});
-
-
-
 
 
 });

@@ -50,13 +50,13 @@ if (session_status() == PHP_SESSION_NONE) {
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -87,8 +87,8 @@ if (session_status() == PHP_SESSION_NONE) {
                                                 <h4>MESSAGE</h4>
                                                 <ol style="height: 345px;">
                                                         <li><a href="inbox.php"><span>INBOX</span></a></li>
-                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
-                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>
+<!--                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
+                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
                                                 </ol>
                                         </div>
                                         
@@ -98,11 +98,11 @@ if (session_status() == PHP_SESSION_NONE) {
                                     	<div id="table1">
                               				<table>
                                             	<tr>	
-                                                    <td>USERNAME:</td>
+                                                    <td>Username:</td>
                                                     <td><input id="username" class="form-control" type="text" name="username" value="<?php echo $_SESSION['usr']; ?>"/></td>
                                                 </tr>
                                                 <tr>	
-                                                    <td>FULL NAME:</td>
+                                                    <td>Full Name:</td>
                                                     <td><input id="fullname" class="form-control" type="text" name="fullname" value="<?php echo $_SESSION['security_name']; ?>"/></td>
                                                 </tr>
 												<tr>
@@ -169,7 +169,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>

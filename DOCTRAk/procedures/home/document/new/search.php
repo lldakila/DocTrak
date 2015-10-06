@@ -28,9 +28,9 @@ if ($query) {
 
 $rowcolor="blue";
     echo "<tr class='usercolortest'>
-    <th>Barcode</th>
-<th>Owner</th>
-    <th>Date</th>
+    <th class='sizeBARCODE'>BARCODE</th>
+    <th class='sizeTITLE'>TITLE</th>
+    <th>DATE</th>
     </tr>";
 
  foreach($query as $var) {
@@ -53,7 +53,7 @@ $rowcolor="blue";
     
 	
 	
-	echo "<td style='width:150px;'>";
+	echo "<td>";
 	 echo $var["DOCUMENT_ID"];
 	 echo "</td><td>";
      echo $var["DOCUMENT_TITLE"];

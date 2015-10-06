@@ -19,8 +19,8 @@ if ($query){
 $rowcolor="blue";
 
 echo "<tr class='usercolortest'>
-	<th>Template</th>
-    <th>Description</th>
+	<th class='sizeTEMPLATE'>TEMPLATE</th>
+        <th class='sizeDESCR'>DESCRIPTION</th>
 	</tr>";
 
 foreach($query as $var) 

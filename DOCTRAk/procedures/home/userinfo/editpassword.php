@@ -51,13 +51,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		   <?php
 		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
 		   {
-		      echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
 		      <ul>
 			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
 			 <li><a href="#"><span>Check In</span></a></li>
 		 <li><a href="#"><span>Backlog</span></a></li>
 		      </ul>
-		   </li>';
+		   </li>'; */
 		   }
 		   ?>
 
@@ -88,8 +88,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                 <h4>MESSAGE</h4>
                                                 <ol style="height: 345px;">
                                                         <li><a href="inbox.php"><span>INBOX</span></a></li>
-                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
-                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>
+<!--                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
+                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
                                                 </ol>
                                         </div>
                                         
@@ -99,18 +99,18 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                     	<div id="table">
                               				<table>
                                             	<tr>	
-                                                    <td>CURRENT PASSWORD:</td>
+                                                    <td>Current Password:</td>
                                                     <td><input id="currentpass" class="form-control" type="password" name="currentpass" /></td>
                                                 </tr>
                                                 <tr><td><br /><br /></td>
                                                                                                 </tr>
                                                 <tr>	
-                                                    <td>NEW PASSWORD:</td>
+                                                    <td>New Password:</td>
                                                     <td><input id="newpass" class="form-control" type="password" name="newpass" /></td>
                                                 </tr>
                                                 
                                                 <tr>	
-                                                    <td>VERIFY PASSWORD:</td>
+                                                    <td>Verify Password:</td>
                                                     <td><input id="verifypass" class="form-control" type="password" name="verifypass" /></td>
                                                 </tr>
                                                 <tr>
@@ -184,7 +184,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				echo "&nbsp|";
 			?>
 			
-			<a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a></p>
+			<a href="#">Scroll Top</a></p>
         </div>
     
     </div>

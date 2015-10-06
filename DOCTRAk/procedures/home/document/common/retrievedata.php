@@ -46,19 +46,19 @@
     echo "<div id='scroll'>";
     echo '<table id="historydata" class="table scroll">';
     echo "<tr class='bgcolor'>";
-    echo "<th>Step</th>";
-    echo "<th>Office</th>";
-    echo "<th>Received By</th>";
-    echo "<th>Received Date</th>";
-    echo "<th>Received Comment</th>";
-    echo "<th>For Release</th>";
-    echo "<th>For Release Comment</th>";
+    echo "<th>STEP</th>";
+    echo "<th>OFFICE</th>";
+    echo "<th>RECEIVED BY</th>";
+    echo "<th>RECEIVED DATE</th>";
+    echo "<th>RECEIVED COMMENT</th>";
+    echo "<th>FOR RELEASE</th>";
+    echo "<th>FOR RELEASE COMMENT</th>";
    
-    echo "<th>For Release Date</th>";
+    echo "<th>FOR RELEASE DATE</th>";
 
-    echo "<th>Released By</th>";
-    echo "<th>Released Date</th>";
-    echo "<th>Released Comment</th>";
+    echo "<th>RELEASED BY</th>";
+    echo "<th>RELEASED DATE</th>";
+    echo "<th>RELEASED COMMENT</th>";
     echo "</tr>";
   //  echo "</table>";
     $rowcolor="blue";
