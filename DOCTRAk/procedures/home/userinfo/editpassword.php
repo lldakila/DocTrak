@@ -33,6 +33,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  <?php
     $PROJECT_ROOT= '../../../';
     include_once('../../../header.php');
+    include_once($PROJECT_ROOT.'qvJscript.php');
     ?>
 
 <div class="content">
@@ -79,7 +80,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         <div id="nav">
                                                 <h4>PROFILE</h4>
                                                 <ol>
-                                                        <li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>
+                                                        <li><a href="userinfo.php"><span>PROFILE INFO</span></a></li>
+							<li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>
                                                         <li><a href="editpassword.php"><span>EDIT PASSWORD</span></a></li>
                                                 </ol>
                                         </div>

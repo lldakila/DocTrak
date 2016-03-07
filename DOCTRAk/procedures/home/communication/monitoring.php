@@ -273,7 +273,7 @@ function retrieveAttachment(mailid)
             dataType:"text", 
             data:{module:module,mailid:mailid},
 	   beforeSend: function() {
-		$('#fileAttachment').html("updating......");
+		$('#fileAttachment').html("<div id='loadingDOC' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
 	    },
             success:function(response){
 		$('#fileAttachment').html(response);
@@ -296,7 +296,7 @@ function retrieveOffice(id)
             dataType:"text", 
             data:{module:module,officeid:id},
 	   beforeSend: function() {
-		$('#officeList').html("updating......");
+		$('#officeList').html("<div id='loadingDOC' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
 	    },
             success:function(response){
 		$('#officeList').html(response);

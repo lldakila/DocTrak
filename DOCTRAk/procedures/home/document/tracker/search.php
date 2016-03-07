@@ -22,16 +22,22 @@
 	}
 
     
-    
-if ($query){
-	
-    $rowcolor="blue";
-    echo "<tr class='usercolortest'>
-	<th class='sizeBARCODE2'>BARCODE</th>
+        echo "<tr class='usercolortest'>
+        <th class='sizeBARCODE2'>BARCODE</th>
 	<th class='sizeTITLE2'>TITLE</th>
 	<th class='sizeOWNER2'>OWNER</th>
 	<th>DATE</th>
     </tr>";
+	
+if ($query){
+	
+    $rowcolor="blue";
+//    echo "<tr class='usercolortest'>
+//	<th class='sizeBARCODE2'>BARCODE</th>
+//	<th class='sizeTITLE2'>TITLE</th>
+//	<th class='sizeOWNER2'>OWNER</th>
+//	<th>DATE</th>
+//    </tr>";
 
     foreach($query as $var) {
 

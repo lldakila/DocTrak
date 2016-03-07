@@ -160,8 +160,8 @@ function SummaryFilter($docid,$module)
                             FROM documentlist_tracker WHERE fk_documentlist_id = "'.$docid.'"   
                             
                             ORDER BY sortorder DESC LIMIT 1';
-//       echo $SQLquery;
-//       die();
+       echo $SQLquery;
+       die();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
                 $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
                 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))

@@ -10,11 +10,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 
     require_once("../../../connection.php");
 
-    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate from documentlist WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0 ORDER BY transdate desc");
+    $query=select_info_multiple_key("select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate,template_name from documentlist join document_template on documentlist.fk_template_id = document_template.template_id WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0 ORDER BY transdate desc");
 
     
-    
-
   if ($query) {
 
 $rowcolor="blue";
@@ -42,18 +40,17 @@ echo "<tr class='usercolortest'>
             
             if ($rowcolor=="blue")
             {
-                echo '<tr id="'.$encrypt_documentid.'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
+                echo '<tr id="'.$encrypt_documentid.'" class="usercolor" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["template_name"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
                 $rowcolor="notblue";
                 //echo "xx id="".$template."''xxx'.$document_filename.' xx";
             }
             else
             {
-                echo '<tr id="'.$encrypt_documentid.'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["FK_TEMPLATE_ID"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
+                echo '<tr id="'.$encrypt_documentid.'" class="usercolor1" onClick="clickSearch(\''.$var["DOCUMENT_ID"].'\',\''.$var["DOCUMENT_TITLE"].'\',\''.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["template_name"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\')">';
                 $rowcolor="blue";
             }
          // print "<tr class=\"d".($i & 1)."\">";
        //  echo "<a onClick=clickSearch(".$var["SECURITY_USERNAME"].")>".$var["SECURITY_USERNAME"]."</a>";
-
 
 
         echo "<td>";
@@ -66,8 +63,6 @@ echo "<tr class='usercolortest'>
         echo "</td>";
         echo"</tr>";
 
-
-
          }
       }
      }
@@ -75,5 +70,4 @@ echo "<tr class='usercolortest'>
             echo "<span style='font:11px trebuchet ms;'>Nothing found.</span>";
 
         }
-
 ?>

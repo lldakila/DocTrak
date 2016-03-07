@@ -56,7 +56,7 @@ function NewDocument()
         //CREATE NEW DOCUMENT
       
             //INSERT INTO DOCUMENTLIST
-            $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['docId']."','".$_POST['docTitle']."','".$_POST['docDesc']."','".$_POST['docTemplate']."','".$_POST['docType']."','".$_SESSION['security_name']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";   
+            $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['docId']."','".$_POST['docTitle']."','".$_POST['docDesc']."','".$_POST['docTemplate']."','".$_POST['docType']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";   
             $RESULT1=mysqli_query($cons,$query);
             if (!$RESULT1) 
             {
@@ -138,9 +138,34 @@ function searchUser($user_Id,$docid)
     $return['security_name']=$result['security_name'];
     $return['num_rows']=$result['num_rows'];
     mysqli_close($con);
+  
     return $return;
     
+    
 }
+
+//GET SECURITY NAME
+function getUser($user_Id)
+{
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+    $_userid=mysqli_real_escape_string($con,$user_Id);
+    if (mysqli_connect_error()) 
+    {
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	die();
+    }
+    
+    $sql="SELECT security_name FROM security_user WHERE security_username = '".$user_Id."' ";
+    $result=mysqli_query($con,$sql);
+    $recSet=  mysqli_fetch_array($result);
+//    echo ("alert('".$recSet['security_name']."')");
+//    die();
+    return $recSet['security_name'];
+    
+    
+}
+
 
 //RECIEVE DOCUMENT FUNCTION
 function receiveDocument($document_id)
@@ -159,8 +184,9 @@ function receiveDocument($document_id)
     
     if (SearchFilter($docID, 'receive'))
     {
+	
        $query="UPDATE documentlist_tracker SET RECEIVED_VAL=1,RECEIVED_BY='".$_SESSION['security_name']."',
-               RECEIVED_DATE='".date("Y-m-d H:i:s")."' WHERE
+               RECEIVED_DATE='".date("Y-m-d H:i:s")."', received_from='".getUser($_POST['ownerId'])."' WHERE
                DOCUMENTLIST_TRACKER_ID = ". $_tracker_id." "; 
        
        $result=mysqli_query($cons,$query);
@@ -179,9 +205,11 @@ function receiveDocument($document_id)
         if ($_POST['ownerId']!='')
         {
            $docOwnerInfo=searchUser($_POST['ownerId'],$docID);
+//	   echo searchUser($_POST['ownerId'],$docID);
+//	die();
            if ($docOwnerInfo['num_rows']==0)
            {
-                  echo "Invalid owner or does not exist.<br>";
+		echo "Invalid owner or does not exist.<br>";
                 $flag=false;
                 $document_process='';
            }
@@ -248,7 +276,7 @@ function ReleaseDocument($document_id)
         
         //"UPDATE documentlist_tracker SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['commenttext']."' WHERE DOCUMENTLIST_TRACKER_ID = '". $doc_tracker_id."' ";
        $query="UPDATE documentlist_tracker SET RELEASED_VAL=1,RELEASED_BY='".$_SESSION['security_name']."',
-               RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['docuComment']."' WHERE
+               RELEASED_DATE='".date("Y-m-d H:i:s")."',RELEASED_COMMENT='".$_POST['docuComment']."',released_to='".getUser($_POST['ownerId'])."' WHERE
                DOCUMENTLIST_TRACKER_ID = ". $_tracker_id." "; 
 //       echo $query;
 //       die();
@@ -352,7 +380,7 @@ function ForReleaseDocument($document_id)
    
     if (SearchFilter($docID, 'forrelease'))
     {
-        $query="UPDATE documentlist_tracker SET FORRELEASE_VAL=1,FORRELEASE_DATE='".date("Y-m-d H:i:s")."',forrelease_comment='".$_POST['docuComment']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $_tracker_id." ";
+        $query="UPDATE documentlist_tracker SET FORRELEASE_VAL=1,FORRELEASE_DATE='".date("Y-m-d H:i:s")."',forrelease_comment='".$_POST['docuComment']."',forrelease_by='".$_SESSION['security_name']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $_tracker_id." ";
         $RESULT=mysqli_query($cons,$query);
         
     if (!$RESULT) 

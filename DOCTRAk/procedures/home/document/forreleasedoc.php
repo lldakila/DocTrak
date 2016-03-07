@@ -276,10 +276,10 @@ function retrieveAttachment(barcodeID){
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
-                    $("#attachment").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#attachment").html("<div id='loadingDOC' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             ajaxError: function() {
-                    $("#attachment").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#attachment").html("<div id='loadingDOC' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response){
 

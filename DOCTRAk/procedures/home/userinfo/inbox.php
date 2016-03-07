@@ -81,7 +81,8 @@ date_default_timezone_set($_SESSION['Timezone']);
                                         <div id="nav">
                                                 <h4>PROFILE</h4>
                                                 <ol>
-                                                        <li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>
+                                                        <li><a href="userinfo.php"><span>PROFILE INFO</span></a></li>
+							<li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>
                                                         <li><a href="editpassword.php"><span>EDIT PASSWORD</span></a></li>
                                                 </ol>
                                         </div>
@@ -122,30 +123,41 @@ date_default_timezone_set($_SESSION['Timezone']);
 //                            die();
                             $RESULT=mysqli_query($con,$query) or die(mysqli_error($con));
                             echo "<input id='mailid' type='hidden'/>";
-
+			    $date_prev='2011/07/18';
+			    $date_prev= 'Feb 19, 1985';
+//			    $recSet=  mysqli_fetch_row($RESULT);
+//			    $date_prev=$recSet['4'];
+			    
                             while ($row = mysqli_fetch_array($RESULT))
                             {
-                                    $date = date_create($row['MAILDATE']);
+				
+				$date = date_create($row['MAILDATE']);
+				$date_to_compare=date_format($date,'M d, Y');
+			
+				if (print_r($date_prev,true) != $date_to_compare)
+				{  
+				    echo "<tr class='bgLINE'><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td></tr>";
+				}
                                 if ($row['MAILSTATUS']==0)
-                                        {
-                                echo "<tr id=".$row["MAIL_ID"]." class='bg' onClick='OpenMail(".$row['MAIL_ID'].")'>";
-                                            $class='bg01';
-                                            }
+				{
+				    echo "<tr id=".$row["MAIL_ID"]." class='bg' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+				    $class='bg01';
+				}
 
-                                    else
-                                            {
-                                            echo "<tr id=".$row["MAIL_ID"]." class='bg01' onClick='OpenMail(".$row['MAIL_ID'].")'>";
-                                            $class='bg';
-                                            }
+				else
+				{
+				    echo "<tr id=".$row["MAIL_ID"]." class='bg01' onClick='OpenMail(".$row['MAIL_ID'].")'>";
+				    $class='bg';
+				}
 
-            echo    "<td>".$row['SECURITY_NAME']."</td>
-		<td>".$row['FK_TABLE']."</td>
-                <td>".$row['MAILTITLE']."</td><td><font style='color:#666;'><div class='y6'>".substr($row['MAILCONTENT'],0,60)."</font></div></td>
-               
-                <td>".date_format($date,'M d, Y-H:i')."</td>
-                                    </tr>";
+				echo    "<td>".$row['SECURITY_NAME']."</td>
+				    <td>".$row['FK_TABLE']."</td>
+				    <td>".$row['MAILTITLE']."</td><td><font style='color:#666;'><div class='y6'>".substr($row['MAILCONTENT'],0,60)."</font></div></td>
 
+				    <td>".date_format($date,'M d, Y-H:i')."</td>
+				    </tr>";
 
+				$date_prev=date_format($date,'M d, Y');
                             }
 
                     ?>

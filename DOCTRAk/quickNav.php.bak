@@ -95,7 +95,7 @@ function renderForm($formName)
                           <select id='DocTemplate' name='type' class='form-control'>     ";
 
 
-                                    $query="select TEMPLATE_ID, template_name from document_template ORDER BY template_name ASC";
+                                    $query="select TEMPLATE_ID, template_name from document_template ";
 
 //                                     $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
                                      $result= mysqli_query($con,$query)or die(mysqli_error($con));

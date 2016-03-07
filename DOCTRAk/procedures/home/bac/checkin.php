@@ -229,6 +229,12 @@ $(document).ready(function() {
 //CHECK ME IN
 function checkMeIn()
 {
+
+    
+    if (!confirm("Continue?")) {
+     return;
+} 
+    
     var document_id=document.getElementById('pKey').value;
     var module_name = 'checkIn';
 

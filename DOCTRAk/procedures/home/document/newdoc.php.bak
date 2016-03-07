@@ -123,7 +123,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
        <?php
            //require_once("../../connection.php");
           
-                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template order by template_name asc");
+                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template ");
            foreach($query1 as $var)
            {
               echo "<option data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."'>".$var['template_name']."</option>";

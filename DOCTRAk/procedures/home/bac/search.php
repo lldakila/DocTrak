@@ -416,10 +416,10 @@ function renderTransDetail($detailId)
     $result=mysqli_query($con, $sql);
     echo '<table id="historydata" class="table scroll">';
     echo '<tr class="bgcolor">';
-        echo '<th style="width:2%;">No</th>';
-        echo '<th style="width:25%;">Note</th>';
-        echo '<th style="width:15%;">Transdate</th>';
-        echo '<th style="width:15%;">By</th>';
+        echo '<th style="width:2%;">NO</th>';
+        echo '<th style="width:25%;">NOTE</th>';
+        echo '<th style="width:15%;">TRANSDATE</th>';
+        echo '<th style="width:15%;">BY</th>';
     echo '</tr>';
    $color='gray';
    $counter=1;

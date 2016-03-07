@@ -10,14 +10,10 @@
 
 
     require_once("../../../connection.php");
-    require_once("../../../audit.php");
-    global $DB_HOST, $DB_USER, $DB_PASS, $BD_TABLE;
-    $con = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $BD_TABLE);
-    if (mysqli_connect_error()) {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        die;
-    }
-    mysqli_autocommit($con,FALSE);
+    require_once("../../../../audit.php");
+    date_default_timezone_set($_SESSION['Timezone']);
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $flag=true;
     $KEY=get_key();
     $query="select sortorder,fk_documentlist_id from documentlist_tracker where documentlist_tracker_id = '".$_POST["officeRollback"]."'";

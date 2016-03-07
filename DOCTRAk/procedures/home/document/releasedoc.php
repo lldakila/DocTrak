@@ -77,6 +77,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     					<div class="table1">
     				<table >
                     <tr>
+                    	<td>To:</td>
+                        <td class="usertext"><input id="userId" placeholder="Scan ID..." type="text" class="form-control"/> </td>
+                    </tr>
+                    <tr>
                     	<td>BarCode No:</td>
 
                         <td class="usertext">
@@ -124,6 +128,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     	<td></td>
                         <td class="usertext"><textarea rows="5" id="commenttext" readonly="readonly" name="commenttext" type="text" class="form-control"></textarea> </td>
                     </tr> 
+                    
                     <tr>
                     	<td>Attachment: </td>
                          <td id="attachment">
@@ -286,10 +291,10 @@ function retrieveAttachment(barcodeID){
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
-                    $("#attachment").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#attachment").html("<div id='loadingDOC' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             ajaxError: function() {
-                    $("#attachment").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#attachment").html("<div id='loadingDOC' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
             success:function(response){
 

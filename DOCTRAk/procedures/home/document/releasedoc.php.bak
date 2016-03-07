@@ -70,15 +70,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         	<div id="post">
             
             			<div id="post10">
-                        <h2>RECEIVE DOCUMENT</h2>
+                        <h2>RELEASE DOCUMENT</h2>
 
-                            <form name="process" method="post" action="receive/process.php" onsubmit="return validate();" enctype="multipart/form-data">
+                            <form name="process" method="post" action="release/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
     					<div class="table1">
-    				<table>
+    				<table >
                     <tr>
-                    	<td>From:</td>
-                        <td class="usertext"><input id="userId" placeholder="Scan ID..." type="text" class="form-control"/> </td>
+                    	<td>To:</td>
+                        <td class="usertext"><input id="userId" placeholder="Scan ID..." name="barcodeno" type="text" class="form-control"/> </td>
                     </tr>
                     <tr>
                     	<td>BarCode No:</td>
@@ -99,9 +99,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                     <tr>
                     	<td>Template:</td>
-                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" class="form-control"/> </td>
+                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" class="form-control" /> </td>
                     </tr>
-                  <tr>
+                    <tr>
                     	<td>Comment:</td>
                         <td>
                         <?php
@@ -124,11 +124,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         </td>
                         
                     </tr>
-                    
                      <tr>
                     	<td></td>
-                        <td class="usertext"><textarea rows="5" id="commenttext" readonly="readonly" name="commenttext"  class="form-control"></textarea> </td>
+                        <td class="usertext"><textarea rows="5" id="commenttext" readonly="readonly" name="commenttext" type="text" class="form-control"></textarea> </td>
                     </tr> 
+                    
                     <tr>
                     	<td>Attachment: </td>
                          <td id="attachment">
@@ -138,38 +138,39 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                   </table>
 
-                    <?php
-         
-           if($_SESSION['operation']=='save'){
+                            <?php
+                         
+                            if($_SESSION['operation']=='save'){
 
+                                
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully</div>";     
+                            }
+                            elseif ($_SESSION['operation']=='error') {
+                                
+                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";     
+                            }
 
-echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Received Successfully</div>";
-            }
-           elseif ($_SESSION['operation']=='error') {
-               echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
-               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";
-           }
-
-               $_SESSION['operation']='clear';
-
-
-
+                            $_SESSION['operation']='clear';
 
 
 
-?>
+
+
+
+                            ?>
 
                   		 <!--- BUTTONS ACTIVITY START --->
 
                         <div class="input2">
-
-                         <input type="submit" value="Receive" class="btn btn-primary"/>
+                        
+                         <input type="submit" class="btn btn-primary" value="Release" onClick="document.getElementById('releasedoc_hidden').value='release';"/>
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
                   </div>
 
-                    </form>
+						   </form>
+
 
 
 
@@ -179,21 +180,23 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
                         
                         	<div id="tfheader">
                             	<form id="tfnewsearch" method="post" class="form-inline">
+                                    
                                     <div class="form-group">
                                         <div class="input-group">
                                         <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                        <button id="search_receiveddoc" class="btn btn-default">Search </button>
-                                    </div></div>	
-                                        </form>	
-                                    
-                               	  <h2></h2>
+                                        <button id="search_releasedoc" class="btn btn-default">Search </button>
+                                        </div>
+                                    </div>			
+                                
+                                </form>	
+                                <!--AUTOSUGGEST SEARCH START-->
+                             <div id="display"></div>
+                             <!--AUTOSUGGEST SEARCH END-->
+                             <h2></h2>
                             </div>
                             
-                            <!--AUTOSUGGEST SEARCH START-->
-                        <div id="display"></div>
-                        <!--AUTOSUGGEST SEARCH END-->
                             <div class="tfclear"></div>
-                                                    
+                            
                             <div class="scroll">
                         	                                    
                                 <table id="responds">
@@ -205,11 +208,13 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
                                 </table>
 
                             </div>
-                         </div>
+                         </div>	
+    
+    
 							
-
+                        
                         <div class="tfclear"></div>
-                      </div>
+						</div>
             
             </div>
         
@@ -226,7 +231,7 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
     			<div id="footer2">
             <p>
 			<?php
-			
+				
 				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
 				echo "&nbsp|";
 			?>
@@ -246,8 +251,6 @@ echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Gr
 
 <script language="JavaScript" type="text/javascript">
 
-
-
 function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_id) {
     document.process.barcodeno.value=barcodeno;
     document.process.title.value=title;
@@ -255,18 +258,15 @@ function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_i
     document.process.template.value=template;
     document.process.primarykey.value=tracker_id;
     document.process.barcode.value=document_id;
-    retrieveAttachment(barcodeno);
     
+    retrieveAttachment(barcodeno);
+  
     //GetKey(barcodeno);
 
-
-    //alert (pdf);
-  //  document.getElementById("group").value=username;
 }
 
-
 //function GetKey(key) {
-//    var myData = 'receive='+key;
+//    var myData = 'release='+key;
 //    jQuery.ajax({
 //        type: "POST",
 //        url:"common/redirectSearch.php",
@@ -274,8 +274,8 @@ function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_i
 //        data:myData,
 //        success:function(response){
 //
-//           // $("#attachment").html(response);
-//          //  alert (response);
+//            // $("#attachment").html(response);
+//         //     alert (response);
 //        },
 //        error:function (xhr, ajaxOptions, thrownError){
 //            alert(thrownError);
@@ -283,12 +283,11 @@ function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_i
 //    });
 //}
 
-
 function retrieveAttachment(barcodeID){
         var myData = 'attachment='+barcodeID; //build a post data structure
         jQuery.ajax({
             type: "POST",
-            url:"receive/retrieveAttachment.php",
+            url:"release/retrieveAttachment.php",
             dataType:"text", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
@@ -307,38 +306,37 @@ function retrieveAttachment(barcodeID){
         });
     }
 	
-	
 function validate() {
-
-
-
-    if (document.process.primarykey.value=="")   {
-        alert("Cannot receive blank document.");
+    if (document.process.primarykey.value=="") {
+        alert("Cannot release blank document.");
         return false;
     }
+
 
 
 }
 
 $(document).ready(function() {
-    $("#search_receiveddoc").click(function (e) {
+    $("#search_releasedoc").click(function (e) {
 
     e.preventDefault();
     var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
     jQuery.ajax({
-			type: "POST",
-            url:"receive/search.php",
+            type: "POST",
+            url:"release/search.php",
             dataType:"text", // Data type, HTML, json etc.
-			data:myData,
-            beforeSend: function() {
-                    $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            data:myData,
+            beforeSend: function() 
+            {
+                 $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
-            ajaxError: function() {
-                    $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            ajaxError: function() 
+            {
+                $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             },
-            success:function(response){
-                    $("#responds").html(response);
-
+            success:function(response)
+            {
+                $("#responds").html(response);
             },
             error:function (xhr, ajaxOptions, thrownError){
                     alert(thrownError);
@@ -346,11 +344,8 @@ $(document).ready(function() {
             });
 	});
 
-
-
     });
-
-
+    
 document.addEventListener("mousemove", function() {
     myFunction(event);
 });
@@ -374,7 +369,7 @@ function myFunction(e) {
         $("#search_string").keyup(function() 
         {
             var name = $('#search_string').val();
-            var searchtype = 'ReceiveDoc';
+            var searchtype = 'ReleaseDoc';
             if(name=="")
             {
                 $("#display").html("");
@@ -392,9 +387,9 @@ function myFunction(e) {
             }
         });
     });
-
-
-$('#comment').change(function () {
+    
+    
+   $('#comment').change(function () {
    if (document.getElementById('comment').value=='other')
    {
        $('#commenttext').get(0).removeAttribute("readonly");
@@ -414,8 +409,6 @@ $('#comment').change(function () {
        
    }
 }).change();
-
-
 
 </script>
 </body>

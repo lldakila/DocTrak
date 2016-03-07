@@ -39,7 +39,7 @@ session_start();
         //LOG ALL USERS LOGGING IN TO THE SYSTEM
         require_once("../../audit.php");
         log_audit(get_key(),'Login from '.$_SERVER['REMOTE_ADDR'].'','Login',''.$_SESSION['security_name'].'');  
-    
+        die();
 //        //CHECK BAC DEADLINES
 //        require_once("../../procedures/home/bac/crud.php");
 //        checkDocumentDeadline();

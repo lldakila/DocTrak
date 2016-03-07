@@ -287,6 +287,12 @@ div.actionButton {
         cursor:pointer;
 }
 
+#inboxtable tr.bgLINE {
+	background-color:#BFBFBF;
+	color:#2E2E2E;
+        cursor:pointer;
+}
+
 #inboxtable tr.bg:hover {
 	background-color:#CECECE;
 	color: #2E2E2E;
@@ -314,7 +320,7 @@ div.actionButton {
 }
 
 #inboxtable td {
-	border-bottom:1px solid #fff;
+/*	border-bottom:1px solid #fff;*/
 	margin:4px 0 0 0;
 	height:25px;
 }
@@ -1921,20 +1927,20 @@ select#officeRollback {
     width: 80px;
 }
 
-.table1 .input1 input[type=button]:hover {
+/*.table1 .input1 input[type=button]:hover {
 	background-color:#1fadd9;
 	color:#fff;
-}
+}*/
 
 .table1 .input1 input[type=submit] {
     width: 80px;
 	border-radius:5px;
 }
 
-.table1 .input1 input[type=submit]:hover {
+/*.table1 .input1 input[type=submit]:hover {
     background-color:#1fadd9;
 	color:#fff;
-}
+}*/
 
 .table1 .input2 {
 	margin:0 auto;
@@ -1952,10 +1958,10 @@ select#officeRollback {
 	background-color:#E3E1FF; */
 }
 
-.table1 .input2 input[type=submit]:hover {
+/*.table1 .input2 input[type=submit]:hover {
     background-color:#1fadd9;
 	color:#fff; 
-}
+}*/
 
 .table1 #fileAttachment a {
     color:#2587C1;
@@ -2605,6 +2611,8 @@ border-bottom:1.5px solid #49A2BD;
 .well strong{
   float:left;
   padding-right:10px;
+  font-size: 12px;
+  font-weight:bold;
 }
 
 .wellbottom {
@@ -2622,6 +2630,11 @@ border-bottom:1.5px solid #49A2BD;
 .col-bottom {
   padding-bottom: 7px;
   padding-top:7px;
+}
+
+#loadingDOC img {
+    width:24px;
+    height:24px;
 }
 
 
@@ -2663,9 +2676,20 @@ border-bottom:1.5px solid #49A2BD;
     margin:0;
     padding:0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;
+    font-weight:normal;
+}
+
+#myModalsBody p.text {
+    margin:0;
+    padding:0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 10px;
     line-height: 1.42857143;
     color: #333;
+    font-weight:normal;
 }
 
 #myModalsBody textarea {
@@ -2726,3 +2750,8 @@ border-bottom:1.5px solid #49A2BD;
   }
   
   
+  #tdCenter
+  {
+    text-align: center;
+    vertical-align: middle;
+  }
