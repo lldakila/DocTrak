@@ -22,8 +22,8 @@ if($session_life > $_SESSION['expiretime']) {
  
 
 $DB_HOST = '10.10.4.11';
-$DB_USER = 'admin';
-$DB_PASS = 'launi0n@dmin';
+$DB_USER = 'dev';
+$DB_PASS = 'dev';
 $BD_TABLE = 'doctrak';
 
 

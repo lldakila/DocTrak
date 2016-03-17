@@ -46,19 +46,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 //        echo "keytracker: ".$_SESSION['keytracker']."<br>";
 //        echo "tracker id: ".$row['max']."<br>";
 //       die;
-
-
-        //START INSERT INTO DOCUMENTLIST_HISTORY
-
-        include ("../common/history.php");
-        if(!InsertHistory($doc_documentid,$_SESSION['OFFICE'],'Document Released',$_POST['commenttext'],'Released by '.$_SESSION['security_name']))
-        {
-            $flag=false;
-        }
-
-        //END INSERT INTO DOCUMENTLIST_HISTORY
-        
-        
         if ($doc_tracker_id==$row['max'])
         {
             $query="update documentlist set complete=1 where document_id ='".$doc_documentid."'";  
@@ -72,7 +59,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         }
         
         
+        //START INSERT INTO DOCUMENTLIST_HISTORY
 
+        include ("../common/history.php");
+        if(!InsertHistory($doc_documentid,$_SESSION['OFFICE'],'Document Released',$_POST['commenttext'],'Released by '.$_SESSION['security_name']))
+        {
+            $flag=false;
+        }
+
+        //END INSERT INTO DOCUMENTLIST_HISTORY
       
         if ($flag) 
         {

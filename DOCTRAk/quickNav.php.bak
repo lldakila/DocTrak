@@ -84,7 +84,7 @@ function renderForm($formName)
                                         echo "<option value = '".$row['DOCUMENTTYPE_ID']."'>".$row['DOCUMENTTYPE_ID']."</option>";
                                      }
 
-
+															global $PROJECT_ROOT;
                               echo "
                           </select>
                           
@@ -92,22 +92,24 @@ function renderForm($formName)
                         
                         <label style='float:left; margin:0 10px 0 5px; padding-top:7px; padding-bottom:10px;'>Template:</label>
                         <div class='fixinput' style='width:37.9%;'>
-                          <select id='DocTemplate' name='type' class='form-control'>     ";
+                          <select id='DocuTemplate' name='type' class='form-control' onchange='templateViewer()'>     ";
 
-
-                                    $query="select TEMPLATE_ID, template_name from document_template ";
+														echo "<option style='display:none' selected='selected' value = "" ></option>";
+                                    $query="select TEMPLATE_ID, template_name from document_template ORDER BY template_name ASC";
 
 //                                     $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
                                      $result= mysqli_query($con,$query)or die(mysqli_error($con));
                                      while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
                                      {
-                                        echo "<option value = ".$row['TEMPLATE_ID'].">".$row['template_name']."</option>";
+                                        echo "<option  value = ".$row['TEMPLATE_ID'].">".$row['template_name']."</option>";
+                                        $templateId=$row['TEMPLATE_ID'];
                                      }
-
+														$url=$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id=".$templateId;
                              echo "
                           </select>
+                          <a class='viewTemplateLinkss' target='_blank' id ='viewDocTemplateLink' style='color:#000;'  href='aa'>View Template</a>
                         </div>
-                        <div class='tclear'></div>
+                        <div class='tclear' ></div>
 
                         <div class='buttonright'>
                             <input type='button' value='Save' class='btn btn-primary' onclick='submitAction(\"newDocu\")'>
@@ -116,7 +118,12 @@ function renderForm($formName)
                         
                     </div>
                     
+                     
+                    
                 ";
+                   
+                
+               
                     mysqli_close($con);
             break;
     //RECEIVE DOCUMENT

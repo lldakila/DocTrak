@@ -22,7 +22,7 @@ function InsertHistory($document_id,$officename,$document_process,$comment,$user
 // 		echo $sqlquery;
 // 		die();
     $RESULT=mysqli_query($conString,$sqlquery);
- 	
+x
     if (!$RESULT) 
     {
         echo mysqli_error($conString)."<br>";

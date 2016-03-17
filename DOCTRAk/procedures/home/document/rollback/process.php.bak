@@ -36,7 +36,7 @@
     {
         if ( $row['sortorder']>=$sortorder)
         {
-            $query = "update documentlist_tracker set released_to=NULL,received_from=NULL,received_val=NULL,received_by=NULL,received_date=NULL,received_comment=NULL,released_val=NULL,released_by=NULL,released_date=NULL,released_comment=NULL,forrelease_val=NULL,forrelease_date=NULL,forrelease_comment=NULL where documentlist_tracker_id = '".$row["documentlist_tracker_id"]."' ";
+            $query = "update documentlist_tracker set received_val=NULL,received_by=NULL,received_date=NULL,received_comment=NULL,released_val=NULL,released_by=NULL,released_date=NULL,released_comment=NULL,forrelease_val=NULL,forrelease_date=NULL,forrelease_comment=NULL where documentlist_tracker_id = '".$row["documentlist_tracker_id"]."' ";
             $officeRollback=$row["office_name"];
 //            echo $query;
 //            echo '<br>';

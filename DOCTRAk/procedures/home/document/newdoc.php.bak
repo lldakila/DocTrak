@@ -18,11 +18,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
+
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="../../../js/jquery.colorbox-min.js"></script>
+
 <script src="../../../js/bootstrap.min.js"></script>
 <script src="../../../js/bootstrap-select.js"></script>
 </head>
@@ -30,7 +33,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <body>
 <?php
 
-    $PROJECT_ROOT= '../../../';
+    global $PROJECT_ROOT= '../../../';
     include_once($PROJECT_ROOT.'qvJscript.php');
     include_once('../../../header.php');
 ?>
@@ -85,6 +88,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             <input id="primarykey" name="primarykey" type="hidden" />
                             <input id="barcodeinput" name="barcode" type="text" class="form-control" />
 <!--                            <input id="generatebarcode" type="button" value="Generate" class="btn btn-primary"/></td>-->
+                    	</td>
                     </tr>
                     <tr>
                     	<td>Title:</td>
@@ -105,6 +109,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
            require_once("../../connection.php");
 
            $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
+
            foreach($query as $var) {
               echo "<option>".$var['DOCUMENTTYPE_ID']."</option>";
            }
@@ -117,23 +122,25 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     </tr>
                     <tr>
                     	<td>Template: </td>
-                         <td class="select01">
-                             <select id="template" name="template" class="form-control selectpicker" style="width:475px;">
+                         <td class="select01" style="width:500px;">
+                             <select id="template" name="template" class="form-control selectpicker" style="width:475px;" onchange="templateView()">
 
        <?php
            //require_once("../../connection.php");
           
-                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template ");
+                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template order by template_name asc");
            foreach($query1 as $var)
            {
-              echo "<option data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."'>".$var['template_name']."</option>";
+              echo "<option data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."' selected='selected'>".$var['template_name']."</option>";
            }
-
-
+           
+           echo "</select></td>";
+					echo "<td><a class='viewTemplateLinks' target='_blank' id ='viewTemplateLink' style='color:#000;'  href='".$PROJECT_ROOT."'/procedures/home/document/common/viewtemplate.php?template_id=".$var['TEMPLATE_ID']."'>View Template</a></td>";
+					
     ?>
-                              </select>
-                               </td>
+                   
 
+                  	
                     </tr>
                     <tr>
                     	<td>PDF File: </td>
@@ -362,12 +369,6 @@ function validate() {
 
 
 
-
-
-
-
-
-
     if (document.process.barcode.value=="")   {
         alert("Fill up necessary inputs.");
         return false;
@@ -489,7 +490,32 @@ function myFunction(e) {
             }
         });
     });
+    
+    
+    
+    
+    function templateView()
+    {
+    		var e = document.getElementById("template");
+				var strUser = e.options[e.selectedIndex].value;	
+				//alert(strUser);
+				   var link = document.getElementById("viewTemplateLink");
+   	link.setAttribute("href", "common/viewtemplate.php?template_id="+strUser);
+    }
+    
+  
 
 </script>
+
+
+  
+  
+  
+  
+
+
+
+
+
 </body>
 </html>

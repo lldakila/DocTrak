@@ -22,9 +22,9 @@ if($session_life > $_SESSION['expiretime']) {
  
 
 $DB_HOST = '10.10.4.11';
-$DB_USER = 'admin';
-$DB_PASS = 'launi0n@dmin';
-$BD_TABLE = 't-doctrak';
+$DB_USER = 'doctrak';
+$DB_PASS = 'p@ssw0rd';
+$BD_TABLE = 'doctrak';
 
 
 function insert_update_delete($query)

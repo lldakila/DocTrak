@@ -81,6 +81,20 @@ function newDocument()
 
 }
 
+		
+		 function templateViewer()
+		    {
+		    	
+		    		var e = document.getElementById("DocuTemplate");
+						var strUser = e.options[e.selectedIndex].value;	
+						
+						   var link = document.getElementById("viewDocTemplateLink");
+						   <?php 
+						   		echo "link.setAttribute('href', '".$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id='+strUser);";
+						   ?>
+		   	
+		    }
+		  
 
     function receiveDocument()
     {

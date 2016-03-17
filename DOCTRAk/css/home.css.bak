@@ -1760,15 +1760,11 @@ input[type=radio] {
 	input[type=file] {
 	border-radius:5px;
 	}
-	
-.bootstrap-select > .btn {
-	width:600px;
-}
 
 select, option { width:130px;
 					border-radius:5px; }
 
-.select01 select, option {
+.select01 select, option, button {
         width:600px;
         border-radius:5px;
 
