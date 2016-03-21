@@ -107,7 +107,7 @@ function renderForm($formName)
 														$url=$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id=".$templateId;
                              echo "
                           </select>
-                          <a class='viewTemplateLinkss' target='_blank' id ='viewDocTemplateLink' style='color:#000;'  href='aa'>View Template</a>
+                          <a class='viewTemplateLinkss' target='_blank' id ='viewDocTemplateLink' style='color:#000;'  href=''>View Template</a>
                         </div>
                         <div class='tclear' ></div>
 

@@ -72,7 +72,7 @@
         switch (action)
         {
             case 'newDocu':
-                if (document.getElementById('DocId').value != '')
+                if ((document.getElementById('DocId').value != '')&&(document.getElementById('DocuTemplate').value != ''))
                 {
                     return true;
                 }
@@ -183,7 +183,7 @@
     function retriveDocInfo(module_name)
     {
         var doc_id = document.getElementById('DocId').value;
-        var docDetail="<div class='row'> <div class='col-md-6 col-bottom'> <strong>Title:</strong> </div></div> <div class='row'> <div class='col-md-6 col-bottom'><strong>Type:</strong></div><div class='col-md-6 col-bottom'><strong>Templates:</strong> </div> </div><div class='row'><div class='col-md-6 col-bottom'><strong>Office:</strong></div> </div>";
+        var docDetail="<div class='row'> <div class='col-md-6 col-bottom'> <strong>Title:</strong> </div></div> <div class='row'> <div class='col-md-6 col-bottom'><strong>Type:</strong></div><div class='col-md-6 col-bottom'><strong>Template:</strong> </div> </div><div class='row'><div class='col-md-6 col-bottom'><strong>Office:</strong></div> </div>";
         if (document.getElementById('DocId').value=='')
         {
             document.getElementById('docDetail').innerHTML=docDetail;

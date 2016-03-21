@@ -72,7 +72,7 @@
         switch (action)
         {
             case 'newDocu':
-                if (document.getElementById('DocId').value != '')
+                if ((document.getElementById('DocId').value != '')&&(document.getElementById('DocuTemplate').value != ''))
                 {
                     return true;
                 }
@@ -122,7 +122,7 @@
                 var doc_title=document.getElementById('DocTitle').value;
                 var doc_desc=document.getElementById('DocDesc').value;
                 var doc_type=document.getElementById('DocType').value;
-                var doc_template=document.getElementById('DocTemplate').value;
+                var doc_template=document.getElementById('DocuTemplate').value;
                 var doc_comment='';
                 break;
             case 'receiveDocu':

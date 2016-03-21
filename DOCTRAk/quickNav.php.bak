@@ -94,7 +94,7 @@ function renderForm($formName)
                         <div class='fixinput' style='width:37.9%;'>
                           <select id='DocuTemplate' name='type' class='form-control' onchange='templateViewer()'>     ";
 
-														echo "<option style='display:none' selected='selected' value = "" ></option>";
+														echo "<option style='display:none' selected='selected' value = '' ></option>";
                                     $query="select TEMPLATE_ID, template_name from document_template ORDER BY template_name ASC";
 
 //                                     $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
