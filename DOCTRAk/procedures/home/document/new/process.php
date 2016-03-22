@@ -236,8 +236,7 @@ if (mysqli_connect_error())
             }
             else 
             {
-//                echo "error";
-//                die();
+//                
                 mysqli_rollback($con);
                 $_SESSION['operation']="error";
                 echo "rollback";

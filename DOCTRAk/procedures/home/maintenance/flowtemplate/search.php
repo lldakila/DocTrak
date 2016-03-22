@@ -11,7 +11,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <?php
     require_once("../../../connection.php");
   
-    $query=select_info_multiple_key("select  distinct TEMPLATE_ID,TEMPLATE_NAME,TEMPLATE_DESCRIPTION,document_template.FK_OFFICE_NAME from document_template join template_list on document_template.TEMPLATE_ID = template_list.FK_TEMPLATE_ID join office on template_list.FK_OFFICE_NAME = office.OFFICE_NAME where TEMPLATE_ID LIKE '%".$_POST['search_string']."%' OR TEMPLATE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY template_name ASC");
+    $query=select_info_multiple_key("select  distinct TEMPLATE_ID,TEMPLATE_NAME,TEMPLATE_DESCRIPTION,document_template.FK_OFFICE_NAME,public from document_template join template_list on document_template.TEMPLATE_ID = template_list.FK_TEMPLATE_ID join office on template_list.FK_OFFICE_NAME = office.OFFICE_NAME where TEMPLATE_ID LIKE '%".$_POST['search_string']."%' OR TEMPLATE_DESCRIPTION LIKE '%".$_POST['search_string']."%' ORDER BY template_name ASC");
    
 
 if ($query){
@@ -31,14 +31,14 @@ foreach($query as $var)
         
         if ($rowcolor == "blue") 
         {
-            echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
+            echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\',\''.$var["public"].'\')">';
             $rowcolor="notblue";
         }
         else
-            {
-                echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
-                $rowcolor="blue";
-            }
+        {
+            echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\',\''.$var["public"].'\')">';
+            $rowcolor="blue";
+        }
         echo "<td style='width:150px;'>";
         echo $var['TEMPLATE_NAME'];
         ECHO "</td><td>";

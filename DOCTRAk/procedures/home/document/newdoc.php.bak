@@ -33,7 +33,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <body>
 <?php
 
-    global $PROJECT_ROOT= '../../../';
+    $PROJECT_ROOT= '../../../';
     include_once($PROJECT_ROOT.'qvJscript.php');
     include_once('../../../header.php');
 ?>

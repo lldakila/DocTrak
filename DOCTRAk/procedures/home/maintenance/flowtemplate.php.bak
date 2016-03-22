@@ -358,15 +358,7 @@ function clickSearch(template_id,template_name,description_name,publicTemplate) 
     document.getElementById("template_name").value=template_name;
     document.getElementById("description_name").value=description_name;
     document.getElementById("primarykey").value=template_id;
-    if (publicTemplate==1)
-    {
-    	document.getElementById("publicCheckbox").checked=true;
-    }
-    else
-    {
-    	document.getElementById("publicCheckbox").checked=false;
-    }
-    	
+    document.getElementById("publicCheckbox").checked=true;
     retrieveoffice(template_id);
     retrieveofficearray(template_id);
 }

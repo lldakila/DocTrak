@@ -109,6 +109,7 @@ function NewDocument()
             else 
             {
                 echo "Something went wrong. Try Again";
+                log_audit($KEY,'','RolledBack',''.$_SESSION['security_name'].'');
                 mysqli_rollback($cons);
             }
             
@@ -125,12 +126,53 @@ function searchUser($user_Id,$docid)
     $_userid=mysqli_real_escape_string($con,$user_Id);
     
     
+    
+   
+    
+    
+    
+//    $sql='select fk_office_name_documentlist FROM documentlist WHERE document_id ="'.$docid.'"   LIMIT 1';
+//    $query=mysqli_query($con, $sql);
+//    $result=  mysqli_fetch_array($query);
+//    $office=$result['fk_office_name_documentlist'];
+//     
+//    $sql='SELECT security_name,count(security_name) as num_rows FROM security_user WHERE security_username = "'.$_userid.'" and fk_office_name = "'.$office.'" ';
+//  
+//   
+//    $query=mysqli_query($con, $sql);
+//    $result=  mysqli_fetch_array($query);
+//    $return['security_name']=$result['security_name'];
+//    $return['num_rows']=$result['num_rows'];
+//    mysqli_close($con);
+//  
+//    return $return;
+		
+
+
     $sql='select fk_office_name_documentlist FROM documentlist WHERE document_id ="'.$docid.'"   LIMIT 1';
     $query=mysqli_query($con, $sql);
     $result=  mysqli_fetch_array($query);
     $office=$result['fk_office_name_documentlist'];
      
-    $sql='SELECT security_name,count(security_name) as num_rows FROM security_user WHERE security_username = "'.$_userid.'" and fk_office_name = "'.$office.'" ';
+     
+     
+     
+     $sql=' select fk_template_id,public from documentlist join document_template on documentlist.fk_template_id =
+					document_template.template_id WHERE document_id ="'.$docid.'" ';
+		$query=mysqli_query($con, $sql);
+    $result=  mysqli_fetch_array($query);		
+    if ($result['public']==1)
+    {
+    		 $sql='SELECT security_name,count(security_name) as num_rows FROM security_user WHERE security_username = "'.$_userid.'"  ';
+    }
+    else
+    {
+    		$sql='SELECT security_name,count(security_name) as num_rows FROM security_user WHERE security_username = "'.$_userid.'" and fk_office_name = "'.$office.'" ';
+    }
+    
+    
+    
+   
   
    
     $query=mysqli_query($con, $sql);
@@ -140,6 +182,7 @@ function searchUser($user_Id,$docid)
     mysqli_close($con);
   
     return $return;
+    
     
     
 }

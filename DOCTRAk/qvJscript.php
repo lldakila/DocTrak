@@ -12,6 +12,11 @@
                 if (inputCheck(module))
                 {
                     crud(module);
+                    document.getElementById("DocId").value='';
+                    document.getElementById("DocTitle").value='';
+                    document.getElementById("DocDesc").value='';
+                    
+                    document.getElementById("DocId").focus();
                 }
                 else
                 {
