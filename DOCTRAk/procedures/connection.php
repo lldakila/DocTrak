@@ -13,8 +13,8 @@ $session_life = time() -  $_SESSION['timeout'];
 if($session_life > $_SESSION['expiretime']) {
 
    session_destroy(); 
-   //header("Location: index.php");
-   header("Location: ".$_SERVER['PHP_SELF']);
+   header("Location: ".$PROJECT_ROOT.'index.php');
+   //header("Location: ".$_SERVER['PHP_SELF']);
 
 }
  $_SESSION['timeout']=time();

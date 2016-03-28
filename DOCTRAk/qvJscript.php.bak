@@ -12,7 +12,11 @@
                 if (inputCheck(module))
                 {
                     crud(module);
+                    document.getElementById("DocId").value='';
+                    document.getElementById("DocTitle").value='';
+                    document.getElementById("DocDesc").value='';
                     
+                    document.getElementById("DocId").focus();
                 }
                 else
                 {
@@ -228,9 +232,9 @@
          if(new Date().getTime() - time >= 5000) 
              window.location.reload(true);
          else 
-             setTimeout(refresh, 6000000);
+             setTimeout(refresh, 60);
 	 //60000
      }
 
-     setTimeout(refresh, 6000000);
+     setTimeout(refresh, 60);
 </script>

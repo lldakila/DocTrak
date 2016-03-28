@@ -39,8 +39,6 @@
         echo "</td><td>";
         echo "Type:"; echo"&nbsp;<b>".$var['fk_documenttype_id'].'</b>';
         echo "</td></tr><tr><td>";
-        echo "Decription:"; echo"&nbsp;<b>".$var['document_description'].'</b>';
-        echo "</td></tr><tr><td>";
         echo "Input Date:"; echo"&nbsp;<b>".$var['transdate'].'</b>';
         echo "</td><td>";
         echo "Owner:"; echo"&nbsp;<b>".$var['security_name'].'</b>';

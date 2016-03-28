@@ -1760,11 +1760,15 @@ input[type=radio] {
 	input[type=file] {
 	border-radius:5px;
 	}
+	
+.bootstrap-select > .btn {
+	width:600px;
+}
 
 select, option { width:130px;
 					border-radius:5px; }
 
-.select01 select, option, button {
+.select01 select, option {
         width:600px;
         border-radius:5px;
 
@@ -2222,7 +2226,7 @@ table#historydata tr.bgcolor {
 }
 
 #details table {
-	margin:10px auto;
+	margin:100px auto;
         width: 100%;
 }
 
