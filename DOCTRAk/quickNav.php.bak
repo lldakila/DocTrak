@@ -43,11 +43,17 @@ switch($formModule)
     case 'saveBacMonitor':
         saveBacMonitor($_POST['tracker_id']);
         break;
+        
+        
+        
+    case 'renderNewDocTemplate':
+    renderTemplateInfo($_POST['template_id']);
+    break;
 
         
 }
 
-
+	
 function renderForm($formName)
 {
     switch($formName)
@@ -105,10 +111,15 @@ function renderForm($formName)
                                         $templateId=$row['TEMPLATE_ID'];
                                      }
 														$url=$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id=".$templateId;
+                             
+                              //<a class='viewTemplateLinkss' target='_blank' id ='viewDocTemplateLink' style='color:#000;'  href=''>View Template</a>
                              echo "
                           </select>
-                          <a class='viewTemplateLinkss' target='_blank' id ='viewDocTemplateLink' style='color:#000;'  href='aa'>View Template</a>
+                         
                         </div>
+                        
+                        <div id='docTempDetail'  style='max-height:400px; overflow:auto'></div>
+                        
                         <div class='tclear' ></div>
 
                         <div class='buttonright'>
@@ -559,6 +570,55 @@ function saveBacMonitor($tracker_id)
 }
 
 
+	//////////////////////
+	//FUNCTION TO GET AND RETRIEVE DOCUMENT TEMPLATE
+	////////////////////////////////
+	function renderTemplateInfo($template_name)
+	{
+		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+		
+		$sql="SELECT sort,office_description,template_name,template_description FROM document_template join template_list on document_template.template_id = template_list.fk_template_id
+		join office on template_list.fk_office_name=office.office_name WHERE template_id = '".$_POST['template_id']."' ";
+
+		
+		
+		$result=mysqli_query($con,$sql);
+		$resultRow=mysqli_fetch_array($result);
+		echo "<p>";
+		echo "Template : <b>".$resultRow['template_name']."</b>";
+		echo "<br>";
+		echo "Description : <b>".$resultRow['template_description']."</b>";
+		echo " 
+				<table class='table table-bordered table-striped'><tr><td><b>Step</b></td><td><b>Office</b></td></tr>
+		
+		
+		";
+		$result=mysqli_query($con,$sql);
+		while($resultRow=mysqli_fetch_array($result))
+		{
+				echo "
+						<tr>
+							<td>
+								".$resultRow['sort']."
+							</td>
+							
+							<td>
+								".$resultRow['office_description']."
+							</td>				
+				
+				
+				</tr>";
+				
+				
+		}
+
+		echo "</table></p>";
+	}
+	//////////////////////
+	//END FUNCTION TO GET AND RETRIEVE DOCUMENT TEMPLATE
+	////////////////////////////////
+
 //UPDATE BAC NOTIFICATION ICON
 //function updateStatusIcon()
 //{
@@ -678,3 +738,5 @@ function saveBacMonitor($tracker_id)
 //////////////////////////
 //BAC MONITORING MODAL END
 //////////////////////////
+
+?>

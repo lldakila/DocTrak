@@ -116,12 +116,25 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                             }
                                         ?>
                                 
-                                <li>
-                                    <a href="<?php echo $PROJECT_ROOT."about.php"; ?>"><span>About</span></a>
+                                <li role="presentation" class="dropdown"> 
+	                                	<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">	
+	                                			Help<span class="caret"></span></a>
+	                                	<ul class="dropdown-menu down-bgcolor" role="menu">
+	                                	
+	                                				<li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Manual</span></a>
+                                                    <ul class="dropdown-menu down-bgcolor">
+                                                    	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21917&authkey=!AE_FMAlza931EV0&ithint=file%2cpdf" ><span>Document Manual</span></a></li>
+                                                    	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21824&authkey=!APqDiAq2vDQLtd8&ithint=file%2cpdf" ><span>Financial Document Templates</span></a></li>
+                                                    	
+                                                    	
+                                                    	
+                                                    </ul>
+	                                	
+	                                  <li><a href="<?php echo $PROJECT_ROOT."about.php"; ?>"><span>About</span></a></li>
                                 </li>
                  
                               </ul>
-                    
+                    </li>
 		
         
         <div class="admin">

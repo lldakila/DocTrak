@@ -78,7 +78,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     				<table >
                     <tr>
                     	<td>To:</td>
-                        <td class="usertext"><input id="userId" placeholder="Scan ID..." name="barcodeno" type="text" class="form-control"/> </td>
+                        <td class="usertext"><input id="userId" placeholder="Scan ID..." type="text" class="form-control"/> </td>
                     </tr>
                     <tr>
                     	<td>BarCode No:</td>

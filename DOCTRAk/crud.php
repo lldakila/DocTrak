@@ -602,7 +602,8 @@ function SearchFilter($document_id,$action)
     $counterX=0;
     $row_cnt = mysqli_num_rows($values);
     
-    
+//    echo $sql;
+//    die();
     switch ($action)
     {
         case 'receive':

@@ -10,7 +10,12 @@
     require_once("../../../connection.php");
     require_once("../common/encrypt.php");
  
-    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, sortorder,office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,security_user.fk_office_name,document_filename, forrelease_val,forrelease_comment,forrelease_date,documentlist.fk_office_name_documentlist,document_mime,received_from,released_to,template_name,document_description from documentlist join documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join security_user on documentlist.fk_security_username = security_user.security_username join document_template on documentlist.fk_template_id = document_template.template_id where document_id = '".$_POST['documentTracker']."' ");
+    $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,documentlist.transdate,security_name, sortorder,documentlist_tracker.office_name,received_by,received_date,received_comment,released_by,released_date,released_comment,security_user.fk_office_name,document_filename, forrelease_val,forrelease_comment,forrelease_date,documentlist.fk_office_name_documentlist,document_mime,received_from,released_to,template_name,document_description,office_description from 
+					documentlist join 
+					documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id join 
+					security_user on documentlist.fk_security_username = security_user.security_username join 
+					document_template on documentlist.fk_template_id = document_template.template_id
+					join office on documentlist.fk_office_name_documentlist = office.office_name where document_id = '".$_POST['documentTracker']."' ");
 
     echo "<div id='details' class='retriveDataAllign'>";
     echo "<table >";
@@ -29,21 +34,64 @@
     echo "</td><td>";
     echo "Owner:"; echo"&nbsp;<b>".$query[0]['security_name'].'</b>';
     echo "</td><td>";
-    echo "Office:"; echo"&nbsp;<b>".$query[0]['fk_office_name_documentlist'].'</b>';
-    echo "</td><td>";
-    echo "Attachment:"; //echo"&nbsp;<b>".$query[0]['document_filename'].'</b>'; document_filename
-    if ($query[0]['document_mime']!=""){
-        $encrypted=urlencode(base64_encode(encryptText($query[0]['document_id'])));
-        echo "<a target='_blank' href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
-    }
-    else {
-        echo "<a href='#'> No Attachment</a>";
-    }
+    echo "Office:"; echo"&nbsp;<b>".$query[0]['office_description'].'</b>';
+    echo "</td>";
+//    echo "Attachment:"; //echo"&nbsp;<b>".$query[0]['document_filename'].'</b>'; document_filename
+//    if ($query[0]['document_mime']!=""){
+//        $encrypted=urlencode(base64_encode(encryptText($query[0]['document_id'])));
+//        echo "<a target='_blank' href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
+//    }
+//    else {
+//        echo "<a href='#'> No Attachment</a>";
+//    }
 
 
     echo "</table>";
     echo "</td></tr>";
     echo "</div>";
+
+ //echo "<div id='details' class=''>";
+//    echo "<table >";
+//    echo "<tr><td>";
+
+//	echo "<div class='row'>";
+////	echo "<div class='span12'>";
+//    echo "<div class='span1'> Barcode:"; echo"<b>".$query[0]['document_id'].'</b></div>';
+////    echo "</td><td>"; 
+//    echo "<div class='span9'> Title:"; echo"<b>".$query[0]['document_title'].'</b></div>';
+////    echo "</td><td>";
+//echo "<div class='span1'> Input Date:"; echo"<b>".$query[0]['transdate'].'</b></div>';
+//   
+////    echo "</td><td>";
+//    echo "<div class='span1'> Type:"; echo"<b>".$query[0]['fk_documenttype_id'].'</b></div>';
+//    echo "</div>";
+//    
+//    
+////    echo "</td></tr><tr><td>";
+//    echo "Description:"; echo"&nbsp;<b>".$query[0]['document_description'].'</b>';
+////    echo "</td></tr><tr><td>";
+// echo "Office:"; echo"&nbsp;<b>".$query[0]['office_description'].'</b>';
+//     
+////    echo "</td><td>";
+//    echo "Owner:"; echo"&nbsp;<b>".$query[0]['security_name'].'</b>';
+////    echo "</td><td>";
+//   echo "Template:"; echo"&nbsp;<b>".$query[0]['template_name'].'</b>';
+
+
+//    echo "</td>";
+//    echo "Attachment:"; //echo"&nbsp;<b>".$query[0]['document_filename'].'</b>'; document_filename
+//    if ($query[0]['document_mime']!=""){
+//        $encrypted=urlencode(base64_encode(encryptText($query[0]['document_id'])));
+//        echo "<a target='_blank' href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
+//    }
+//    else {
+//        echo "<a href='#'> No Attachment</a>";
+//    }
+
+
+//    echo "</table>";
+//    echo "</td></tr>";
+ //   echo "</div>";
     
     echo "<div id='scroll'>";
     echo '<table id="historydata" class="table scroll">';

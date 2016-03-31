@@ -87,12 +87,39 @@ function newDocument()
 		    	
 		    		var e = document.getElementById("DocuTemplate");
 						var strUser = e.options[e.selectedIndex].value;	
-						alert(strUser);
+						var module='renderNewDocTemplate';
 						   var link = document.getElementById("viewDocTemplateLink");
 						   <?php 
 						   		echo "link.setAttribute('href', '".$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id='+strUser);";
 						   ?>
+						   
+						   
+						   jQuery.ajax({
+            type: "POST",
+	    			url:"<?php echo $PROJECT_ROOT; ?>quickNav.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:{template_id:strUser,module_name:module},
+            beforeSend: function() {
+
+                    document.getElementById('docTempDetail').innerHTML="";
+                  $("#docTempDetail").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+                   
+
+	        },
+            ajaxError: function() {
+		        $("#docTempDetail").html('<div id="loadingModal"><img src="<?php echo $PROJECT_ROOT; ?>images/home/ajax-loader.gif" /></div>');
+	        },
+            success:function(response){
+                        $("#docTempDetail").html(response);
+
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError);
+            }
+        });
 		   	
+		   	
+		   	 $("#docTempDetail").attr("class","well well-sm wellbottom");
 		    }
 		  
 

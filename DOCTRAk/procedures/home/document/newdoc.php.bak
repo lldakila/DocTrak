@@ -195,9 +195,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                         <div class="input1">
                             
                              <?php
-	                 
+//	                  if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
 
-                            if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
+                            if($_SESSION['GROUP']=='POWER ADMIN')
 	                    {
 		                    $value="document.getElementById('document_hidden').value='delete';";
 		                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'" class="btn btn-danger" />';

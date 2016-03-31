@@ -419,8 +419,7 @@ function deleteMe()
     {
         return;
     }
-    //if (confirm("Are you sure you want to delete document?") == false) 
-    if (console.log("Are you sure you want to delete document?") == false) 
+    if (confirm("Are you sure you want to delete document?") == false) 
     {
         return;
     }

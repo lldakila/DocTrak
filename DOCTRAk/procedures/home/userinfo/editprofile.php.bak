@@ -101,7 +101,7 @@ if (session_status() == PHP_SESSION_NONE) {
                               				<table>
                                             	<tr>	
                                                     <td>Username:</td>
-                                                    <td><input id="username" class="form-control" type="text" name="username" value="<?php echo $_SESSION['usr']; ?>"/></td>
+                                                    <td><input id="username" class="form-control" type="text" readonly="readonly" name="username" value="<?php echo $_SESSION['usr']; ?>"/></td>
                                                 </tr>
                                                 <tr>	
                                                     <td>Full Name:</td>

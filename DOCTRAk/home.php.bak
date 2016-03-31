@@ -26,7 +26,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
 <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
 <script src="js/jquery.growl.js"></script>
 
 
@@ -47,7 +46,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="content">
 
 <div id="leftmenu">
-
+<a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21824&authkey=!APqDiAq2vDQLtd8&ithint=file%2cpdf" >link</a>
     
 	    <div id='cssmenu'>
 		<ul>

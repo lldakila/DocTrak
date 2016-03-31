@@ -20,7 +20,8 @@
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
             die;
         }
-        $query="select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name, fk_office_name_documentlist,document_mime,template_name,document_description from documentlist join  security_user on documentlist.fk_security_username = security_user.security_username  join document_template on documentlist.fk_template_id = document_template.template_id where document_id = '".$_POST['documentTrail']."' ";
+        $query="select document_id,document_title,fk_template_id,fk_documenttype_id,documentlist.transdate,security_name, fk_office_name_documentlist,document_mime,template_name,document_description,office_description from documentlist join security_user on documentlist.fk_security_username = security_user.security_username join document_template on documentlist.fk_template_id = document_template.template_id 
+				join office on documentlist.fk_office_name_documentlist = office.office_name where document_id = '".$_POST['documentTrail']."' ";
        
         $result=  mysqli_query($con, $query);
         
@@ -39,11 +40,13 @@
         echo "</td><td>";
         echo "Type:"; echo"&nbsp;<b>".$var['fk_documenttype_id'].'</b>';
         echo "</td></tr><tr><td>";
+        echo "Decription:"; echo"&nbsp;<b>".$var['document_description'].'</b>';
+        echo "</td></tr><tr><td>";
         echo "Input Date:"; echo"&nbsp;<b>".$var['transdate'].'</b>';
         echo "</td><td>";
         echo "Owner:"; echo"&nbsp;<b>".$var['security_name'].'</b>';
         echo "</td><td>";
-        echo "Office:"; echo"&nbsp;<b>".$var['fk_office_name_documentlist'].'</b>';
+        echo "Office:"; echo"&nbsp;<b>".$var['office_description'].'</b>';
         echo "</td><td>";
         echo "Attachment:"; //echo"&nbsp;<b>".$query['document_filename'].'</b>'; document_filename
         if ($var['document_mime']!=""){
@@ -79,7 +82,9 @@
   
     
     
-    $query="select fk_documentlist_id,fk_officename,document_process,document_details,document_comment,transdate from documentlist_history where fk_documentlist_id = '".$_POST['documentTrail']."'";
+    $query="select fk_documentlist_id,fk_officename,document_process,document_details,document_comment,documentlist_history.transdate,fk_officename from documentlist_history
+    join office on documentlist_history.fk_officename=office.office_name  
+     where fk_documentlist_id = '".$_POST['documentTrail']."'";
    
     $result=mysqli_query($con,$query);
     $intx=1;    
@@ -99,7 +104,7 @@
         }
         
         echo "<td>" .$intx. "</td>";
-        echo "<td>" .$var['fk_officename']. "</td>";
+        echo "<td>" .$var['office_description']. "</td>";
         echo "<td>" .$var['document_process']. "</td>";
         echo "<td>" .$var['document_details']. "</td>";
         echo "<td>" .$var['document_comment']. "</td>";

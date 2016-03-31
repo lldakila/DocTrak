@@ -30,8 +30,8 @@
     <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
     <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
     <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-    <script src="../../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="../../../js/bootstrap-select.js"></script>
 
 
@@ -97,7 +97,7 @@
                     	<td>Template:</td>
 
                         <td class="textinput">
-                            <input id="primarykey" name="primarykey" type="hidden" />
+                            <input id="primarykey" name="primarykey" type="text" />
                             <input id="template_name" name="template_name" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>
@@ -358,7 +358,15 @@ function clickSearch(template_id,template_name,description_name,publicTemplate) 
     document.getElementById("template_name").value=template_name;
     document.getElementById("description_name").value=description_name;
     document.getElementById("primarykey").value=template_id;
-    document.getElementById("publicCheckbox").checked=true;
+    if (publicTemplate==1)
+    {
+    	document.getElementById("publicCheckbox").checked=true;
+    }
+    else
+    {
+    	document.getElementById("publicCheckbox").checked=false;
+    }
+    	
     retrieveoffice(template_id);
     retrieveofficearray(template_id);
 }
