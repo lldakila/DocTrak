@@ -118,7 +118,7 @@ function renderForm($formName)
                          
                         </div>
                         
-                        <div id='docTempDetail'  style='max-height:400px; overflow:auto'></div>
+                        <div id='docTempDetail'  style='max-height:200px; overflow:auto'></div>
                         
                         <div class='tclear' ></div>
 
@@ -578,7 +578,7 @@ function saveBacMonitor($tracker_id)
 		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 		
-		$sql="SELECT sort,office_description,template_name,template_description FROM document_template join template_list on document_template.template_id = template_list.fk_template_id
+		$sql="SELECT sort,office_description,template_name,template_description,docprocess FROM document_template join template_list on document_template.template_id = template_list.fk_template_id
 		join office on template_list.fk_office_name=office.office_name WHERE template_id = '".$_POST['template_id']."' ";
 
 		
@@ -590,7 +590,7 @@ function saveBacMonitor($tracker_id)
 		echo "<br>";
 		echo "Description : <b>".$resultRow['template_description']."</b>";
 		echo " 
-				<table class='table table-bordered table-striped'><tr><td><b>Step</b></td><td><b>Office</b></td></tr>
+				<table class='table table-bordered table-striped'><tr><td><b>Step</b></td><td><b>Process</b></td><td><b>Office</b></td></tr>
 		
 		
 		";
@@ -602,7 +602,9 @@ function saveBacMonitor($tracker_id)
 							<td>
 								".$resultRow['sort']."
 							</td>
-							
+							<td>
+								".$resultRow['sort']."
+							</td>
 							<td>
 								".$resultRow['office_description']."
 							</td>				

@@ -232,9 +232,9 @@
          if(new Date().getTime() - time >= 5000) 
              window.location.reload(true);
          else 
-             setTimeout(refresh, 60000);
+             setTimeout(refresh, 6000000);
 	 //60000
      }
 
-     setTimeout(refresh, 60000);
+     setTimeout(refresh, 6000000);
 </script>

@@ -54,7 +54,7 @@ join office on template_list.fk_office_name=office.office_name WHERE template_id
 		echo "Description : ". $resultRow['template_description'];
 		echo "<br>";
 		echo "<br>";
-		echo "<table class='table  table-hover table-condensed table-bordered' border='5'><th>Step</th><th>Office Code</th><th>Office Description</th>";
+		echo "<div><table class='table  table-hover table-condensed table-bordered' border='5'><th>Step</th><th>Process</th><th>Office Description</th>";
 		$result=mysqli_query($con,$sql);
 		while($resultRow=mysqli_fetch_array($result))
 		{
@@ -64,7 +64,7 @@ join office on template_list.fk_office_name=office.office_name WHERE template_id
 								".$resultRow['sort']."
 							</td>
 							<td>
-								".$resultRow['office_name']."
+								".$resultRow['docprocess']."
 							</td>		
 							<td>
 								".$resultRow['office_description']."
@@ -76,7 +76,7 @@ join office on template_list.fk_office_name=office.office_name WHERE template_id
 				
 		};
 
-		echo "</table>";
+		echo "</table><div>";
 ?>
 
 
