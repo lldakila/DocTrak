@@ -204,7 +204,7 @@
             data:{module:module_name,docId:doc_id},
              beforeSend: function()
             {
-                $("#footerNote").html("Searching...");
+           //     $("#footerNote").html("Searching...");
                 $("#docDetail").html(docDetail);
             },
             success:function(response)

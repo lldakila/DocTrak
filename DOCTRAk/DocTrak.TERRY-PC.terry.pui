@@ -1,19 +1,19 @@
 [Open Files]
 Active File Display Mode=1
-Active File Index=4
+Active File Index=1
 Open File Line0=2376
-Open File Line1=0
+Open File Line1=78
 Open File Line2=26070
 Open File Line3=20566
-Open File Line4=19082
+Open File Line4=24079
 Open File Line5=0
 Open File Line6=0
 Open File Line7=5935
-Open File Pos0=4340
-Open File Pos1=1394
+Open File Pos0=3170
+Open File Pos1=1292
 Open File Pos2=26425
 Open File Pos3=24048
-Open File Pos4=24233
+Open File Pos4=24546
 Open File Pos5=357
 Open File Pos6=2966
 Open File Pos7=7227
@@ -47,4 +47,5 @@ Remember Files=1
 	.\ - procedures - home - maintenance=1
 	.\ - procedures - home - userinfo=1
 	.\ - procedures - home - userinfo - editprofile=1
-
+	.\ - procedures=1
+	.\ - procedures - home - document - common=1

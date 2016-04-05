@@ -210,7 +210,7 @@
             success:function(response)
             {
                 $("#docDetail").html(response);
-                $("#footerNote").html("");
+                
             },
             error:function (xhr, ajaxOptions, thrownError){
                 $("#footerNote").html(response);

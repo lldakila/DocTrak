@@ -238,7 +238,7 @@ function receiveDocument($document_id)
         if(!$result)
         {
              $flag=false;
-             echo "Something went wrong.<br>" .$query ;
+             //echo "Something went wrong.<br>" .$query ;
         }
 
         $KEY=get_key();
@@ -254,7 +254,7 @@ function receiveDocument($document_id)
 //	die();
            if ($docOwnerInfo['num_rows']==0)
            {
-		echo "Invalid owner or does not exist.<br>";
+						$errMsg= "Invalid owner or ID does not exist.<br>";
                 $flag=false;
                 $document_process='';
            }
@@ -281,21 +281,24 @@ function receiveDocument($document_id)
 
     else
     {
-        echo "Document ID does not exist. Please try again.<br>";
+    		$errMsg=RetrieveBarcodeInfo($document_id);
+        //$errMsg= "Barcode does not exist. Please try again.<br>";
          $flag=false;
     }
 
     if ($flag)
     {
         mysqli_commit($cons);
-        echo "Document received.";
+        $errMsg= "Document received.";
     }
     else
     {
         mysqli_rollback($cons);
-        echo "Something went wrong. Try Again";
+        //$errMsg= "Something went wrong. Try Again";
         log_audit($KEY,'','RolledBack',''.$_SESSION['security_name'].'');
     }
+    
+    		echo filterMessage($errMsg);
         mysqli_close($cons);
 
 
@@ -341,7 +344,7 @@ function ReleaseDocument($document_id)
            $docOwnerInfo=searchUser($_POST['ownerId'],$docID);
            if ($docOwnerInfo['num_rows']==0)
            {
-                echo "Invalid owner or does not exist.<br>";
+                $errMsg=  "Invalid owner or does not exist.<br>";
                 $flag=false;
                 $document_process='';
 
@@ -390,25 +393,32 @@ function ReleaseDocument($document_id)
 
 
 
-    if ($flag)
-    {
-        mysqli_commit($cons);
-        echo "Document released.";
-    }
-    else
-    {
-        mysqli_rollback($cons);
-        echo "Something went wrong. Try Again";
-        log_audit($KEY,'','RolledBack',''.$_SESSION['security_name'].'');
-    }
-        mysqli_close($cons);
+   
+       
 
 }
  else
     {
-        echo "Document ID does not exist.<br>";
+    	$errMsg=RetrieveBarcodeInfo($document_id);
+        //echo "Barcode does not exist.<br>";
          $flag=false;
     }
+    
+     if ($flag)
+    {
+        mysqli_commit($cons);
+        $errMsg= "Document released.";
+    }
+    else
+    {
+        mysqli_rollback($cons);
+        //echo "Something went wrong. Try Again";
+        log_audit($KEY,'','RolledBack',''.$_SESSION['security_name'].'');
+    }
+    
+    echo filterMessage($errMsg);
+     mysqli_close($cons);
+        
 }
 
 //FOR RELEASE GOVERNMENT STATISUS
@@ -434,7 +444,7 @@ function ForReleaseDocument($document_id)
     if (!$RESULT)
     {
         $flag=false;
-        echo mysqli_error($cons)."<br>";
+        $errMsg= mysqli_error($cons)."<br>";
     }
     $KEY=get_key();
     log_audit($KEY,$query,'For Release Document',''.$_SESSION['security_name'].'');
@@ -465,7 +475,7 @@ function ForReleaseDocument($document_id)
         if (!$RESULT)
         {
             $flag=false;
-            echo mysqli_error($cons)."<br>";
+            $errMsg= mysqli_error($cons)."<br>";
         }
     }
 
@@ -480,23 +490,29 @@ function ForReleaseDocument($document_id)
          if ($flag)
         {
                 mysqli_commit($cons);
-                echo "Document ready to release.";
+                $errMsg= "Document ready to release.";
         }
         else
         {
                 mysqli_rollback($cons);
-                echo "Something went wrong. Try Again";
+               // echo "Something went wrong. Try Again";
 
         }
 
+		
 
-
-mysqli_close($cons);
 
 
     }
+    else
+    {
+    	    		$errMsg=RetrieveBarcodeInfo($document_id);
+        //$errMsg= "Barcode does not exist. Please try again.<br>";
+         $flag=false;
+    }
 
-
+		echo filterMessage($errMsg);
+		mysqli_close($cons);
 }
 //SEARCH DOCUMENT ON SCAN OF BARCODE / AJAX FUNCTION
 function searchDocInfo($docID)
@@ -738,19 +754,40 @@ function RetrieveBarcodeInfo($document_id)
 		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
-    $sql="SELECT received_val,released_val,forrelease_val,office_description FROM documentlist_tracker JOIN office on documentlist_tracker.office_name=office.office_name 
+    $sql="SELECT received_val,released_val,forrelease_val,office_description,complete,scrap FROM 
+				documentlist_tracker JOIN office on documentlist_tracker.office_name=office.office_name JOIN
+				documentlist on documentlist_tracker.fk_documentlist_id = documentlist.document_id
     		WHERE fk_documentlist_id = '".$document_id."' ORDER BY sortorder ASC";
     $result=mysqli_query($con,$sql);
-    echo  $sql;
+
     while($resultSet=mysqli_fetch_array($result))
     {
-    	if (($resultSet['received_val']==1)AND($resultSet['received_val']!=1))
+//    	 	if (($resultSet['received_val']==1)AND($resultSet['released_val']!=1)AND ($resultSet['forrelease_val']==1))
+//    	{
+//    		$NameOfOffice="Document is already ready for pickup at ".$resultSet['office_description'].".";
+//    		mysqli_close($con);
+//    		return $NameOfOffice;
+//    	}
+    	if 	(($resultSet['complete']==1)OR ($resultSet['scrap']==1))
+    	{
+    		$NameOfOffice="Document is either completed or scrapped.";
+    		mysqli_close($con);
+    		return $NameOfOffice;
+    	}
+    	if (($resultSet['received_val']==1)AND($resultSet['released_val']!=1))
     	{
     		$NameOfOffice="Document must be released first at ".$resultSet['office_description'].".";
 		 		mysqli_close($con);
    			return $NameOfOffice;
     	}
-    	elseif (($resultSet['received_val']!=1)AND($resultSet['received_val']!=1))
+    	elseif (($resultSet['received_val']==1)AND($resultSet['released_val']!=1)AND ($resultSet['forrelease_val']==1))
+    	{
+    		$NameOfOffice="Document is already ready for release. ".$resultSet['office_description'].".";
+    		mysqli_close($con);
+    		return $NameOfOffice;
+    	}
+    	
+    	elseif (($resultSet['received_val']!=1)AND($resultSet['released_val']!=1))
     	{
     		$NameOfOffice="Document must be received first at ".$resultSet['office_description'].".";
     		mysqli_close($con);

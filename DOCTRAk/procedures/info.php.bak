@@ -19,5 +19,5 @@ if (session_status() == PHP_SESSION_NONE) {
   $_SESSION['operation']="";
   $_SESSION['MaxUploadSize']=15728640;
         //$_SESSION['expiretime']=10000;
-	$_SESSION['expiretime']=10;
+	$_SESSION['expiretime']=14400;
 ?>
