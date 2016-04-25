@@ -84,8 +84,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         Report <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu down-bgcolor" role="menu">
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/dochistory.php"; ?>"><span>Document History</span></a></li>
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>Document on Process</span></a></li>
+                                    	<li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Document Tracking</span></a>
+                                                    <ul class="dropdown-menu down-bgcolor">
+                                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doccons.php"; ?>"><span>Document Consolidation</span></a></li>
+																												<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>Office Document Flow</span></a></li>
+                                                    </ul>
+                                                </li>
+                                        
+                                        
                                         <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocesspersignatory.php"; ?>"><span>Document on Process per Signatory</span></a></li>
                                         <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docpersignatory.php"; ?>"><span>Documents per Signatory</span></a></li>
                                     </ul>
@@ -125,6 +131,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                     <ul class="dropdown-menu down-bgcolor">
                                                     	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21917&authkey=!AE_FMAlza931EV0&ithint=file%2cpdf" ><span>Document Manual</span></a></li>
                                                     	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21824&authkey=!APqDiAq2vDQLtd8&ithint=file%2cpdf" ><span>Financial Document Templates</span></a></li>
+                                                    	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!23158&authkey=!ABWzr-1RCwyLAtY&ithint=file%2cpdf" ><span>Consolidated Process Flow Templates</span></a></li>
                                                     	
                                                     	
                                                     	

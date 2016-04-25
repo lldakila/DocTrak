@@ -124,7 +124,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                     <tr>
                     	<td>Template: </td>
                          <td class="select01" style="width:500px;">
-                             <select id="template" name="template" class="form-control selectpicker" style="width:475px;" onchange="templateView()">
+                             <select id="template" name="template" class="form-control selectpicker" style="width:475px;" onchange="templateView()" data-live-search="true">
 
        <?php
            //require_once("../../connection.php");
@@ -307,8 +307,8 @@ function cleartext() {
 }
 function clickSearch(barcode,title,description,template,type,scrap) {
    // document.getElementById('primarykey').value=barcode;
-	if (scrap!=1)
-	{
+//	if (scrap!=1)
+//	{
 		document.process.barcode.value=barcode;
 		document.process.title.value=title;
 		document.process.description.value=description;
@@ -316,12 +316,39 @@ function clickSearch(barcode,title,description,template,type,scrap) {
 		document.process.template.value=template;
 		//document.process.file.value=a;
 		document.process.primarykey.value=barcode;
-	}
-	else if (scrap==1)
-	{
-		alert("Document is scrapped.");
-		cleartext();
-	}
+//	}
+//	else if (scrap==1)
+//	{
+//		alert("Document is scrapped.");
+//		cleartext();
+//	}
+	
+//			jQuery.ajax({
+//            type: "POST",
+//            url:"new/search.php",
+//            dataType:"text", // Data type, HTML, json etc.
+//						data:{barcode_key:barcode},
+//            beforeSend: function() {
+//			        document.getElementById("barcodeinput").value="";
+//						  document.getElementById("title").value="";
+//						  document.getElementById("description").value="";
+//						  document.getElementById("type").value="";
+//						  document.getElementById("template").value="";
+//						  document.getElementById("file").value="";
+//						  document.getElementById("primarykey").value="";
+//                        },
+//                  
+//			success:function(response){
+//				//$("#responds").html();
+//				var el = document.getElementById('responds');
+//el.innerHTML = '<div>'+response;
+//		ajaxSearch();
+//			},
+//			error:function (xhr, ajaxOptions, thrownError){
+//				alert(thrownError);
+//			}
+//			});
+
 
 
 
@@ -504,7 +531,7 @@ function myFunction(e) {
    	link.setAttribute("href", "common/viewtemplate.php?template_id="+strUser);
     }
     
-  
+
 
 </script>
 

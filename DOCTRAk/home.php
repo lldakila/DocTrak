@@ -11,6 +11,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>
 <?php
 
@@ -85,6 +86,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
                       <div id="codetable">
                         <div id='docList' class="scrollHOME">
+                        	
+                        	<p>Select from Filter to load documents</p>
 <!--                                <table id="HOMEdata">
                                 	<tr>
                                             <th>DOC ID</th>
@@ -227,117 +230,117 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         <?php
         
         //FILTER SELECT QUERY TO SHOW (SHOW ALL,PENDING DOCS, APPROVED DOCS)
-        function SummaryFilter($docid)
-        
-        {
-            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-            $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-          global $dateReceived;
-          global $dateReleased;
-          global $dateForrelease;
-          global $docStatus;
-          global $docRemarks;
-          global $docLocation;
-          
+//        function SummaryFilter($docid)
+//        
+//        {
+//            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+//            $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+//          global $dateReceived;
+//          global $dateReleased;
+//          global $dateForrelease;
+//          global $docStatus;
+//          global $docRemarks;
+//          global $docLocation;
+//          
+////
+////          switch ($filterDefinition)
+////          {
+////             case 'showAll':
+//                $SQLquery='SELECT received_date,released_date,forrelease_date,office_name,
+//                            released_comment,forrelease_comment,received_comment
+//                            FROM documentlist_tracker WHERE fk_documentlist_id = "'.$docid.'"  AND
+//                            RECEIVED_DATE IS NOT null ORDER BY sortorder DESC LIMIT 1';
+//                
+//                $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
+//                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+//                {
+//                    $dateReceived=$row['received_date'];
+//                    $dateReleased=$row['released_date'];
+//                    $dateForrelease=$row['forrelease_date'];
+//                    $docLocation=$row['office_name'];
+//                   
+//                    if ($row['released_date']<>'')
+//                    {
+//                        $docStatus='Released';
+//                        $docRemarks=$row['released_comment'];
+//                        return true;
+//                    }
+//                    elseif (($row['forrelease_date']<>'') AND ($row['released_date']=='')) 
+//                    {
+//                        $docStatus='For Pickup';
+//                        $docRemarks=$row['forrelease_comment'];
+//                        return true;
+//                    }
+//                    else
+//                    {
+//                        $docStatus='On Process';
+//                        $docRemarks=$row['received_comment'];
+//                        return true;
+//                    }
+//                    
+//                
+//                   
+//                }
+//                
+////                break;
+////          }
+//      }
+//               
+//               
+//               
+//               
+//        function SeekFilter($docid,$filterDefinition)
+//            {
 //
-//          switch ($filterDefinition)
-//          {
-//             case 'showAll':
-                $SQLquery='SELECT received_date,released_date,forrelease_date,office_name,
-                            released_comment,forrelease_comment,received_comment
-                            FROM documentlist_tracker WHERE fk_documentlist_id = "'.$docid.'"  AND
-                            RECEIVED_DATE IS NOT null ORDER BY sortorder DESC LIMIT 1';
-                
-                $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
-                while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-                {
-                    $dateReceived=$row['received_date'];
-                    $dateReleased=$row['released_date'];
-                    $dateForrelease=$row['forrelease_date'];
-                    $docLocation=$row['office_name'];
-                   
-                    if ($row['released_date']<>'')
-                    {
-                        $docStatus='Released';
-                        $docRemarks=$row['released_comment'];
-                        return true;
-                    }
-                    elseif (($row['forrelease_date']<>'') AND ($row['released_date']=='')) 
-                    {
-                        $docStatus='For Pickup';
-                        $docRemarks=$row['forrelease_comment'];
-                        return true;
-                    }
-                    else
-                    {
-                        $docStatus='On Process';
-                        $docRemarks=$row['received_comment'];
-                        return true;
-                    }
-                    
-                
-                   
-                }
-                
-//                break;
-//          }
-      }
-               
-               
-               
-               
-        function SeekFilter($docid,$filterDefinition)
-            {
-
-                global $RecieveAt;
-                global $ReceivedDate;
-                $ReceivedDate='';
-
-
-                $sqlquery=select_info_multiple_key("SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER,RECEIVED_DATE FROM documentlist_tracker WHERE FK_DOCUMENTLIST_ID = '".$docid."' ORDER BY SORTORDER ASC");
-                if (!$sqlquery)
-                {
-                    return false;
-
-                }
-
-
-                    switch($filterDefinition)
-
-                    {
-                        case 'DocumentsOnOffice':
-                            foreach($sqlquery as $rows)
-                            {
-                                if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
-                                {
-                                    if ($rows['RELEASED_VAL']!=1 && $rows['RECEIVED_VAL']==1 )
-                                    {
-                                        //$_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
-                                        $ReceivedDate=$rows['RECEIVED_DATE'];
-                                        return true;
-                                    }
-
-                                }
-                            }
-                            return false;
-
-                        case 'ReceivableDocument':
-                             foreach($sqlquery as $rows)
-                            {
-                                if ($rows['FORRELEASE_VAL']==1 and $rows['RELEASED_VAL']!=1)
-                                {
-                                    $RecieveAt=$rows['OFFICE_NAME'];
-                                   // $RecieveAt="adasdasd";
-                                        return true;
-                                }
-                            }
-                            return false;
-
-                    }
-
-
-
-                }
+//                global $RecieveAt;
+//                global $ReceivedDate;
+//                $ReceivedDate='';
+//
+//
+//                $sqlquery=select_info_multiple_key("SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER,RECEIVED_DATE FROM documentlist_tracker WHERE FK_DOCUMENTLIST_ID = '".$docid."' ORDER BY SORTORDER ASC");
+//                if (!$sqlquery)
+//                {
+//                    return false;
+//
+//                }
+//
+//
+//                    switch($filterDefinition)
+//
+//                    {
+//                        case 'DocumentsOnOffice':
+//                            foreach($sqlquery as $rows)
+//                            {
+//                                if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
+//                                {
+//                                    if ($rows['RELEASED_VAL']!=1 && $rows['RECEIVED_VAL']==1 )
+//                                    {
+//                                        //$_SESSION['keytracker']=$rows['DOCUMENTLIST_TRACKER_ID'];
+//                                        $ReceivedDate=$rows['RECEIVED_DATE'];
+//                                        return true;
+//                                    }
+//
+//                                }
+//                            }
+//                            return false;
+//
+//                        case 'ReceivableDocument':
+//                             foreach($sqlquery as $rows)
+//                            {
+//                                if ($rows['FORRELEASE_VAL']==1 and $rows['RELEASED_VAL']!=1)
+//                                {
+//                                    $RecieveAt=$rows['OFFICE_NAME'];
+//                                   // $RecieveAt="adasdasd";
+//                                        return true;
+//                                }
+//                            }
+//                            return false;
+//
+//                    }
+//
+//
+//
+//                }
 
 
             ?>
@@ -442,7 +445,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
    
 $(document).ready(function(){
-refreshList();
+//refreshList();
 });
 
 </script>

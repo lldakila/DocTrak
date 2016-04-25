@@ -25,8 +25,7 @@ if (mysqli_connect_error())
   die;
 }
 
- 
- 
+
  if ($_POST['document_hidden']=="save") 
      {
         
@@ -35,7 +34,7 @@ if (mysqli_connect_error())
            // CHECK IF INPUTFILE IS EMPTY START
             if (empty($_FILES['pdffile']['name']))
             {
-                $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";   
+                $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['title']))."','".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['description']))."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";   
         
             }
             else 
@@ -53,7 +52,7 @@ if (mysqli_connect_error())
                
                 if ($docProp == "application/pdf")
                 {
-                    $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,DOCUMENT_MIME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','{$docData}','".$docProp."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
+                    $query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,DOCUMENT_MIME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['title']))."','".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['description']))."','{$docData}','".$docProp."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
                 }
                 else
                 {
@@ -86,12 +85,12 @@ if (mysqli_connect_error())
         
 
            
-            $query="SELECT  fk_office_name,SORT FROM template_list WHERE fk_template_id= '".$_POST['template']."' order by sort asc";
+            $query="SELECT  fk_office_name,SORT,docprocess FROM template_list WHERE fk_template_id= '".$_POST['template']."' order by sort asc";
             $RESULT=mysqli_query($con,$query);
 
             while ($row = mysqli_fetch_array($RESULT)) 
             {
-                $query="INSERT INTO documentlist_tracker(OFFICE_NAME,SORTORDER,fk_documentlist_id) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."')";
+                $query="INSERT INTO documentlist_tracker(OFFICE_NAME,SORTORDER,fk_documentlist_id,docprocess) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."','".$_POST['docprocess']."')";
                 $outcome=mysqli_query($con,$query);
 
                 if (!$outcome) 
@@ -165,7 +164,7 @@ if (mysqli_connect_error())
             
             if (empty($_FILES['pdffile']['name']))
             {
-                $query="UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
+                $query="UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['title']))."',DOCUMENT_DESCRIPTION='".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['description']))."',FK_DOCUMENTTYPE_ID='".$_POST['type']."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
             }
             else
             {
@@ -181,7 +180,7 @@ if (mysqli_connect_error())
                
                 if ($docProp == "application/pdf")
                 {
-                    $query="UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".$_POST['title']."',DOCUMENT_DESCRIPTION='".$_POST['description']."',FK_DOCUMENTTYPE_ID='".$_POST['type']."',DOCUMENT_FILE='{$docData}',DOCUMENT_MIME='".$docProp."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
+                    $query="UPDATE documentlist SET DOCUMENT_ID='".$_POST['barcode']."',DOCUMENT_TITLE='".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['title']))."',DOCUMENT_DESCRIPTION='".mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $_POST['description']))."',FK_DOCUMENTTYPE_ID='".$_POST['type']."',DOCUMENT_FILE='{$docData}',DOCUMENT_MIME='".$docProp."' WHERE DOCUMENT_ID = '".$_POST['primarykey']."' ";
                     //$query="INSERT INTO documentlist(DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILE,DOCUMENT_MIME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,FK_SECURITY_USERNAME,TRANSDATE,FK_OFFICE_NAME_DOCUMENTLIST) VALUES ('".$_POST['barcode']."','".$_POST['title']."','".$_POST['description']."','{$docData}','".$docProp."','".$_POST['template']."','".$_POST['type']."','".$_SESSION['usr']."','".date("Y-m-d H:i:s")."','".$_SESSION['OFFICE']."')";
                 }
                 else
@@ -236,8 +235,7 @@ if (mysqli_connect_error())
             }
             else 
             {
-//                echo "error";
-//                die();
+//                
                 mysqli_rollback($con);
                 $_SESSION['operation']="error";
                 echo "rollback";

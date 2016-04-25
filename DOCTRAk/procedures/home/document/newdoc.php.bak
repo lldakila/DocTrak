@@ -23,10 +23,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-<script src="../../../js/jquery-1.10.2.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 <script src="../../../js/jquery.colorbox-min.js"></script>
 
-<script src="../../../js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 <script src="../../../js/bootstrap-select.js"></script>
 </head>
 
@@ -306,8 +307,8 @@ function cleartext() {
 }
 function clickSearch(barcode,title,description,template,type,scrap) {
    // document.getElementById('primarykey').value=barcode;
-	if (scrap!=1)
-	{
+//	if (scrap!=1)
+//	{
 		document.process.barcode.value=barcode;
 		document.process.title.value=title;
 		document.process.description.value=description;
@@ -315,12 +316,39 @@ function clickSearch(barcode,title,description,template,type,scrap) {
 		document.process.template.value=template;
 		//document.process.file.value=a;
 		document.process.primarykey.value=barcode;
-	}
-	else if (scrap==1)
-	{
-		alert("Document is scrapped.");
-		cleartext();
-	}
+//	}
+//	else if (scrap==1)
+//	{
+//		alert("Document is scrapped.");
+//		cleartext();
+//	}
+	
+//			jQuery.ajax({
+//            type: "POST",
+//            url:"new/search.php",
+//            dataType:"text", // Data type, HTML, json etc.
+//						data:{barcode_key:barcode},
+//            beforeSend: function() {
+//			        document.getElementById("barcodeinput").value="";
+//						  document.getElementById("title").value="";
+//						  document.getElementById("description").value="";
+//						  document.getElementById("type").value="";
+//						  document.getElementById("template").value="";
+//						  document.getElementById("file").value="";
+//						  document.getElementById("primarykey").value="";
+//                        },
+//                  
+//			success:function(response){
+//				//$("#responds").html();
+//				var el = document.getElementById('responds');
+//el.innerHTML = '<div>'+response;
+//		ajaxSearch();
+//			},
+//			error:function (xhr, ajaxOptions, thrownError){
+//				alert(thrownError);
+//			}
+//			});
+
 
 
 
@@ -503,7 +531,7 @@ function myFunction(e) {
    	link.setAttribute("href", "common/viewtemplate.php?template_id="+strUser);
     }
     
-  
+
 
 </script>
 

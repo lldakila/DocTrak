@@ -92,7 +92,7 @@
             $counterX=1;
             $pieces = explode("|",$_POST['OfficeArray']);
             $arrayRev=array_reverse($pieces);
-            $query="UPDATE document_template SET TEMPLATE_name='".$_POST['template_name']."',TEMPLATE_DESCRIPTION='".$_POST['template_description']."' WHERE TEMPLATE_ID = '".$_POST['primarykey']."' ";
+            $query="UPDATE document_template SET TEMPLATE_name='".$_POST['template_name']."',TEMPLATE_DESCRIPTION='".$_POST['template_description']."', public=".$publicTemplate." WHERE TEMPLATE_ID = '".$_POST['primarykey']."' ";
             $RESULT=mysqli_query($con,$query);
             if (!$RESULT) 
             {

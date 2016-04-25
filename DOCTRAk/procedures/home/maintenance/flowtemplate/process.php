@@ -12,7 +12,7 @@
         require_once("primarykey.php");
         $templateKey=GenKey();
     }
-   
+   echo $templateKey;
 
     require_once("../../../connection.php");
     

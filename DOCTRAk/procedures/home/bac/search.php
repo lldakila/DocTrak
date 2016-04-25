@@ -479,7 +479,7 @@ function NewDocument($docid,$docdetail,$prcost,$docDate)
     
     
     $query = 'INSERT  INTO bacdocumentlist(bacdocument_id,bacdocumentdetail,prcost,fk_officename_bacdocumentlist,fk_security_username,
-            pr_date,fk_bacdocument_template) VALUES ("'.$docid.'","'.$docdetail.'",'.$prcost.',"'.$_SESSION['OFFICE'].'","'.$_SESSION['security_name'].'",STR_TO_DATE("'.$validDate.'","%m/%d/%Y"),"'.$template_id.'")';
+            pr_date,fk_bacdocument_template) VALUES ("'.$docid.'","'.mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $docdetail)).'",'.$prcost.',"'.$_SESSION['OFFICE'].'","'.$_SESSION['security_name'].'",STR_TO_DATE("'.$validDate.'","%m/%d/%Y"),"'.$template_id.'")';
 
 //    echo $query;
 //    die();
@@ -554,7 +554,7 @@ function newEDIT($primKey,$docid,$docdetail,$prcost,$docDate)
     $pKey=mysqli_real_escape_string($con,$primKey);
     mysqli_autocommit($con,FALSE);
     $flag=true;
-    
+    $docdetail=mysqli_real_escape_string($con, str_replace(array("'",'"'), '' , $docdetail));
     $date = date_parse($docDate);
     if (!checkdate($date["month"],$date["day"],$date["year"]))
     {
@@ -567,7 +567,7 @@ function newEDIT($primKey,$docid,$docdetail,$prcost,$docDate)
     $sqlString="UPDATE bacdocumentlist SET bacdocument_id='$docid',bacdocumentdetail='$docdetail',prcost='$prcost',pr_date=STR_TO_DATE('$validDate','%m/%d/%Y') WHERE bacdocument_id ='$pKey' ";
     $result=  mysqli_query($con, $sqlString);
     if (!$result)
-    {
+    { 
         $flag=false;
         printf("Errormessage: %s\n", mysqli_error($con));
         echo '<br>'; 
@@ -660,7 +660,8 @@ function checkTransaction($document_id)
     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
-    $sql="SELECT COUNT(*) as noOfRow FROM bacdocumentlist WHERE bacdocument_id not in (SELECT fk_bacdocumentlist_id FROM bacdocumentlist_tracker WHERE receive_date IS NULL AND checkin_date IS NULL) AND  bacdocument_id = '".$document_id."' ";
+    $sql="SELECT COUNT(*) as noOfRow FROM bacdocumentlist WHERE bacdocument_id  in (SELECT fk_bacdocumentlist_id FROM bacdocumentlist_tracker WHERE receive_date IS NULL AND checkin_date IS NULL) AND  bacdocument_id = '".$document_id."' ";
+    
     $result=  mysqli_query($con, $sql);
     $recSet=  mysqli_fetch_array($result);
    

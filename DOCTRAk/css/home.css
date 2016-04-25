@@ -246,6 +246,34 @@ div.actionButton {
 }
 
 
+.panel {
+	margin-bottom:0px;
+}
+
+.panel-heading {
+	padding:5px 5px;
+}
+
+.panel-body {
+	padding:5px 5px;
+}
+
+label {
+	font-size: 10px;
+    padding-left: 10px;
+    padding-bottom: 15px
+}
+
+.checkbox-inline input[type=checkbox] {
+	width:12px;
+	height:12px;
+	margin-top:1px;
+}
+
+.checkboxRight {
+	float:right;
+}
+
 /**############################################ inboxtable #############################################**/
 .inbox {
 	width:85%;
@@ -1086,7 +1114,7 @@ table.fixedwidth th{
 }
 
 #headtable {
-	float:left;
+	/*float:left;*/
 	margin:10px 0 0 0px;
 }
 
@@ -1111,7 +1139,7 @@ table.fixedwidth th{
 	
 #codetable {
 	width:1205px;
-	margin:20px auto;
+	margin:0px auto;
 }
 
 #codetable .scroll {

@@ -7,10 +7,7 @@
 	 header('Location:../../../index.php');
 	}
 
-	if($_SESSION['GROUP']!='POWER ADMIN')
-	{
-		header('Location:../../../index.php');
-	}
+
 
 
 ?>
@@ -28,9 +25,12 @@
         ?>
     </title>
     
-    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-    <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon" />
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+
+<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+
+
     
     
     
@@ -57,18 +57,7 @@
 		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
 		      </ul>
 		   </li>
-		   <?php
-		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-		   {
-		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-		      <ul>
-			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-			 <li><a href="#"><span>Check In</span></a></li>
-		 <li><a href="#"><span>Backlog</span></a></li>
-		      </ul>
-		   </li>'; */
-		   }
-		   ?>
+		 
 
 		</ul>
 	    </div>
@@ -81,104 +70,83 @@
             <div id="post">
 
                 <div id="post01">
-                    <h2>DOCUMENT ON PROCESS</h2>
+                	 <h2></h2>
+                    <div id="headform">
 
+										
+							<div class="checkHistory">
+																
+										
+										
+										
+												<div class="panel panel-info">
+												  <div class="panel-heading">FILTER</div>
+												  <div class="panel-body">
+												  
+														<div style="margin-top:10px;">
+															
+															
+															<form class="form-inline">
+															  <div class="form-group">
+																<label >Date From:</label>
+																<input type="date" class="form-control" id="datefrom" name="datefrom" placeholder="Date From" value="<?php echo date('Y-m-d'); ?>" />
+															  </div>
+															  <div class="form-group">
+																<label >Date To:</label>
+																<input type="date" class="form-control" id="dateto" placeholder="Date To" value="<?php echo date('Y-m-d'); ?>" />
+															  </div>
+															  <div class="form-group">
+																
+																
+															  <?php
+															  //require_once("../../../procedures/connection.php");
+																if (($_SESSION['GROUP']=='POWER ADMIN')or ($_SESSION['GROUP']=='ADMIN'))
+																{
+																	echo '<label >Office</label>';
+															  echo '<div class="form-group">';
+															  
+																echo '<select id="offices" class="form-control selectpicker" style="width:605px;" data-live-search="true"  title="Choose one of the following...">';
+																//<option class="bs-title-option" value="">Choose office.....</option>';
+																
 
-                    	<div id="headform">
+												$query1=select_info_multiple_key("select office_name, office_description from office order by office_name asc");
+											           foreach($query1 as $var)
+											           {
+											              echo "<option data-subtext='".$var['office_description']."' value='".$var['office_name']."' >".$var['office_name']."</option>";
+											           }
+											           echo '</select>';
+															  echo '</div>';
+															}
+																?>
+															<button id="filter" name="filter" class="btn btn-primary">Filter</button>
+														
+															  </div>
+															
+															</form>
+															
+														</div>
+														<div class="tfclear"></div>
+														
+													
+										
+													
+												  </div>
+												</div>
+												
+												
+					
+                      	<div id="codetable">
+                            <div id="historydata" class="row" style="margin-top:10px;">
                         		
-                                				<div id="headtable">
-                                        		<table>
-                                                	<tr>
-                                                    	<td>DATE FROM:</td>
-                                                        <td><input id="datefrom" class="form-control" name="datefrom" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
-                                                        <td>DATE TO:</td>
-                                                        <td><input id="dateto" class="form-control" name="dateto" type="date" value="<?php echo date('Y-m-d'); ?>"/></td>
-                                                        <td><button id="filter" name="filter" class="btn btn-primary">Filter </button></td>
-                                                    </tr>
-                                                </table>
-                                                </div>
-                                                
-                                                <form name="onprocess" class="form-inline">
-                                                    <div id="headsearch">
-                                                        <div class="form-group">
-                                                            <div class="input-group">
-                                                                <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                                                <button id="search_document" class="btn btn-default">Search </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <div class="tfclear"></div>
-                                                
-                                        
-                                
-                        </div>
-                        <div id="codetable">
-                            <div class="scroll">
-                        		<table id="historydata">
-                                	<tr>
-                                    	<th>BARCODE</th>
-                                        <th>TITLE</th>
-                                        <th>OFFICE</th>
-                                        <th>OWNER</th>
-                                        <th>DATE</th>
-                                        <th>TYPE</th>
-                                    </tr>
-
-
-			                        <?php
-				                        require_once("../../connection.php");
-				                        if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
-				                        {
-					                        $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name,fk_office_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username ORDER BY transdate desc");
-				                        }
-				                        else
-				                        {
-					                        $query=select_info_multiple_key("select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name,fk_office_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE fk_office_name ='".$_SESSION['OFFICE']."' ORDER BY transdate desc");
-				                        }
-                                                        
-                                                        $rowcolor="notblue";
-
-
-										if ($query)
-										{
-
-
-					                        foreach($query as $var)
-					                        {
-						                        if ($rowcolor=="blue")
-						                        {
-							                        echo "<tr class='usercolor'>";
-							                        $rowcolor="notblue";
-						                        }
-						                        else
-						                        {
-							                        echo "<tr class='usercolor1'>";
-							                        $rowcolor="blue";
-						                        }
-
-						                        echo "<td>".$var['document_id']."</td>";
-						                        echo "<td>".$var['document_title']."</td>";
-						                        echo "<td>".$var['fk_office_name']."</td>";
-						                        echo "<td>".$var['security_name']."</td>";
-						                        echo "<td>".$var['transdate']."</td>";
-						                        echo "<td>".$var['fk_template_id']."</td>";
-
-						                        echo "</tr>";
-					                        }
-										}
-
-
-
-			                        ?>
-
-                                        </table>
                             </div>
                         </div>
-
-
-                </div>
-                <div class="tfclear"></div>
+                      
+                      
+								
+							</div>
+						
+				
+                        </div>
 
                 
             </div>
@@ -213,47 +181,40 @@
        include('../../../modal.php');
        ?>
 <!-- End Modal -->
-<script src="../../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
+<script src="../../../js/bootstrap-select.js"></script>
+    
     <script language="JavaScript" type="text/javascript">
 
-
-	    $(document).ready(function() {
-		    $("#search_document").click(function (e) {
+		    $("#filter").click(function (e) {
+		    	
 			    e.preventDefault();
-			    var myData = 'search_string='+ $("#search_string").val(); //build a post data structure
+			    var datefrom=document.getElementById('datefrom').value;
+			    var dateto=document.getElementById('dateto').value;
+			    var officeFilter=null;
+			   
+			    if ($("#offices").length > 0)
+			    	{
+			    		officeFilter=document.getElementById('offices').value;
+			    		
+ 						}
+ 				
+ 					
 			    jQuery.ajax({
 				    type: "POST",
 				    url:"onprocess/search.php",
 				    dataType:"text", // Data type, HTML, json etc.
-				    data:myData,
+				    data:{vdatefrom:datefrom,vdateto:dateto,vofficeFilter:officeFilter},
+				    	beforeSend: function() 
+				  	{
+            	$("#filter").html('wait..');
+            },
 				    success:function(response){
 					    $("#historydata").html(response);
-
-				    },
-				    error:function (xhr, ajaxOptions, thrownError){
-					    alert(thrownError);
-				    }
-			    });
-		    });
-
-
-
-		    $("#filter").click(function (e) {
-			    e.preventDefault();
-			    //var myData = 'datefrom='+ $("#datefrom").val(); //build a post data structure
-			    //var myData2 = 'dateto='+ $("#dateto").val();
-			    var datefrom=document.getElementById('datefrom').value;
-			    var dateto=document.getElementById('dateto').value;
-			    jQuery.ajax({
-				    type: "POST",
-				    url:"onprocess/filter.php",
-				    dataType:"text", // Data type, HTML, json etc.
-				    data:'datefrom='+datefrom+'&dateto='+dateto,
-				    success:function(response){
-					    $("#historydata").html(response);
-
-
+							$("#filter").html('Filter');
 				    },
 				    error:function (xhr, ajaxOptions, thrownError){
 					    alert(thrownError);
@@ -266,7 +227,7 @@
 
 
 
-	    });
+	   
 
 
 

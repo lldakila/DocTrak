@@ -376,6 +376,9 @@ $('#searchform').submit(function () {
           
       }
 
+function addslashes( str ) {
+    return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+}
 //CHECK IF DATE ENTERED IS VALID
 //function isValidDate(dateString)
 //{
@@ -437,10 +440,10 @@ function deleteMe()
             },
             success:function(response)
             {
-		if (response=='Document deleted.')
-                {
-                     $.growl.notice({ message: response });
-		     newMe();
+							if (response=='Document deleted.')
+					                {
+					                     $.growl.notice({ message: response });
+							     newMe();
                 }
                 else
                 {

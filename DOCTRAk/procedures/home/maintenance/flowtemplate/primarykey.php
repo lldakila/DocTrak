@@ -16,6 +16,8 @@ function GenKey()
     //echo $query[0]['COUNTER'];
     $countX=$query[0]['counter']+1;
     $pKey = $_SESSION['OFFICE']."-".$countX;
-    insert_update_delete("UPDATE generator SET counter='.$countX.' WHERE GENERATOR_NAME = 'TEMPLATE' ");
+    
+    insert_update_delete("UPDATE generator SET counter=".$countX." WHERE GENERATOR_NAME = 'TEMPLATE' ");
+   
     return $pKey;
 }
