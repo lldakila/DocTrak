@@ -27,7 +27,10 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
 <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
 <script src="js/jquery.growl.js"></script>
+
 
 
 
@@ -87,8 +90,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                       <div id="codetable">
                         <div id='docList' class="scrollHOME">
                         	
-                        	<p>Select from Filter to load documents</p>
-<!--                                <table id="HOMEdata">
+  <!--                      	<p>Select from Filter to load documents</p>
+                                <table id="HOMEdata">
                                 	<tr>
                                             <th>DOC ID</th>
                                             <th>TITLE</th>
@@ -352,7 +355,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
        ?>
 <!-- End Modal -->
 
-
+<link rel="stylesheet" type="text/css" href="css/bootstrap-select.css" />
+<script src="js/bootstrap-select.js"></script>
 
 
     <script type="text/javascript">
@@ -445,7 +449,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
    
 $(document).ready(function(){
-//refreshList();
+refreshList();
 });
 
 </script>

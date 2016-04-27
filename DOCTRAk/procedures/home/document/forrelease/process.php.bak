@@ -73,7 +73,7 @@ else
 //        $flag=false;
 //    }
 //    
-$sql="SELECT security_username FROM security_user WHERE fk_office_name = '$document_office'";
+$sql="SELECT security_username FROM security_user WHERE fk_office_name = '".$document_office."' ";
     $secNameQuery=mysqli_query($con,$sql);
    
     while ($secNameResult=mysqli_fetch_array($secNameQuery))

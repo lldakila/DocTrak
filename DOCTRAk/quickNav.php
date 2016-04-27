@@ -89,8 +89,8 @@ function renderForm($formName)
                                      {
                                         echo "<option value = '".$row['DOCUMENTTYPE_ID']."'>".$row['DOCUMENTTYPE_ID']."</option>";
                                      }
-
-															global $PROJECT_ROOT;
+												
+//															global $PROJECT_ROOT;
                               echo "
                           </select>
                           
@@ -98,19 +98,16 @@ function renderForm($formName)
                         
                         <label style='float:left; margin:0 10px 0 5px; padding-top:7px; padding-bottom:10px;'>Template:</label>
                         <div class='fixinput' style='width:37.9%;'>
-                          <select id='DocuTemplate' name='type' class='form-control' onchange='templateViewer()'>     ";
+                        
+                          <select id='DocuTemplate' name='type' class='form-control selectpicker' onchange='templateViewer()' data-live-search='true'>     ";
 
-														echo "<option style='display:none' selected='selected' value = '' ></option>";
-                                    $query="select TEMPLATE_ID, template_name from document_template ORDER BY template_name ASC";
-
-//                                     $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
-                                     $result= mysqli_query($con,$query)or die(mysqli_error($con));
-                                     while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-                                     {
-                                        echo "<option  value = ".$row['TEMPLATE_ID'].">".$row['template_name']."</option>";
-                                        $templateId=$row['TEMPLATE_ID'];
-                                     }
-														$url=$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id=".$templateId;
+														//echo "<option style='display:none' selected='selected' value = '' ></option>";
+                                    $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template where showme = 1 order by template_name asc");
+																												           foreach($query1 as $var)
+																												           {
+																												              echo "<option data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."' selected='selected'>".$var['template_name']."</option>";
+																												           }
+//														$url=$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id=".$templateId;
                              
                               //<a class='viewTemplateLinkss' target='_blank' id ='viewDocTemplateLink' style='color:#000;'  href=''>View Template</a>
                              echo "

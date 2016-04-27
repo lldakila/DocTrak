@@ -78,7 +78,7 @@ $sql="SELECT security_username FROM security_user WHERE fk_office_name = '".$doc
    
     while ($secNameResult=mysqli_fetch_array($secNameQuery))
     {
-        $query="INSERT INTO mail(MAILCONTENT,FK_SECURITY_USERNAME_OWNER,MAILDATE,MAILTITLE,FK_SECURITY_USERNAME_SENDER,MAILSTATUS,fk_table,fk_key) VALUES ('".$document_message."','".$secNameResult['security_username']."','".date("Y-m-d H:i:s")."','".$document_title."','".$_SESSION['usr']."',0,'documentlist','".$document_id."')";
+        $query="INSERT INTO mail(MAILCONTENT,FK_SECURITY_USERNAME_OWNER,MAILDATE,MAILTITLE,FK_SECURITY_USERNAME_SENDER,MAILSTATUS,fk_table,fk_key) VALUES ('".$document_message."','".$secNameResult['security_username']."','".date("Y-m-d H:i:s")."','".$document_title."','".$_SESSION['usr']."',0,'Document Tracking','".$document_id."')";
         $RESULT=mysqli_query($con,$query);
         //echo $query;      
         if (!$RESULT) 

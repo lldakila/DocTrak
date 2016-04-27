@@ -81,73 +81,70 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             <form name="process" method="post" action="new/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
     					<div class="table1">
-    				<table >
-                    <tr>
-                    	<td>BarCode:</td>
+															    				<table >
+															                    <tr>
+															                    	<td>BarCode:</td>
+															
+															                        <td class="usertext1">
+															                            <input id="primarykey" name="primarykey" type="hidden" />
+															                            <input id="barcodeinput" name="barcode" type="text" class="form-control" />
+																													<!-- <input id="generatebarcode" type="button" value="Generate" class="btn btn-primary"/></td>-->
+															                    		</td>
+															                    </tr>
+															                    <tr>
+															                    		<td>Title:</td>
+															                        <td class="usertext"><input id="title" name="title" type="text" class="form-control" /> </td>
+															                    </tr>
+															                    <tr>
+															                    		<td>Description:</td>
+															                        <td class="usertext"><input id="description" name="description" type="text" class="form-control" /> </td>
+															                    </tr>
+															                    <tr>
+															                    		<td>Type: </td>
+															                        <td class="select01">
+															                             <select id="type" name="type" class="form-control">
+																												       <?php
+																												           require_once("../../connection.php");
+																												
+																												           $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
+																												
+																												           foreach($query as $var) {
+																												              echo "<option>".$var['DOCUMENTTYPE_ID']."</option>";
+																												           }
+																												    		?>
+															                             </select>
+															                        </td>
+															                    </tr>
+															                    <tr>
+															                    	<td>Template: </td>
+															                         <td class="select01" style="width:500px;">
+															                             <select id="template" name="template" class="form-control selectpicker" style="width:475px;" onchange="templateView()" data-live-search="true">
+															
+																												       <?php
+																												           //require_once("../../connection.php");
+																												          
+																												                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template order by template_name asc");
+																												           foreach($query1 as $var)
+																												           {
+																												              echo "<option data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."' selected='selected'>".$var['template_name']."</option>";
+																												           }
+																																	
+																												    		?>
+															                   						</select>
+															                  				</td>
+															                  				<?php
+																												           //require_once("../../connection.php");
+																											
 
-                        <td class="usertext1">
-                            <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="barcodeinput" name="barcode" type="text" class="form-control" />
-<!--                            <input id="generatebarcode" type="button" value="Generate" class="btn btn-primary"/></td>-->
-                    	</td>
-                    </tr>
-                    <tr>
-                    	<td>Title:</td>
-                        <td class="usertext"><input id="title" name="title" type="text" class="form-control" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Description:</td>
-                        <td class="usertext"><input id="description" name="description" type="text" class="form-control" /> </td>
-                    </tr>
-
-                    <tr>
-
-                    	<td>Type: </td>
-                         <td class="select01">
-                             <select id="type" name="type" class="form-control">
-
-       <?php
-           require_once("../../connection.php");
-
-           $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
-
-           foreach($query as $var) {
-              echo "<option>".$var['DOCUMENTTYPE_ID']."</option>";
-           }
-
-
-    ?>
-                              </select>
-                               </td>
-
-                    </tr>
-                    <tr>
-                    	<td>Template: </td>
-                         <td class="select01" style="width:500px;">
-                             <select id="template" name="template" class="form-control selectpicker" style="width:475px;" onchange="templateView()">
-
-       <?php
-           //require_once("../../connection.php");
-          
-                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template order by template_name asc");
-           foreach($query1 as $var)
-           {
-              echo "<option data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."' selected='selected'>".$var['template_name']."</option>";
-           }
-           
-           echo "</select></td>";
-					echo "<td><a class='viewTemplateLinks' target='_blank' id ='viewTemplateLink' style='color:#000;'  href='".$PROJECT_ROOT."'/procedures/home/document/common/viewtemplate.php?template_id=".$var['TEMPLATE_ID']."'>View Template</a></td>";
-					
-    ?>
-                   
-
-                  	
-                    </tr>
-                    <tr>
-                    	<td>PDF File: </td>
-                         <td><input id="file" name="pdffile" type="file" accept=".pdf" /> </td>
-                    </tr>
-                  </table>
+																																	echo "<td><a class='viewTemplateLinks' target='_blank' id ='viewTemplateLink' style='color:#000;'  href='".$PROJECT_ROOT."'/procedures/home/document/common/viewtemplate.php?template_id=".$var['TEMPLATE_ID']."'>View Template</a></td>";
+																																	
+																												    		?>
+															                    </tr>
+															                    <tr>
+															                    	<td>PDF File: </td>
+															                         <td><input id="file" name="pdffile" type="file" accept=".pdf" /> </td>
+															                    </tr>
+															                  </table>
 
                     <?php
             

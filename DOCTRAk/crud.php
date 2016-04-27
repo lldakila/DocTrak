@@ -165,20 +165,29 @@ function searchUser($user_Id,$docid)
     $result=  mysqli_fetch_array($query);
     if ($result['public']==1)
     {
-    		 $sql='SELECT security_name,count(security_name) as num_rows FROM security_user WHERE security_username = "'.$_userid.'"  ';
+    		 $sql='SELECT security_name,count(security_name) as num_rows,master FROM security_user WHERE security_username = "'.$_userid.'"  ';
     }
     else
     {
-    		$sql='SELECT security_name,count(security_name) as num_rows FROM security_user WHERE security_username = "'.$_userid.'" and fk_office_name = "'.$office.'" ';
+    		$sql='SELECT security_name,count(security_name) as num_rows,master FROM security_user WHERE security_username = "'.$_userid.'" and fk_office_name = "'.$office.'" ';
     }
 
 
-
+		//CHECK IF MASTER USER
+		if(checkIfMaster($_userid))
+		{
+			
+		  $return['security_name']=getUser($user_Id);
+    	$return['num_rows']=1;
+    	return $return;
+		}
 
 
 
     $query=mysqli_query($con, $sql);
     $result=  mysqli_fetch_array($query);
+//    if ($result['security_name']==1)
+   
     $return['security_name']=$result['security_name'];
     $return['num_rows']=$result['num_rows'];
     mysqli_close($con);
@@ -188,6 +197,28 @@ function searchUser($user_Id,$docid)
 
 
 }
+
+//CHECK IF MASTER USER
+	function checkIfMaster($userName)
+	{
+		  global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+	    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+	    $_userid=mysqli_real_escape_string($con,$userName);
+	    
+	    $sql="select master from security_user where security_username = '".$userName."' ";
+	    $query=mysqli_query($con, $sql);
+    	$result=  mysqli_fetch_array($query);
+	    
+	    if ($result['master']==1)
+	    {
+	    	return true;
+	    }
+	    
+	    return false;
+		
+	}
+
+
 
 //GET SECURITY NAME
 function getUser($user_Id)
@@ -464,12 +495,12 @@ function ForReleaseDocument($document_id)
 
     }
 
-    $sql="SELECT security_username FROM security_user WHERE fk_office_name = '$document_office'";
+    $sql="SELECT security_username FROM security_user WHERE fk_office_name = '".$document_office."' ";
     $secNameQuery=mysqli_query($cons,$sql);
 
     while ($secNameResult=mysqli_fetch_array($secNameQuery))
     {
-        $query="INSERT INTO mail(MAILCONTENT,FK_SECURITY_USERNAME_OWNER,MAILDATE,MAILTITLE,FK_SECURITY_USERNAME_SENDER,MAILSTATUS) VALUES ('".$document_message."','".$secNameResult['security_username']."','".date("Y-m-d H:i:s")."','".$document_title."','".$_SESSION['usr']."',0)";
+        $query="INSERT INTO mail(MAILCONTENT,FK_SECURITY_USERNAME_OWNER,MAILDATE,MAILTITLE,FK_SECURITY_USERNAME_SENDER,MAILSTATUS,fk_table) VALUES ('".$document_message."','".$secNameResult['security_username']."','".date("Y-m-d H:i:s")."','".$document_title."','".$_SESSION['usr']."',0,'Document Tracking')";
         $RESULT=mysqli_query($cons,$query);
         //echo $query;
         if (!$RESULT)
@@ -477,6 +508,7 @@ function ForReleaseDocument($document_id)
             $flag=false;
             $errMsg= mysqli_error($cons)."<br>";
         }
+        log_audit($KEY,$query,'Add Mail',''.$_SESSION['security_name'].''); 
     }
 
     if ($flag==true){

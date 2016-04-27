@@ -97,7 +97,7 @@
                     	<td>Template:</td>
 
                         <td class="textinput">
-                            <input id="primarykey" name="primarykey" type="text" />
+                            <input id="primarykey" name="primarykey" type="hidden" />
                             <input id="template_name" name="template_name" type="text" class="form-control" /> </td>
                     </tr>
                     <tr>

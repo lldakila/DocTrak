@@ -105,7 +105,7 @@
 																	echo '<label >Office</label>';
 															  echo '<div class="form-group">';
 															  
-																echo '<select id="offices" class="form-control selectpicker" style="width:605px;" data-live-search="true"  title="Choose one of the following...">';
+																echo '<select id="offices" class="form-control selectpicker" style="width:605px;" data-live-search="true"  >';
 																//<option class="bs-title-option" value="">Choose office.....</option>';
 																
 

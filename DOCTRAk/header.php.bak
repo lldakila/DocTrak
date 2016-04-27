@@ -131,7 +131,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                                     <ul class="dropdown-menu down-bgcolor">
                                                     	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21917&authkey=!AE_FMAlza931EV0&ithint=file%2cpdf" ><span>Document Manual</span></a></li>
                                                     	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21824&authkey=!APqDiAq2vDQLtd8&ithint=file%2cpdf" ><span>Financial Document Templates</span></a></li>
-                                                    	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21824&authkey=!APqDiAq2vDQLtd8&ithint=file%2cpdf" ><span>Consolidated Process Flow Templates</span></a></li>
+                                                    	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!23158&authkey=!ABWzr-1RCwyLAtY&ithint=file%2cpdf" ><span>Consolidated Process Flow Templates</span></a></li>
                                                     	
                                                     	
                                                     	
@@ -296,6 +296,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 //CHECK FOR BAC DOCUMENTS THAT ARE PASSED THE DEADLINE SET BY BAC
  //$printme="src=".$PROJECT_ROOT."images/home/logo/misdlogo.png";
  
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
+<script src="../../../js/bootstrap-select.js"></script>
 
 function checkDocumentDeadline()
 {
