@@ -176,9 +176,9 @@
 
                         <div class="input1">
                          <input id="security_user" name="security_user" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-primary" />
+                        <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
                          <input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
+                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -246,7 +246,9 @@
     </div>
 	
 </div>
-
+    <!-- Feedback-->
+<div id="feedbackDiv"></div>
+<!-- End Feedback -->
 <!-- Modal -->
        <?php
        include('../../../modal.php');
@@ -365,7 +367,7 @@ $(document).ready(function() {
             });
 	});
 
-
+$('#feedbackDiv').feedBackBox();
 
     });
 
@@ -376,9 +378,11 @@ document.addEventListener("mousemove", function() {
 
 function myFunction(e) {
 	$("#fade").fadeTo(3000,0.0);
+	
 
 }
     
+	
     
 /*]]>*/
 </script>

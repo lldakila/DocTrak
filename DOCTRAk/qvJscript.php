@@ -237,4 +237,54 @@
      }
 
      setTimeout(refresh, 6000000);
+     
+     
+     //////////////////////////////////////////////////
+     ///////Feedback /////////////////////////////////
+     //////////////////////////////////////////////////
+     
+     function feedback()
+     {
+		     if (!document.getElementById("feedbackMsg").value)	
+		     {
+		     	$("#fpi_ajax_msg").html("Cannot send blank feedback.");
+		     	$('#fpi_ajax_msg').css('display', '');
+		        $("#fpi_ajax_msg").fadeOut(4000,function() {document.getElementById("fpi_ajax_msg").value=""; });
+		     	return 0;
+		     }
+		     	
+		    
+		     var module_name = 'feedback';
+		     var message_text = document.getElementById("feedbackMsg").value;
+		     jQuery.ajax({
+		            type: "POST",
+		            //url:"crud.php",
+		            <?php echo 'url:"'.$PROJECT_ROOT.'crud.php",'; ?>
+		            dataType:'html',
+		            data:{module:module_name,message:message_text},
+		             beforeSend: function()
+		            {
+		           //     $("#footerNote").html("Searching...");
+		                $("#fpi_ajax_msg").html("Sending..");
+		            },
+		            success:function(response)
+		            {
+		                $("#fpi_ajax_msg").html(response);
+		                document.getElementById("feedbackMsg").value="";
+		                
+		            },
+		            error:function (xhr, ajaxOptions, thrownError){
+		                $("#fpi_ajax_msg").html(response);
+		            }
+		        }); 
+		        $('#fpi_ajax_msg').css('display', '');
+		        $("#fpi_ajax_msg").fadeOut(4000,function() {document.getElementById("fpi_ajax_msg").value=""; });
+		        
+		        
+		        
+		        
+     }
+     
+     
+     
 </script>

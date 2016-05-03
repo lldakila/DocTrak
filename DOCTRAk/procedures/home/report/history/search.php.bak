@@ -19,15 +19,15 @@
 	
 
 	
-//	echo "	<tr>
-//						<th>No</th>
-//            <th>BARCODE</th>
-//            <th>TITLE</th>
-//            <th>OFFICE</th>
-//            <th>OWNER</th>
-//            <th>DATE</th>
-//           
-//            </tr>";
+	echo "	<tr>
+						<th>No</th>
+            <th>BARCODE</th>
+            <th>TITLE</th>
+            <th>OFFICE</th>
+            <th>OWNER</th>
+            <th>DATE</th>
+           
+            </tr>";
 
 		$datefrom=date_format($datefrom, 'Y-m-d');	
 		$dateto=date_format($dateto, 'Y-m-d');	
@@ -72,7 +72,7 @@
 													$filterDoctrackList= "and documentlist.document_id in (
 										
 																						select fk_documentlist_id from documentlist_tracker 
-																						where office_name = '%' ".$received_b."  
+																						where office_name like '%' ".$received_b."  
 																						 ".$released_b ."  ".$approved_b ."
 																						) ";
 														$filterDoctrackListUser=$filterDoctrackList;								
@@ -83,7 +83,7 @@
 													$filterDoctrackListUser= "and documentlist.document_id in (
 										
 																						select fk_documentlist_id from documentlist_tracker 
-																						where (office_name = '%' 
+																						where (office_name like '%' 
 																						)  and (received_val = 1 or released_val = 1 or forrelease_val = 1 ))";
 												}
 											
@@ -130,8 +130,8 @@
 									  order by documentlist.transdate desc
 									";
 	}
-    echo $sql;
-    die();
+//    echo $sql;
+//    die();
     //echo "select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%'    ORDER BY transdate desc";
 	$result=mysqli_query($con,$sql);
 //	echo $sql;
@@ -148,7 +148,7 @@ $counterA=1;
 	    }
 	    else
 	    {
-	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor1" onClick="addRowHandlers();">';
+	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor" onClick="addRowHandlers();">';
 	        // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
 	        $rowcolor="blue";
 	    }

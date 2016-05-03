@@ -207,6 +207,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
 	}
 
+		$(document).ready(function() {
+    
+
+$('#feedbackDiv').feedBackBox();
+
+    });
 
 </script>
 </body>

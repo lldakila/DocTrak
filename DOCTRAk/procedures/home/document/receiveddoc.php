@@ -347,6 +347,31 @@ $(document).ready(function() {
 	});
 
 
+$("#search_string").keyup(function() 
+        {
+            var name = $('#search_string').val();
+            var searchtype = 'ReceiveDoc';
+            if(name=="")
+            {
+                $("#display").html("");
+            }
+            else
+            {
+                $.ajax({
+                type: "POST",
+                url: "common/autosuggest.php",
+                data: {search_string:name ,searchtype:searchtype},
+                success: function(html){
+                $("#display").html(html).show();
+                }
+                });
+            }
+        });
+
+		$('#feedbackDiv').feedBackBox();
+		
+		
+		
 
     });
 
@@ -369,29 +394,7 @@ function myFunction(e) {
         $('#display').hide();
     }
     
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
-        {
-            var name = $('#search_string').val();
-            var searchtype = 'ReceiveDoc';
-            if(name=="")
-            {
-                $("#display").html("");
-            }
-            else
-            {
-                $.ajax({
-                type: "POST",
-                url: "common/autosuggest.php",
-                data: {search_string:name ,searchtype:searchtype},
-                success: function(html){
-                $("#display").html(html).show();
-                }
-                });
-            }
-        });
-    });
+
 
 
 $('#comment').change(function () {

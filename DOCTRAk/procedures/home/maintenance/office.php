@@ -280,6 +280,9 @@ $(document).ready(function() {
         });
     });
 
+
+	$('#feedbackDiv').feedBackBox();
+	
 });
 
 document.addEventListener("mousemove", function() {

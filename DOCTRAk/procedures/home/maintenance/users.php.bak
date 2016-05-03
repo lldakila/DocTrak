@@ -29,8 +29,8 @@
     <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
     <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
     <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-    <script src="../../../js/jquery-1.10.2.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="../../../js/bootstrap-select.js"></script>
 
 
@@ -177,8 +177,8 @@
                         <div class="input1">
                          <input id="security_user" name="security_user" type="hidden" value="0"/>
                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-primary" />
                          <input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
+                          <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 
@@ -246,7 +246,9 @@
     </div>
 	
 </div>
-
+    <!-- Feedback-->
+<div id="feedbackDiv"></div>
+<!-- End Feedback -->
 <!-- Modal -->
        <?php
        include('../../../modal.php');
@@ -365,7 +367,7 @@ $(document).ready(function() {
             });
 	});
 
-
+$('#feedbackDiv').feedBackBox();
 
     });
 
@@ -376,9 +378,11 @@ document.addEventListener("mousemove", function() {
 
 function myFunction(e) {
 	$("#fade").fadeTo(3000,0.0);
+	
 
 }
     
+	
     
 /*]]>*/
 </script>

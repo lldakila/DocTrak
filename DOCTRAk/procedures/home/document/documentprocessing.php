@@ -224,20 +224,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 });
             });
 
-        });
-
-
-// Autosuggest search//
-
-    function fill(Value)
-    {
-        $('#search_string').val(Value);
-        $('#display').hide();
-    }
-    
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
+			 $("#search_string").keyup(function() 
         {
             var name = $('#search_string').val();
             var searchtype = 'newProcess';
@@ -258,7 +245,22 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                 });
             }
         });
-    });
+
+
+
+			$('#feedbackDiv').feedBackBox();
+        });
+
+
+// Autosuggest search//
+
+    function fill(Value)
+    {
+        $('#search_string').val(Value);
+        $('#display').hide();
+    }
+    
+  
 
     </script>
 

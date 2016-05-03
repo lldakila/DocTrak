@@ -328,6 +328,28 @@ $(document).ready(function() {
             });
 	});
 
+ $("#search_string").keyup(function() 
+        {
+            var name = $('#search_string').val();
+            var searchtype = 'forRelease';
+            if(name=="")
+            {
+                $("#display").html("");
+            }
+            else
+            {
+                $.ajax({
+                type: "POST",
+                url: "common/autosuggest.php",
+                data: {search_string:name ,searchtype:searchtype},
+                success: function(html){
+                $("#display").html(html).show();
+                }
+                });
+            }
+        });
+        
+		$('#feedbackDiv').feedBackBox();
 
 
     });
@@ -350,29 +372,7 @@ $(document).ready(function() {
         $('#display').hide();
     }
     
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
-        {
-            var name = $('#search_string').val();
-            var searchtype = 'forRelease';
-            if(name=="")
-            {
-                $("#display").html("");
-            }
-            else
-            {
-                $.ajax({
-                type: "POST",
-                url: "common/autosuggest.php",
-                data: {search_string:name ,searchtype:searchtype},
-                success: function(html){
-                $("#display").html(html).show();
-                }
-                });
-            }
-        });
-    });
+
 
 $('#comment').change(function () {
    if (document.getElementById('comment').value=='other')

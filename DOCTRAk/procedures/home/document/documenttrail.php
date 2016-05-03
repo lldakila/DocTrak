@@ -182,6 +182,31 @@ $(document).ready(function() {
             }
             });
 	});
+		
+		    $("#search_string").keyup(function() 
+        {
+            var name = $('#search_string').val();
+            var searchtype = 'docTrail';
+            if(name=="")
+            {
+                $("#display").html("");
+            }
+            else
+            {
+                $.ajax({
+                type: "POST",
+                url: "common/autosuggest.php",
+                data: {search_string:name ,searchtype:searchtype},
+                success: function(html){
+                $("#display").html(html).show();
+                }
+                });
+            }
+        });
+
+
+
+		$('#feedbackDiv').feedBackBox();
 
     });
     
@@ -225,29 +250,7 @@ $(document).ready(function() {
         $('#display').hide();
     }
     
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
-        {
-            var name = $('#search_string').val();
-            var searchtype = 'docTrail';
-            if(name=="")
-            {
-                $("#display").html("");
-            }
-            else
-            {
-                $.ajax({
-                type: "POST",
-                url: "common/autosuggest.php",
-                data: {search_string:name ,searchtype:searchtype},
-                success: function(html){
-                $("#display").html(html).show();
-                }
-                });
-            }
-        });
-    });
+
 
     
     </script>

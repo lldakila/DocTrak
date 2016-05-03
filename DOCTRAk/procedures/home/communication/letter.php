@@ -504,6 +504,9 @@ $(document).ready(function() {
 	    });
 	});
 
+
+$('#feedbackDiv').feedBackBox();
+
 });
 
 

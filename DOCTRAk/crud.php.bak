@@ -42,6 +42,12 @@ switch($_POST['module'])
     case 'ForreleaseDocu':
         ForReleaseDocument($_POST['docId']);
         break;
+        
+    //////FEEDBACK///////
+    
+    case 'feedback':
+    	feedback();
+    	break;    
 
 }
 
@@ -835,4 +841,30 @@ function RetrieveBarcodeInfo($document_id)
 	
 }
 
+
+
+//////////////////////////////////////////
+/////INSERT FEEDBACK ///////////////////
+//////////////////////////////////////////
+	function feedback()
+	{
+		
+		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);	
+    
+		$feedbackMsg=mysqli_real_escape_string($con, $_POST['message']);
+		$sql="insert into feedback(message,security_name) values ('".$feedbackMsg."','".$_SESSION['usr']."')";
+//		echo $sql;
+//		die();
+		if(mysqli_query($sql))
+		{
+			echo "Thank You for your feedback. We will try to take a look at it ASAP.";
+		}
+		else
+		{
+			echo "Error sending feedback. Please try again. If problem still persist, please contact MISD @ 607-0946.";
+		}
+		
+		mysqli_close($con);
+	}
 ?>

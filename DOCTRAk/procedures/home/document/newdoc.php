@@ -442,8 +442,11 @@ $(document).ready(function() {
 				alert(thrownError);
 			}
 			});
+			
+			
+			
 	});
-
+$('#feedbackDiv').feedBackBox();
 
 
     $("#generatebarcode").click(function (e) {

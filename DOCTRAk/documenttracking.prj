@@ -10,6 +10,6 @@
 	Filter=
 	Create Tagfile=0
 [Group Filter]
-	.\=*.php;*.css;*.html;
+	.\=*.php;*.css;*.html;*.js;
 [Files]
 	0=.\

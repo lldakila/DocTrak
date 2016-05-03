@@ -12,7 +12,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 //$_SESSION['timeout']=time();
  //require_once($PROJECT_ROOT.'quickNav.php');
+
+
+echo '<link rel="stylesheet" type="text/css" href="'.$PROJECT_ROOT.'css/jquery.feedBackBox.css" />';
+echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
+
+ 
 ?>
+
+    <!-- Feedback-->
+<div id="feedbackDiv"></div>
+<!-- End Feedback -->
+
+
+
 
 
 

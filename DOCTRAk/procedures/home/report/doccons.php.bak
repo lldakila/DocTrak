@@ -148,7 +148,7 @@
                         </div>
                         <div id="codetable">
                             <div class="scroll">
-                        	<table id="historydata">
+                        				<table id="historydata">
                                 	<tr>
                                 						<th>No</th>
                                             <th>BARCODE</th>
@@ -157,10 +157,10 @@
                                             <th>OWNER</th>
                                             <th>DATE</th>
                                             <th>TYPE</th>
-                                        </tr>
+                                  </tr>
 
 
-                                </table>
+                               </table>
                             </div>
                         </div>
 
@@ -233,7 +233,7 @@
 				    success:function(response)
 				    {
 					    $("#historydata").html(response);
- 							
+ 							$("#filter").html('Filter');
 				    },
 				    error:function (xhr, ajaxOptions, thrownError){
 					    alert(thrownError);
@@ -346,6 +346,13 @@ $('#approved').change(function() {
    //'unchecked' event code
 });
 
+
+				$(document).ready(function() {
+    
+
+$('#feedbackDiv').feedBackBox();
+
+    });
 
 
 

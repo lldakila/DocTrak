@@ -39,7 +39,8 @@ if ($_SESSION['BAC']!=1)
 </title>
 
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
     
 <body>
@@ -159,8 +160,7 @@ if ($_SESSION['BAC']!=1)
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
-<script src="../../../js/jquery-1.10.2.min.js"></script>
-<script src="../../../js/bootstrap.min.js"></script>
+
 <script src="../../../js/bootstrap-select.js"></script>
 <script src="../../../js/jquery.growl.js"></script>
 
@@ -192,6 +192,7 @@ $(document).ready(function()
             });
 	});
     
+     $('#feedbackDiv').feedBackBox();
     
 });
 

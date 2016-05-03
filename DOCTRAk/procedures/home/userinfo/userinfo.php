@@ -171,6 +171,16 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
        include('../../../modal.php');
        ?>
 <!-- End Modal -->
+<script>
+	
+	$(document).ready(function() {
+    
 
+$('#feedbackDiv').feedBackBox();
+
+    });
+	
+	
+	</script>
 </body>
 </html>

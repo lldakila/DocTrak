@@ -39,7 +39,8 @@ date_default_timezone_set($_SESSION['Timezone']);
 </title>
 
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
-
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </head>
 
@@ -220,18 +221,12 @@ date_default_timezone_set($_SESSION['Timezone']);
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
-<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 <script src="../../../js/bootstrap-select.js"></script>
 <script src="../../../js/jquery.growl.js"></script>
 <script language="JavaScript" type="text/javascript">
 
-//SEARCH FUNCTION
-$('#searchform').submit(function () {
- //   submitAction();
- SearchDoc(document.getElementById('search_string').value);
- return false;
-});
+
 
  
 //    //CHECK IF AMOUNT INPUTED IS NUMBERIC
@@ -491,6 +486,24 @@ document.getElementById('docDate').onkeydown = function(event) {
     }
 }
 
+
+$(document).ready(function(){
+		
+		//SEARCH FUNCTION
+$('#searchform').submit(function () {
+ //   submitAction();
+ SearchDoc(document.getElementById('search_string').value);
+ return false;
+});
+		
+		
+		$('#feedbackDiv').feedBackBox();
+		
+		
+		
+		
+		
+		});
  
  
 </script>

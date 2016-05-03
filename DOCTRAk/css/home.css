@@ -447,6 +447,16 @@ label {
 
 /********************** test nav ****************/
 
+/****** nav-tabs *****/
+.nav-tabs { border-bottom: 2px solid #DDD; }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666; }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+/***** end nav-tabs ****/
+
 #nav {
 	width:160px;
 	margin:0px 0 0 20px;
@@ -1137,6 +1147,16 @@ table.fixedwidth th{
 		margin:13px 0px 0 0;
 	}
 	
+.nav-tabs { border-bottom: 2px solid #DDD; }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666; }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 15px 0; }
+.tab-content{/*padding:20px*/}
+	
 #codetable {
 	width:1205px;
 	margin:0px auto;
@@ -1153,7 +1173,7 @@ table.fixedwidth th{
     overflow: scroll;
     width: 1205px;
     height: 450px;
-    margin: 10px auto;
+    margin: 0px auto;
 }
 
 #codetable table {
@@ -2212,7 +2232,7 @@ table#historydata tr.usercolor1 a:hover {
 table#historydata td {
 	padding:5px 0 5px 5px;
 	font-family:tahoma;
-	font-size:10px;
+	font-size:9px;
 	/*width:5px;*/
 }
 

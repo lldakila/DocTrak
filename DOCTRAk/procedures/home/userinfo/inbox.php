@@ -259,6 +259,14 @@ date_default_timezone_set($_SESSION['Timezone']);
 		});
         }
 
+
+		$(document).ready(function() {
+    
+
+$('#feedbackDiv').feedBackBox();
+
+    });
+	
 </script>
 </body>
 </html>

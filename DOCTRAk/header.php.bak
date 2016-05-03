@@ -12,7 +12,20 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 //$_SESSION['timeout']=time();
  //require_once($PROJECT_ROOT.'quickNav.php');
+
+
+echo '<link rel="stylesheet" type="text/css" href="css/jquery.feedBackBox.css" />';
+echo '<script src="js/jquery.feedBackBox.js"></script>';
+
+ 
 ?>
+
+    <!-- Feedback-->
+<div id="feedbackDiv"></div>
+<!-- End Feedback -->
+
+
+
 
 
 
@@ -296,8 +309,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 //CHECK FOR BAC DOCUMENTS THAT ARE PASSED THE DEADLINE SET BY BAC
  //$printme="src=".$PROJECT_ROOT."images/home/logo/misdlogo.png";
  
-<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
-<script src="../../../js/bootstrap-select.js"></script>
 
 function checkDocumentDeadline()
 {

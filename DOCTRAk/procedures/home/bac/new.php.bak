@@ -226,12 +226,7 @@ date_default_timezone_set($_SESSION['Timezone']);
 <script src="../../../js/jquery.growl.js"></script>
 <script language="JavaScript" type="text/javascript">
 
-//SEARCH FUNCTION
-$('#searchform').submit(function () {
- //   submitAction();
- SearchDoc(document.getElementById('search_string').value);
- return false;
-});
+
 
  
 //    //CHECK IF AMOUNT INPUTED IS NUMBERIC
@@ -440,10 +435,10 @@ function deleteMe()
             },
             success:function(response)
             {
-		if (response=='Document deleted.')
-                {
-                     $.growl.notice({ message: response });
-		     newMe();
+							if (response=='Document deleted.')
+					                {
+					                     $.growl.notice({ message: response });
+							     newMe();
                 }
                 else
                 {
@@ -491,6 +486,24 @@ document.getElementById('docDate').onkeydown = function(event) {
     }
 }
 
+
+$(document).ready(function(){
+		
+		//SEARCH FUNCTION
+$('#searchform').submit(function () {
+ //   submitAction();
+ SearchDoc(document.getElementById('search_string').value);
+ return false;
+});
+		
+		
+		$('#feedbackDiv').feedBackBox();
+		
+		
+		
+		
+		
+		});
  
  
 </script>

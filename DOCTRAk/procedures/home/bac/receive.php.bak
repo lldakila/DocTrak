@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,6 +6,24 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   $_SESSION['in'] ="start";
  header('Location:../../../index.php');
 }
+
+if ($_SESSION['BAC']!=1)
+	{
+            if ($_SESSION['GROUP']!='POWER ADMIN')
+            {
+                header('Location:../../../index.php');
+            }
+             
+	}
+        else if ($_SESSION['GROUP']!='POWER ADMIN')
+        {
+            
+            if ($_SESSION['BAC']!=1)
+            {
+                header('Location:../../../index.php');
+            }
+        }
+
 
 ?>
 
@@ -66,7 +83,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     	<div class="content2">
             <div id="post">
                 <div id="post10">
-                    <h2>Monitor</h2>
+                    <h2>Receive</h2>
                     <div id="BacHistory">
                         <!--AJAX DATA INSERTED HERE-->
                     </div>
@@ -154,10 +171,10 @@ $(document).ready(function()
     $("#search_document").click(function (e) {
     e.preventDefault();
     var search_Text=document.getElementById('search_string').value;
-    var module_name = 'Search';
+    var module_name = 'searchReceive';
     jQuery.ajax({
             type: "POST",
-            url:"search.php",
+            url:"crud.php",
             dataType:"text", // Data type, HTML, json etc.
             data:{module:module_name,searchText:search_Text},
             beforeSend: function() 
@@ -176,18 +193,16 @@ $(document).ready(function()
 	});
     
     
-    $('#feedbackDiv').feedBackBox();
-    
 });
 
 function clickSearch(doc_Id,docDetail,docCost,docDate)
 {
      
-    var module_name="historyCheckin";
+    var module_name="renderReceive";
     var document_id=doc_Id;
     jQuery.ajax({
             type: "POST",
-            url:"search.php",
+            url:"crud.php",
             dataType:"text", // Data type, HTML, json etc.
             data:{module:module_name,docId:document_id},
             beforeSend: function() 
@@ -204,6 +219,41 @@ function clickSearch(doc_Id,docDetail,docCost,docDate)
             }
         });
             
+ }
+ 
+ function receiveDoc(id)
+ {
+     
+    var module_name="receiveBacDocument";
+    //var document_id=id;
+    jQuery.ajax({
+            type: "POST",
+            url:"crud.php",
+            dataType:"text", // Data type, HTML, json etc.
+            data:{module:module_name,docId:id},
+            beforeSend: function() 
+            {
+                $("#btnReceive").html('Receiving..');
+            },
+            success:function(response)
+            {
+		if (response=="")
+		{
+		    $.growl.notice({ message: 'Document Received' }); 
+		}
+		else
+		{
+		    $.growl.error({ message: response });
+		}
+                
+		$("#btnReceive").html('Receive');
+		
+            },
+            error:function (xhr, ajaxOptions, thrownError)
+            {
+                $.growl.error({ message: thrownError });
+            }
+        });
  }
 
 </script>

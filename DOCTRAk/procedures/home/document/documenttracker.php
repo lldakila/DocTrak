@@ -221,20 +221,8 @@ $(document).ready(function() {
             });
         });
 
-    });
 
-
-// Autosuggest search//
-
-    function fill(Value)
-    {
-        $('#search_string').val(Value);
-        $('#display').hide();
-    }
-    
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
+			  $("#search_string").keyup(function() 
         {
             var name = $('#search_string').val();
             var searchtype = 'docTracker';
@@ -255,7 +243,22 @@ $(document).ready(function() {
                 });
             }
         });
+
+			$('#feedbackDiv').feedBackBox();
+
+
     });
+
+
+// Autosuggest search//
+
+    function fill(Value)
+    {
+        $('#search_string').val(Value);
+        $('#display').hide();
+    }
+    
+  
 
 
 </script>

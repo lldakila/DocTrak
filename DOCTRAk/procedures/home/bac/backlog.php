@@ -180,7 +180,7 @@ $(document).ready(function()
             });
 	});
     
-    
+    $('#feedbackDiv').feedBackBox();
 });
 
 function clickSearch(doc_Id,docDetail,docCost,docDate)
