@@ -49,7 +49,8 @@ function renderForm($action)
     global $docStatus;
     global $docRemarks;
     global $docLocation;
-    echo ' <table id="HOMEdata">
+    
+    echo ' <table id="HOMEdata" class="table table-bordered">
             <tr>
                 <th>DOC ID</th>
                 <th>TITLE</th>
@@ -128,7 +129,8 @@ function renderForm($action)
                     }
 //            break;
 //    }
-
+			echo '</table>';
+			
 }
 
 

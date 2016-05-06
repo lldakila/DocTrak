@@ -49,7 +49,8 @@ function renderForm($action)
     global $docStatus;
     global $docRemarks;
     global $docLocation;
-    echo ' <table id="HOMEdata">
+    echo '<div class="table-responsive">';
+    echo ' <table id="HOMEdata" class="table table-bordered">
             <tr>
                 <th>DOC ID</th>
                 <th>TITLE</th>
@@ -128,7 +129,8 @@ function renderForm($action)
                     }
 //            break;
 //    }
-
+			echo '</table>';
+			echo '</div>';
 }
 
 
@@ -160,8 +162,8 @@ function SummaryFilter($docid,$module)
                             FROM documentlist_tracker WHERE fk_documentlist_id = "'.$docid.'"   
                             
                             ORDER BY sortorder DESC LIMIT 1';
-       echo $SQLquery;
-       die();
+//       echo $SQLquery;
+//       die();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
                 $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
                 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))

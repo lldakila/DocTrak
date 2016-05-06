@@ -109,7 +109,7 @@
                     <tr>
                     	<td>Group: </td>
                          <td class="select01">
-                             <select id="group" name="group" class="form-control"> <option>Select Here</option>
+                             <select id="group" name="group" class="form-control" > <option>Select Here</option>
 
        <?php
            require_once("../../connection.php");
@@ -128,7 +128,7 @@
                     <tr>
                     	<td>Office: </td>
                          <td class="select01">
-                             <select id="office" name="office" class="form-control selectpicker"> <option>Select Here</option>
+                             <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> <option>Select Here</option>
 
        <?php
            require_once("../../connection.php");

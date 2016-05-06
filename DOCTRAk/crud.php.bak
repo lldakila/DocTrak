@@ -852,13 +852,17 @@ function RetrieveBarcodeInfo($document_id)
 		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);	
     
+    
+            
 		$feedbackMsg=mysqli_real_escape_string($con, $_POST['message']);
 		$sql="insert into feedback(message,security_name) values ('".$feedbackMsg."','".$_SESSION['usr']."')";
 //		echo $sql;
 //		die();
-		if(mysqli_query($sql))
+		if(mysqli_query($con,$sql))
 		{
 			echo "Thank You for your feedback. We will try to take a look at it ASAP.";
+			$KEY=get_key();
+			log_audit($KEY,$sql,'New Document',''.$_SESSION['security_name'].'');
 		}
 		else
 		{

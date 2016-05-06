@@ -105,8 +105,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
                                                 </li>
                                         
                                         
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocesspersignatory.php"; ?>"><span>Document on Process per Signatory</span></a></li>
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docpersignatory.php"; ?>"><span>Documents per Signatory</span></a></li>
+                                        
                                     </ul>
                                     
                                 </li>

@@ -136,6 +136,7 @@
 	$result=mysqli_query($con,$sql);
 //	echo $sql;
 //	die();
+$rowcolor="blue";
 $counterA=1;
 	while ($resultSet=mysqli_fetch_array($result))
 	{

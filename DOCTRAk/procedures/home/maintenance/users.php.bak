@@ -109,7 +109,7 @@
                     <tr>
                     	<td>Group: </td>
                          <td class="select01">
-                             <select id="group" name="group" class="form-control"> <option>Select Here</option>
+                             <select id="group" name="group" class="form-control" data-live-search="true"> <option>Select Here</option>
 
        <?php
            require_once("../../connection.php");
@@ -176,9 +176,9 @@
 
                         <div class="input1">
                          <input id="security_user" name="security_user" type="hidden" value="0"/>
-                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+                        <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
                          <input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
-                          <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
+                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
                          </div>
                            <!--- BUTTONS ACTIVITY END--->
 

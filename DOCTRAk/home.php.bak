@@ -158,8 +158,26 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																					</p>
 																				  </div>
 																				  <div id="info" class="tab-pane fade">
-																				<h3></h3>
-																				<p></p>
+																				
+																				<p>Whats New (v1.17)</p>
+																					<ul>
+																						<li>Improved Searching and Loading Speed</li>
+																						<li>Incorporating Template Flow on document creation</li>
+																						<li>New Home Page</li>
+																						<li>Addition of Reports on Document Transactions</li>
+																						<li>Feedback Module</li>
+																						<li>and much more..</li>
+																					</ul> 
+																					<br>
+																					<p>Upcoming Release</p>
+																					<ul>
+																						<li>Mobile Friendly Site</li>													
+																						<li>Improved Gui</li>
+																						<li>Improved System Manual</li>
+																						<li>More Reports</li>
+																						<li>Possible inclusion of BAC and Communication Modules</li>
+																						<li>and much more</li>
+																					</ul>
 																				  </div>
 																				</div>
 																				</div>
@@ -176,7 +194,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 </div>
 
-
+   <!-- Modal -->
+       <?php
+       include('modal.php');
+       ?>
+<!-- End Modal -->
 
 
 <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css" />
@@ -273,7 +295,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
    
 $(document).ready(function(){
-refreshList();
+//refreshList();
 
 $('#feedbackDiv').feedBackBox();
 

@@ -148,7 +148,7 @@ $counterA=1;
 	    }
 	    else
 	    {
-	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor" onClick="addRowHandlers();">';
+	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor1" onClick="addRowHandlers();">';
 	        // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
 	        $rowcolor="blue";
 	    }

@@ -14,8 +14,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  //require_once($PROJECT_ROOT.'quickNav.php');
 
 
-echo '<link rel="stylesheet" type="text/css" href="css/jquery.feedBackBox.css" />';
-echo '<script src="js/jquery.feedBackBox.js"></script>';
+echo '<link rel="stylesheet" type="text/css" href="'.$PROJECT_ROOT.'css/jquery.feedBackBox.css" />';
+echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 
  
 ?>
@@ -105,8 +105,7 @@ echo '<script src="js/jquery.feedBackBox.js"></script>';
                                                 </li>
                                         
                                         
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocesspersignatory.php"; ?>"><span>Document on Process per Signatory</span></a></li>
-                                        <li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docpersignatory.php"; ?>"><span>Documents per Signatory</span></a></li>
+                                        
                                     </ul>
                                     
                                 </li>
@@ -176,7 +175,7 @@ echo '<script src="js/jquery.feedBackBox.js"></script>';
 //                        echo '<span  id="mailNoti" class="badge"><a href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php"><img  src="'.$PROJECT_ROOT.'images/home/icon/exclamation.gif" width="30" height="20" align="left" /></a>'.$row['mailcount'].'</span>';
                     if ($row['mailcount']<>0)
                     {
-                        echo '<span  id="mailNoti" class="badge"><a href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php"><img  src="'.$PROJECT_ROOT.'images/home/icon/testmail.gif" width="30" height="20" align="left" /></a>'.$row['mailcount'].'</span>&nbsp';
+                        echo '<span  id="mailNoti" class="badge"><a href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php"><img  src="'.$PROJECT_ROOT.'images/home/icon/feedback.gif" width="30" height="20" align="left" /></a>'.$row['mailcount'].'</span>&nbsp';
                     }
                     //CHECK IF THERE ARE DEADLINE BAC DOCUMENTS
                         
