@@ -41,13 +41,13 @@
                         										
                         						
 		<div class="panel panel-success"> <div class="panel-heading">User - Summary</div>
-		<p >
+		<div style="padding-left:10px;">
 			Received Documents - '.$resultSetreceived['noOfReceivedDocs'].'<br>
-			Released Documents - '.$resultSetreceived['noOfReceivedDocs'].'<br>
+			Released Documents - '.$resultSetreleased['noOfReceivedDocs'].'<br>
 			Created Documents - '.$resultSetcreated['noOfCreatedDocs'].'<br>
 			Scrapped Documents - '.$resultSetscraped['noOfScrappedDocs'].'<br>
-		
-		</p></div></div>';
+		</div>
+		</div></div>';
 		
 		//////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////
@@ -60,6 +60,8 @@
 				///////////////////////////////////
 				$DocprocessReceived="select docprocess,count(docprocess) as NoOfOccurance from documentlist_tracker where received_val=1 and received_by IN (select security_name from security_user where fk_office_name = '".$_POST['vofficeFilter']."' ) and received_date between '".$datefrom."' and '".$dateto."' group by docprocess";
 				$DocprocessReleased="select docprocess,count(docprocess) as NoOfOccurance from documentlist_tracker where released_val=1 and released_by IN (select security_name from security_user where fk_office_name = '".$_POST['vofficeFilter']."' ) and released_date between '".$datefrom."' and '".$dateto."' group by docprocess";
+				
+				
 		}
 		else
 		{
@@ -68,10 +70,11 @@
 				///////////////////////////////////
 				$DocprocessReceived="select docprocess,count(docprocess) as NoOfOccurance from documentlist_tracker where received_val=1 and received_by='".$_SESSION['security_name']."' and received_date between '".$datefrom."' and '".$dateto."' group by docprocess";
 				$DocprocessReleased="select docprocess,count(docprocess) as NoOfOccurance from documentlist_tracker where released_val=1 and released_by='".$_SESSION['security_name']."' and released_date between '".$datefrom."' and '".$dateto."' group by docprocess";
+				
 		}
-//		echo $DocprocessReceived;
+//		echo $DocprocessReleased;
 //		die();
-		
+//		
 		
 		$resultSetreleased=mysqli_fetch_array($result);
 		
@@ -82,12 +85,11 @@
 		if (($_SESSION['GROUP']=='POWER ADMIN')or ($_SESSION['GROUP']=='ADMIN'))
 				{
 					echo 'Office - '.$_POST['vofficeFilter'].'</div>
-					<p>';
+					';
 				}
 		else
 			{
-					echo 'Documents Processed</div>
-					<p>';
+					echo 'Documents Processed</div>';
 			}
 		echo '<b>Received Document</b>';
 		echo '<table class="table table-bordered table-condensed table-hover"><th>Document</th><th>Count</th>';
@@ -115,7 +117,7 @@
 		}
 		echo '</table>';
 		//echo $DocprocessReceived;
-		echo '</p></div></div>';
+		echo '</div></div>';
 		
 		
 		//////////////////////////////////////////////////////////////////////
@@ -140,15 +142,15 @@
 		echo '
 		<div class="col-md-4">
 		<div class="panel panel-success"> <div class="panel-heading">Office</div>
-		<p >
+		<div style="padding-left:10px;">
 			
 			Received Documents - '.$OfficeResultSetreceived['noOfReceivedDocs'].'<br>
 			Released Documents - '.$OfficeResultSetreleased['noOfReceivedDocs'].'<br>
 			Created Documents - '.$OfficeResultSetcreated['noOfCreatedDocs'].'<br>
 			Scrapped Documents - '.$OfficeResultSetscraped['noOfScrappedDocs'].'<br>
+		</div>
 		
-		
-		</p></div></div>';
+		</div></div>';
 
 
 ?>

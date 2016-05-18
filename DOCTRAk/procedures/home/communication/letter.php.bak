@@ -26,227 +26,248 @@
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
-    <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
-    <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/jquery.feedback_me.css" />
+<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-table.css" />
 <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="../../../js/bootstrap-select.js"></script>
-    <script src="../../../js/jquery.growl.js"></script>
+<script src="../../../js/jquery.growl.js"></script>
+
+<script src="../../../js/jquery.feedback_me.js"></script>
+<script src="../../../js/bootstrap-table.js"></script>
 
 
 
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
 
 </head>
 
 <body>
+<!------------------------------------------- header -------------------------------->
 <?php
     $PROJECT_ROOT= '../../../';
     include_once($PROJECT_ROOT.'qvJscript.php');
     include_once('../../../header.php');
 ?>
+<!------------------------------------------- end header -------------------------------->
 
+<!------------------------------------------- content -------------------------------->
 <div class="content">
 
-<div id="leftmenu">
-		<div id='cssmenu'>
-		<ul>
-		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-		      <ul>
-			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
-			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-		      </ul>
-		   </li>
-		   <?php
-		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-		   {
-		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-		      <ul>
-			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-			 <li><a href="#"><span>Check In</span></a></li>
-		 <li><a href="#"><span>Backlog</span></a></li>
-		      </ul>
-		   </li>'; */
-		   }
-		   ?>
+	<div id="leftmenu">
+			<div id='cssmenu'>
+				<ul>
+				   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+				      <ul>
+								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
+								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+				      </ul>
+				   </li>
+				   <?php
+				   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+				   {
+				      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				      <ul>
+					 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+					 <li><a href="#"><span>Check In</span></a></li>
+				 <li><a href="#"><span>Backlog</span></a></li>
+				      </ul>
+				   </li>'; */
+				   }
+				   ?>
+		
+				</ul>
+		  </div>
+	</div>
 
-		</ul>
-	    </div>
-</div>
-
-	<div class="content1">
-    
-    	<div class="content2">
+	<div class="main">
         
-        	<div id="post">
-
-		    <div id="post01">
-		    <h2>LETTER</h2>
-
-		    <form id="data" name="data" method="post"  enctype="multipart/form-data">
-
-			    <div class="table1">
-			    <table>
-				<tr>
-				    <td>Title:</td>
-				    <td class="textinput">
-					<input id="primarykey" name="primarykey" type="hidden" />
-					<input id="header_name" name="header_name" type="text" class="form-control" /> 
-				    </td>
-				</tr>
-				<tr>
-				<td>Note:</td>
-				<td class="textinput">
-				    <input id="note_name" name="note_name" type="text" class="form-control" /> 
-				</td>
-				</tr>
-				<tr>
-				    <td>Type:</td>
-				    <td class="textinput">
-					<select name='mail_type' id='mail_type' class="selectpicker form-control">
-					 <?php
-					require_once('../../../procedures/connection.php');
-
-					$query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
-					foreach($query as $var) {
-					echo "<option data-subtext='".$var['DOCUMENTTYPE_ID']."'>".$var['DOCUMENTTYPE_ID']."</option>";
-					}
-
-
-				    ?>
-				    </select>
-				    </td>
-				</tr>
-				<tr>
-				    <td>Owner:</td>
-				    <td class="textinput"><input id="owner_name" name="owner_name" type="text" readonly="readonly" class="form-control"  value="<?php echo $_SESSION['security_name'];  ?>"/> 
-				    </td>
-				</tr>
-				<tr>
-				    <td>Send to:</td>
-				    <td class="select1"><select name='officelist' id='officelist' class="form-control selectpicker">
-        <?php
-        //require_once("../../connection.php");
-
-        $_SESSION['number_counter']=0;
-        //$query=select_info_multiple_key("select office_name from office ORDER BY OFFICE_NAME");
-        $query="select office_name, office_description from office ORDER BY OFFICE_NAME";
-	$result=mysqli_query($con,$query)or die(mysqli_error($con));
-        foreach($result as $var) {
-            echo "<option data-subtext='".$var['office_description']."'>".$var['office_name']."</option>";
-        }
-        ?>
-                                </select>
-<!--                               <button id="add_office" type="button">Add Office</button>-->
-                                <input type="button" value="+" onClick="javascript:addoffice();" class="btn btn-primary" />
-                        </td>
-                    </tr>
-
-
-                  </table>
-
-
-                    <div class="officeselected">
-
-                            <input type="hidden" name="OfficeArray" id="OfficeArray">
-                            <select id="officeselection" size="10" width="15" name="officeselection" >
-
-                            </select>
-
-                        <input type="button" id="deleteselected" value="-" onclick="removeoffice(officeselection);" class="btn btn-danger" />
-
-
-                    </div><div class="tfclear"></div>
-
-                   
-
-<!--
-
-                            <?php
-                            
-//                            if($_SESSION['operation']=='save'){
-//
-//                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
-//
-//                            }  elseif($_SESSION['operation']=='delete'){
-//
-//                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-//                            }
-//                            elseif($_SESSION['operation']=='error'){
-//
-//                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful. </div>";
-//                            }
-//                            elseif($_SESSION['operation']=='update'){
-//
-//                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Update Successful. </div>";
-//                            }
-//
-//                            $_SESSION['operation']='clear';
-
-                            ?>
-                              - BUTTONS ACTIVITY START -
--->
-
-                        <div class="input">
-			    <input id="template_mode" name="template_mode" type="hidden" value="0"/>
-                         
-                         
-                         
-<!--                         <button id="letterSave"  type="button"  onclick="return submitSave()" class="btn btn-primary"> Save</button>    -->
-
-			<button id="SaveLetter" class="btn btn-primary">Save</button>
-                         
-                         </div>
-                           <!--- BUTTONS ACTIVITY END--->
-                           </div>
-			<div class="tableFILE">
-                      <table>
-                          <tr>
-                          	<td>File: </td>
-                               <td><input id="filepdf" name="filepdf" type="file" accept=".pdf" /> </td>
-                          </tr>
-                      </table>
-                    </div>
-
-						   </form>
-                        </div>
-                        
-                        	
-
-
-                        <div class="tfclear"></div>
+       <div class="container">
+    				<div class="row">
+    					
+							    <div class="post">
+							    	<div id="post100" class="colsize">
+							    		<h2 style="padding-top:20px;">LETTER</h2>
+							    		<hr class="hrMargin" style="margin-bottom:10px;">
+					
+											    <form id="data" class="myForm" name="data" method="post"  enctype="multipart/form-data">
+									
+												    	<div class="table1 form-horizontal">
+												    		
+												    			<div class="form-group">
+																	    <label class="col-sm-2 control-label">Title:</label>
+																	    <div class="col-sm-10">
+																	    		<input id="primarykey" name="primarykey" type="hidden">
+																	      	<input id="header_name" name="header_name" type="text" class="form-control" />
+																	    </div>
+																	</div>
+																	
+																	<div class="form-group">
+																	    <label class="col-sm-2 control-label">Note:</label>
+																	    <div class="col-sm-10">
+																	    		<input id="note_name" name="note_name" type="text" class="form-control" />
+																	    </div>
+																	</div>
+																	
+																	<div class="form-group">
+																	    <label class="col-sm-2 control-label">Type:</label>
+																	    <div class="col-sm-10">
+																	    		<select name='mail_type' id='mail_type' class="selectpicker form-control">
+																						 <?php
+																							require_once('../../../procedures/connection.php');
+																		
+																							$query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
+																							foreach($query as $var) {
+																							echo "<option data-subtext='".$var['DOCUMENTTYPE_ID']."'>".$var['DOCUMENTTYPE_ID']."</option>";
+																							}
+																
+																
+																				    ?>
+																				    </select>
+																	      	
+																	    </div>
+																	</div>
+																	
+																	<div class="form-group">
+																	    <label class="col-sm-2 control-label">Owner:</label>
+																	    <div class="col-sm-10">
+																	    		<input id="owner_name" name="owner_name" type="text" readonly="readonly" class="form-control"  value="<?php echo $_SESSION['security_name'];  ?>"/> 
+																	    </div>
+																	</div>
+																	
+																						<!--<div class="form-group">
+																						    <label class="col-sm-2 control-label">Send to:</label>
+																						    <div class="col-sm-10">
+																						    		<select name='officelist' id='officelist' class="form-control selectpicker">
+																								        <?php
+																									        //require_once("../../connection.php");
+																									
+																									        $_SESSION['number_counter']=0;
+																									        //$query=select_info_multiple_key("select office_name from office ORDER BY OFFICE_NAME");
+																									        $query="select office_name, office_description from office ORDER BY OFFICE_NAME";
+																													$result=mysqli_query($con,$query)or die(mysqli_error($con));
+																									        foreach($result as $var) {
+																									            echo "<option data-subtext='".$var['office_description']."'>".$var['office_name']."</option>";
+																									        }
+																								        ?>
+																				              </select>
+																				              <!-- <button id="add_office" type="button">Add Office</button>-->
+														                               <!---<input type="button" value="+" onClick="javascript:addoffice();" class="btn btn-primary" />
+																						    </div>
+																						</div>-->
+											          
+											      	</div>
+											      	
+											      			<div class="form-inline">
+																			
+																			<div class="form-group">
+																				
+																		    <label style="padding-right:23px;" for="exampleInputEmail2">Send to:</label>
+																		    	
+																			    <select name='officelist' id='officelist' class="form-control selectpicker SendSize">
+																				        <?php
+																					        //require_once("../../connection.php");
+																					
+																					        $_SESSION['number_counter']=0;
+																					        //$query=select_info_multiple_key("select office_name from office ORDER BY OFFICE_NAME");
+																					        $query="select office_name, office_description from office ORDER BY OFFICE_NAME";
+																									$result=mysqli_query($con,$query)or die(mysqli_error($con));
+																					        foreach($result as $var) {
+																					            echo "<option data-subtext='".$var['office_description']."'>".$var['office_name']."</option>";
+																					        }
+																				        ?>
+																		        </select>
+																		        
+																		  </div>
+																		  <button type="submit" value="+" onClick="javascript:addoffice();" class="btn btn-primary">+</button>
+																  </div>
+																  
+																  <div class="form-inline" style="margin-top:10px;">
+																			
+																			<div class="form-group">
+																				
+																		    <label style="padding-right:82px" for="exampleInputEmail2"></label>
+																		    	
+																			    <input type="hidden" name="OfficeArray" id="OfficeArray">
+									                            <select id="officeselection" size="10" width="15" name="officeselection" >
+									
+									                            </select>
+																		        
+																		  </div>
+																		  <button id="deleteselected" type="submit" value="-" onclick="removeoffice(officeselection);" class="btn btn-danger">-</button>
+																  </div>
+																 
+																 <div class="form-group">
+																	    <label class="col-sm-2 control-label">File:</label>
+																	    <div class="col-sm-10">
+																	    		<input id="filepdf" name="filepdf" type="file" accept=".pdf" />
+																	    </div>
+																	</div>
+									
+									                   
+									
+																									<!--
+																									
+																									                            <?php
+																									                            
+																									// if($_SESSION['operation']=='save'){
+																									//
+																									// echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+																									//
+																									//  }  elseif($_SESSION['operation']=='delete'){
+																									//
+																									// echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+																									// }
+																									// elseif($_SESSION['operation']=='error'){
+																									//
+																									// echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful. </div>";
+																									// }
+																									// elseif($_SESSION['operation']=='update'){
+																									//
+																									// echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Update Successful. </div>";
+																									// }
+																									//
+																									// $_SESSION['operation']='clear';
+																									
+																									   ?>
+																									   - BUTTONS ACTIVITY START -
+																									-->
+									
+									                        <div class="input">
+																						<input id="template_mode" name="template_mode" type="hidden" value="0"/>                   
+																						<!-- <button id="letterSave"  type="button"  onclick="return submitSave()" class="btn btn-primary"> Save</button>    -->
+																						<button id="SaveLetter" class="btn btn-primary">Save</button>
+									                        </div>
+									                           <!--- BUTTONS ACTIVITY END--->
+									          <div class="tfclear"></div>
+																	
+									
+													</form>
+										</div>
+					        </div>
 
             
-            </div>
-
-        </div>
-    
-    </div>
+          	</div>
+       </div>    
+  </div>
 
 </div>
+<!------------------------------------------- end content -------------------------------->
 
-<div class="footer">
-
-	<div class="footerbg">
-    
-    			<div id="footer2">
-            <p>
-			<?php
-				
-				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
-				echo "&nbsp|";
-			?>
-			
-			<a href="#">Scroll Top</a></p>
-        </div>
-    
-    </div>
-	
-</div>
+<!------------------------------------ footer ------------------------------------->
+	<?php
+    $PROJECT_ROOT= '../../../';
+    include_once('../../../footer.php');
+    //require_once("/procedures/connection.php");
+    include_once($PROJECT_ROOT.'qvJscript.php');
+   
+  ?>
+<!------------------------------------ end footer ------------------------------------->
 
 <!-- Modal -->
        <?php
@@ -254,7 +275,7 @@
        ?>
 <!-- End Modal -->
     
-    <script language="JavaScript" type="text/javascript">
+<script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/
 function addoffice() {
 
@@ -503,6 +524,9 @@ $(document).ready(function() {
 	    }
 	    });
 	});
+
+
+$('#feedbackDiv').feedBackBox();
 
 });
 

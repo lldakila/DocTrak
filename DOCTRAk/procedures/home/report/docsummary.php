@@ -1,4 +1,4 @@
-
+ 
 
 
 <?php
@@ -100,8 +100,7 @@
 																			<div class="panel panel-info">
 																			  <div class="panel-heading">FILTER</div>
 																			  <div class="panel-body">
-																			  
-																					<div id="headtable">
+																			  <div id="headtable">
 																						
 																						
 																						<form class="form-inline">
@@ -116,21 +115,7 @@
 																							
 																							<div class="form-group">
 																							
-																								<div style="float:left; padding-right:15px;">
-																									<label class="checkbox-inline">
-																									<input type="checkbox" id="received" value="option1" class="checkbox"> Received
-																									</label>
-																									<label class="checkbox-inline">
-																									  <input type="checkbox" id="released" value="option1"> Released
-																									</label>
-																									<label class="checkbox-inline">
-																									  <input type="checkbox" id="approved" value="option1"> Approved
-																									</label>
-																									<label class="checkbox-inline">
-																									  <input type="checkbox" id="mydoc" value="option1"> My Doc
-																									</label>
-																					
-																								</div>
+																								
 																								
 																								
 																							</div>
@@ -140,6 +125,7 @@
 																						</form>
 																						
 																					</div>
+																					
 																					<div class="tfclear"></div>
 																						
 																				
@@ -153,17 +139,15 @@
 														</div>
 
                         </div>
-                        <div id="codetable">
+                      <div id="codetable">
                             <div class="scroll">
                         				<table id="historydata">
                                 	<tr>
                                 						<th>No</th>
-                                            <th>BARCODE</th>
-                                            <th>TITLE</th>
-                                            <th>OFFICE</th>
-                                            <th>OWNER</th>
-                                            <th>DATE</th>
-                                            <th>TYPE</th>
+                                            <th>Barcode</th>
+                                            <th>Title</th>
+                                            <th>Date</th>
+                                            <th>Activity</th>
                                   </tr>
 
 
@@ -200,145 +184,15 @@
 
 
 
-		    $("#filter").click(function (e) {
-			    e.preventDefault();
-
-			    var datefrom=document.getElementById('datefrom').value;
-			    var dateto=document.getElementById('dateto').value;
-					
-					
-					var received=document.getElementById("received").checked;
-					var released=document.getElementById("released").checked;
-					var approved=document.getElementById("approved").checked;
-					var mydoc=document.getElementById("mydoc").checked;
-				
-				
-
-			    jQuery.ajax({
-				    type: "POST",
-				    url:"doccons/search.php",
-				    dataType:"text", // Data type, HTML, json etc.
-				  	data:{vdatefrom:datefrom,vdateto:dateto,vreceived:received,vreleased:released,vapproved:approved,vmydoc:mydoc},
-				  	beforeSend: function() 
-				  	{
-            	$("#filter").html('wait..');
-            	$("#historydata").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-				    success:function(response)
-				    {
-					    $("#historydata").html(response);
- 							$("#filter").html('Filter');
-				    },
-				    error:function (xhr, ajaxOptions, thrownError){
-					    alert(thrownError);
-				    }
-			    });
-		    });
-
 /////////////////////////////////////////////////////////
 //CHECK FOR VALID DATE ENTERED
 ////////////////////////////////////////////////////////
 
-	function checkDate(date)
-	{
-		//var text = '2/30/2011';
-		var comp = date.split('/');
-		var m = parseInt(comp[0], 10);
-		var d = parseInt(comp[1], 10);
-		var y = parseInt(comp[2], 10);
-		var date = new Date(y,m-1,d);
-		if (date.getFullYear() == y && date.getMonth() + 1 == m && date.getDate() == d)
-		 	{
-		  	return true;
-			} 
-		else 
-			{
-		  	return false;
-			}
-	}
 
 
 	  
-function addRowHandlers()
-    {
-       
-            var table = document.getElementById('historydata');
-             //alert (table);
-
-        var rows = table.getElementsByTagName("tr");
-        for (i = 0; i < rows.length; i++) {
-            var currentRow = table.rows[i];
-            var createClickHandler =
-                function(row)
-                {
-                    return function() {
-                                            var cell = row.getElementsByTagName("td")[1];
-                                            var id = cell.innerHTML;
-
-																			
-                                           retrieveDocument(id);
-                                           $('#myModal').modal('show');
-                                     };
-                };
-
-            currentRow.onclick = createClickHandler(currentRow);
-        }
-    }
     
-    //FUNCTION THAT RETRIEVES THE DOCUMENT FROM addRowHandlers() AND OPENS MODAL FORM
-    function retrieveDocument(BarcodeId)
-    {
-            var myData = 'documentTracker='+BarcodeId; //build a post data structure
-            jQuery.ajax({
-                type: "POST",
-                url:"../../../procedures/home/document/common/retrievedata.php",
-                dataType:"text", // Data type, HTML, json etc.
-                data:myData,
-                beforeSend: function() {
-                    $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
-                    },
-                ajaxError: function() {
-                    $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
-                    },
-                success:function(response){
-                    $("#responds").html(response);
-                
-
-                },
-                error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
-                }
-            });
-             $(window).load(function(){
-            //$('#myModal').modal('show');
-        });
-
-        }
-
-$('#released').change(function() {
-   if($(this).is(":checked")) {
-      document.getElementById("received").checked=true;
-   }
-   //'unchecked' event code
-});
-$('#received').change(function() {
-   if($(this).is(":checked")) {
-      
-   }
-   else
-   	{
-   		document.getElementById("released").checked=false;
-   		document.getElementById("approved").checked=false;
-   		}
-   //'unchecked' event code
-});
-
-$('#approved').change(function() {
-   if($(this).is(":checked")) {
-      document.getElementById("received").checked=true;
-   }
-   //'unchecked' event code
-});
+  
 
 
 				$(document).ready(function() {

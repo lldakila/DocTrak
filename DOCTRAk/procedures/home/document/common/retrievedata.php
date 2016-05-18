@@ -18,24 +18,48 @@
 					join office on documentlist.fk_office_name_documentlist = office.office_name where document_id = '".$_POST['documentTracker']."' ");
 
     echo "<div id='details' class='retriveDataAllign'>";
-    echo "<table >";
-    echo "<tr><td>";
-    echo "Doc ID:"; echo"&nbsp;<b>".$query[0]['document_id'].'</b>';
-    echo "</td><td>"; 
-    echo "Title:"; echo"&nbsp;<b>".$query[0]['document_title'].'</b>';
-    echo "</td><td>";
-    echo "Template:"; echo"&nbsp;<b>".$query[0]['template_name'].'</b>';
-    echo "</td><td>";
-    echo "Type:"; echo"&nbsp;<b>".$query[0]['fk_documenttype_id'].'</b>';
-    echo "</td></tr><tr><td>";
-    echo "Description:"; echo"&nbsp;<b>".$query[0]['document_description'].'</b>';
-    echo "</td></tr><tr><td>";
-    echo "Input Date:"; echo"&nbsp;<b>".$query[0]['transdate'].'</b>';
-    echo "</td><td>";
-    echo "Owner:"; echo"&nbsp;<b>".$query[0]['security_name'].'</b>';
-    echo "</td><td>";
-    echo "Office:"; echo"&nbsp;<b>".$query[0]['office_description'].'</b>';
-    echo "</td>";
+    echo "<div class='row'>";
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Barcode:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['document_id'].'</b>';
+		    echo "</div>";  
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Title:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['document_title'].'</b>';
+		    echo "</div>";
+		    echo "<!-- Add the extra clearfix for only the required viewport -->
+		  					<div class='clearfix visible-xs-block'></div>";
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Template:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['template_name'].'</b>';
+		    echo "</div>";
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Type:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['fk_documenttype_id'].'</b>';
+		    echo "</div>";
+    echo "</div>";
+    
+    echo "<br>";
+            
+    echo "<div class='row'>";
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Description:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['document_description'].'</b>';
+		    echo "</div>";
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Input Date:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['transdate'].'</b>';
+		    echo "</div>";
+		    echo "<!-- Add the extra clearfix for only the required viewport -->
+		  					<div class='clearfix visible-xs-block'></div>";
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Owner:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['security_name'].'</b>';
+		    echo "</div>";
+		    echo "<div class='col-xs-6 col-sm-3'>";
+		    					echo "Office:"; echo"&nbsp;<b style='color:#00556F;'>".$query[0]['office_description'].'</b>';
+		    echo "</div>";
+    echo "</div>";
+    
+   
+    
+    
+    
+    
+    
 //    echo "Attachment:"; //echo"&nbsp;<b>".$query[0]['document_filename'].'</b>'; document_filename
 //    if ($query[0]['document_mime']!=""){
 //        $encrypted=urlencode(base64_encode(encryptText($query[0]['document_id'])));
@@ -45,9 +69,7 @@
 //        echo "<a href='#'> No Attachment</a>";
 //    }
 
-
-    echo "</table>";
-    echo "</td></tr>";
+   
     echo "</div>";
 
  //echo "<div id='details' class=''>";

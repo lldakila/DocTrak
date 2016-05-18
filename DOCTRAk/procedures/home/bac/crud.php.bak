@@ -1002,30 +1002,22 @@ function renderRelease($searchText)
                 {   
                     echo '<div id="details" class="retriveDataAllign">';
                     
-                    echo "<div class='row'>";
-                    	echo "<div class='col-xs-6 col-sm-4'>";
-                    						echo '<input id="pKey" type="hidden" readonly="readonly" value="'.$recSet["bacdocument_id"].'" />';
-									    					echo "Barcode No:"; echo"&nbsp;<b style='color:#00556F;'>".$recSet['bacdocument_id'].'</b>';
-									    echo "</div>";
-									    echo "<div class='col-xs-6 col-sm-4'>";
-									    					echo "Cost:"; echo"&nbsp;<b style='color:#00556F;'>". number_format($recSet["prcost"], 2, '.', ',').'</b>';
-									    echo "</div>";
-									    echo "<div class='col-xs-6 col-md-4'>";
-									    					echo "PR Date:"; echo"&nbsp;<b style='color:#00556F;'>".date("F j, Y",strtotime($recSet["pr_date"])).'</b>';
-									    echo "</div>";
-									    echo "<div class='col-xs-6 col-md-4'>";
-									    					echo "Details:"; echo"&nbsp;<b style='color:#00556F;'>".$recSet['bacdocumentdetail'].'</b>';
-									    echo "</div>";
-		                  echo "<div class='col-xs-6 col-md-4'>";
-									    					echo "Office:"; echo"&nbsp;<b style='color:#00556F;'>".$recSet['fk_officename_bacdocumentlist'].'</b>';
-									    echo "</div>";
-		                  echo "<div class='col-xs-6 col-md-4'>";
-									    					echo "Entry Date:"; echo"&nbsp;<b style='color:#00556F;'>".date("F j, Y, g:i a",strtotime($recSet['transdate'])).'</b>';
-									    echo "</div>";
-		                    
-				            echo '</div>';
-                    
-                    
+                    echo '<table>';
+                    echo '<tr>';
+                    echo '<input id="pKey" type="hidden" readonly="readonly" value="'.$recSet["bacdocument_id"].'" />';
+                    echo '<td>Barcode No:&nbsp;<b>'.$recSet['bacdocument_id'].'</b>';
+                    echo '</td><td>Cost:&nbsp;<b>'. number_format($recSet["prcost"], 2, '.', ',').'</b>';
+                    echo '</td><td>PR Date:&nbsp;<b>'.date("F j, Y",strtotime($recSet["pr_date"])).'</b>';
+                echo '</td></tr>';
+                echo '<tr><td>';
+                    echo 'Details:&nbsp;<b>'.$recSet['bacdocumentdetail'].'</b>';
+                    echo '</td><td>';
+                    echo 'Office:&nbsp;<b>'.$recSet['fk_officename_bacdocumentlist'].'</b>';
+                    echo '</td><td>';
+                    echo 'Entry Date:&nbsp;<b>'.date("F j, Y, g:i a",strtotime($recSet['transdate'])).'</b>';
+                    echo '</td>';
+                echo '</tr>';
+                echo '</table>';
                 echo '</div>';
                 
                 echo '<div id="checkinScroll">';

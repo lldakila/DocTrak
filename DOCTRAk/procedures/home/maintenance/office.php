@@ -25,181 +25,178 @@
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-    <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
+<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-table.css" />
 <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="../../../js/jquery.growl.js"></script>
 
 
+<script src="../../../js/bootstrap-table.js"></script>
+
+<script src="../../../js/bootstrap-select.js"></script>
+
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
 </head>
 
 <body>
- <?php
+<!------------------------------------------- header -------------------------------->
+<?php
      $PROJECT_ROOT= '../../../';
      include_once($PROJECT_ROOT.'qvJscript.php');
     include_once('../../../header.php');
 ?>
+<!------------------------------------------- end header -------------------------------->
 
+<!------------------------------------------- content -------------------------------->
 <div class="content">
 
-<div id="leftmenu">
-		<div id='cssmenu'>
-		<ul>
-		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-		      <ul>
-			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
-			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-		      </ul>
-		   </li>
-		   <?php
-		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-		   {
-		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-		      <ul>
-			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-			 <li><a href="#"><span>Check In</span></a></li>
-		 <li><a href="#"><span>Backlog</span></a></li>
-		      </ul>
-		   </li>'; */
-		   }
-		   ?>
+	<div id="leftmenu">
+			<div id='cssmenu'>
+				<ul>
+				   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+				      <ul>
+								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
+								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+				      </ul>
+				   </li>
+				   <?php
+				   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+				   {
+				      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				      <ul>
+							 	<li><a href="javascript:bacDocument()"><span>New</span></a></li>
+							 	<li><a href="#"><span>Check In</span></a></li>
+						 		<li><a href="#"><span>Backlog</span></a></li>
+				      </ul>
+				   </li>'; */
+				   }
+				   ?>
+		
+				</ul>
+		  </div>
+	</div>
 
-		</ul>
-	    </div>
-</div>
-
-	<div class="content1">
-    
-    	<div class="content2">
-        
+	<div class="main">
         	<div id="post">
+          	<div class="container">
+								<div class="row">
+										<div class="post">
             
-            
-            			<div id="post10">
-                        <h2>OFFICES</h2>
-
-
-                         <form name="process" method="post" action="office/process.php" onsubmit="return validate();">
-
-    					<div class="table1">
-    				<table border="0">
-                  	<tr>
-                    	<td>Office Name:</td>
-
-                        <td class="textinput">
-                        <input id="primarykey" name="primarykey" type="hidden" />
-                        <input id="office_name" name="office_name" type="text" class="form-control" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Description:</td>
-                        <td class="textinput"><input id="office_description" name="office_description" type="text" class="form-control" /> </td>
-                    </tr>
-
-
-                  </table>
-
-                    <?php
-          
-           if($_SESSION['operation']=='save'){
-
-                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
-
-            }  elseif($_SESSION['operation']=='delete'){
-
-                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-                }
-				
-				elseif($_SESSION['operation']=='update'){
-
-               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
-           }
-
-               $_SESSION['operation']='clear';
-
-
-
-
-
-
-?>
-
-                  		 <!--- BUTTONS ACTIVITY START --->
-
-                        <div class="input">
-                         <input id="office_mode" name="office_mode" type="hidden" value="0"/>
-                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';" class="btn btn-danger" />
-                         <input type="submit" value="Save" onClick="document.getElementById('office_mode').value='save';" class="btn btn-primary" />
-                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-                         </div>
-                           <!--- BUTTONS ACTIVITY END--->
-
-                  </div>
-
-						   </form>
-                        </div>
+			            			<div id="post100" class="col-xs-12 col-md-8">
+			                        <h2>OFFICES</h2>
+			                        <hr class="hrMargin" style="margin-bottom:10px;">
+			
+			
+			                         	<form name="process" method="post" action="office/process.php" onsubmit="return validate();">
+			
+												    					<div class="table1 form-horizontal">
+												    						
+													    						<div class="form-group">
+																					    <label class="col-sm-2 control-label">Office Name:</label>
+																					    <div class="col-sm-10">
+																					    		<input id="primarykey" name="primarykey" type="hidden" />
+													                        <input id="office_name" name="office_name" type="text" class="form-control" /> 
+																					    </div>
+																				  </div>
+																				  
+																				  <div class="form-group">
+																					    <label class="col-sm-2 control-label">Description:</label>
+																					    <div class="col-sm-10">
+													                        <input id="office_description" name="office_description" type="text" class="form-control" /> 
+																					    </div>
+																				  </div>
+																				  
+												                    <?php
+												          
+																			           if($_SESSION['operation']=='save'){
+																			
+																			                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+																			
+																			            }  elseif($_SESSION['operation']=='delete'){
+																			
+																			                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+																			                }
+																							
+																								elseif($_SESSION['operation']=='update'){
+																			
+																			               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+																			           }
+																			
+																			               $_SESSION['operation']='clear';
+																						
+																						
+																						?>
+												
+												                  		 <!--- BUTTONS ACTIVITY START --->
+												
+												                        <div class="input1">
+													                         <input id="office_mode" name="office_mode" type="hidden" value="0"/>
+													                         <input  type="submit" value="Delete"  onClick="document.getElementById('office_mode').value='delete';" class="btn btn-danger" />
+													                         <input type="submit" value="Save" onClick="document.getElementById('office_mode').value='save';" class="btn btn-primary" />
+													                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+												                        </div>
+												                           <!--- BUTTONS ACTIVITY END--->
+												
+												              </div>
+			
+									   						</form>
+			                  </div>
                         
-                        <div id="postright">
+                        <div id="postright0" class="col-xs-6 col-md-4">
                         
-                        		<div id="tfheader">
+                        		
                                 
-                                <form id="tfnewsearch" method="post"class="form-inline">
-                                    <div class="form-group">
+                                <form id="tfnewsearch" method="post">
+                                    
                                         <div class="input-group">
-                    				<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                                <button id="search_office" class="btn btn-default">Search </button>
+                    												<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                    												<span class="input-group-btn">
+                                            	<button id="search_office" class="btn btn-default">Search </button>
+                                          	</span>
                                         </div>
-                                    </div>
-                				</form>
-               					<h2></h2>
-                                </div>
+                                    
+                								</form>
+               					
+                            		<hr class="hrMargin">
                                 
-                                <div class="tfclear"></div>
-                                
-                            <div class="scroll">
-                                
-								                                   
-                                <table id="responds">
-				    <tr class='usercolortest'>
-					<th class="sizeOFFICE">OFFICE</th>
-					<th>DESCRIPTION</th>
-				    </tr>
-                                </table>
-                            </div>
+                            <div class="postright">   
+	                            <div class="scroll">                   
+	                                <table id="responds">
+																    <tr class='usercolortest'>
+																			<th class="sizeOFFICE">OFFICE</th>
+																			<th>DESCRIPTION</th>
+																    </tr>
+	                                </table>
+	                            </div>
+	                          </div>
                         </div>
 
 
                         <div class="tfclear"></div>
+                    </div>
+								</div>
+						</div>
+          </div>
 
-
-            </div>
-
-        </div>
-
-    </div>
+  </div>
 
 </div>
+<!------------------------------------ end content ------------------------------------->
 
-<div class="footer">
-
-	<div class="footerbg">
-    
-    			<div id="footer2">
-            <p>
-			<?php
-			
-				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
-				echo "&nbsp|";
-			?>
-			
-			<a href="#">Scroll Top</a></p>
-        </div>
-    
-    </div>
-	
-</div>
+<!------------------------------------------- footer -------------------------------->
+    <?php
+	    $PROJECT_ROOT= '../../../';
+	    include_once($PROJECT_ROOT.'qvJscript.php');
+	    include_once('../../../footer.php');
+		?>
+<!------------------------------------------- end footer -------------------------------->
 
 <!-- Modal -->
        <?php

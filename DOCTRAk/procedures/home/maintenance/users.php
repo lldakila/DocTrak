@@ -25,227 +25,231 @@
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
-    <link href="../../../css/bootstrap.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-    <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
-    <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
+<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-table.css" />
 <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="../../../js/bootstrap-select.js"></script>
+<script src="../../../js/jquery.growl.js"></script>
 
 
+<script src="../../../js/bootstrap-table.js"></script>
+
+<script src="../../../js/bootstrap-select.js"></script>
+
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
 </head>
 
 <body>
- <?php
-    $PROJECT_ROOT= '../../../';
-    include_once($PROJECT_ROOT.'qvJscript.php');
-    include_once('../../../header.php');
-    ?>
+<!------------------------------------------- header -------------------------------->
+<?php
+  $PROJECT_ROOT= '../../../';
+  include_once($PROJECT_ROOT.'qvJscript.php');
+  include_once('../../../header.php');
+?>
+<!------------------------------------------- end header -------------------------------->
 
+<!------------------------------------------- content -------------------------------->
 <div class="content">
 
-<div id="leftmenu">
-		<div id='cssmenu'>
-		<ul>
-		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-		      <ul>
-			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
-			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-		      </ul>
-		   </li>
-		   <?php
-		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-		   {
-		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-		      <ul>
-			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-			 <li><a href="#"><span>Check In</span></a></li>
-		 <li><a href="#"><span>Backlog</span></a></li>
-		      </ul>
-		   </li>'; */
-		   }
-		   ?>
+	<div id="leftmenu">
+			<div id='cssmenu'>
+				<ul>
+				   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+				      <ul>
+								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
+								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+				      </ul>
+				   </li>
+				   <?php
+				   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+				   {
+				      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				      <ul>
+							 	<li><a href="javascript:bacDocument()"><span>New</span></a></li>
+							 	<li><a href="#"><span>Check In</span></a></li>
+						 		<li><a href="#"><span>Backlog</span></a></li>
+				      </ul>
+				   </li>'; */
+				   }
+				   ?>
+		
+				</ul>
+		  </div>
+	</div>
 
-		</ul>
-	    </div>
-</div>
-
-	<div class="content1">
-    
-    	<div class="content2">
-        
-        	<div id="post">
-            
-            			<div id="post10">
+	<div class="main">
+      <div id="post">
+         	<div class="container">
+						<div class="row">
+								<div class="post">
+            					<div id="post100" class="col-xs-12 col-md-8">
                         <h2>USERS</h2>
+                        <hr class="hrMargin" style="margin-bottom:10px;">
                         
-                             <form name="process" method="post" action="user/process.php" onsubmit="return validate();">
+                             	<form name="process" method="post" action="user/process.php" onsubmit="return validate();">
 
-    					<div class="table1">
-    				<table >
-                  	<tr>
-                    	<td>Username:</td>
+											    					<div class="table1 form-horizontal">
+											    						
+											    						<div class="form-group">
+																			    <label class="col-sm-2 control-label">Username:</label>
+																			    <div class="col-sm-10">
+																			    		<input id="primarykey" name="primarykey" type="hidden" />
+											                        <input id="username" name="username" type="text" class="form-control" /> 
+																			    </div>
+																		  </div>
+																		  
+																		  <div class="form-group">
+																			    <label class="col-sm-2 control-label">Password:</label>
+																			    <div class="col-sm-10">
+											                        <input id="password" name="password" type="password" class="form-control" /> 
+																			    </div>
+																		  </div>
+																		  
+																		  <div class="form-group">
+																			    <label class="col-sm-2 control-label">Verify:</label>
+																			    <div class="col-sm-10">
+											                        <input id="verify" name="verify" type="password" class="form-control" /> 
+																			    </div>
+																		  </div>
+																		  
+																		  <div class="form-group">
+																			    <label class="col-sm-2 control-label">Fullname:</label>
+																			    <div class="col-sm-10">
+											                        <input id="name" name="name" type="text" class="form-control" /> 
+																			    </div>
+																		  </div>
+																		  
+																		  <div class="form-group">
+																			    <label class="col-sm-2 control-label">Group:</label>
+																			    <div class="col-sm-10">
+											                       <select id="group" name="group" class="form-control" > <option>Select Here</option>
+											
+																				       <?php
+																				           require_once("../../connection.php");
+																				
+																				           $query=select_info_multiple_key("select SECURITY_GROUPNAME from security_group");
+																				           foreach($query as $var) {
+																				              echo "<option>".$var['SECURITY_GROUPNAME']."</option>";
+																				           }
+																						
+																						
+																						   ?>
+								                             </select>
+																			    </div>
+																		  </div>
+																		  
+																		  <div class="form-group">
+																			    <label class="col-sm-2 control-label">Office:</label>
+																			    <div class="col-sm-10">
+											                       <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> <option>Select Here</option>
+											
+																					       <?php
+																					           require_once("../../connection.php");
+																					
+																					           $query=select_info_multiple_key("select OFFICE_NAME, OFFICE_DESCRIPTION from office");
+																					           foreach($query as $var) {
+																					              echo "<option data-subtext='".$var['OFFICE_DESCRIPTION']."'>".$var['OFFICE_NAME']."</option>";
+																					           }
+																					
+																					
+																					    		?>
+								                             </select>
+																			    </div>
+																		  </div>
+											
+											                    <?php
+											            
+																		           if($_SESSION['operation']=='save'){
+																		
+																		                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+																		
+																		            }  elseif($_SESSION['operation']=='delete'){
+																		
+																		                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+																		                }
+																		           elseif($_SESSION['operation']=='update'){
+																		
+																		               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+																		           }
+																		
+																		               $_SESSION['operation']='clear';
+																					
 
-                        <td class="usertext">
-                            <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="username" name="username" type="text" class="form-control" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Password:</td>
-                        <td class="usertext"><input id="password" name="password" type="password" class="form-control" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Verify:</td>
-                        <td class="usertext"><input id="verify" name="verify" type="password" class="form-control" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Fullname:</td>
-                        <td class="usertext"><input id="name" name="name" type="text" class="form-control" /> </td>
-                    </tr>
+																					?>
+											
+											                  		 <!--- BUTTONS ACTIVITY START --->
+											
+											                        <div class="input1">
+												                         	<input id="security_user" name="security_user" type="hidden" value="0"/>
+												                        	<input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
+												                         	<input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
+												                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+											                        </div>
+											                           <!--- BUTTONS ACTIVITY END--->
+											
+											              </div>
 
-                    <tr>
-                    	<td>Group: </td>
-                         <td class="select01">
-                             <select id="group" name="group" class="form-control" > <option>Select Here</option>
-
-       <?php
-           require_once("../../connection.php");
-
-           $query=select_info_multiple_key("select SECURITY_GROUPNAME from security_group");
-           foreach($query as $var) {
-              echo "<option>".$var['SECURITY_GROUPNAME']."</option>";
-           }
-
-
-    ?>
-                              </select>
-                               </td>
-
-                    </tr>
-                    <tr>
-                    	<td>Office: </td>
-                         <td class="select01">
-                             <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> <option>Select Here</option>
-
-       <?php
-           require_once("../../connection.php");
-
-           $query=select_info_multiple_key("select OFFICE_NAME, OFFICE_DESCRIPTION from office");
-           foreach($query as $var) {
-              echo "<option data-subtext='".$var['OFFICE_DESCRIPTION']."'>".$var['OFFICE_NAME']."</option>";
-           }
-
-
-    ?>
-                              </select>
-                               </td>
-
-                    </tr>
-
-
-                  </table>
-
-                    <?php
-            
-           if($_SESSION['operation']=='save'){
-
-                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
-
-            }  elseif($_SESSION['operation']=='delete'){
-
-                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-                }
-           elseif($_SESSION['operation']=='update'){
-
-               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
-           }
-
-               $_SESSION['operation']='clear';
+						   								</form>
 
 
 
-
-
-
-?>
-
-                  		 <!--- BUTTONS ACTIVITY START --->
-
-                        <div class="input1">
-                         <input id="security_user" name="security_user" type="hidden" value="0"/>
-                        <input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
-                         <input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
-                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-                         </div>
-                           <!--- BUTTONS ACTIVITY END--->
-
-                  </div>
-
-						   </form>
-
-
-
-                        </div>
+                  		</div>
                         
-                        <div id="postright">
+                        <div id="postright0" class="col-xs-6 col-md-4">
                         
-                        	<div id="tfheader">
-                            	<form id="tfnewsearch" method="post" class="form-inline">
-                                    <div class="form-group">
+                        	
+                            	<form id="tfnewsearch" method="post">
+                                    
                                         <div class="input-group">
                                                 <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                                <button id="search_user" class="btn btn-default">Search </button>
+                                                <span class="input-group-btn">
+                                                	<button id="search_user" class="btn btn-default">Search </button>
+                                              	</span>
                                         </div>
-                                    </div>
-								</form>	
-                                <h2></h2>
-                            </div>
-                            <div class="tfclear"></div>
+                                    
+															</form>	
+                                
+                          
+                            	<hr class="hrMargin">
                             
-                            <div class="scroll">
-                        	                                    
-                                <table id="responds">
-				    <tr class='usercolortest'>
-					<th class="sizeUSERname">USERNAME</th>
-					<th>NAME</th>
-				    </tr>
-                                </table>
-                            </div>
-                         </div>
+	                          <div class="postright"> 
+	                            <div class="scroll">
+	                        	                                    
+	                                <table id="responds">
+																    <tr class='usercolortest'>
+																			<th class="sizeUSERname">USERNAME</th>
+																			<th>NAME</th>
+																    </tr>
+	                                </table>
+	                            </div>
+	                          </div>
+                        </div>
                         
                         
                         <div class="tfclear"></div>
-
-
-            </div>
-
-        </div>
-    
-    </div>
+                </div>
+						</div>
+					</div>
+      </div>
+  </div>
 
 </div>
+<!------------------------------------ end content ------------------------------------->
 
-<div class="footer">
+<!------------------------------------------- footer -------------------------------->
+    <?php
+	    $PROJECT_ROOT= '../../../';
+	    include_once($PROJECT_ROOT.'qvJscript.php');
+	    include_once('../../../footer.php');
+		?>
+<!------------------------------------------- end footer -------------------------------->
 
-	<div class="footerbg">
-    
-    			<div id="footer2">
-            <p>
-			<?php
-				
-				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
-				echo "&nbsp|";
-			?>
-			
-			<a href="#">Scroll Top</a></p>
-        </div>
-    
-    </div>
-	
-</div>
     <!-- Feedback-->
 <div id="feedbackDiv"></div>
 <!-- End Feedback -->

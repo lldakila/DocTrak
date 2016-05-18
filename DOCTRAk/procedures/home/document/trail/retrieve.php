@@ -30,37 +30,56 @@
             
        
         echo "<div id='details' class='retriveDataAllign'>";
-        echo "<table >";
-        echo "<tr><td>";
-        echo "Barcode:"; echo"&nbsp;<b>".$var['document_id'].'</b>';
-        echo "</td><td>"; 
-        echo "Title:"; echo"&nbsp;<b>".$var['document_title'].'</b>';
-        echo "</td><td>";
-        echo "Template:"; echo"&nbsp;<b>".$var['template_name'].'</b>';
-        echo "</td><td>";
-        echo "Type:"; echo"&nbsp;<b>".$var['fk_documenttype_id'].'</b>';
-        echo "</td></tr><tr><td>";
-        echo "Decription:"; echo"&nbsp;<b>".$var['document_description'].'</b>';
-        echo "</td></tr><tr><td>";
-        echo "Input Date:"; echo"&nbsp;<b>".$var['transdate'].'</b>';
-        echo "</td><td>";
-        echo "Owner:"; echo"&nbsp;<b>".$var['security_name'].'</b>';
-        echo "</td><td>";
-        echo "Office:"; echo"&nbsp;<b>".$var['office_description'].'</b>';
-        echo "</td><td>";
-        echo "Attachment:"; //echo"&nbsp;<b>".$query['document_filename'].'</b>'; document_filename
-        if ($var['document_mime']!=""){
-            $encrypted=urlencode(base64_encode(encryptText($var['document_id'])));
-            echo "<a target='_blank' href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
-        }
-        else {
-            echo "<a href='#'> No Attachment</a>";
-        }
-        break;
- }
-
-        echo "</table>";
-        echo "</td></tr>";
+        echo "<div class='row'>";
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Barcode:"; echo"&nbsp;<b style='color:#00556F;'>".$var['document_id'].'</b>';
+			    echo "</div>";  
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Title:"; echo"&nbsp;<b style='color:#00556F;'>".$var['document_title'].'</b>';
+			    echo "</div>";
+			    echo "<!-- Add the extra clearfix for only the required viewport -->
+			  					<div class='clearfix visible-xs-block'></div>";
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Template:"; echo"&nbsp;<b style='color:#00556F;'>".$var['template_name'].'</b>';
+			    echo "</div>";
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Type:"; echo"&nbsp;<b style='color:#00556F;'>".$var['fk_documenttype_id'].'</b>';
+			    echo "</div>";
+    		echo "</div>";
+    		
+    		echo "<br>";
+            
+    		echo "<div class='row'>";
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Description:"; echo"&nbsp;<b style='color:#00556F;'>".$var['document_description'].'</b>';
+			    echo "</div>";
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Input Date:"; echo"&nbsp;<b style='color:#00556F;'>".$var['transdate'].'</b>';
+			    echo "</div>";
+			    echo "<!-- Add the extra clearfix for only the required viewport -->
+			  					<div class='clearfix visible-xs-block'></div>";
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Owner:"; echo"&nbsp;<b style='color:#00556F;'>".$var['security_name'].'</b>';
+			    echo "</div>";
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Office:"; echo"&nbsp;<b style='color:#00556F;'>".$var['office_description'].'</b>';
+			    echo "</div>";
+			    
+			    echo "<div class='col-xs-6 col-sm-3'>";
+			    					echo "Attachment:";
+			    					if ($var['document_mime']!="")
+			    					{
+										            $encrypted=urlencode(base64_encode(encryptText($var['document_id'])));
+										            echo "<a target='_blank' href='/procedures/home/document/common/previewfile.php?download_file=".$encrypted."'>Download</a>";
+										        }
+										        else {
+										            echo "<a href='#'> No Attachment</a>";
+										        }
+										        break;
+										 }
+			    					
+			    echo "</div>";
+    		echo "</div>";
         echo "</div>";
         
         mysqli_free_result($result);

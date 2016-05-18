@@ -36,6 +36,7 @@
 		$approved_b="and forrelease_val is  null";
 		$filterDoctrackList="";
 		$mydoc_b="";
+		$noneCheckedProcess="";
 
 		
 		if ($_POST['vreceived']=='true')
@@ -55,11 +56,25 @@
 			$mydoc_b="and documentlist.fk_office_name_documentlist = '".$_SESSION['OFFICE']."'";
 		}
 
-
 		
-		
-		
-	
+		if (($_POST['vreceived']=='true')AND($_POST['vapproved']=='false')AND($_POST['vreleased']=='false'))
+		{
+			$received_b=$received_b." and received_date between '".$datefrom."' and '".$dateto."' ";	
+			
+		}
+		elseif (($_POST['vapproved']=='true')AND($_POST['vreleased']=='false'))
+		{
+			$approved_b=$approved_b." and forrelease_date between '".$datefrom."' and '".$dateto."' ";
+		}
+		elseif ($_POST['vreleased']=='true')		
+		{
+			$released_b=$released_b." and released_date between '".$datefrom."' and '".$dateto."' ";
+		}
+		else	//none checked as process
+		{
+			$noneCheckedProcess=" and documentlist.transdate between '".$datefrom."' and '".$dateto."' ";
+			
+		}
 
 	if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
 	{
@@ -75,7 +90,8 @@
 																						where office_name like '%' ".$received_b."  
 																						 ".$released_b ."  ".$approved_b ."
 																						) ";
-														$filterDoctrackListUser=$filterDoctrackList;								
+														$filterDoctrackListUser=$filterDoctrackList;				
+																		
 												
 												}												
 												else
@@ -88,14 +104,28 @@
 												}
 											
 											
+											if ($_POST['vreceived']=='true') 
+											{
+													$sql="select document_id,document_title,office.office_description,security_user.security_name,documentlist.transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username
+													join office on documentlist.fk_office_name_documentlist = office.office_name
+													where documentlist.scrap<>1  
+													 ".$mydoc_b."  ".$filterDoctrackList."
+													 order by documentlist.transdate desc
+													";
+											}
+											else
+											{
+													$sql="select document_id,document_title,office.office_description,security_user.security_name,documentlist.transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username
+													join office on documentlist.fk_office_name_documentlist = office.office_name
+													where documentlist.scrap<>1  and documentlist.transdate between '".$datefrom."' and '".$dateto."'
+													 ".$mydoc_b."  ".$filterDoctrackList."
+													 order by documentlist.transdate desc
+													";
+											}
+												
+
 											
 											
-											$sql="select document_id,document_title,office.office_description,security_user.security_name,documentlist.transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username
-										join office on documentlist.fk_office_name_documentlist = office.office_name
-										where documentlist.scrap<>1  and documentlist.transdate between '".$datefrom."' and '".$dateto."'
-										 ".$mydoc_b."  ".$filterDoctrackList."
-										 order by documentlist.transdate desc
-										";
 											
 											
 	}
@@ -125,7 +155,7 @@
 											
 											$sql="select document_id,document_title,office.office_description,security_user.security_name,documentlist.transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username
 									join office on documentlist.fk_office_name_documentlist = office.office_name
-									where documentlist.scrap<>1  and documentlist.transdate between '".$datefrom."' and '".$dateto."'
+									where documentlist.scrap<>1  ".$noneCheckedProcess."
 									 ".$mydoc_b."  ".$filterDoctrackListUser."
 									  order by documentlist.transdate desc
 									";

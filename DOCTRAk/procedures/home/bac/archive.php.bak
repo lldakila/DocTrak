@@ -21,17 +21,35 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 ?>
 </title>
 
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-table.css" />
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="../../../js/jquery.growl.js"></script>
 
+
+<script src="../../../js/bootstrap-table.js"></script>
+
+<script src="../../../js/bootstrap-select.js"></script>
+
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
 </head>
     
 <body>
+<!------------------------------------------- header -------------------------------->
 <?php
 
     $PROJECT_ROOT= '../../../';
     include_once($PROJECT_ROOT.'qvJscript.php');
     include_once('../../../header.php');
 ?>
+<!------------------------------------------- end header -------------------------------->
+
+<!------------------------------------------- content -------------------------------->
 <div class="content">
     <div id="leftmenu">
         <div id='cssmenu'>
@@ -61,91 +79,87 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 	    </div>
     </div>
     
-    <div class="content1">
-    	<div class="content2">
+    <div class="main">
+    	
             <div id="post">
-                <div id="post10">
-                    <h2>BAC Archive</h2>
-                    <div id="BacHistory">
-                        <!--AJAX DATA INSERTED HERE-->
-                    </div>
-                </div>
-                
-                <div id="postright">
-
-                    <div id="tfheader">
-                        <form id="tfnewsearch" method="post"  class="form-inline">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                    <button id="search_document" class="btn btn-default">Search </button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <!--AUTOSUGGEST SEARCH START-->
-                         <div id="display"></div>
-                        <!--AUTOSUGGEST SEARCH END-->
-                        <h2></h2>
-                    </div>
-                    <div class="tfclear">
-
-                    </div>
-
-                    <div class="scroll">
-
-                        <table id="responds">
-                            <tr class='usercolortest'>
-                                <th class='sizeBARCODE2'>BARCODE</th>
-				<th class='sizeDETAIL'>DETAIL</th>
-				<th class='sizeCOST'>COST</th>
-				<th>DATE</th>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="tfclear">
-                <!-- USED FOR FLOATING -->
-                </div>
+            		<div class="container">
+			       				<div class="row">
+			       						<div class="post">
+						                <div id="post100" class="col-xs-12 col-md-8">
+						                    <h2>BAC Archive</h2>
+						          					<hr class="hrMargin" style="margin-bottom:10px;">          
+						          
+						                    <div id="BacHistory">
+						                        <!--AJAX DATA INSERTED HERE-->
+						                    </div>
+						                    
+						                </div>
+						                
+						                <div id="postright0" class="col-xs-6 col-md-4">
+						
+						                    
+						                        <form id="tfnewsearch" method="post">
+						                            
+						                                <div class="input-group">
+						                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+						                                    <span class="input-group-btn">
+						                                    	<button id="search_document" class="btn btn-default">Search </button>
+						                                  	</span>
+						                                </div>
+						                            
+						                        </form>
+						
+						                        <!--AUTOSUGGEST SEARCH START-->
+						                        <!-- <div id="display"></div>-->
+						                        <!--AUTOSUGGEST SEARCH END-->
+						                    
+																	<div class="postright">
+								                    <div class="scroll">
+								
+								                        <table id="responds">
+								                            <tr class='usercolortest'>
+								                                <th class='sizeBARCODE2'>BARCODE</th>
+																								<th class='sizeDETAIL'>DETAIL</th>
+																								<th class='sizeCOST'>COST</th>
+																								<th>DATE</th>
+								                            </tr>
+								                        </table>
+								                    </div>
+								                  </div>
+						                </div>
+						                <div class="tfclear">
+						                <!-- USED FOR FLOATING -->
+						                </div>
+						            </div>
+						        </div>
+						    </div>
             </div>
-        
-        </div>
-    
     </div>
 
 </div>
-<div class="footer">
-    <div class="footerbg">
-    
-        <div id="footer2">
-            <p>
-            <?php
+<!------------------------------------------- end content -------------------------------->
 
-                echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
-                echo "&nbsp|";
-            ?>
-			
-            <a href="#">Contact Us</a> | Designed by: <a href="#">MIS</a> | <a href="#">Scroll Top</a>
-            </p>
-        </div>
-    
-    </div>
-	
-</div>
+<!------------------------------------------- footer -------------------------------->
+    <?php
+	    $PROJECT_ROOT= '../../../';
+	    include_once($PROJECT_ROOT.'qvJscript.php');
+	    include_once('../../../footer.php');
+		?>
+<!------------------------------------------- end footer -------------------------------->
+
 <!-- Modal -->
 <?php
      include('../../../modal.php');
 ?>
 <!-- End Modal -->
 
-<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<!--<link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
-<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 <script src="../../../js/bootstrap-select.js"></script>
-<script src="../../../js/jquery.growl.js"></script>
+<script src="../../../js/jquery.growl.js"></script>-->
 
 <script type="text/javascript">
 

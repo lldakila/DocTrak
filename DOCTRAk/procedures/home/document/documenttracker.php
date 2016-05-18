@@ -20,152 +20,162 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
+
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
+<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-table.css" />
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="../../../js/jquery.growl.js"></script>
+
+
+<script src="../../../js/bootstrap-table.js"></script>
+
+<script src="../../../js/bootstrap-select.js"></script>
+
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
+
+<!--
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon" />
 
 
     
-    
-    
+<link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-2.2.2.min.js" defer></script>
+<script src="../../../js/bootstrap-submenu.min.js" defer></script>    
+-->
 </head>
 
 <body>
-<?php
-    $PROJECT_ROOT= '../../../';
-    include_once($PROJECT_ROOT.'qvJscript.php');
-    include_once('../../../header.php');
-?>
+<!------------------------------------------- header -------------------------------->
+    <?php
+	    $PROJECT_ROOT= '../../../';
+	    include_once($PROJECT_ROOT.'qvJscript.php');
+	    include_once('../../../header.php');
+		?>
+<!------------------------------------------- end header -------------------------------->
 
+<!------------------------------------ content ------------------------------------->
 <div class="content">
 
-<div id="leftmenu">
-		<div id='cssmenu'>
-		<ul>
-		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-		      <ul>
-			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
-			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-		      </ul>
-		   </li>
-		   <?php
-		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-		   {
-		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-		      <ul>
-			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-			 <li><a href="#"><span>Check In</span></a></li>
-		 <li><a href="#"><span>Backlog</span></a></li>
-		      </ul>
-		   </li>'; */
-		   }
-		   ?>
+	<div id="leftmenu">
+			<div id='cssmenu'>
+					<ul>
+					   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+					      <ul>
+								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
+								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+					      </ul>
+					   </li>
+					   <?php
+					   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+					   {
+					      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+					      <ul>
+						 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+						 <li><a href="#"><span>Check In</span></a></li>
+					 <li><a href="#"><span>Backlog</span></a></li>
+					      </ul>
+					   </li>'; */
+					   }
+					   ?>
+			
+					</ul>
+		    </div>
+	</div>
 
-		</ul>
-	    </div>
-</div>
+    <div class="content">
 
-    <div class="content1">
-
-        <div class="content2">
+        <div class="main">
 
             <div id="post">
+            	
+							<div class="container">
+								<div class="row">
+									<div class="post">
+		                <div id="post100" class="col-xs-12 col-md-8">
+		                    <h2>DOCUMENT TRACKER</h2>
+		                    <hr class="hrMargin" style="margin-bottom:10px;">
+						                 <div id="retrievetable" >
+						                     <div id="ajaxhistory">
+																		
+																		
+						                     </div>
+						                 </div>
+		
+		                </div>
 
-                <div id="post10">
-                    <h2>DOCUMENT TRACKER</h2>
-                    
-
-                 <div id="retrievetable" >
-                     <div id="ajaxhistory">
-						
-
-
-                     </div>
-
-
-                 </div>
-
-
-
-
-                </div>
-
-                <div id="postright">
-                
-                	<div id="tfheader">
-                    	<form id="tfnewsearch" method="post" class="form-inline">
-                            <div class="form-group">
+		                <div id="postright0" class="col-xs-6 col-md-4">
+		                
+		                	
+		                    	<form id="tfnewsearch" method="post">
+		                            
                                 <div class="input-group">
                                     <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                    <button id="search_document" class="btn btn-default">Search </button>
+                                    <span class="input-group-btn">
+                                    	<button id="search_document" class="btn btn-default">Search </button>
+                                  	</span>
                                 </div>
-                            </div>
-                    	</form>
-                        <!--AUTOSUGGEST SEARCH START-->
-                        <div id="display"></div>
-                        <!--AUTOSUGGEST SEARCH END-->        
-                        <h2></h2>
-                    </div>
-                    <div class="tfclear"></div>
-                    
-                    <div class="scroll">
-                        		
- 									
-                                    
-                                    
-                                	
-                                    <table id="responds" >
-                                	<tr class='usercolortest'>
-					    <th class="sizeBARCODE2">BARCODE</th>
-					    <th class="sizeTITLE2">TITLE</th>
-					    <th class="sizeOWNER2">OWNER</th>
-					    <th>DATE</th>
-                                	</tr>
-                                    </table>
-                                
-                                
-                    </div>
-                </div>
+		                            
+		                    	</form>
+		                        <!--AUTOSUGGEST SEARCH START-->
+		                        <!--<div id="display"></div>-->
+		                        <!--AUTOSUGGEST SEARCH END-->        
+													<hr class="hrMargin">
+				                  <!-------- search table ----->
+				                  <div class="postright">  
+				                    <div class="scroll">           
+				                                	
+				                        <table id="responds">
+				                    			<tr class='usercolortest'>
+																    <th class="sizeBARCODE2">BARCODE</th>
+																    <th class="sizeTITLE2">TITLE</th>
+																    <th class="sizeOWNER2">OWNER</th>
+																    <th>DATE</th>
+				                    			</tr>
+				                        </table>
+				                                               
+				                    </div>
+				                  </div>
+				                  <!------ end search table ----->
+		                </div>
 
-                <div class="tfclear"></div>
+                		<div class="tfclear"></div>
 
-
-            </div>
-
+            			</div>
+            		</div>
+            	</div>
+						</div>
         </div>
 
     </div>
 
 </div>
+<!------------------------------------ end content ------------------------------------->
 
-<div class="footer">
-
-    <div class="footerbg">
-
-        <div id="footer2">
-            <p>
-			<?php
-				
-				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
-				echo "&nbsp|";
-			?>
-			
-			<a href="#">Scroll Top</a></p>
-        </div>
-
-    </div>
-
-</div>
+<!------------------------------------------- footer -------------------------------->
+    <?php
+	    $PROJECT_ROOT= '../../../';
+	    include_once($PROJECT_ROOT.'qvJscript.php');
+	    include_once('../../../footer.php');
+		?>
+<!------------------------------------------- end footer -------------------------------->
 
 <!-- Modal -->
        <?php
        include('../../../modal.php');
        ?>
 <!-- End Modal -->   
-<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
 <script language="JavaScript" type="text/javascript">
 
 
