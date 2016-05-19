@@ -232,7 +232,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			                         	<div class="postright">  
 			                            <div class="scroll">
 			                        	                                    
-			                                <table id="responds">
+			                                <table id="responds"
+			                                	data-height="450"
+																	      data-toggle="table"
+																	      class="display table table-bordered"
+			                                	>
 			                                	<tr class='usercolortest'>
 																			    <th class="sizeBARCODE">BARCODE</th>
 																			    <th class="sizeTITLE">TITLE</th>

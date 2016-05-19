@@ -50,31 +50,28 @@ function renderForm($action)
     global $docRemarks;
     global $docLocation;
     
-    echo ' <table id="HOMEdata" class="table table-bordered">
-            <tr>
-                <th>DOC ID</th>
-                <th>TITLE</th>
-                <th>TYPE</th>
-                <th>ORIGINATING OFFICE</th> 
-                
-                <th>DATE RECEIVE</th>
-                <th>FOR RELEASE DATE</th>
-                <th>DATE RELEASE</th>
-                <th>STATUS</th>
-                <th>REMARKS</th>
-          </tr> 
-            ';
-    
-//    switch($action)
-//    {
-//        case 'All':
+//    echo ' <table id="HOMEdata" class="table table-bordered">
+//            <tr>
+//                <th>DOC ID</th>
+//                <th>TITLE</th>
+//                <th>TYPE</th>
+//                <th>ORIGINATING OFFICE</th> 
+//                
+//                <th>DATE RECEIVE</th>
+//                <th>FOR RELEASE DATE</th>
+//                <th>DATE RELEASE</th>
+//                <th>STATUS</th>
+//                <th>REMARKS</th>
+//          </tr> 
+//            ';
+
          if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
             {
                 $SQLquery="select document_id,document_title,fk_documenttype_id,priority,fk_office_name_documentlist,
                 office_name,received_date,forrelease_date,received_comment,released_comment from documentlist join security_user 
                 on documentlist.fk_security_username = security_user.security_username join document_type
                 on documentlist.fk_documenttype_id = document_type.documenttype_id  join documentlist_tracker
-                on documentlist.document_id=documentlist_tracker.fk_documentlist_id WHERE scrap=0 and complete=0 group by document_id order by transdate desc";
+                on documentlist.document_id=documentlist_tracker.fk_documentlist_id WHERE scrap=0 and complete=0 group by document_id order by transdate desc ";
             }
         else
             {
@@ -89,48 +86,58 @@ function renderForm($action)
 //	    die();
                 $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
                 $rowcolor='';
-                while ($row = mysqli_fetch_array($result))
+                $resultArray=array();
+                
+                while ($row = mysqli_fetch_assoc($result))
                     {
                         if (SummaryFilter($row['document_id'],$action))
                             {
-                                if ($rowcolor=="blue")
-                                    {
-                                        echo '<tr class="bgcolor1" onClick="addRowHandlers();"><td>';
-                                        $rowcolor="notblue";
-                                    }
-                                    else
-                                    {
-                                        echo '<tr class="bgcolor2" onClick="addRowHandlers();"><td>';
-                                        $rowcolor="blue";
-                                    }
+                            	   
+                								array_push($resultArray, array("barcode"=>$row['document_id'],"title"=>$row['document_title'],"type"=>$row['fk_documenttype_id'],"office"=>$row['fk_office_name_documentlist'],"officeloc"=>$docLocation,"received"=>$dateReceived,"forrelease"=>$dateForrelease,"release"=>$dateReleased,"status"=>$docStatus,"remark"=>$docRemarks));
+            
+         
+//                                if ($rowcolor=="blue")
+//                                    {
+//                                        echo '<tr class="bgcolor1" onClick="addRowHandlers();"><td>';
+//                                        $rowcolor="notblue";
+//                                    }
+//                                    else
+//                                    {
+//                                        echo '<tr class="bgcolor2" onClick="addRowHandlers();"><td>';
+//                                        $rowcolor="blue";
+//                                    }
 
-                                       echo $row['document_id'];
-                                       echo "</td><td>";
-                                       echo $row['document_title'];
-                                       echo "</td><td>";
-                                       echo $row['fk_documenttype_id'];
-                                       echo "</td><td>";
-                                       echo $row['fk_office_name_documentlist'];
-                                       echo "</td><td>";
-                                       echo $docLocation;
-                                       echo "</td><td>";
-                                       echo $dateReceived;
-                                       echo "</td><td>";
-                                        echo $dateForrelease;
-                                       echo "</td><td>";
-                                       echo $dateReleased;
-                                       echo "</td><td>";
-                                       echo $docStatus;
-                                       echo "</td><td>";
-                                       echo $docRemarks;
-                                       echo "</td></tr>";
+//                                       echo $row['document_id'];
+//                                       echo "</td><td>";
+//                                       echo $row['document_title'];
+//                                       echo "</td><td>";
+//                                       echo $row['fk_documenttype_id'];
+//                                       echo "</td><td>";
+//                                       echo $row['fk_office_name_documentlist'];
+//                                       echo "</td><td>";
+//                                       echo $docLocation;
+//                                       echo "</td><td>";
+//                                       echo $dateReceived;
+//                                       echo "</td><td>";
+//                                        echo $dateForrelease;
+//                                       echo "</td><td>";
+//                                       echo $dateReleased;
+//                                       echo "</td><td>";
+//                                       echo $docStatus;
+//                                       echo "</td><td>";
+//                                       echo $docRemarks;
+//                                       echo "</td></tr>";
+                                       
+                                       
+                                       
+                                       
 
                          }
                     }
 //            break;
 //    }
-			echo '</table>';
-			
+//			echo '</table>';
+			echo json_encode($resultArray);
 }
 
 

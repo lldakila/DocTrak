@@ -159,7 +159,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																				    		
 																				    				<?php
 																				    				
-																				    				echo '<select id="template" name="template" class="form-control selectpicker" onchange="templateView()">';
+																				    				echo '<select id="template" name="template" class="form-control selectpicker" onchange="templateView()" data-live-search="true">';
 																						           //require_once("../../connection.php");
 																						          
 																						                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template order by template_name asc");
@@ -276,16 +276,28 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                             <!-------- search table ----->
                             	
                             	<div class="postright">
-																<div class="scroll">
+															
                         	                                    
-	                                <table id="responds">
-																    <tr class='usercolortest'>
-																				<th class="sizeBARCODE">BARCODE</th>
-																				<th class="sizeTITLE">TITLE</th>
-																				<th>DATE</th>
+	                                <table id="responds"
+		                                	data-height="450"
+																      data-toggle="table"
+																      class="display table table-bordered"
+	                                	>
+	                                	<thead>
+																    <tr>
+																				<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+																				<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
+																				<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
+																				<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+																				<th data-visible="false" data-field="template" data-sortable="true">template</th>
+																				<th data-visible="false" data-field="type" data-sortable="true">type</th>
+																				<th data-visible="false" data-field="scrap" data-sortable="true">scrap</th>
 																    </tr>
+																  </thead>
 											            </table>
-										        		</div>
+											            
+											            
+										        		
 										        	</div>		
 															   	
                           	<!------ end search table ----->
@@ -333,29 +345,29 @@ function cleartext() {
   document.getElementById("primarykey").value="";
 
 }
-function clickSearch(barcode,title,description,template,type,scrap) {
-   // document.getElementById('primarykey').value=barcode;
-	if (scrap!=1)
-	{
-		document.process.barcode.value=barcode;
-		document.process.title.value=title;
-		document.process.description.value=description;
-		document.process.type.value=type;
-		document.process.template.value=template;
-		//document.process.file.value=a;
-		document.process.primarykey.value=barcode;
-	}
-	else if (scrap==1)
-	{
-		alert("Document is scrapped.");
-		cleartext();
-	}
+//function clickSearch(barcode,title,description,template,type,scrap) {
+//   // document.getElementById('primarykey').value=barcode;
+//	if (scrap!=1)
+//	{
+//		document.process.barcode.value=barcode;
+//		document.process.title.value=title;
+//		document.process.description.value=description;
+//		document.process.type.value=type;
+//		document.process.template.value=template;
+//		//document.process.file.value=a;
+//		document.process.primarykey.value=barcode;
+//	}
+//	else if (scrap==1)
+//	{
+//		alert("Document is scrapped.");
+//		cleartext();
+//	}
 
 
 
     //alert (type);
   //  document.getElementById("group").value=username;
-}
+//}
 
 function validate() {
 	//alert (document.getElementById('document_hidden').value);
@@ -430,53 +442,84 @@ $(document).ready(function() {
     jQuery.ajax({
             type: "POST",
             url:"new/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
 			data:myData,
-                         beforeSend: function() {
-		        $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                        },
-                        ajaxError: function() {
-                                $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                        },
+       beforeSend: function() {
+
+       $('#responds').bootstrapTable("showLoading");
+      },
+                        
 			success:function(response){
-				$("#responds").html(response);
+							$('#responds').bootstrapTable("hideLoading");
+			       	$('#responds').bootstrapTable("load",response);
 
 			},
 			error:function (xhr, ajaxOptions, thrownError){
 				alert(thrownError);
 			}
 			});
-	});
-
+			});
+//			
+//			 $("#search_string").keyup(function() 
+//        {
+//            var name = $('#search_string').val();
+//            var searchtype = 'newDoc';
+//            if(name=="")
+//            {
+//                $("#display").html("");
+//            }
+//            else
+//            {
+//                $.ajax({
+//                type: "POST",
+//                url: "common/autosuggest.php",
+//                data: {search_string:name ,searchtype:searchtype},
+//                success: function(html){
+//                $("#display").html(html).show();
+//               
+//                }
+//                });
+//            }
+//        });
+   
+})
 $('#feedbackDiv').feedBackBox();
 
-    $("#generatebarcode").click(function (e) {
+//    $("#generatebarcode").click(function (e) {
+//
+//        e.preventDefault();
+//      //  var myData = 'randbarcode='+ $("#generatebarcode").val(); //build a post data structure
+//        jQuery.ajax({
+//            type: "POST",
+//            url:"new/barcode.php",
+//            dataType:"text", // Data type, HTML, json etc.
+//           // data:myData,
+//            beforeSend: function() {
+//                $("#barcodeinput").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            },
+//            ajaxError: function() {
+//                $("#barcodeinput").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            },
+//            success:function(response){
+//                //$("#barcodeinput").html(response);
+//                document.getElementById("barcodeinput").value=response;
+//            },
+//            error:function (xhr, ajaxOptions, thrownError){
+//                alert(thrownError);
+//            }
+//        });
+//    });
 
-        e.preventDefault();
-      //  var myData = 'randbarcode='+ $("#generatebarcode").val(); //build a post data structure
-        jQuery.ajax({
-            type: "POST",
-            url:"new/barcode.php",
-            dataType:"text", // Data type, HTML, json etc.
-           // data:myData,
-            beforeSend: function() {
-                $("#barcodeinput").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                $("#barcodeinput").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response){
-                //$("#barcodeinput").html(response);
-                document.getElementById("barcodeinput").value=response;
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    });
 
 
-    });
+
+
+
+
+
+
+
+//    });
 	
 document.addEventListener("mousemove", function() {
     myFunction(event);
@@ -495,33 +538,7 @@ function myFunction(e) {
         $('#display').hide();
     }
     
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
-        {
-            var name = $('#search_string').val();
-            var searchtype = 'newDoc';
-            if(name=="")
-            {
-                $("#display").html("");
-            }
-            else
-            {
-                $.ajax({
-                type: "POST",
-                url: "common/autosuggest.php",
-                data: {search_string:name ,searchtype:searchtype},
-                success: function(html){
-                $("#display").html(html).show();
-               
-                }
-                });
-            }
-        });
-		
-		
-		
-    });
+   
     
     
     
@@ -535,7 +552,28 @@ function myFunction(e) {
    	link.setAttribute("href", "common/viewtemplate.php?template_id="+strUser);
     }
     
-  
+  $('#responds').on('click-row.bs.table', function (e, row, $element) {
+ //    console.log(row);
+   // alert(row['description']);
+    
+    if (row['scrap']!=1)
+	{
+		document.process.barcode.value=row['barcode'];
+		document.process.title.value=row['title'];
+		document.process.description.value=row['description'];
+		document.process.type.value=row['type'];
+		document.process.template.value=row['template'];
+		//document.process.file.value=a;
+		document.process.primarykey.value=row['scrap'];
+	}
+	else if (row['scrap']==1)
+	{
+		alert("Document is scrapped.");
+		cleartext();
+	}
+   
+});
+
 
 </script>
 

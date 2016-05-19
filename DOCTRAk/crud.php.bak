@@ -48,9 +48,39 @@ switch($_POST['module'])
     case 'feedback':
     	feedback();
     	break;    
+    	
+   	case 'table':
+   	testbootstraptable();
+   	break;
 
 }
 
+function testbootstraptable()
+{
+	echo "[";
+	$x=1;
+	$y=667;
+	while ($x!=100)
+	{
+		echo"{";	
+		echo '"id":"'.$y.'",';
+		echo '"name":"'.$x.'",';
+		echo '"address":"'.$x.'",';
+		echo '"age":"'.$x.'",';
+		echo '"age":"'.$x.'",';
+		echo '"age":"'.$x.'",';
+		echo '"age":"'.$x.'",';
+		echo '"age":"'.$x.'"';
+		echo"}";	
+		if ($x!=99) echo ",";
+		
+		$x++;
+		$y++;
+	}
+	echo "]";
+
+	
+}
 //NEW DOCUMENT FUNCTION
 function NewDocument()
 {
@@ -862,7 +892,7 @@ function RetrieveBarcodeInfo($document_id)
 		{
 			echo "Thank You for your feedback. We will try to take a look at it ASAP.";
 			$KEY=get_key();
-			log_audit($KEY,$sql,'New Document',''.$_SESSION['security_name'].'');
+			log_audit($KEY,$sql,'Feedback',''.$_SESSION['security_name'].'');
 		}
 		else
 		{
