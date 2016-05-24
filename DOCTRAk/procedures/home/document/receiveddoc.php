@@ -120,8 +120,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 															  <div class="form-group">
 																    <label class="col-sm-2 control-label">BarCode No:</label>
 																    <div class="col-sm-10">
-																    		<input id="primarykey" name="primarykey" type="hidden" />
-																      	<input type="hidden" class="form-control" id="barcode" name="barcode" placeholder="Title">
+																    		<input id="primarykey" readonly="readonly" name="primarykey" type="hidden" />
+																      	<input type="hidden" readonly="readonly" class="form-control" id="barcode" name="barcode" placeholder="Title">
 																      	<input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
 																    </div>
 																</div>
@@ -230,21 +230,29 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		                        		<hr class="hrMargin">
                         
 			                         	<div class="postright">  
-			                            <div class="scroll">
+			                            
 			                        	                                    
 			                                <table id="responds"
 			                                	data-height="450"
 																	      data-toggle="table"
 																	      class="display table table-bordered"
+																	      data-striped="true"
 			                                	>
-			                                	<tr class='usercolortest'>
-																			    <th class="sizeBARCODE">BARCODE</th>
-																			    <th class="sizeTITLE">TITLE</th>
-																			    <th>DATE</th>
-			                                	</tr>
+			                                	<thead>
+																			    <tr>
+																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+																							<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
+																							<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
+																							<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+																							<th data-visible="false" data-field="template" data-sortable="true">template</th>
+																							<th data-visible="false" data-field="type" data-sortable="true">type</th>
+																							
+																			    </tr>
+																			  </thead>
+			                                	
 			                                </table>
 			
-			                            </div>
+			                            
 			                          </div>
                         </div>
 							
@@ -278,7 +286,22 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <script language="JavaScript" type="text/javascript">
 
-
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+ //    console.log(row);
+   // alert(row['description']);
+  
+		document.process.barcodeno.value=row['barcode'];
+		document.process.title.value=row['title'];
+		
+		document.process.documenttype.value=row['type'];
+		document.process.template.value=row['template'];
+		
+		document.process.primarykey.value=row['barcode'];
+		document.process.barcode.value=row['barcode'];
+		retrieveAttachment(row['barcode']);
+	
+   
+});
 
 function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_id) {
     document.process.barcodeno.value=barcodeno;
@@ -352,6 +375,8 @@ function validate() {
 
 }
 
+
+
 $(document).ready(function() {
     $("#search_receiveddoc").click(function (e) {
 
@@ -360,20 +385,20 @@ $(document).ready(function() {
     jQuery.ajax({
 			type: "POST",
             url:"receive/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
 			data:myData,
             beforeSend: function() {
-                    $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                  $('#responds').bootstrapTable("showLoading");
             },
-            ajaxError: function() {
-                    $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
+            
             success:function(response){
-                    $("#responds").html(response);
+                    $('#responds').bootstrapTable("hideLoading");
+			       	$('#responds').bootstrapTable("load",response);
 
             },
             error:function (xhr, ajaxOptions, thrownError){
                     alert(thrownError);
+                    $('#responds').bootstrapTable("hideLoading");
             }
             });
 	});
@@ -401,29 +426,29 @@ function myFunction(e) {
         $('#display').hide();
     }
     
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
-        {
-            var name = $('#search_string').val();
-            var searchtype = 'ReceiveDoc';
-            if(name=="")
-            {
-                $("#display").html("");
-            }
-            else
-            {
-                $.ajax({
-                type: "POST",
-                url: "common/autosuggest.php",
-                data: {search_string:name ,searchtype:searchtype},
-                success: function(html){
-                $("#display").html(html).show();
-                }
-                });
-            }
-        });
-    });
+//    $(document).ready(function()
+//    {
+//        $("#search_string").keyup(function() 
+//        {
+//            var name = $('#search_string').val();
+//            var searchtype = 'ReceiveDoc';
+//            if(name=="")
+//            {
+//                $("#display").html("");
+//            }
+//            else
+//            {
+//                $.ajax({
+//                type: "POST",
+//                url: "common/autosuggest.php",
+//                data: {search_string:name ,searchtype:searchtype},
+//                success: function(html){
+//                $("#display").html(html).show();
+//                }
+//                });
+//            }
+//        });
+//    });
 
 
 $('#comment').change(function () {

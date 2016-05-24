@@ -76,7 +76,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 //         echo"</tr>";
 //
 //.$var["FK_DOCUMENTTYPE_ID"].'\',\''.$var["template_name"].'\',\''.$encrypt_trackerid.'\',\''.$encrypt_documentid.'\;//
-array_push($resultArray, array("barcode"=>$var["DOCUMENT_ID"],"title"=>$var["DOCUMENT_TITLE"],"date"=>$var["transdate"],"description"=>$var["DOCUMENT_DESCRIPTION"],"template"=>$var["template_name"]
+array_push($resultArray, array("barcode"=>$var["DOCUMENT_ID"],"title"=>$var["DOCUMENT_TITLE"],"date"=>$var["transdate"],"description"=>$var["DOCUMENT_DESCRIPTION"],"template"=>$var["FK_TEMPLATE_ID"]
 		 							,"type"=>$var["FK_DOCUMENTTYPE_ID"]));
 //
      }

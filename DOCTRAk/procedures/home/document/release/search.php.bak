@@ -76,5 +76,4 @@ array_push($resultArray, array("barcode"=>$var["DOCUMENT_ID"],"title"=>$var["DOC
        
         
       }
-echo json_encode($resultArray);
 ?>

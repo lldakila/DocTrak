@@ -555,7 +555,7 @@ function myFunction(e) {
   $('#responds').on('click-row.bs.table', function (e, row, $element) {
  //    console.log(row);
    // alert(row['description']);
-    alert("jerome");
+    
     if (row['scrap']!=1)
 	{
 		document.process.barcode.value=row['barcode'];
@@ -564,6 +564,8 @@ function myFunction(e) {
 		document.process.type.value=row['type'];
 		document.process.template.value=row['template'];
 		//document.process.file.value=a;
+		$('.selectpicker').selectpicker('val',row['template']);
+		$('.template').selectpicker('refresh');
 		document.process.primarykey.value=row['scrap'];
 	}
 	else if (row['scrap']==1)

@@ -12,7 +12,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
      require_once("../common/encrypt.php");
      $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 
-    $query="select DOCUMENT_ID, DOCUMENT_TITLE, DOCUMENT_DESCRIPTION, DOCUMENT_FILENAME, FK_TEMPLATE_ID, FK_DOCUMENTTYPE_ID, fk_security_username, transdate,template_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username  join document_template on documentlist.fk_template_id = document_template.template_id WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0  ORDER BY transdate desc";
+    $query="select DOCUMENT_ID,DOCUMENT_TITLE,DOCUMENT_DESCRIPTION,DOCUMENT_FILENAME,FK_TEMPLATE_ID,FK_DOCUMENTTYPE_ID,fk_security_username,transdate,template_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username  join document_template on documentlist.fk_template_id = document_template.template_id WHERE (DOCUMENT_TITLE LIKE '%".$_POST['search_string']."%' OR DOCUMENT_ID LIKE '%".$_POST['search_string']."%')AND scrap=0  ORDER BY transdate desc";
 
     $result=mysqli_query($con,$query)or die(mysqli_error($con));
 		$resultArray=array();

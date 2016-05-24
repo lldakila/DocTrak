@@ -39,7 +39,8 @@ if (session_status() == PHP_SESSION_NONE) {
     {
         $query="UPDATE documentlist_tracker SET RECEIVED_VAL=1,RECEIVED_BY='".$_SESSION['security_name']."',RECEIVED_DATE='".date("Y-m-d H:i:s")."',RECEIVED_COMMENT='".$_POST['commenttext']."' WHERE DOCUMENTLIST_TRACKER_ID = ". $doc_tracker_id." ";
         $RESULT=mysqli_query($con,$query);
-      
+       echo $query;
+       die();
         if (!$RESULT) 
         {
             $flag=false;

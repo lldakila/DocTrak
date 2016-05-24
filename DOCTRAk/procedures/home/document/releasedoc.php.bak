@@ -18,230 +18,262 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 ?>
 </title>
+
+<link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
+<link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-table.css" />
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="../../../js/jquery.growl.js"></script>
+
+
+<script src="../../../js/bootstrap-table.js"></script>
+
+<script src="../../../js/bootstrap-select.js"></script>
+
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
+
+<!--
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+
+<link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-2.2.2.min.js" defer></script>
+<script src="../../../js/bootstrap-submenu.min.js" defer></script>
+-->
 </head>
 
 <body>
-<?php
-    $PROJECT_ROOT= '../../../';
-    include_once($PROJECT_ROOT.'qvJscript.php');
-    include_once('../../../header.php');
-?>
+<!------------------------------------------- header -------------------------------->
+    <?php
+	    $PROJECT_ROOT= '../../../';
+	    include_once($PROJECT_ROOT.'qvJscript.php');
+	    include_once('../../../header.php');
+		?>
+<!------------------------------------------- end header -------------------------------->
 
+<!------------------------------------ content ------------------------------------->
 <div class="content">
 
-<div id="leftmenu">
-		<div id='cssmenu'>
-		<ul>
-		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-		      <ul>
-			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
-			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-		      </ul>
-		   </li>
-		   <?php
-		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-		   {
-		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-		      <ul>
-			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-			 <li><a href="#"><span>Check In</span></a></li>
-		 <li><a href="#"><span>Backlog</span></a></li>
-		      </ul>
-		   </li>'; */
-		   }
-		   ?>
-
-		</ul>
+	<div id="leftmenu">
+			<div id='cssmenu'>
+					<ul>
+					   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+					      <ul>
+								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
+								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+					      </ul>
+					   </li>
+					   <?php
+					   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+					   {
+					      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+					      <ul>
+						 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+						 <li><a href="#"><span>Check In</span></a></li>
+					 <li><a href="#"><span>Backlog</span></a></li>
+					      </ul>
+					   </li>'; */
+					   }
+					   ?>
+			
+					</ul>
 	    </div>
-</div>
+	</div>
 
-	<div class="content1">
+	<div class="content">
     
-    	<div class="content2">
+    	<div class="main">
         
         	<div id="post">
-            
-            			<div id="post10">
-                        <h2>RELEASE DOCUMENT</h2>
+        		
+        			<div class="container">
+            		<div class="row">
+            				<div class="post">
+		            			<div id="post100" class="col-xs-12 col-md-8">
+		                        <h2>RELEASE DOCUMENT</h2>
+															<hr class="hrMargin" style="margin-bottom:10px;">
+		                            <form name="process" method="post" action="release/process.php" onsubmit="return validate();" enctype="multipart/form-data">
+		
+		    														<div class="table1 form-horizontal">
+														    				<div class="form-group">
+																				    <label class="col-sm-2 control-label">To:</label>
+																				    <div class="col-sm-10">
+																				      	<input type="text" class="form-control" id="userId" placeholder="Scan ID...">
+																				    </div>
+																			  </div>
+																			  
+																			  <div class="form-group">
+																				    <label class="col-sm-2 control-label">BarCode No:</label>
+																				    <div class="col-sm-10">
+																				    		<input id="primarykey" name="primarykey" type="hidden" />
+																				      	<input type="hidden" class="form-control" id="barcode" name="barcode" placeholder="Title">
+																				      	<input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
+																				    </div>
+																				</div>
+																				
+																				<div class="form-group">
+																				    <label class="col-sm-2 control-label">Title:</label>
+																				    <div class="col-sm-10">
+																				      	<input type="text" class="form-control" id="title" readonly="readonly" name="title" placeholder="">
+																				    </div>
+																				</div>
+																				
+																				<div class="form-group">
+																				    <label class="col-sm-2 control-label">Document Type:</label>
+																				    <div class="col-sm-10">
+																				      	<input type="text" class="form-control" id="documenttype" readonly="readonly" name="documenttype" placeholder="">
+																				    </div>
+																				</div>
+																				
+																				<div class="form-group">
+																				    <label class="col-sm-2 control-label">Template:</label>
+																				    <div class="col-sm-10">
+																				      	<input type="text" class="form-control" id="template" readonly="readonly" name="template" placeholder="">
+																				    </div>
+																				</div>
+																				
+																				<div class="form-group">
+																				    <label class="col-sm-2 control-label">Comment:</label>
+																				    <div class="col-sm-10">
+																				    		
+																				    				<?php
+														                        
+														                            require_once("../../connection.php");
+														                            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+														                            $con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
+														                            $query="SELECT Message FROM message WHERE Message_Module = 'tracking' ORDER BY Message";
+														                            $result=mysqli_query($con,$query);
+														                            echo '<select id="comment" class="form-control input-size">';
+														                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+														                            {
+														                                echo '<option>';
+														                                echo $row['Message'];
+														                                echo '</option>';
+														                            }
+														                            echo '<option value="other">Other</option>';
+														                            echo '</select>';
+														                        ?>
+																				      	
+																				    </div>
+																				</div>
+																				
+																				<div class="form-group">
+																				    <label class="col-sm-2 control-label"></label>
+																				    <div class="col-sm-10">
+																				      	<textarea class="form-control" rows="5" id="commenttext" readonly="readonly" name="commenttext"></textarea>
+																				    </div>
+																				</div>
+																				
+																				<div class="form-group">
+																				    <label class="col-sm-2 control-label">Attachment:</label>
+																				    <div class="col-sm-10">
+																				      	<span id="attachment"></span>
+																				    </div>
+																				</div>
+		
+							                            <?php
+							                         
+							                            if($_SESSION['operation']=='save'){
+							
+							                                
+							                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully</div>";     
+							                            }
+							                            elseif ($_SESSION['operation']=='error') {
+							                                
+							                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";     
+							                            }
+							
+							                            $_SESSION['operation']='clear';
+							
+							                            ?>
+		
+										                  		 	<!--- BUTTONS ACTIVITY START --->
+										                        <div class="input1">
+										                         	<input type="submit" class="btn btn-primary" value="Release" onClick="document.getElementById('releasedoc_hidden').value='release';"/>
+										                        </div>
+										                        <!--- BUTTONS ACTIVITY END--->
+		
+		                  							</div>
+		
+								   							</form>
+		
+		                  </div>
 
-                            <form name="process" method="post" action="release/process.php" onsubmit="return validate();" enctype="multipart/form-data">
-
-    					<div class="table1">
-    				<table >
-                    <tr>
-                    	<td>To:</td>
-                        <td class="usertext"><input id="userId" placeholder="Scan ID..." type="text" class="form-control"/> </td>
-                    </tr>
-                    <tr>
-                    	<td>BarCode No:</td>
-
-                        <td class="usertext">
-                            <input id="primarykey" name="primarykey" type="hidden" />
-                            <input id="barcode" name="barcode" type="hidden" />
-                            <input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
-                            </td>
-                    </tr>
-                    <tr>
-                    	<td>Title:</td>
-                        <td class="usertext"><input id="title" readonly="readonly" name="title" type="text" class="form-control"/> </td>
-                    </tr>
-                    <tr>
-                    	<td>Document Type:</td>
-                        <td class="usertext"><input id="documenttype" readonly="readonly" name="documenttype" type="text" class="form-control"/> </td>
-                    </tr>
-                    <tr>
-                    	<td>Template:</td>
-                        <td class="usertext"><input id="template" readonly="readonly" name="template" type="text" class="form-control" /> </td>
-                    </tr>
-                    <tr>
-                    	<td>Comment:</td>
-                        <td>
-                        <?php
+                        <div id="postright0" class="col-xs-6 col-md-4">
                         
-                            require_once("../../connection.php");
-                            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-                            $con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
-                            $query="SELECT Message FROM message WHERE Message_Module = 'tracking' ORDER BY Message";
-                            $result=mysqli_query($con,$query);
-                            echo '<select id="comment" class="form-control input-size">';
-                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-                            {
-                                echo '<option>';
-                                echo $row['Message'];
-                                echo '</option>';
-                            }
-                            echo '<option value="other">Other</option>';
-                            echo '</select>';
-                        ?>
-                        </td>
-                        
-                    </tr>
-                     <tr>
-                    	<td></td>
-                        <td class="usertext"><textarea rows="5" id="commenttext" readonly="readonly" name="commenttext" type="text" class="form-control"></textarea> </td>
-                    </tr> 
-                    
-                    <tr>
-                    	<td>Attachment: </td>
-                         <td id="attachment">
-                         
-                         
-                         </td>
-                    </tr>
-                  </table>
-
-                            <?php
-                         
-                            if($_SESSION['operation']=='save'){
-
-                                
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Released Successfully</div>";     
-                            }
-                            elseif ($_SESSION['operation']=='error') {
-                                
-                                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";     
-                            }
-
-                            $_SESSION['operation']='clear';
-
-
-
-
-
-
-                            ?>
-
-                  		 <!--- BUTTONS ACTIVITY START --->
-
-                        <div class="input2">
-                        
-                         <input type="submit" class="btn btn-primary" value="Release" onClick="document.getElementById('releasedoc_hidden').value='release';"/>
-                         </div>
-                           <!--- BUTTONS ACTIVITY END--->
-
-                  </div>
-
-						   </form>
-
-
-
-
-                        </div>
-
-                        <div id="postright">
-                        
-                        	<div id="tfheader">
-                            	<form id="tfnewsearch" method="post" class="form-inline">
-                                    
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                        <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                        <button id="search_releasedoc" class="btn btn-default">Search </button>
-                                        </div>
-                                    </div>			
+                        	
+                            	<form id="tfnewsearch" method="post">
+                                                               
+                                    <div class="input-group">
+                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+                                    <span class="input-group-btn">
+                                    	<button id="search_releasedoc" class="btn btn-default">Search </button>
+                                  	</span>
+                                    </div>		
                                 
                                 </form>	
                                 <!--AUTOSUGGEST SEARCH START-->
-                             <div id="display"></div>
-                             <!--AUTOSUGGEST SEARCH END-->
-                             <h2></h2>
-                            </div>
+		                            <!--<div id="display"></div>-->
+		                            <!--AUTOSUGGEST SEARCH END-->
+		                            <hr class="hrMargin">
                             
-                            <div class="tfclear"></div>
-                            
-                            <div class="scroll">
-                        	                                    
-                                <table id="responds">
-                                	<tr class='usercolortest'>
-					    <th class="sizeBARCODE">BARCODE</th>
-					    <th class="sizeTITLE">TITLE</th>
-					    <th>DATE</th>
-                                	</tr>
-                                </table>
+		                          <div class="postright">
+		                            <div class="scroll">
+		                        	                                    
+		                                <table id="responds"
+		                                		data-height="450"
+																	      data-toggle="table"
+																	      class="display table table-bordered"
+		                                >
+		                                
+		                                		<thead>
+																			    <tr>
+																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+																							<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
+																							<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
+																							<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+																							<th data-visible="false" data-field="template" data-sortable="true">template</th>
+																							<th data-visible="false" data-field="type" data-sortable="true">type</th>
+																							
+																			    </tr>
+																			  </thead>
+		                                </table>
+		
+		                            </div>
+		                          </div>
+                        </div>	
 
-                            </div>
-                         </div>	
-    
-    
-							
-                        
                         <div class="tfclear"></div>
-						</div>
+              			</div>
+              	</div>
+              </div>
+					</div>
             
-            </div>
+      </div>
         
-        </div>
+  </div>
     
-    </div>
-
-
-
-<div class="footer">
-
-	<div class="footerbg">
-    
-    			<div id="footer2">
-            <p>
-			<?php
-				
-				echo $_SESSION['Copyright']. "&nbsp;<img src=../../../images/home/icon/copyleft-icon.png width='14' height='14' />&nbsp;" .$_SESSION['Year']. "&nbsp;" .$_SESSION['Developer'];
-				echo "&nbsp|";
-			?>
-			
-			<a href="#">Scroll Top</a></p>
-        </div>
-    
-    </div>
-	
 </div>
+<!------------------------------------ end content ------------------------------------->
+
+<!------------------------------------------- footer -------------------------------->
+    <?php
+	    $PROJECT_ROOT= '../../../';
+	    include_once($PROJECT_ROOT.'qvJscript.php');
+	    include_once('../../../footer.php');
+		?>
+<!------------------------------------------- end footer -------------------------------->
 
 <!-- Modal -->
        <?php
@@ -250,6 +282,23 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <!-- End Modal -->
 
 <script language="JavaScript" type="text/javascript">
+	
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+ //    console.log(row);
+   // alert(row['description']);
+  
+		document.process.barcodeno.value=row['barcode'];
+		document.process.title.value=row['title'];
+		
+		document.process.documenttype.value=row['type'];
+		document.process.template.value=row['template'];
+		
+		document.process.primarykey.value=row['barcode'];
+		document.process.barcode.value=row['barcode'];
+		retrieveAttachment(row['barcode']);
+	
+   
+});
 
 function clickSearch(barcodeno,title,documenttype,template,tracker_id,document_id) {
     document.process.barcodeno.value=barcodeno;
@@ -324,25 +373,27 @@ $(document).ready(function() {
     jQuery.ajax({
             type: "POST",
             url:"release/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() 
             {
-                 $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                 $("#responds").bootstrapTable("showLoading");
             },
-            ajaxError: function() 
-            {
-                $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            success:function(response)
-            {
-                $("#responds").html(response);
+            
+            success:function(response){
+                    $('#responds').bootstrapTable("hideLoading");
+			       	$('#responds').bootstrapTable("load",response);
+
             },
             error:function (xhr, ajaxOptions, thrownError){
                     alert(thrownError);
+                    $('#responds').bootstrapTable("hideLoading");
             }
             });
+                   
 	});
+	
+	$('#feedbackDiv').feedBackBox();
 
     });
     
@@ -364,29 +415,29 @@ function myFunction(e) {
         $('#display').hide();
     }
     
-    $(document).ready(function()
-    {
-        $("#search_string").keyup(function() 
-        {
-            var name = $('#search_string').val();
-            var searchtype = 'ReleaseDoc';
-            if(name=="")
-            {
-                $("#display").html("");
-            }
-            else
-            {
-                $.ajax({
-                type: "POST",
-                url: "common/autosuggest.php",
-                data: {search_string:name ,searchtype:searchtype},
-                success: function(html){
-                $("#display").html(html).show();
-                }
-                });
-            }
-        });
-    });
+//    $(document).ready(function()
+//    {
+//        $("#search_string").keyup(function() 
+//        {
+//            var name = $('#search_string').val();
+//            var searchtype = 'ReleaseDoc';
+//            if(name=="")
+//            {
+//                $("#display").html("");
+//            }
+//            else
+//            {
+//                $.ajax({
+//                type: "POST",
+//                url: "common/autosuggest.php",
+//                data: {search_string:name ,searchtype:searchtype},
+//                success: function(html){
+//                $("#display").html(html).show();
+//                }
+//                });
+//            }
+//        });
+//    });
     
     
    $('#comment').change(function () {

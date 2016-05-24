@@ -81,8 +81,8 @@
 
             case 'forrelease':
 
-                while ($rows=mysqli_fetch_array($result,MYSQLI_BOTH))
-								{
+                foreach ($query as $rows) 
+                    {
 
                     if ($rows['OFFICE_NAME']==$_SESSION['OFFICE'])
                         {
@@ -118,8 +118,8 @@
 
             case 'processing':
 
-               while ($rows=mysqli_fetch_array($result,MYSQLI_BOTH))
-								{
+                foreach ($query as $rows) 
+                    {
 	                if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
 	                {
 			                if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']!=1)
@@ -148,8 +148,8 @@
                 
                 
             case 'DocumentsOnOffice':
-               while ($rows=mysqli_fetch_array($result,MYSQLI_BOTH))
-								{
+                foreach ($query as $rows) 
+                {
 //                    if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
 //                    {
 //                        if ($rows['RELEASED_VAL']!=1 AND $rows['RECEIVED_VAL']==1)
@@ -181,8 +181,8 @@
        // }
             case 'rollback':
                 
-               while ($rows=mysqli_fetch_array($result,MYSQLI_BOTH))
-								{
+                foreach ($query as $rows) 
+                {
                     if ( $_SESSION['GROUP']=='POWER ADMIN')
                     {
                         if ($rows['RECEIVED_VAL']==1 AND $rows['RELEASED_VAL']==1)

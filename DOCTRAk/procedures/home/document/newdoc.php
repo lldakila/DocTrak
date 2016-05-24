@@ -564,6 +564,8 @@ function myFunction(e) {
 		document.process.type.value=row['type'];
 		document.process.template.value=row['template'];
 		//document.process.file.value=a;
+		$('#template').selectpicker('val',row['template']);
+		$('#template').selectpicker('refresh');
 		document.process.primarykey.value=row['scrap'];
 	}
 	else if (row['scrap']==1)

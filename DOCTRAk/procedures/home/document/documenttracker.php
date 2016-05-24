@@ -131,19 +131,37 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		                        <!--AUTOSUGGEST SEARCH END-->        
 													<hr class="hrMargin">
 				                  <!-------- search table ----->
-				                  <div class="postright">  
-				                    <div class="scroll">           
+				                  <div class="postright">  				                          
 				                                	
-				                        <table id="responds">
-				                    			<tr class='usercolortest'>
+				                        <table id="responds"
+				                        		data-height="450"
+															      data-toggle="table"
+															      class="display table table-bordered"
+															      data-striped="true"
+				                        >
+				                        
+				                        		<thead>
+																	    <tr>
+																					<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+																					<th  class="col-md-4" data-field="title" data-sortable="true">Title</th>
+																					<th  class="col-md-3" data-field="owner" data-sortable="true">Owner</th>
+																					<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
+																					<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+																					<th data-visible="false" data-field="template" data-sortable="true">template</th>
+																					<th data-visible="false" data-field="type" data-sortable="true">type</th>
+																					
+																	    </tr>
+																	  </thead>
+				                        
+				                    			<!--<tr class='usercolortest'>
 																    <th class="sizeBARCODE2">BARCODE</th>
 																    <th class="sizeTITLE2">TITLE</th>
 																    <th class="sizeOWNER2">OWNER</th>
 																    <th>DATE</th>
-				                    			</tr>
+				                    			</tr>-->
 				                        </table>
 				                                               
-				                    </div>
+				                    
 				                  </div>
 				                  <!------ end search table ----->
 		                </div>
@@ -178,7 +196,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
 <script language="JavaScript" type="text/javascript">
 
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
 
+		retrieveDocumentTracker(row['barcode']);
+	
+
+});
    
 
     function retrieveDocumentTracker(documentID){
@@ -212,21 +235,20 @@ $(document).ready(function() {
             jQuery.ajax({
                 type: "POST",
                 url:"tracker/search.php",
-                dataType:"text", // Data type, HTML, json etc.
+                dataType:"json", // Data type, HTML, json etc.
                 data:myData,
                 beforeSend: function() {
-		        $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	        },
-                ajaxError: function() {
-		        $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+		        $("#responds").bootstrapTable("showLoading");
 	        },
         
                 success:function(response){
-                    $("#responds").html(response);
+                    $("#responds").bootstrapTable("hideLoading");
+                  $('#responds').bootstrapTable("load",response);
 
                 },
                 error:function (xhr, ajaxOptions, thrownError){
                     alert(thrownError);
+                    $('#responds').bootstrapTable("hideLoading");
                 }
             });
         });
