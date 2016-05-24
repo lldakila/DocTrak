@@ -455,7 +455,7 @@ $(document).ready(function() {
 
 			},
 			error:function (xhr, ajaxOptions, thrownError){
-				alert(thrownError);
+				$.growl.error({ message: thrownError });
 			}
 			});
 			});
@@ -564,8 +564,8 @@ function myFunction(e) {
 		document.process.type.value=row['type'];
 		document.process.template.value=row['template'];
 		//document.process.file.value=a;
-		$('.selectpicker').selectpicker('val',row['template']);
-		$('.template').selectpicker('refresh');
+		$('#template').selectpicker('val',row['template']);
+		$('#template').selectpicker('refresh');
 		document.process.primarykey.value=row['scrap'];
 	}
 	else if (row['scrap']==1)

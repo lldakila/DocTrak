@@ -282,6 +282,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		                                	data-height="450"
 																      data-toggle="table"
 																      class="display table table-bordered"
+																      data-striped="true"
 	                                	>
 	                                	<thead>
 																    <tr>
@@ -455,7 +456,7 @@ $(document).ready(function() {
 
 			},
 			error:function (xhr, ajaxOptions, thrownError){
-				alert(thrownError);
+				$.growl.error({ message: thrownError });
 			}
 			});
 			});

@@ -146,18 +146,30 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 		                            <!--AUTOSUGGEST SEARCH END-->
 		                            
 	                        			<div class="postright">
-					                        <div class="scrollROLLBACK">
+					                       
 					                    	                                    
-					                            <table id="responds">
-					                               <tr class='usercolortest'>
-																						<th class="sizeBARCODE2">BARCODE</th>
-																						<th class="sizeTITLE2">TITLE</th>
-																						<th class="sizeOWNER2">OWNER</th>
-																						<th>DATE</th>
-					                                </tr>
+					                            <table id="responds"
+					                            	data-height="420"
+																	      data-toggle="table"
+																	      class="display table table-bordered"
+																	      data-striped="true"
+					                            >
+					                            	<thead>
+																			    <tr>
+																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+																							<th  class="col-md-4" data-field="title" data-sortable="true">Title</th>
+																							<th  class="col-md-3" data-field="owner" data-sortable="true">Owner</th>
+																							<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
+																							<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+																							<th data-visible="false" data-field="template" data-sortable="true">template</th>
+																							<th data-visible="false" data-field="type" data-sortable="true">type</th>
+																							
+																			    </tr>
+																			  </thead>
+					                               
 					                            </table>
 					
-					                        </div>
+					                        
 					                      </div>
 	                    </div>	
 	
@@ -186,8 +198,14 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
        include('../../../modal.php');
        ?>
 <!-- End Modal -->
-    <script language="JavaScript" type="text/javascript">
+<script language="JavaScript" type="text/javascript">
 
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+
+		retrieveDocumentTracker(row['barcode']);
+	
+
+});
 
 $(document).ready(function() {
     
@@ -199,22 +217,24 @@ $(document).ready(function() {
     jQuery.ajax({
             type: "POST",
             url:"rollback/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
             data:{search_string:$("#search_string").val(),searchCheck:searchCheckbox},
             beforeSend: function() 
             {
-                $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#responds").bootstrapTable("showLoading");
             },
-            ajaxError: function() 
-            {
-                 $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
+//            ajaxError: function() 
+//            {
+//                 $("#responds").html("<div id='loading' style='width:300px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            },
             success:function(response)
             {
-                $("#responds").html(response);
+                $("#responds").bootstrapTable("hideLoading");
+                $('#responds').bootstrapTable("load",response);
             },
             error:function (xhr, ajaxOptions, thrownError){
                 alert(thrownError);
+                $('#responds').bootstrapTable("hideLoading");
             }
             });
 	});

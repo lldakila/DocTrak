@@ -1,31 +1,19 @@
 [Open Files]
 Active File Display Mode=1
-Active File Index=3
-Open File Line0=21370
-Open File Line1=35274
-Open File Line2=10336
-Open File Line3=5287
-Open File Line4=3485
-Open File Line5=0
-Open File Pos0=22650
-Open File Pos1=33534
-Open File Pos2=11406
-Open File Pos3=5777
-Open File Pos4=3883
-Open File Pos5=318
-Open File Window Pos0=0,1,-1,-1,-1,-1,3,26,943,624
-Open File Window Pos1=0,1,-1,-1,-1,-1,3,26,943,624
-Open File Window Pos2=0,1,-1,-1,-1,-1,3,26,943,624
-Open File Window Pos3=0,1,-1,-1,-1,-1,3,26,943,624
-Open File Window Pos4=0,1,-1,-1,-1,-1,3,26,943,624
-Open File Window Pos5=0,1,-1,-1,-1,-1,3,26,943,624
-Open File0=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\receiveddoc.php
-Open File1=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\forreleasedoc.php
-Open File2=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\documenttracker.php
-Open File3=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\common\retrievedata.php
-Open File4=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\receive\search.php
-Open File5=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\tracker\search.php
-Open File6=
+Active File Index=1
+Open File Line0=43660
+Open File Line1=25722
+Open File Line2=0
+Open File Pos0=44250
+Open File Pos1=26362
+Open File Pos2=0
+Open File Window Pos0=0,1,-1,-1,-1,-1,3,26,1033,624
+Open File Window Pos1=0,1,-1,-1,-1,-1,3,26,1033,624
+Open File Window Pos2=0,1,-1,-1,-1,-1,3,26,1033,624
+Open File0=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\newdoc.php
+Open File1=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\communication\monitoring.php
+Open File2=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\communication\crud.php
+Open File3=
 Remember Files=1
 
 [Project Information]

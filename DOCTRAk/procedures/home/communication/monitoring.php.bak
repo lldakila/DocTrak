@@ -130,26 +130,14 @@
 																				    		<span id="fileAttachment"> </span>
 																				    </div>
 																			  </div>
-											    							
-											    							<table>
-											                  	
-											                    
-											                    
-											                    
-											                    
-											                    <tr>
-											                        <td>Status:</td>
-											                        <td>
-																							    <span id="officeList">
-																								
-																								
-																							    </span>
-											                        </td>
-											                    </tr>
-											
-											                  </table>
-											
-											
+																			  
+																			  <div class="form-group">
+																				    <label class="col-sm-2 control-label">Status:</label>
+																				    <div class="col-sm-10">
+																				    		<span id="officeList"> </span>
+																				    </div>
+																			  </div>
+											    						
 											                           <!--- BUTTONS ACTIVITY END--->
 											              </div>
 
@@ -173,18 +161,27 @@
                                  				<hr class="hrMargin">
                                     
                                <div class="postright">     
-			                            <div class="scroll">
+			                            
 			                        	
 			                                    
-			                                <table id="responds">
-			                                    <tr class='usercolortest'>
-			                                	<th style="width:120px;">TITLE</th>
-			                                        <th style="width:150px;">TYPE</th>
-																							<th style="width:150px;">OWNER</th>
-																							<th>DATE</th>
-			                                    </tr>	
+			                                <table id="responds"
+			                                	data-height="450"
+																	      data-toggle="table"
+																	      class="display table table-bordered"
+																	      data-striped="true"
+			                                >
+			                                	<thead>
+																			    <tr>
+																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Title</th>
+																							<th  class="col-md-4" data-field="title" data-sortable="true">Type</th>
+																							<th  class="col-md-3" data-field="title" data-sortable="true">Owner</th>
+																							<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
+																							
+																			    </tr>
+																			  </thead>
+			                                    
 			                                </table>
-			                            </div>
+			                            
 			                         </div>
                          	</div>
 
@@ -328,16 +325,17 @@ $(document).ready(function() {
     jQuery.ajax({
 	type: "POST",
 	url:"crud.php",
-	dataType:"text", // Data type, HTML, json etc.
+	dataType:"json", // Data type, HTML, json etc.
 	data:{module:module,searchText:searchText},
 	beforeSend: function() {
-	    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+	    $("#responds").bootstrapTable("showLoading");
 	},
-	ajaxError: function() {
-	    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-	},
+//	ajaxError: function() {
+//	    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//	},
 	success:function(response){
-	    $("#responds").html(response);
+	    $("#responds").bootstrapTable("hideLoading");
+			$('#responds').bootstrapTable("load",response);
 	},
 	error:function (xhr, ajaxOptions, thrownError){
 		alert(thrownError);

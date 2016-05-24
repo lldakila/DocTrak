@@ -193,17 +193,32 @@ date_default_timezone_set($_SESSION['Timezone']);
 																<hr class="hrMargin">
                         
 				                      <div class="postright">
-				                        <div class="scroll">
+				                        
 				                           
-				                            <table id="responds">                          
-				                                 <tr class='usercolortest'>
+				                            <table id="responds"
+				                            		data-height="450"
+																	      data-toggle="table"
+																	      class="display table table-bordered"
+																	      data-striped="true"
+				                            >     
+				                            	<thead>
+																		    <tr>
+																						<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+																						<th  class="col-md-4" data-field="detail" data-sortable="true">Detail</th>
+																						<th  class="col-md-3" data-field="cost" data-sortable="true">Cost</th>
+																						<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
+																					
+																						
+																		    </tr>
+																		  </thead>                    
+				                                 <!--<tr class='usercolortest'>
 																					 <th class='sizeBARCODE2'>BARCODE</th>
 																					 <th class='sizeDETAIL'>DETAIL</th>
 																					 <th class='sizeCOST'>COST</th>
 																			 			<th>DATE</th>
-																		     </tr>
+																		     </tr>-->
 																		</table>
-				                        </div>
+				                        
 				                      </div>
                         
                     </div>
@@ -239,7 +254,6 @@ date_default_timezone_set($_SESSION['Timezone']);
 <script src="../../../js/bootstrap-select.js"></script>
 <script src="../../../js/jquery.growl.js"></script>
 <script language="JavaScript" type="text/javascript">
-
 
 
  
@@ -353,15 +367,16 @@ date_default_timezone_set($_SESSION['Timezone']);
         jQuery.ajax({
             type: "POST",
             url:"search.php",
-            dataType:"text",
+            dataType:"json",
             data:{module:module_name,searchText:search_text},
              beforeSend: function()
             {
-                $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#responds").bootstrapTable("showLoading");
             },
             success:function(response)
             {
-                $("#responds").html(response);
+                $("#responds").bootstrapTable("hideLoading");
+			       		$('#responds').bootstrapTable("load",response);
             },
             error:function (xhr, ajaxOptions, thrownError)
 	    {
@@ -371,20 +386,31 @@ date_default_timezone_set($_SESSION['Timezone']);
       
       }
       
-      function clickSearch(docId,docDetail,docCost,docDate)
-      {
-          var document_id=docId;
-          var document_detail=docDetail;
-          var document_cost=docCost;
-          var document_date=docDate;
-        document.getElementById('barcodeno').value=document_id;
-        document.getElementById('barcodenoKey').value=document_id;
-        document.getElementById('title').value=document_detail;
-        document.getElementById('documentamount').value=document_cost;
-        document.getElementById('docDate').value=document_date;
-          
-      }
+      
+       $('#responds').on('click-row.bs.table', function (e, row, $element) {
+//      function clickSearch(docId,docDetail,docCost,docDate)
+//      {
+//          var document_id=docId;
+//          var document_detail=docDetail;
+//          var document_cost=docCost;
+//          var document_date=docDate;
+//        document.getElementById('barcodeno').value=document_id;
+//        document.getElementById('barcodenoKey').value=document_id;
+//        document.getElementById('title').value=document_detail;
+//        document.getElementById('documentamount').value=document_cost;
+//        document.getElementById('docDate').value=document_date;
 
+ 				document.getElementById('barcodeno').value=row['barcode'];
+        document.getElementById('barcodenoKey').value=row['barcode'];
+        document.getElementById('title').value=row['detail'];
+        document.getElementById('documentamount').value=row['cost'];
+        document.getElementById('docDate').value=row['date'];
+
+
+
+          
+//      }
+});
 function addslashes( str ) {
     return (str + '').replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
 }

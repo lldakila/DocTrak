@@ -115,17 +115,26 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 						                        <hr class="hrMargin">
 						                    
 																	<div class="postright">
-								                    <div class="scroll">
+								                    
 								
-								                        <table id="responds">
-								                            <tr class='usercolortest'>
-								                                <th class='sizeBARCODE2'>BARCODE</th>
-																								<th class='sizeDETAIL'>DETAIL</th>
-																								<th class='sizeCOST'>COST</th>
-																								<th>DATE</th>
-								                            </tr>
+								                        <table id="responds"
+								                        		data-height="450"
+																			      data-toggle="table"
+																			      class="display table table-bordered"
+																			      data-striped="true"
+								                        >
+								                        	<thead>
+																				    <tr>
+																								<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+																								<th  class="col-md-4" data-field="detail" data-sortable="true">Detail</th>
+																								<th  class="col-md-3" data-field="cost" data-sortable="true">Cost</th>
+																								<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
+							
+																				    </tr>
+																				  </thead>
+								                            
 								                        </table>
-								                    </div>
+								                    
 								                  </div>
 						                </div>
 						                <div class="tfclear">
@@ -173,15 +182,16 @@ $(document).ready(function()
     jQuery.ajax({
             type: "POST",
             url:"search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
             data:{module:module_name,searchText:search_Text},
             beforeSend: function() 
             {
-                $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                $("#responds").bootstrapTable("showLoading");
             },
             success:function(response)
             {
-                $("#responds").html(response);
+                $("#responds").bootstrapTable("hideLoading");
+			       		$('#responds').bootstrapTable("load",response);
             },
             error:function (xhr, ajaxOptions, thrownError)
             {
@@ -220,6 +230,11 @@ function clickSearch(doc_Id,docDetail,docCost,docDate)
         });
             
  }
+ 
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+
+clickSearch(row['barcode']);
+});
 
 </script>
 </body>

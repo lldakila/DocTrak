@@ -2617,6 +2617,10 @@ table#historydata td {
 	/*width:5px;*/
 }
 
+table#historydata td a {
+	color:#000;
+}
+
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     padding: 5px;
     line-height: 1.42857143;

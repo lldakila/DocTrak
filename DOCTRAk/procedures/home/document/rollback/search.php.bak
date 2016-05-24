@@ -102,6 +102,5 @@ array_push($resultArray, array("barcode"=>$var["document_id"],"title"=>$var["doc
 //    mysqli_free_result($RESULT);
 //    mysqli_close($con);
   	}
-  	echo json_encode($resultArray);
 
     ?>
