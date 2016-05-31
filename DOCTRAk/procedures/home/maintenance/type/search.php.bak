@@ -15,7 +15,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		$resultArray=array();
 		 while ($var = mysqli_fetch_assoc($result))
 		 	{
-		 			array_push($resultArray, array("id"=>$var["DOCUMENTTYPE_ID"],"description"=>$var["DESCRIPTION"],"priority"=>$var["priority"]
+		 			array_push($resultArray, array("documenttype_id"=>$var["DOCUMENTTYPE_ID"],"description"=>$var["DESCRIPTION"],"priority"=>$var["priority"]
 		 							,"public"=>$var["public"]));
 		 	
 

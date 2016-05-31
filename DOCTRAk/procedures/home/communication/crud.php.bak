@@ -162,7 +162,7 @@ function SaveLetter()
 	    die();
 	}
 	
-   // }
+    }
    }
     //die();
     //MYSQL TRANSACTION

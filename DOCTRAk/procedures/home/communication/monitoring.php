@@ -91,15 +91,15 @@
                       <h2>LETTER MONITORING</h2>
                       <hr class="hrMargin" style="margin-bottom:10px;">
 
-                              <form name="flowtemplate" method="post" action="flowtemplate/process.php" onsubmit="return validate();">
+                              
 																	
 											    					<div class="table1 form-horizontal">
 											    							
 											    							<div class="form-group">
 																				    <label class="col-sm-2 control-label">Title:</label>
 																				    <div class="col-sm-10">
-																				    		<input id="primarykey" name="primarykey" type="hidden" />
-																				      	<input id="header_monitoring" name="header_monitoring" type="text" class="form-control" readonly="readonly"/>
+																				    		
+																				      	<input id="Title_monitoring" name="header_monitoring" type="text" class="form-control" readonly="readonly"/>
 																				    </div>
 																			  </div>
 																			  
@@ -113,7 +113,7 @@
 																			  <div class="form-group">
 																				    <label class="col-sm-2 control-label">Type:</label>
 																				    <div class="col-sm-10">
-																				    		<input id="type" name="type" type="text" class="form-control" readonly="readonly"/>
+																				    		<input id="doctype" name="type" type="text" class="form-control" readonly="readonly"/>
 																				    </div>
 																			  </div>
 																			  
@@ -141,7 +141,7 @@
 											                           <!--- BUTTONS ACTIVITY END--->
 											              </div>
 
-						   								</form>
+						   								
                   </div>
                         
                         	<div id="postright0" class="col-xs-6 col-md-4">
@@ -172,9 +172,10 @@
 			                                >
 			                                	<thead>
 																			    <tr>
-																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Title</th>
-																							<th  class="col-md-4" data-field="title" data-sortable="true">Type</th>
-																							<th  class="col-md-3" data-field="title" data-sortable="true">Owner</th>
+																			    		<th   data-field="commailId" data-sortable="true" data-visible="false">commailId</th>
+																							<th class="col-md-2"  data-field="title" data-sortable="true">Title</th>
+																							<th  class="col-md-4" data-field="type" data-sortable="true">Type</th>
+																							<th  class="col-md-3" data-field="owner" data-sortable="true">Owner</th>
 																							<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
 																							
 																			    </tr>
@@ -214,68 +215,68 @@
     <script language="JavaScript" type="text/javascript">
 
 
-function clickSearch(id,title,note,owner,doc_type) 
-{
-    document.getElementById("primarykey").value=id;
-    document.getElementById("header_monitoring").value=title;
-    document.getElementById("note_monitoring").value=note;
-    //document.getElementById("owner_name").value=note;
-    //alert(doc_type);
-    retrieveType(doc_type);
-    retrieveSender(owner);
-    retrieveAttachment(id);
-    retrieveOffice(id);
-    //$('#fileAttachment').html('');
-}
+//function clickSearch(id,title,note,owner,doc_type) 
+//{
+//    document.getElementById("primarykey").value=id;
+//    document.getElementById("header_monitoring").value=title;
+//    document.getElementById("note_monitoring").value=note;
+//    //document.getElementById("owner_name").value=note;
+//    //alert(doc_type);
+//    retrieveType(doc_type);
+//    retrieveSender(owner);
+//    retrieveAttachment(id);
+//    retrieveOffice(id);
+//    //$('#fileAttachment').html('');
+//}
 
-function retrieveType(type_id) 
-    {
-        var typeid = type_id; //build a post data structure
-        var module='getType';
-	jQuery.ajax({
-            type: "POST",
-            url:"crud.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:{module:module,typeid:typeid},
-	    beforeSend: function() {
-		document.getElementById('type').value="updating......";
-	    },
-            success:function(response){
-		document.getElementById('type').value=response;
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    }
-    
-function retrieveSender(senderId)
-    {
-	var senderId = senderId; //build a post data structure
-        var module='getSender';
-	jQuery.ajax({
-            type: "POST",
-            url:"crud.php",
-            dataType:"text", // Data type, HTML, json etc.
-            data:{module:module,senderId:senderId},
-	    beforeSend: function() {
-		//$("#owner_name").value("updating......");
-		document.getElementById('Owner').value="updating......";
-	    },
-            success:function(response){
-		document.getElementById('Owner').value=response;
-            },
-            error:function (xhr, ajaxOptions, thrownError){
-                alert(thrownError);
-            }
-        });
-    }
+//function retrieveType(type_id) 
+//    {
+//        var typeid = type_id; //build a post data structure
+//        var module='getType';
+//	jQuery.ajax({
+//            type: "POST",
+//            url:"crud.php",
+//            dataType:"text", // Data type, HTML, json etc.
+//            data:{module:module,typeid:typeid},
+//	    beforeSend: function() {
+//		document.getElementById('type').value="updating......";
+//	    },
+//            success:function(response){
+//		document.getElementById('type').value=response;
+//            },
+//            error:function (xhr, ajaxOptions, thrownError){
+//                alert(thrownError);
+//            }
+//        });
+//    }
+//    
+//function retrieveSender(senderId)
+//    {
+//	var senderId = senderId; //build a post data structure
+//        var module='getSender';
+//	jQuery.ajax({
+//            type: "POST",
+//            url:"crud.php",
+//            dataType:"text", // Data type, HTML, json etc.
+//            data:{module:module,senderId:senderId},
+//	    beforeSend: function() {
+//		//$("#owner_name").value("updating......");
+//		document.getElementById('Owner').value="updating......";
+//	    },
+//            success:function(response){
+//		document.getElementById('Owner').value=response;
+//            },
+//            error:function (xhr, ajaxOptions, thrownError){
+//                alert(thrownError);
+//            }
+//        });
+//    }
     
 function retrieveAttachment(mailid)
 {
     var mailid = mailid; 
     var module='getFile';
-    
+   
     jQuery.ajax({
             type: "POST",
             url:"crud.php",
@@ -319,38 +320,47 @@ function retrieveOffice(id)
     
 $(document).ready(function() {
     $("#search_letter").click(function (e) {
-    e.preventDefault();
-    var searchText = $("#search_string").val(); //build a post data structure
-    var module = "SearchLetter";
-    jQuery.ajax({
-	type: "POST",
-	url:"crud.php",
-	dataType:"json", // Data type, HTML, json etc.
-	data:{module:module,searchText:searchText},
-	beforeSend: function() {
-	    $("#responds").bootstrapTable("showLoading");
-	},
-//	ajaxError: function() {
-//	    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-//	},
-	success:function(response){
-	    $("#responds").bootstrapTable("hideLoading");
-			$('#responds').bootstrapTable("load",response);
-	},
-	error:function (xhr, ajaxOptions, thrownError){
-		alert(thrownError);
-	}
-	});
+					    e.preventDefault();
+					    var searchText = $("#search_string").val(); //build a post data structure
+					    var module = "SearchLetter";
+					    jQuery.ajax({
+									type: "POST",
+									url:"crud.php",
+									dataType:"json", // Data type, HTML, json etc.
+									data:{module:module,searchText:searchText},
+									beforeSend: function() {
+									    $("#responds").bootstrapTable("showLoading");
+									},
+									success:function(response){
+									    $("#responds").bootstrapTable("hideLoading");
+											$('#responds').bootstrapTable("load",response);
+									},
+									error:function (xhr, ajaxOptions, thrownError){
+										alert(thrownError);
+									}
+						});
 	});
 
 	$('#feedbackDiv').feedBackBox();
 
 });
 
+
+
+
 $('#responds').on('click-row.bs.table', function (e, row, $element)
 {
-	
-}
+		//document.getElementById("primarykey").value=row['id'];
+    document.getElementById("Title_monitoring").value=row['title'];
+    document.getElementById("note_monitoring").value=row['note'];
+    document.getElementById("Owner").value=value=row['owner'];
+    document.getElementById("doctype").value=value=row['type'];
+    //alert(doc_type);
+//    retrieveType(doc_type);
+//    retrieveSender(owner);
+    retrieveAttachment(row['commailId']);
+    retrieveOffice(row['commailId']);
+});
 
 </script>
 </body>

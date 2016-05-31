@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 	$_SESSION['Title']="DocTrak";
   $_SESSION['HeaderTitle']="Document Tracker";
-	$_SESSION['Version']=" v1.15";
+	$_SESSION['Version']=" v1.17";
 	$_SESSION['Developer']="MISD";
 	$_SESSION['Copyright']="Copyleft";
 	$_SESSION['Year']="2014-2016";

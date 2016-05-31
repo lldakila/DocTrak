@@ -15,9 +15,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		$resultArray=array();
 		 while ($var = mysqli_fetch_assoc($result))
 		 	{
-		 			array_push($resultArray, array("username"=>$var["SECURITY_USERNAME"],"name"=>$var["SECURITY_NAME"],"group"=>$var["fk_Security_GroupName"]
-		 							,"office"=>$var["fk_Office_Name"]));
-		 	
+		 			
+		 	}
 
 //if ($query) {
 //
@@ -46,12 +45,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     
 	
 	
-//	echo "<td style='width:150px;'>";
-//	 echo $var["SECURITY_USERNAME"];
-//	 echo "</td><td>";
-//     echo $var["SECURITY_NAME"];
-//     echo "</td>";
-//     echo"</tr>";
+	echo "<td style='width:150px;'>";
+	 echo $var["SECURITY_USERNAME"];
+	 echo "</td><td>";
+     echo $var["SECURITY_NAME"];
+     echo "</td>";
+     echo"</tr>";
 
 
 
@@ -63,14 +62,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
   //   </tr>
   //   ";
 
-//        }
-////echo "<tr> <td>";
-////echo "asdasd";
-//    //   echo "</tr> </td>"; 
-//}
-//		else {
-//			echo "<span style='font:11px trebuchet ms;'>Nothing found.</span>";
-//		}
-			}
-			echo json_encode($resultArray);
+        }
+//echo "<tr> <td>";
+//echo "asdasd";
+    //   echo "</tr> </td>"; 
+}
+		else {
+			echo "<span style='font:11px trebuchet ms;'>Nothing found.</span>";
+		}
+
 ?>

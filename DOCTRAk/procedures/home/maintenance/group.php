@@ -166,15 +166,24 @@
 	                            	<hr class="hrMargin">
 	                            
 			                          <div class="postright">  
-			                            <div class="scroll">
+			                            
 			                        	                                    
-			                                <table id="responds">
-																		    <tr class='usercolortest'>
-																					<th class="sizeGROUP">GROUP</th>
-																					<th>DESCRIPTION</th>
-																		    </tr>
+			                                <table id="responds"
+			                                		data-height="450"
+																		      data-toggle="table"
+																		      class="display table table-bordered"
+																		      data-striped="true"	
+			                                >
+			                                	<thead>
+																			    <tr>
+																							<th class="col-md-2"  data-field="group" data-sortable="true">Group</th>
+																							<th  class="col-md-8" data-field="description" data-sortable="true">Description</th>
+																							
+																			    </tr>
+																			  </thead>
+																		    
 			                                </table>
-			                            </div>
+			                            
 			                          </div>
                          		</div>
                         
@@ -222,6 +231,7 @@ document.getElementById("group").value=group;
 
 
 $(document).ready(function() {
+	
     $("#search_group").click(function (e) {
         
     e.preventDefault();
@@ -229,25 +239,27 @@ $(document).ready(function() {
     jQuery.ajax({
             type: "POST",
             url:"group/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
-            ajaxError: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
+            $("#responds").bootstrapTable("showLoading");
+          	},
+//            ajaxError: function() {
+//                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            },
             success:function(response){
-                    $("#responds").html(response);
-
+                    $("#responds").bootstrapTable("hideLoading");
+						  			$('#responds').bootstrapTable("load",response);
             },
+            
             error:function (xhr, ajaxOptions, thrownError){
                     alert(thrownError);
             }
             });
 	});
 
-$('#feedbackDiv').feedBackBox();
+
+	$('#feedbackDiv').feedBackBox();
 
 });
 
@@ -295,6 +307,15 @@ function myFunction(e) {
 
 }
     /*]]>*/
+    
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+	
+	document.getElementById("group").value=row['group'];
+  document.getElementById("description").value=row['description'];
+    document.getElementById("primarykey").value=row['group'];
+	
+});
+
 </script>
 </body>
 </html>

@@ -243,7 +243,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 											</ul>
 										</li>
 										<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Report <b class="caret"></b></a>
-											<ul class="dropdown-menu down-bgcolor navbar-right" role="menu">
+											<ul class="dropdown-menu navbar-right" role="menu">
 												<li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Document Tracking</span></a>
 															<ul class="dropdown-menu down-bgcolor">
 																<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doccons.php"; ?>"><span>Document Consolidation</span></a></li>
@@ -267,14 +267,14 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
                                 echo '<li class="dropdown">';
                                 echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Maintenance <b class="caret"></b></a>
-                                <ul class="dropdown-menu">';
+                                <ul class="dropdown-menu navbar-right" id="ulheader">';
                                         
                                         echo '<li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/flowtemplate.php">Flow Template</a></li>
                                              <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/documenttype.php">Document Type</a></li>
                                               <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php">Office</a></li>
                                              
                                         <li class="divider"></li>
-                                        <li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Security</a>
+                                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Security</a>
                                             <ul class="dropdown-menu down-bgcolor">
                                                 <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/users.php">Users</a></li>
                                                 <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/group.php">Group</a></li>

@@ -29,6 +29,7 @@
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.feedback_me.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-table.css" />
@@ -38,7 +39,7 @@
 
 <script src="../../../js/jquery.feedback_me.js"></script>
 <script src="../../../js/bootstrap-table.js"></script>
-
+<script src="../../../js/bootstrap-select.js"></script>
 
 
 <link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />
@@ -167,29 +168,37 @@
 																			
 																			<div class="form-group">
 																				
-																		    <label style="padding-right:23px;" for="exampleInputEmail2">Send to:</label>
-																		    	
-																			    <select name='officelist' id='officelist' class="form-control selectpicker SendSize">
+																		    <label class="col-sm-2 control-label"  for="exampleInputEmail2">Send to:</label>
+																		      <div class="col-sm-9">
+																		    	<select id="officelist" name="officelist" class="form-control selectpicker" data-live-search="true"> 
+																			   
 																				        <?php
+//																				         <select name='officelist' id='officelist' class="form-control selectpicker SendSize" data-live-search="true">
 																					        //require_once("../../connection.php");
 																					
 																					        $_SESSION['number_counter']=0;
 																					        //$query=select_info_multiple_key("select office_name from office ORDER BY OFFICE_NAME");
 																					        $query="select office_name, office_description from office ORDER BY OFFICE_NAME";
 																									$result=mysqli_query($con,$query)or die(mysqli_error($con));
-																					        foreach($result as $var) {
-																					            echo "<option data-subtext='".$var['office_description']."'>".$var['office_name']."</option>";
-																					        }
+//																					        foreach($result as $var) {
+//																					            echo "<option data-subtext='".$var['office_description']."'>".$var['office_name']."</option>";
+//																					        }
+																					        while ($var=mysqli_fetch_array($result)) {
+																					              echo "<option selected='true' value = '".$var['office_name']."' data-subtext='".$var['office_description']."'>".$var['office_name']."</option>";
+																					           }
 																				        ?>
 																		        </select>
-																		        
-																		  </div>
-																		  <button type="submit" value="+" onClick="javascript:addoffice();" class="btn btn-primary">+</button>
+																		      </div>
+																		 <div class="col-sm-1">
+																		 	
+																		  <input type="button" value="+" onClick="javascript:addoffice();" class="btn btn-primary glyphicon glyphicon-plus" />
+																		</div>
+																		   </div>
 																  </div>
 																  
 																  <div class="form-inline" style="margin-top:10px;">
 																			
-																			<div class="form-group">
+																			<div class="form-group" id="RemoveWidth">
 																				
 																		    <label style="padding-right:82px" for="exampleInputEmail2"></label>
 																		    	
@@ -199,7 +208,8 @@
 									                            </select>
 																		        
 																		  </div>
-																		  <button id="deleteselected" type="submit" value="-" onclick="removeoffice(officeselection);" class="btn btn-danger">-</button>
+																		  
+																		  <input type="button" id="deleteselected" value="-" onclick="removeoffice(officeselection);" class="btn btn-danger">
 																  </div>
 																 
 																 <div class="form-group">
@@ -579,13 +589,13 @@ $("form#data").submit(function(){
         success: function (data) 
 	{
             if (data == "")
-	    {
-		$.growl.notice({ message: 'Saved Successfully' });
-		clearMe();
-	    }
+		    {
+						$.growl.notice({ message: 'Saved Successfully' });
+						clearMe();
+		    }
 	    else
 	    {
-		$.growl.error({ message: data });
+						$.growl.error({ message: data });
 	    }
 	    $("#SaveLetter").html('Save');
         },

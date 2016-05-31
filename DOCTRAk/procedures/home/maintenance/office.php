@@ -167,14 +167,23 @@
                             		<hr class="hrMargin">
                                 
                             <div class="postright">   
-	                            <div class="scroll">                   
-	                                <table id="responds">
-																    <tr class='usercolortest'>
-																			<th class="sizeOFFICE">OFFICE</th>
-																			<th>DESCRIPTION</th>
-																    </tr>
+	                                              
+	                                <table id="responds"
+	                                		data-height="450"
+																      data-toggle="table"
+																      class="display table table-bordered"
+																      data-striped="true"
+	                                >
+	                                	<thead>
+																	    <tr>
+																					<th class="col-md-2"  data-field="officename" data-sortable="true">Office</th>
+																					<th  class="col-md-8" data-field="officedescription" data-sortable="true">Description</th>
+																					
+																	    </tr>
+																	  </thead>
+																    
 	                                </table>
-	                            </div>
+	                            
 	                          </div>
                         </div>
 
@@ -212,11 +221,11 @@ function cleartext() {
   document.getElementById("office_description").value="";
     document.getElementById("primarykey").value="";
 }
-function clickSearch(officename,officedescription) {
-document.getElementById("office_name").value=officename;
-  document.getElementById("office_description").value=officedescription;
-    document.getElementById("primarykey").value=officename;
-}
+//function clickSearch(officename,officedescription) {
+//document.getElementById("office_name").value=officename;
+//  document.getElementById("office_description").value=officedescription;
+//    document.getElementById("primarykey").value=officename;
+//}
 function validate() {
 
 
@@ -259,16 +268,17 @@ $(document).ready(function() {
         jQuery.ajax({
             type: "POST",
             url:"office/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#responds").bootstrapTable("showLoading");
             },
-            ajaxError: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
+//            ajaxError: function() {
+//                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            },
             success:function(response){
-                $("#responds").html(response);
+                $("#responds").bootstrapTable("hideLoading");
+						  	$('#responds').bootstrapTable("load",response);
 
             },
             error:function (xhr, ajaxOptions, thrownError){
@@ -290,6 +300,12 @@ function myFunction(e) {
 	$("#fade").fadeTo(3000,0.0);
 
 }
+
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+		document.getElementById("office_name").value=row['officename'];
+  	document.getElementById("office_description").value=row['officedescription'];
+    document.getElementById("primarykey").value=row['officename'];
+});
 
 
 </script>

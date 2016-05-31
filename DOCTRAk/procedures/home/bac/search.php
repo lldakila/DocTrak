@@ -67,44 +67,56 @@ function SearchDoc($queryText)
         $SQLstring='SELECT bacdocument_id,bacdocumentdetail,prcost,pr_date FROM bacdocumentlist WHERE (bacdocument_id LIKE "'.$searchText.'%" OR bacdocumentdetail like "%'.$searchText.'%") AND (fk_officename_bacdocumentlist = "'.$_SESSION['OFFICE'].'") AND (bacdocument_id IN (SELECT fk_bacdocumentlist_id FROM bacdocumentlist_tracker WHERE checkin_date is null or receive_date is null )) AND receive_release = 1  ORDER BY transdate ASC';
     }
     
+    $result=mysqli_query($con,$SQLstring)or die(mysqli_error($con));
+		$resultArray=array();
+		 while ($row = mysqli_fetch_assoc($result))
+		 {
+		 
     
-    $result=mysqli_query($con, $SQLstring);
     
-            
-    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
-    $rowcolor="blue";
-    while ($rows=mysqli_fetch_array($result))
-    {
-        if (filterSearch($rows['bacdocument_id']))
+//    $result=mysqli_query($con, $SQLstring);
+//    
+//            
+//    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
+//    $rowcolor="blue";
+//    while ($rows=mysqli_fetch_array($result))
+//    {
+        if (filterSearch($row['bacdocument_id']))
         {
-            $bacdocument_id=$rows['bacdocument_id'];
-            $bacdocumentdetail=$rows['bacdocumentdetail'];
-            $prcost=$rows['prcost'];
-            $date = date_create($rows['pr_date']);
-         
-        if ($rowcolor=="blue")
-        {
-            echo "<tr class='usercolor' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
-            $rowcolor="notblue";
-        }
-        else
-        {
-            echo "<tr class='usercolor1' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
-            $rowcolor="blue";
-        }
-            echo $rows['bacdocument_id'];
-            echo "</td><td>";
-            echo $rows['bacdocumentdetail'];
-            echo "</td><td>";
-            echo $rows['prcost'];
-            echo "</td><td>";
-            echo date_format($date,'m/d/Y');
-            echo "</td></tr>";  
-        }
-        
+//            $bacdocument_id=$rows['bacdocument_id'];
+//            $bacdocumentdetail=$rows['bacdocumentdetail'];
+//            $prcost=$rows['prcost'];
+//            $date = date_create($rows['pr_date']);
+//         
+//        if ($rowcolor=="blue")
+//        {
+//            echo "<tr class='usercolor' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
+//            $rowcolor="notblue";
+//        }
+//        else
+//        {
+//            echo "<tr class='usercolor1' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
+//            $rowcolor="blue";
+//        }
+						$date = date_create($row['pr_date']);
+						array_push($resultArray, array("barcode"=>$row["bacdocument_id"],"detail"=>$row["bacdocumentdetail"],"cost"=>$row["prcost"],"date"=>$row["pr_date"],"date"=>date_format($date,'m/d/Y')));	
+//            echo $rows['bacdocument_id'];
+//            echo "</td><td>";
+//            echo $rows['bacdocumentdetail'];
+//            echo "</td><td>";
+//            echo $rows['prcost'];
+//            echo "</td><td>";
+//            echo date_format($date,'m/d/Y');
+//            echo "</td></tr>";  
+//        }
+//        
     }
-    
-}
+//    
+//}
+		}
+		echo json_encode($resultArray);
+		}
+
 function SearchNew($queryText)
 {
     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
@@ -125,44 +137,53 @@ function SearchNew($queryText)
         $SQLstring='SELECT bacdocument_id,bacdocumentdetail,prcost,pr_date FROM bacdocumentlist WHERE (bacdocument_id LIKE "'.$searchText.'%" OR bacdocumentdetail like "%'.$searchText.'%") AND (fk_officename_bacdocumentlist = "'.$_SESSION['OFFICE'].'") AND (bacdocument_id IN (SELECT fk_bacdocumentlist_id FROM bacdocumentlist_tracker WHERE checkin_date is null or receive_date is null )) ORDER BY transdate ASC';
     }
     
+    $result=mysqli_query($con,$SQLstring)or die(mysqli_error($con));
+		$resultArray=array();
+		 while ($row = mysqli_fetch_assoc($result))
+		 {
+		 	
     
-    $result=mysqli_query($con, $SQLstring);
-    
-            
-    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
-    $rowcolor="blue";
-    while ($rows=mysqli_fetch_array($result))
-    {
-        if (filterSearch($rows['bacdocument_id']))
+//    $result=mysqli_query($con, $SQLstring);
+//    
+//            
+//    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
+//    $rowcolor="blue";
+//    while ($rows=mysqli_fetch_array($result))
+//    {
+        if (filterSearch($row['bacdocument_id']))
         {
-            $bacdocument_id=$rows['bacdocument_id'];
-            $bacdocumentdetail=$rows['bacdocumentdetail'];
-            $prcost=$rows['prcost'];
-            $date = date_create($rows['pr_date']);
-         
-        if ($rowcolor=="blue")
-        {
-            echo "<tr class='usercolor' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
-            $rowcolor="notblue";
-        }
-        else
-        {
-            echo "<tr class='usercolor1' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
-            $rowcolor="blue";
-        }
-            echo $rows['bacdocument_id'];
-            echo "</td><td>";
-            echo $rows['bacdocumentdetail'];
-            echo "</td><td>";
-            echo $rows['prcost'];
-            echo "</td><td>";
-            echo date_format($date,'m/d/Y');
-            echo "</td></tr>";  
-        }
-        
+//            $bacdocument_id=$rows['bacdocument_id'];
+//            $bacdocumentdetail=$rows['bacdocumentdetail'];
+//            $prcost=$rows['prcost'];
+            $date = date_create($row['pr_date']);
+         array_push($resultArray, array("barcode"=>$row["bacdocument_id"], "detail"=>$row["bacdocumentdetail"], "cost"=>$row["prcost"], "date"=>date_format($date,'m/d/Y')));
+//        if ($rowcolor=="blue")
+//        {
+//            echo "<tr class='usercolor' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
+//            $rowcolor="notblue";
+//        }
+//        else
+//        {
+//            echo "<tr class='usercolor1' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
+//            $rowcolor="blue";
+//        }
+//            echo $rows['bacdocument_id'];
+//            echo "</td><td>";
+//            echo $rows['bacdocumentdetail'];
+//            echo "</td><td>";
+//            echo $rows['prcost'];
+//            echo "</td><td>";
+//            echo date_format($date,'m/d/Y');
+//            echo "</td></tr>";  
+//        }
+//        
     }
     
-}
+//}
+	}
+	echo json_encode($resultArray);
+	
+	}
 //SEARCH FILTER
 //RETURNS TRUE IF RECEIVED DATE IS NULL
 function filterSearch($documentId)
@@ -204,67 +225,112 @@ function historyCheckin($searchText)
         $sqlString='SELECT bacdocumentlist_tracker_id,checkin_date,bacdocument_id,bacdocumentdetail,prcost,pr_date,`bacdocumentlist`.`transdate` as transdate,sortorder,receive_date,expire_days,activity,receive_by, fk_officename_bacdocumentlist FROM bacdocumentlist JOIN bacdocumentlist_tracker ON bacdocumentlist.bacdocument_id = bacdocumentlist_tracker.fk_bacdocumentlist_id  WHERE   (bacdocument_id = "'.$docId.'") AND (fk_officename_bacdocumentlist = "'.$_SESSION['OFFICE'].'") ORDER BY sortorder asc';
     }
  
- 
+ 		$result=mysqli_query($con, $sqlString);
+    $recSet = mysqli_fetch_array($result);
+    mysqli_free_result($result);
 
-    $result=mysqli_query($con, $sqlString);
+//    $result=mysqli_query($con, $sqlString);
     
    // if (!$result)
     //{
-    $x=0;
-    $color='gray';
+//    $x=0;
+//    $color='gray';
     echo '<div id="ajaxhistory">';
+    		
+    						echo '<div id="details" class="retriveDataAllign">';
+                    echo "<div class='row'>";
+                    	echo "<div class='col-xs-6 col-sm-4'>";
+                    						echo '<input id="pKey" type="hidden" readonly="readonly" value="'.$recSet["bacdocument_id"].'" />';
+									    					echo "Barcode No:"; echo"&nbsp;<b style='color:#00556F;'>".$recSet['bacdocument_id'].'</b>';
+									    echo "</div>";
+									    echo "<div class='col-xs-6 col-sm-4'>";
+									    					echo "Cost:"; echo"&nbsp;<b style='color:#00556F;'>". number_format($recSet["prcost"], 2, '.', ',').'</b>';
+									    echo "</div>";
+									    echo "<div class='col-xs-6 col-md-4'>";
+									    					echo "PR Date:"; echo"&nbsp;<b style='color:#00556F;'>".date("F j, Y",strtotime($recSet["pr_date"])).'</b>';
+									    echo "</div>";
+									    echo "<div class='col-xs-6 col-md-4'>";
+									    					echo "Details:"; echo"&nbsp;<b style='color:#00556F;'>".$recSet['bacdocumentdetail'].'</b>';
+									    echo "</div>";
+		                  echo "<div class='col-xs-6 col-md-4'>";
+									    					echo "Office:"; echo"&nbsp;<b style='color:#00556F;'>".$recSet['fk_officename_bacdocumentlist'].'</b>';
+									    echo "</div>";
+		                  echo "<div class='col-xs-6 col-md-4'>";
+									    					echo "Entry Date:"; echo"&nbsp;<b style='color:#00556F;'>".date("F j, Y, g:i a",strtotime($recSet['transdate'])).'</b>';
+									    echo "</div>";
+		                    
+				            echo '</div>';
+                echo '</div>';
+                
+                echo '<div id="checkinScroll">';
+                echo '<table id="historydata"
+                			data-height="450"
+								      data-toggle="table"
+								      class="display table table-bordered"
+								      data-striped="true"	
+                >';
+                echo "<thead>";
+             			echo "<tr>";
+                    echo '<th>Step</th>';
+                    echo '<th>Activity</th>';
+                    echo '<th>Checked-in</th>';
+                    echo '<th>Checked-out</th>';
+                    echo '<th>Responsible</th>';
+                    echo '<th>Details</th>';
+            			echo "</tr>";
+                echo "</thead>";
         
-         
+         $result=mysqli_query($con, $sqlString);
         while ($recSet = mysqli_fetch_array($result))
         {
            
                 
-                if ($x==0)
-                {   
-                    echo '<div id="details" class="retriveDataAllign">';
-                    
-                    echo '<table>';
-                    echo '<tr>';
-                    echo '<input id="pKey" type="hidden" readonly="readonly" value="'.$recSet["bacdocument_id"].'" />';
-                    echo '<td>Barcode No:&nbsp;<b>'.$recSet['bacdocument_id'].'</b>';
-                    echo '</td><td>Cost:&nbsp;<b>'. number_format($recSet["prcost"], 2, '.', ',').'</b>';
-                    echo '</td><td>PR Date:&nbsp;<b>'.date("F j, Y",strtotime($recSet["pr_date"])).'</b>';
-                echo '</td></tr>';
-                echo '<tr><td>';
-                    echo 'Details:&nbsp;<b>'.$recSet['bacdocumentdetail'].'</b>';
-                    echo '</td><td>';
-                    echo 'Office:&nbsp;<b>'.$recSet['fk_officename_bacdocumentlist'].'</b>';
-                    echo '</td><td>';
-                    echo 'Entry Date:&nbsp;<b>'.date("F j, Y, g:i a",strtotime($recSet['transdate'])).'</b>';
-                    echo '</td>';
-                echo '</tr>';
-                echo '</table>';
-                echo '</div>';
+//                if ($x==0)
+//                {   
+//                    echo '<div id="details" class="retriveDataAllign">';
+//                    
+//                    echo '<table>';
+//                    echo '<tr>';
+//                    echo '<input id="pKey" type="hidden" readonly="readonly" value="'.$recSet["bacdocument_id"].'" />';
+//                    echo '<td>Barcode No:&nbsp;<b>'.$recSet['bacdocument_id'].'</b>';
+//                    echo '</td><td>Cost:&nbsp;<b>'. number_format($recSet["prcost"], 2, '.', ',').'</b>';
+//                    echo '</td><td>PR Date:&nbsp;<b>'.date("F j, Y",strtotime($recSet["pr_date"])).'</b>';
+//                echo '</td></tr>';
+//                echo '<tr><td>';
+//                    echo 'Details:&nbsp;<b>'.$recSet['bacdocumentdetail'].'</b>';
+//                    echo '</td><td>';
+//                    echo 'Office:&nbsp;<b>'.$recSet['fk_officename_bacdocumentlist'].'</b>';
+//                    echo '</td><td>';
+//                    echo 'Entry Date:&nbsp;<b>'.date("F j, Y, g:i a",strtotime($recSet['transdate'])).'</b>';
+//                    echo '</td>';
+//                echo '</tr>';
+//                echo '</table>';
+//                echo '</div>';
                 
-                echo '<div id="checkinScroll">';
-                echo '<table id="historydata" class="table scroll">';
-                echo '<tr class="bgcolor">';
-                    echo '<th style="width:2%;">STEP</th>';
-                    echo '<th style="width:25%;">ACTIVITY</th>';
-                    echo '<th style="width:15%;">CHECKED-IN</th>';
-                    echo '<th style="width:15%;">CHECKED-OUT</th>';
-                    echo '<th style="width:15%;">RESPONSIBLE</th>';
-                    echo '<th style="width:15%;">DETAILS</th>';
-                echo '</tr>';
-               
-                
-                }
-              if ($color=='gray')
-              {
-                   echo "<tr class='usercolor1'><td>";
-                  $color='notgray';
-              }
-              else
-              {
-                   echo "<tr class='usercolor'><td>";
-                  $color='gray';
-              }
-           
+//                echo '<div id="checkinScroll">';
+//                echo '<table id="historydata" class="table scroll">';
+//                echo '<tr class="bgcolor">';
+//                    echo '<th style="width:2%;">STEP</th>';
+//                    echo '<th style="width:25%;">ACTIVITY</th>';
+//                    echo '<th style="width:15%;">CHECKED-IN</th>';
+//                    echo '<th style="width:15%;">CHECKED-OUT</th>';
+//                    echo '<th style="width:15%;">RESPONSIBLE</th>';
+//                    echo '<th style="width:15%;">DETAILS</th>';
+//                echo '</tr>';
+//               
+//                
+//                }
+//              if ($color=='gray')
+//              {
+//                   echo "<tr class='usercolor1'><td>";
+//                  $color='notgray';
+//              }
+//              else
+//              {
+//                   echo "<tr class='usercolor'><td>";
+//                  $color='gray';
+//              }
+           	echo "<tr><td>";
             echo $recSet['sortorder'];
             echo "</td><td>";
             echo $recSet['activity'];
@@ -289,7 +355,7 @@ function historyCheckin($searchText)
                 
                 
          
-            $x++;
+//            $x++;
         }
         echo '</table>';
         echo '</div>';
@@ -332,42 +398,52 @@ function SearchArchive($queryText)
 //    echo $SQLstring;
 //    die();
     
-    $result=mysqli_query($con, $SQLstring);
-    
+//    $result=mysqli_query($con, $SQLstring);
+//    $recSet = mysqli_fetch_array($result);
+//    mysqli_free_result($result);
+//    
             
-    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
-    $rowcolor="blue";
-    while ($rows=mysqli_fetch_array($result))
+//    echo"<tr class='usercolortest'><th class='sizeBARCODE2'>BARCODE</th><th class='sizeDETAIL'>DETAIL</th><th class='sizeCOST'>COST</th><th>DATE</th></tr>";
+//    $rowcolor="blue";
+$resultArray=array();
+		$result=mysqli_query($con, $SQLstring);
+    while ($row=mysqli_fetch_array($result))
     {
 //        if (filterSearch($rows['bacdocument_id']))
 //        {
-            $bacdocument_id=$rows['bacdocument_id'];
-            $bacdocumentdetail=$rows['bacdocumentdetail'];
-            $prcost=$rows['prcost'];
-            $date = date_create($rows['pr_date']);
-         
-        if ($rowcolor=="blue")
-        {
-            echo "<tr class='usercolor' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
-            $rowcolor="notblue";
-        }
-        else
-        {
-            echo "<tr class='usercolor1' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
-            $rowcolor="blue";
-        }
-            echo $rows['bacdocument_id'];
-            echo "</td><td>";
-            echo $rows['bacdocumentdetail'];
-            echo "</td><td>";
-            echo $rows['prcost'];
-            echo "</td><td>";
-            echo date_format($date,'m/d/Y');
-            echo "</td></tr>";  
+        	$date = date_create($row['pr_date']);
+         array_push($resultArray, array("barcode"=>$row["bacdocument_id"], "detail"=>$row["bacdocumentdetail"], "cost"=>$row["prcost"], "date"=>date_format($date,'m/d/Y')));
+//            $bacdocument_id=$rows['bacdocument_id'];
+//            $bacdocumentdetail=$rows['bacdocumentdetail'];
+//            $prcost=$rows['prcost'];
+//            $date = date_create($rows['pr_date']);
+//         
+//        if ($rowcolor=="blue")
+//        {
+//            echo "<tr class='usercolor' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
+//            $rowcolor="notblue";
 //        }
+//        else
+//        {
+//            echo "<tr class='usercolor1' onClick='clickSearch(\"".$bacdocument_id."\",\"".$bacdocumentdetail."\",\"".$prcost."\",\"".date_format($date,'m/d/Y')."\")'><td>";
+//            $rowcolor="blue";
+//        }
+//						echo "<tr><td>";
+//            echo $rows['bacdocument_id'];
+//            echo "</td><td>";
+//            echo $rows['bacdocumentdetail'];
+//            echo "</td><td>";
+//            echo $rows['prcost'];
+//            echo "</td><td>";
+//            echo date_format($date,'m/d/Y');
+//            echo "</td></tr>";  
+////        }
         
-    }
+//    }
     
+}
+
+echo json_encode($resultArray);
 }
 
 //CHECK IF PROCESS HAS BACKLOG DETAILS

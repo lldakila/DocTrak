@@ -233,14 +233,26 @@
 		                                    <hr class="hrMargin">
 		                                    
 				                          <div class="postright">  
-				                            <div class="scroll">      
-				                                <table id="responds">
-				                                    <tr class='usercolortest'>
-																								<th class="sizeTEMPLATE">TEMPLATE</th>
-				                                        <th class="sizeDESCR">DESCRIPTION</th>
-				                                    </tr>	
-				                                </table>
-				                            </div>
+				                                 
+				                                <table id="responds"
+				                                		data-height="450"
+																			      data-toggle="table"
+																			      class="display table table-bordered"
+																			      data-striped="true"
+				                                >
+				                                	<thead>
+																				    <tr>
+																								<th class="col-md-2"  data-field="template_name" data-sortable="true">Template</th>
+																								<th  class="col-md-8" data-field="description_name" data-sortable="true">Description</th>
+																								
+																				    </tr>
+																				  </thead>
+							                                    <!--<tr class='usercolortest'>
+																											<th class="sizeTEMPLATE">TEMPLATE</th>
+							                                        <th class="sizeDESCR">DESCRIPTION</th>
+							                                    </tr>	-->
+							                          </table>
+				                            
 				                          </div>
 		                         	</div>
 		
@@ -374,22 +386,22 @@ function cleartext() {
 
 }
 
-function clickSearch(template_id,template_name,description_name,publicTemplate) {
-    document.getElementById("template_name").value=template_name;
-    document.getElementById("description_name").value=description_name;
-    document.getElementById("primarykey").value=template_id;
-    if (publicTemplate==1)
-    {
-    	document.getElementById("publicCheckbox").checked=true;
-    }
-    else
-    {
-    	document.getElementById("publicCheckbox").checked=false;
-    }
-    	
-    retrieveoffice(template_id);
-    retrieveofficearray(template_id);
-}
+//function clickSearch(template_id,template_name,description_name,publicTemplate) {
+//    document.getElementById("template_name").value=template_name;
+//    document.getElementById("description_name").value=description_name;
+//    document.getElementById("primarykey").value=template_id;
+//    if (publicTemplate==1)
+//    {
+//    	document.getElementById("publicCheckbox").checked=true;
+//    }
+//    else
+//    {
+//    	document.getElementById("publicCheckbox").checked=false;
+//    }
+//    	
+//    retrieveoffice(template_id);
+//    retrieveofficearray(template_id);
+//}
 
         function retrieveoffice(template_id){
     var myData = 'template_name='+template_id; //build a post data structure
@@ -516,18 +528,19 @@ $(document).ready(function() {
     jQuery.ajax({
 			type: "POST",
             url:"flowtemplate/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
 			data:myData,
-                        beforeSend: function() {
-                                $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                        },
-                        ajaxError: function() {
-                                $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-                        },
-			success:function(response){
-				$("#responds").html(response);
-
-			},
+            beforeSend: function() {
+                    $("#responds").bootstrapTable("showLoading");
+            },
+//                        ajaxError: function() {
+//                                $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//                        },
+						success:function(response){
+							$("#responds").bootstrapTable("hideLoading");
+						  $('#responds').bootstrapTable("load",response);
+			
+						},
 			error:function (xhr, ajaxOptions, thrownError){
 				alert(thrownError);
 			}
@@ -551,7 +564,24 @@ function myFunction(e) {
 
 }
 
-
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+	
+		document.getElementById("template_name").value=row['template_name'];
+    document.getElementById("description_name").value=row['description_name'];
+    document.getElementById("primarykey").value=row['template_id'];
+    
+    if (row['publicTemplate']==1)
+    {
+    	document.getElementById("publicCheckbox").checked=true;
+    }
+    else
+    {
+    	document.getElementById("publicCheckbox").checked=false;
+    }
+    
+    retrieveoffice(template_id);
+    retrieveofficearray(template_id);
+});
 
 
 

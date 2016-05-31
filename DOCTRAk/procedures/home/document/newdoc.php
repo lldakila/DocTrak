@@ -563,7 +563,7 @@ function myFunction(e) {
 		document.process.title.value=row['title'];
 		document.process.description.value=row['description'];
 		document.process.type.value=row['type'];
-		document.process.template.value=row['template'];
+		//document.process.template.value=row['template'];
 		//document.process.file.value=a;
 		$('#template').selectpicker('val',row['template']);
 		$('#template').selectpicker('refresh');

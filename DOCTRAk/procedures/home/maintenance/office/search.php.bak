@@ -58,6 +58,5 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 //	}
 
 			}
-			echo json_encode($resultArray);
 
 ?>

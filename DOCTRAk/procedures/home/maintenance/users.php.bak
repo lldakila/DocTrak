@@ -128,14 +128,15 @@
 																		  <div class="form-group">
 																			    <label class="col-sm-2 control-label">Group:</label>
 																			    <div class="col-sm-10">
-											                       <select id="group" name="group" class="form-control" > <option>Select Here</option>
+											                       <select id="group" name="group" class="form-control selectpicker" data-live-search="true" > <option></option>
 											
 																				       <?php
-																				           require_once("../../connection.php");
-																				
-																				           $query=select_info_multiple_key("select SECURITY_GROUPNAME from security_group");
-																				           foreach($query as $var) {
-																				              echo "<option>".$var['SECURITY_GROUPNAME']."</option>";
+																				           
+																										mysqli_free_result($result);
+																				           $query="select SECURITY_GROUPNAME,security_name from security_group";
+																				           $result=mysqli_query($con,$query);
+																				           while ($var=mysqli_fetch_array($result)) {
+																				              echo "<option selected='true' value = '".$var['SECURITY_GROUPNAME']."' data-subtext='".$var['security_name']."'>".$var['SECURITY_GROUPNAME']."</option>";
 																				           }
 																						
 																						
@@ -147,14 +148,15 @@
 																		  <div class="form-group">
 																			    <label class="col-sm-2 control-label">Office:</label>
 																			    <div class="col-sm-10">
-											                       <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> <option>Select Here</option>
+											                       <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> <option></option>
 											
 																					       <?php
-																					           require_once("../../connection.php");
-																					
-																					           $query=select_info_multiple_key("select OFFICE_NAME, OFFICE_DESCRIPTION from office");
-																					           foreach($query as $var) {
-																					              echo "<option data-subtext='".$var['OFFICE_DESCRIPTION']."'>".$var['OFFICE_NAME']."</option>";
+																					          
+																											mysqli_free_result($result);
+																					           $query="select OFFICE_NAME, OFFICE_DESCRIPTION from office";
+																					           $result=mysqli_query($con,$query);
+																					           while ($var=mysqli_fetch_array($result)) {
+																					              echo "<option selected='true' value = '".$var['OFFICE_NAME']."' data-subtext='".$var['OFFICE_DESCRIPTION']."'>".$var['OFFICE_NAME']."</option>";
 																					           }
 																					
 																					
@@ -162,31 +164,6 @@
 								                             </select>
 																			    </div>
 																		  </div>
-											    						
-														    				<table>
-
-											                    <tr>
-											                    	<td>Office: </td>
-											                         <td class="select01">
-											                             <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> <option>Select Here</option>
-											
-																								       <?php
-																								           require_once("../../connection.php");
-																								
-																								           $query=select_info_multiple_key("select OFFICE_NAME, OFFICE_DESCRIPTION from office");
-																								           foreach($query as $var) {
-																								              echo "<option data-subtext='".$var['OFFICE_DESCRIPTION']."'>".$var['OFFICE_NAME']."</option>";
-																								           }
-																								
-																								
-																								    		?>
-											                             </select>
-											                         </td>
-											
-											                    </tr>
-														
-														
-														            </table>
 											
 											                    <?php
 											            
@@ -244,15 +221,24 @@
                             	<hr class="hrMargin">
                             
 	                          <div class="postright"> 
-	                            <div class="scroll">
+	                            
 	                        	                                    
-	                                <table id="responds">
-																    <tr class='usercolortest'>
-																			<th class="sizeUSERname">USERNAME</th>
-																			<th>NAME</th>
-																    </tr>
+	                                <table id="responds"
+	                                		data-height="450"
+																      data-toggle="table"
+																      class="display table table-bordered"
+																      data-striped="true"
+	                                >
+	                                	<thead>
+																	    <tr>
+																					<th class="col-md-2"  data-field="username" data-sortable="true">Username</th>
+																					<th  class="col-md-8" data-field="name" data-sortable="true">Name</th>
+																					
+																	    </tr>
+																	  </thead>
+																    
 	                                </table>
-	                            </div>
+	                            
 	                          </div>
                         </div>
                         
@@ -378,16 +364,17 @@ $(document).ready(function() {
     jQuery.ajax({
 			type: "POST",
             url:"user/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+                    $("#responds").bootstrapTable("showLoading");
             },
-            ajaxError: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
+//            ajaxError: function() {
+//                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            },
             success:function(response){
-                    $("#responds").html(response);
+                    $("#responds").bootstrapTable("hideLoading");
+						  			$('#responds').bootstrapTable("load",response);
        //alert (response);
             },
             error:function (xhr, ajaxOptions, thrownError){
@@ -414,6 +401,26 @@ function myFunction(e) {
 	
     
 /*]]>*/
+
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+		
+		document.process.username.value=row['username'];
+    document.process.name.value=row['name'];
+    document.getElementById("primarykey").value=row['username'];
+  
+  	
+  	
+  	//document.getElementById("office").value=row['officename'];
+  	$('#office').selectpicker('val',row['office']);
+		$('#office').selectpicker('refresh');
+		
+		$('#group').selectpicker('val',row['group']);
+		$('#group').selectpicker('refresh');
+//		document.getElementById("group").value=row['groupname'];
+		
+  
+});	
+
 </script>
 </body>
 </html>

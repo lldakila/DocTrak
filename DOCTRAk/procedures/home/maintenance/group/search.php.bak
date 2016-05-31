@@ -16,7 +16,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			 while ($var = mysqli_fetch_assoc($result))
 			 	{
 			 			array_push($resultArray, array("group"=>$var["SECURITY_GROUPNAME"],"description"=>$var["SECURITY_NAME"]));
-		
+			 	
+
 //
 // if ($query) {
 //	 

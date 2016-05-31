@@ -20,8 +20,8 @@ global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 
 $query="select mail_file from commail where commail_id = '".$id."'";
-//echo decryptText(base64_decode($_GET['download_file']));
-//die();
+echo decryptText(base64_decode($_GET['download_file']));
+die();
 $RESULT=mysqli_query($con,$query);
  while ($row = mysqli_fetch_array($RESULT))
  {

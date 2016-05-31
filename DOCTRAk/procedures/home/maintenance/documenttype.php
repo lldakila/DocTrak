@@ -185,14 +185,23 @@
                             <hr class="hrMargin">
                             
 	                      <div class="postright">
-	                        <div class="scroll">      
-	                            <table id="responds">
-														    <tr class='usercolortest'>
-																	<th class="sizeDOCNAME">DOCUMENT NAME</th>
-																	<th class="sizeDESCR">DESCRIPTION</th>
-														    </tr>
+	                              
+	                            <table id="responds"
+		                            	data-height="450"
+														      data-toggle="table"
+														      class="display table table-bordered"
+														      data-striped="true"
+	                            >
+	                            	<thead>
+															    <tr>
+																			<th class="col-md-2"  data-field="id" data-sortable="true">Document Name</th>
+																			<th  class="col-md-8" data-field="description" data-sortable="true">Description</th>
+																			
+															    </tr>
+															  </thead>
+														    
 	                            </table>
-	                        </div>
+	                        
 	                      </div>
                     </div>
 
@@ -303,24 +312,24 @@ else {
 
 }
 
-function clickSearch(id,description,priority,docpublic) {
-
-  document.getElementById("document_name").value=id;
-  document.getElementById("description").value=description;
-  document.getElementById("priority").value=priority;
-  document.getElementById("primarykey").value=id;
-   if(docpublic==1){
-         document.getElementById("publicyes").checked=true;
-         document.getElementById("publicno").checked=false;
-   }
-   else{
-        document.getElementById("publicyes").checked=false;
-         document.getElementById("publicno").checked=true;
-   }
-
-   // alert(docpublic  );
-
-}
+//function clickSearch(id,description,priority,docpublic) {
+//
+//  document.getElementById("document_name").value=id;
+//  document.getElementById("description").value=description;
+//  document.getElementById("priority").value=priority;
+//  document.getElementById("primarykey").value=id;
+//   if(docpublic==1){
+//         document.getElementById("publicyes").checked=true;
+//         document.getElementById("publicno").checked=false;
+//   }
+//   else{
+//        document.getElementById("publicyes").checked=false;
+//         document.getElementById("publicno").checked=true;
+//   }
+//
+//   // alert(docpublic  );
+//
+//}
 
 
 $(document).ready(function() {
@@ -332,16 +341,17 @@ $(document).ready(function() {
     jQuery.ajax({
             type: "POST",
             url:"type/search.php",
-            dataType:"text", // Data type, HTML, json etc.
+            dataType:"json", // Data type, HTML, json etc.
             data:myData,
             beforeSend: function() {
-            $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            $("#responds").bootstrapTable("showLoading");
             },
-            ajaxError: function() {
-                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
-            },
+//            ajaxError: function() {
+//                    $("#responds").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            },
             success:function(response){
-                    $("#responds").html(response);
+                    $("#responds").bootstrapTable("hideLoading");
+						  			$('#responds').bootstrapTable("load",response);
 
             }, 
             error:function (xhr, ajaxOptions, thrownError){
@@ -364,6 +374,23 @@ function myFunction(e) {
 	$("#fade").fadeTo(3000,0.0);
 
 }
+
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+	
+	document.getElementById("document_name").value=row['id'];
+  document.getElementById("description").value=row['description'];
+  document.getElementById("priority").value=row['priority'];
+  document.getElementById("primarykey").value=row['id'];
+   if(docpublic==1){
+         document.getElementById("publicyes").checked=true;
+         document.getElementById("publicno").checked=false;
+   }
+   else{
+        document.getElementById("publicyes").checked=false;
+         document.getElementById("publicno").checked=true;
+   }
+	
+});
 
 
 </script>
