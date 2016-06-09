@@ -132,7 +132,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			                    
 			
 			                        <table id="responds"
-			                        		data-height="450"
+			                        		data-height="430"
 														      data-toggle="table"
 														      class="display table table-bordered"
 														      data-striped="true"

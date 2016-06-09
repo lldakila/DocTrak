@@ -197,18 +197,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <script language="JavaScript" type="text/javascript">
 
 $('#responds').on('click-row.bs.table', function (e, row, $element) {
- //    console.log(row);
-   // alert(row['description']);
-  
-//		document.process.barcodeno.value=row['barcode'];
-//		document.process.title.value=row['title'];
-//		
-//		document.process.security_name.value=row['owner'];
-//		document.process.template.value=row['template'];
-//		
-//		document.process.primarykey.value=row['barcode'];
-//		document.process.barcode.value=row['barcode'];
-//		retrieveAttachment(row['barcode']);
+
 		retrieveDocumentTracker(row['barcode']);
 	
 

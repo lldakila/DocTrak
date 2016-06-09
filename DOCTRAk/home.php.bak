@@ -137,7 +137,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																			
 																						<table id="tableBootstrap"
 															               
-															             	
+															             	data-height="405"
 															               data-search="true"
 					               						  				data-pagination="true"
 															               data-toggle="table"
@@ -183,7 +183,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 															
 														 <table id="tableBootstraps"
 										               
-										               data-height="460"
+										               data-height="450"
 										               
                										
 										               data-sort-name="name"

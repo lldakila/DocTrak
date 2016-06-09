@@ -148,7 +148,7 @@
 																		  <div class="form-group">
 																			    <label class="col-sm-2 control-label">Office:</label>
 																			    <div class="col-sm-10">
-											                       <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> <option></option>
+											                       <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> 
 											
 																					       <?php
 																					          

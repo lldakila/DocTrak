@@ -90,7 +90,7 @@ function newDocument()
 						var module='renderNewDocTemplate';
 						   var link = document.getElementById("viewDocTemplateLink");
 						   <?php 
-						   		echo "link.setAttribute('href', '".$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id='+strUser);";
+						   	//echo "link.setAttribute('href', '".$PROJECT_ROOT."procedures/home/document/common/viewtemplate.php?template_id='+strUser);";
 						   ?>
 						   
 						   
@@ -314,6 +314,7 @@ function newDocument()
                 //$("#myModalsBody").html(response);
                 $.growl.notice({ message: 'Backlog status updated.' });
                 $('#myModals').modal('hide');
+               
             },
             error:function (xhr, ajaxOptions, thrownError)
             {
@@ -321,25 +322,27 @@ function newDocument()
             }
         });
         CheckDeadlineIcon();
-        //$('#myModals').modal('show');
-        //document.getElementById('myModalLabels').innerHTML='BAC Backlog';
+
     }
+    
+    
     
     function CheckDeadlineIcon()
         {
                 var module_name='updateDeadlineIcon';
-                var path="<?php echo $PROJECT_ROOT; ?>";
+                var path='<?php echo $PROJECT_ROOT; ?>';
                 //var module_name = 'documentTracker='+BarcodeId; //build a post data structure
-		jQuery.ajax({
-			type: "POST",
-			url:"crud.php",
-			dataType:"text", // Data type, HTML, json etc.
-			data:{module:module_name,imgPath:path},
-			success:function(response)
+					jQuery.ajax({
+						type: "POST",
+						url:<?php echo $PROJECT_ROOT."procedures/home/bac/crud.php";?>,
+						dataType:"text", // Data type, HTML, json etc.
+						data:{module:module_name,imgPath:path},
+						success:function(response)
                         {
-                            $('#deadlineNoti').html(response);
+                $('#bacnoti').html(response);
 			},
-			error:function (xhr, ajaxOptions, thrownError){
+			error:function (xhr, ajaxOptions, thrownError)
+			{
 				alert(thrownError);
 			}
                         

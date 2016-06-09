@@ -134,7 +134,7 @@ if ($_SESSION['BAC']!=1)
 			                    
 			
 			                        <table id="responds"
-			                        	data-height="450"
+			                        	data-height="430"
 													      data-toggle="table"
 													      class="display table table-bordered"
 													      data-striped="true"
@@ -257,16 +257,16 @@ function clickSearch(doc_Id)
             },
             success:function(response)
             {
-		if (response=="")
-		{
-		    $.growl.notice({ message: 'Document Received' }); 
-		}
-		else
-		{
-		    $.growl.error({ message: response });
-		}
+							if (response=="")
+							{
+							    $.growl.notice({ message: 'Document Received' }); 
+							}
+							else
+							{
+							    $.growl.error({ message: response });
+							}
                 
-		$("#btnReceive").html('Receive');
+							$("#btnReceive").html('Receive');
 		
             },
             error:function (xhr, ajaxOptions, thrownError)

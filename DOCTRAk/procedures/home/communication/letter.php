@@ -91,7 +91,7 @@
        <div class="container">
     				<div class="row">
     					
-							    <div class="post">
+							    <div id="post">
 							    	<div id="post100" class="colsize">
 							    		<h2 style="padding-top:20px;">LETTER</h2>
 							    		<hr class="hrMargin" style="margin-bottom:10px;">

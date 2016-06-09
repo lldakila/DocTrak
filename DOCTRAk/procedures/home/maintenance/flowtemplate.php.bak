@@ -569,28 +569,7 @@ $('#responds').on('click-row.bs.table', function (e, row, $element) {
 		document.getElementById("template_name").value=row['template_name'];
     document.getElementById("description_name").value=row['description_name'];
     document.getElementById("primarykey").value=row['template_id'];
-    if ($var["FK_OFFICE_NAME"]==$_SESSION['OFFICE'])
-        {
-        	array_push($resultArray, array("template_id"=>$var["TEMPLATE_ID"],"template_name"=>$var["TEMPLATE_NAME"],"description_name"=>$var["TEMPLATE_DESCRIPTION"]));
-//             if ($rowcolor == "blue") 
-//        {
-//            echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
-//            $rowcolor="notblue";
-//        }
-//            else
-//            {
-//                echo '<tr id="'.$var["TEMPLATE_NAME"].'" class="usercolor1" onClick="clickSearch(\''.$var["TEMPLATE_ID"].'\',\''.$var["TEMPLATE_NAME"].'\',\''.$var["TEMPLATE_DESCRIPTION"].'\')">';
-//                $rowcolor="blue";
-//            }
-//            echo "<td style='width:150px;'>";
-//            echo $var['TEMPLATE_NAME'];
-//            ECHO "</td><td>";
-//            echo $var['TEMPLATE_DESCRIPTION'];
-//            echo "</td>";
-//            echo"</tr>";
-//        }
-        
-    		}
+    
     if (row['publicTemplate']==1)
     {
     	document.getElementById("publicCheckbox").checked=true;

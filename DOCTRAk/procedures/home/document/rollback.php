@@ -149,7 +149,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 					                       
 					                    	                                    
 					                            <table id="responds"
-					                            	data-height="420"
+					                            	data-height="400"
 																	      data-toggle="table"
 																	      class="display table table-bordered"
 																	      data-striped="true"

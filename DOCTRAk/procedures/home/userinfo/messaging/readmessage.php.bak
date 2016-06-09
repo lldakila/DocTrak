@@ -54,7 +54,8 @@
 	}
 	echo "</table>";
 	$query="UPDATE mail SET MAILSTATUS=1 WHERE MAIL_ID = '".$_POST['MailId']."'";
-
+	echo $query;
+	die();
 	mysqli_query($con,$query);
         }
         

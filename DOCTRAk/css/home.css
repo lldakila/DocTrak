@@ -154,8 +154,8 @@ background: #3A3A3A;
 }
 
 #table input[type=text] {
-	width:700px;
-	padding:5px 5px;
+	/*width:700px;
+	padding:5px 5px;*/
 	background-color:#BAD8FF;
 	border-radius:5px;
 }
@@ -255,9 +255,9 @@ div.actionButton {
 }
 
 #inboxtable {
-	margin:10px 10px 0 0;
+	/*margin:10px 10px 0 0;
 	overflow:scroll;
-	height:450px;
+	height:450px;*/
 }
 
 #inboxtable a {
@@ -395,8 +395,8 @@ div.actionButton {
 
 
 #nav ol {
-	width: 160px;
-	padding: 5px 0 5px 0;
+	/*width: 160px;
+	padding: 5px 0 5px 0;*/
 	background-color:#E6E6E6;
 /*	border-bottom-left-radius:8px;
 	border-bottom-right-radius:8px;*/
@@ -421,15 +421,15 @@ div.actionButton {
 
 /********************** test nav ****************/
 
-#nav {
+/*#nav {
 	width:160px;
 	margin:0px 0 0 20px;
-}
+}*/
 
 #nav h4 {
 	margin:0;
 	height:25px;
-	width:160px;
+	/*width:160px;*/
 	background-color:#5B5C5C;
 	color:#ccc;
 	font-family:trebuchet ms;
@@ -698,9 +698,9 @@ div#menu li.back .left {
     margin-left: -15px;
 }
 
-.menuMail {
+/*.menuMail {
 	float:right;
-}
+}*/
 
 .col-md-4 .Admin p {
 	padding-left: 65px;
@@ -866,7 +866,7 @@ div#menu li.back .left {
 	font:18px "Lucida Grande", Tahoma, Verdana, sans-serif;
 }
 
-.post {
+#post {
 	margin-top:115px;
 	margin-left:15px;
 	margin-right:15px;
@@ -898,7 +898,7 @@ div#menu li.back .left {
         .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
     .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
 .tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
-.tab-pane { padding: 15px 0; }
+.tab-pane { padding: 1px 0; }
 .tab-content{/*padding:20px*/}
 
 .card {
@@ -966,7 +966,7 @@ float:right;
 }
 
 #mailNotify {
-  float:left;
+  /*float:left;*/
   margin-top: 0px;
 }
 
@@ -1015,7 +1015,7 @@ float:right;
 	background-color:#FFF;
 	border-radius:3px;
 	padding-bottom:20px;
-	min-height:507px;
+	min-height:500px;
 	border-right:5px solid #E9EAED;
 }
 
@@ -1177,15 +1177,17 @@ img#lowclr {
 /*	height:530px;*/
 }
 
+#post {
+	margin-top:115px;
+	margin-left:15px;
+	margin-right:15px;
+}
+
 #postABOUT {
-	width:1240px;
 	background-color:#FFF;
-	display:block;
-	float:left;
-	margin:0px 0 0 10px;
 	border-radius:5px;
 	padding-bottom:20px;
-	height:530px;
+	height:500px;
 }
 
 #postABOUT h2 {
@@ -1193,7 +1195,6 @@ img#lowclr {
 	padding:15px 0 5px 5px;
 	font:18px "Lucida Grande", Tahoma, Verdana, sans-serif;
 	border-bottom:1px solid #ccc;
-	width:1205px;
 	margin:0 auto;
 }
 
@@ -1210,9 +1211,8 @@ img#lowclr {
 
 #pic {
 	padding-bottom:20px;
-	width:1205px;
 	overflow:hidden;
-        margin:50px auto;
+  margin:50px auto;
 }
 
 #pic img{
@@ -1430,7 +1430,7 @@ table.fixedwidth th{
 }
 
 .SHOWinput {
-	margin-bottom:15px;
+	margin-bottom:20px;
 }
 
 #codetable table {
@@ -1502,6 +1502,10 @@ table.fixedwidth th{
 	border-bottom:1px solid #ccc;
 	width:340px;
 	margin:0 auto;
+}
+
+.postright {
+	margin-top:6px;
 }
 
 #postright p {
@@ -3029,6 +3033,7 @@ border-bottom:1.5px solid #49A2BD;
 
 .down-bgcolor {
   background-color: #000;
+  z-index:1002;
 }
 
 .down-bgcolor > li > a {

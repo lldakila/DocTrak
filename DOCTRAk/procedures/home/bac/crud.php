@@ -11,28 +11,28 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 date_default_timezone_set($_SESSION['Timezone']);
 require_once('../../../procedures/connection.php');
-
+//LOG ALL USERS LOGGING IN TO THE SYSTEM
+require_once("../../../audit.php");
+$KEY=get_key();
 //CHECK IF BAC OR POWER USERS
-if ($_SESSION['BAC']!=1)
-{
-    if ($_SESSION['GROUP']!='POWER ADMIN')
-    {
+	if ($_SESSION['BAC']!=1)
+	{
+	    if ($_SESSION['GROUP']!='POWER ADMIN')
+	    {
+				echo "Insuficient privilege.";
+				die();
+	    }
 	
-	echo "Insuficient privilege.";
-	die();
-    }
-
-}
-else if ($_SESSION['GROUP']!='POWER ADMIN')
-{
-
-    if ($_SESSION['BAC']!=1)
-    {
+	}
+	else if ($_SESSION['GROUP']!='POWER ADMIN')
+	{
 	
-	echo "Insuficient privilege.";
-	die();
-    }
-}
+	    if ($_SESSION['BAC']!=1)
+	    {
+				echo "Insuficient privilege.";
+				die();
+	    }
+	}
 //else
 //{
 //    $restrictedUser=false;
@@ -96,11 +96,11 @@ switch($_POST['module'])
 
 function SearchDoc($queryText)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $searchText=mysqli_real_escape_string($con,$queryText);
-    $SQLstring='SELECT bacdocument_id,bacdocumentdetail,prcost,pr_date FROM bacdocumentlist WHERE (bacdocument_id LIKE "'.$searchText.'%" OR bacdocumentdetail like "%'.$searchText.'%") AND bacdocument_id IN (SELECT fk_bacdocumentlist_id FROM bacdocumentlist_tracker WHERE receive_date IS NULL )ORDER BY transdate ASC';
-    
+    $SQLstring='SELECT bacdocument_id,bacdocumentdetail,prcost,pr_date FROM bacdocumentlist WHERE (bacdocument_id LIKE "%'.$searchText.'%" OR bacdocumentdetail like "%'.$searchText.'%") AND bacdocument_id IN (SELECT fk_bacdocumentlist_id FROM bacdocumentlist_tracker WHERE receive_date IS NULL ) and receive_release is not null and complete=0 ORDER BY transdate ASC';
+
     $result=mysqli_query($con, $SQLstring)or die(mysqli_error($con));
 		$resultArray=array();
 		 while ($row = mysqli_fetch_assoc($result))
@@ -151,7 +151,7 @@ function SearchDoc($queryText)
 //SEARCH FILTER
 function filterSearch($documentId)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 //    $sqlString="SELECT * FROM bacdocumentlist_tracker WHERE fk_bacdocumentlist_id = '".$documentId."' ORDER BY sortorder DESC";
     $sqlString="SELECT receive_release from bacdocumentlist WHERE bacdocument_id = '".$documentId."' ";
@@ -182,7 +182,7 @@ function filterSearch($documentId)
 function historyCheckin($docId)
 {
     
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
    // $sqlString='SELECT bacdocument_id,bacdocumentdetail,prcost,pr_date,`bacdocumentlist`.`transdate`,sortorder,receive_date,expire_date,activity,receive_by, office_description FROM bacdocumentlist JOIN bacdocumentlist_tracker ON bacdocumentlist.bacdocument_id = bacdocumentlist_tracker.fk_bacdocumentlist_id JOIN office on bacdocumentlist.fk_officename_bacdocumentlist = office.office_name WHERE   bacdocument_id = "'.$docId.'" ';
@@ -234,7 +234,7 @@ function historyCheckin($docId)
                 >';
                 echo "<thead>";
              			echo "<tr>";
-                    echo '<th>Step</th>';
+                    echo '<th>Steps</th>';
                     echo '<th>Activity</th>';
                     echo '<th>Checked-in</th>';
                     echo '<th>Checked-out</th>';
@@ -344,7 +344,7 @@ function historyCheckin($docId)
 //CHECK IF PROCESS HAS BACKLOG DETAILS
 function checkDetails($tracker_id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
     $sql='SELECT count(*) as rowCount FROM bacdocumentlist_trackerdetail WHERE fk_bacdocumentlist_tracker_id = '.$tracker_id.' ';
@@ -365,7 +365,7 @@ function checkDetails($tracker_id)
 //FUNCTION THAT UPDATES THE BACDOCUMENT
 function checkMeIn($docuId)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $docId=mysqli_real_escape_string($con,$docuId);
     mysqli_autocommit($con,FALSE);
@@ -377,11 +377,11 @@ function checkMeIn($docuId)
     {
         if ($arrHolder[3]!=NULL)
         {
-            $sqlString="UPDATE bacdocumentlist_tracker set receive_date=NOW(),expire_days='$arrHolder[1]',receive_by='".$_SESSION["security_name"]."' WHERE bacdocumentlist_tracker_id = '$arrHolder[0]' ";
+            $sqlString="UPDATE bacdocumentlist_tracker set receive_date=NOW(),expire_days='".$arrHolder[1]."',receive_by='".$_SESSION["security_name"]."' WHERE bacdocumentlist_tracker_id = '".$arrHolder[0]."' ";
         }
         else
         {
-            $sqlString="UPDATE bacdocumentlist_tracker set receive_date=NOW(),expire_days='$arrHolder[1]',receive_by='".$_SESSION["security_name"]."',checkin_date=NOW() WHERE bacdocumentlist_tracker_id = '$arrHolder[0]' ";
+            $sqlString="UPDATE bacdocumentlist_tracker set receive_date=NOW(),expire_days='".$arrHolder[1]."',receive_by='".$_SESSION["security_name"]."',checkin_date=NOW() WHERE bacdocumentlist_tracker_id = '".$arrHolder[0]."' ";
         }
         
     }
@@ -399,6 +399,7 @@ function checkMeIn($docuId)
         printf("Errormessage: %s\n", mysqli_error($con));
         echo '<br>';
     }
+    log_audit($KEY,$sqlString,'BAC Checkin',$_SESSION['security_name']);
     
     $addFk=$arrHolder[0]+1;
     $sqlString="UPDATE bacdocumentlist_tracker set checkin_date=NOW(),receive_by='".$_SESSION["security_name"]."' where  bacdocumentlist_tracker_id = $addFk AND fk_bacdocumentlist_id = '".$docId."' ";
@@ -409,9 +410,9 @@ function checkMeIn($docuId)
         printf("Errormessage: %s\n", mysqli_error($con));
         echo '<br>';
     }
-    
+    log_audit($KEY,$sqlString,'BAC Checkin',$_SESSION['security_name']);
     //DELETE DOCUMENT ON BACMONITORING TABLE
-    $sqlString="DELETE FROM bacdocument_monitoring WHERE fk_bacdocumentlist_tracker_id = $arrHolder[0] ";
+    $sqlString="DELETE FROM bacdocument_monitoring WHERE fk_bacdocumentlist_tracker_id = '".$arrHolder[0]."' ";
     $result=  mysqli_query($con, $sqlString);
     if (!$result)
     {
@@ -419,7 +420,7 @@ function checkMeIn($docuId)
         printf("Errormessage: %s\n", mysqli_error($con));
         echo '<br>';
     }
-    
+    log_audit($KEY,$sqlString,'BAC Checkin',$_SESSION['security_name']);
     if (!checkDocumentDeadline())
     {
         $flag=false;
@@ -430,12 +431,23 @@ function checkMeIn($docuId)
 	
     if(isFinalStep($docuId))
     {
-	if (!insertMail($docuId))
-	{
-	    $flag=false;
-	    printf("Errormessage: Error Inserting Mail.");
-	    echo '<br>';
-	}
+				if (!insertMail($docuId))
+				{
+				    $flag=false;
+				    printf("Errormessage: Error Inserting Mail.");
+				    echo '<br>';
+				}
+				
+				$sqlString="update bacdocumentlist set complete = 1 where bacdocument_id='".$docuId."' ";
+		    $result=  mysqli_query($con, $sqlString);
+		    log_audit($KEY,$sqlString,'BAC Checkin',$_SESSION['security_name']);
+		    if (!$result)
+		    {
+		        $flag=false;
+		        printf("Errormessage: %s\n", mysqli_error($con));
+		        echo '<br>';
+		    }
+		
     }
     
   
@@ -448,13 +460,14 @@ function checkMeIn($docuId)
     {
         mysqli_rollback($con);
         echo 'Error on checking in document. Try Again.';
+        log_audit($KEY,'','Rolledback',$_SESSION['security_name']);
     }
     
 }
 
 function isFinalStep($bacdocumentId)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
     $sql="SELECT count(*) as numOfRows FROM bacdocumentlist_tracker WHERE receive_date IS NULL AND checkin_date IS NULL AND fk_bacdocumentlist_id = '".$bacdocumentId."' ";
@@ -478,13 +491,13 @@ function isFinalStep($bacdocumentId)
 //INSERT MAIL FOR NOTIFICATION TO THE OWNER OF THE DOCUMENT
 function insertMail($bacdocumentId)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     mysqli_autocommit($con,FALSE);
     
     $flag=true;
     require_once("../../../audit.php");
-    $KEY=get_key();
+    
 
     
     $sql="SELECT fk_officename_bacdocumentlist,fk_officename_bacdocumentlist,fk_security_username,bacdocument_id,bacdocumentdetail,prcost,pr_date,transdate 
@@ -514,7 +527,7 @@ function insertMail($bacdocumentId)
 	{
 	    $flag=false;
 	}
-        //log_audit($KEY,$query,'Add Mail',''.$_SESSION['security_name'].'');  
+        log_audit($KEY,$query,'Add Mail',''.$_SESSION['security_name'].'');  
     }
     
     if ($flag) 
@@ -534,10 +547,10 @@ function insertMail($bacdocumentId)
 //RETURNS TRUE OR FALSE
 function checkInSeek($docId)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
-    $sqlString="SELECT bacdocumentlist_tracker_id,receive_date,expire_days,checkin_date FROM  bacdocumentlist_tracker WHERE fk_bacdocumentlist_id = '$docId' ORDER BY sortorder ASC";
+    $sqlString="SELECT bacdocumentlist_tracker_id,receive_date,expire_days,checkin_date FROM  bacdocumentlist_tracker WHERE fk_bacdocumentlist_id = '".$docId."' ORDER BY sortorder ASC";
     $recSet=  mysqli_query($con, $sqlString);
  
     while ($rows=mysqli_fetch_array($recSet))
@@ -560,7 +573,7 @@ function checkInSeek($docId)
 
 function checkDocumentDeadline()
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $sqlString="select  bacdocumentlist_tracker_id, fk_bacdocumentlist_id,sortorder,receive_date,expire_days,checkin_date from bacdocumentlist_tracker 
                 WHERE checkin_date IS NOT NULL AND receive_date IS NULL ORDER BY fk_bacdocumentlist_id, sortorder ASC";
@@ -600,6 +613,7 @@ function checkDocumentDeadline()
                     echo '<br>';
                     $flag=false;
                 }
+                log_audit($KEY,$sqlString,'Add BAC Notify Deadline',''.$_SESSION['security_name'].'');  
             }
         }
 //        
@@ -627,7 +641,7 @@ function checkDocumentDeadline()
 
 function checkDuplicate($documentlist_tracker_id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
     $sqlQuery='SELECT COUNT(bacdocument_monitoring_id) as rowCount FROM bacdocument_monitoring WHERE fk_bacdocumentlist_tracker_id = "'.$documentlist_tracker_id.'" ';
@@ -645,7 +659,7 @@ function checkDuplicate($documentlist_tracker_id)
 //
 function updateStatusIcon()
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
     $query='SELECT COUNT(*) as numOfRow FROM bacdocument_monitoring';
@@ -657,7 +671,42 @@ function updateStatusIcon()
 
         if ($row['numOfRow']<>0)
         {
-            echo '<img  src="'.$_POST['imgPath'].'images/home/icon/exclamation.gif" width="30" height="20" align="left" />'.$row['numOfRow'];
+           // echo '<img  src="'.$_POST['imgPath'].'images/home/icon/exclamation.gif" width="30" height="20" align="left" />'.$row['numOfRow'];
+            echo '<ul class="nav1 navbar-nav1">
+															<li role="presentation" class="dropdown">';
+														
+														echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">';
+														echo '<img  src="'.$_POST['imgPath'].'images/home/icon/exclamation.gif" width="30" height="20" />'.$row['numOfRow'];
+														echo '</a>';
+														//echo '</span>';
+														echo '<ul class="dropdown-menu down-bgcolor dropdown-menu-right" style="font-size:12px;">';
+							
+														/////////////////
+														///START BAC NOTIFICATION
+														/////////////////
+														$sqlQuery='SELECT bacdocument_id,fk_officename_bacdocumentlist,bacdocumentdetail,activity,prcost FROM bacdocument_monitoring JOIN bacdocumentlist_tracker ON bacdocument_monitoring.fk_bacdocumentlist_tracker_id = bacdocumentlist_tracker.bacdocumentlist_tracker_id JOIN bacdocumentlist ON bacdocumentlist_tracker.fk_bacdocumentlist_id = bacdocumentlist.bacdocument_id';
+											
+													 $recSet=mysqli_query($con,$sqlQuery);
+														//$resultSet=  mysqli_fetch_array($recSet);
+														$rowCounter=1;
+							
+														while ($resultSet = mysqli_fetch_array($recSet,MYSQLI_ASSOC))
+														{
+															echo '<li><a href="javascript:RenderBacMonitor(\''.$resultSet['bacdocument_id'].'\')">';
+							
+															echo $resultSet['fk_officename_bacdocumentlist'].' - '.$resultSet['bacdocumentdetail'].' - '.$resultSet['activity'].' ('.number_format($resultSet['prcost'], 2, '.', ',').')';
+															echo '</a>';
+															if($rowCounter!=mysqli_num_rows($recSet))
+															{
+																echo '<li class="divider linebgcolor"></li>';
+															}
+															$rowCounter++;
+															 echo '</li>';
+														}
+							
+							
+														//////
+														echo '</ul></li></ul>';
             break;
         }
         else
@@ -672,7 +721,7 @@ function updateStatusIcon()
 function checkStatusUpdatedToday($tracker_id)
 {
     
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $dateNow=date('Y-m-d');
   
@@ -692,7 +741,7 @@ function checkStatusUpdatedToday($tracker_id)
 //
 //function renderTransDetail($detailId)
 //{
-//    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+//    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
 //    $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 //    
 //    $sql="SELECT sortorder,activity,receive_date,receive_by,checkin_date FROM bacdocumentlist_tracker WHERE bacdocumentlist_tracker_id = $detailId ";
@@ -753,7 +802,7 @@ function checkStatusUpdatedToday($tracker_id)
 ////////////////////////////////////////
 function searchReceive($searchText)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
     $sql='SELECT bacdocument_id,bacdocumentdetail,prcost,pr_date FROM bacdocumentlist WHERE (bacdocument_id LIKE "'.$searchText.'%" OR bacdocumentdetail like "%'.$searchText.'%") AND receive_release is null ORDER BY transdate ASC';
@@ -809,7 +858,7 @@ function searchReceive($searchText)
 ////////////////////////////////////////
 function renderReceive($searchText)
 {
-   global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+   global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $docId=mysqli_real_escape_string($con,$searchText);
     
@@ -983,7 +1032,7 @@ function renderReceive($searchText)
 ////////////////////////////////////////
 function receiveBacDocument($id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     mysqli_autocommit($con, false);
     $flag=true;
@@ -992,30 +1041,32 @@ function receiveBacDocument($id)
     
     if (!$result)
     {
-	printf( "Errormessage: %s\n", mysqli_error($con));
-	$flag=false;
-	die();
+			printf( "Errormessage: %s\n", mysqli_error($con));
+			$flag=false;
+			die();
 	
     }
+    log_audit($KEY,$sql,'Receive BAC Doc',''.$_SESSION['security_name'].'');
     
     $sql="UPDATE bacdocumentlist_tracker SET checkin_date=now() WHERE fk_bacdocumentlist_id = '".$id."' AND sortorder=1 ";
     $result= mysqli_query($con, $sql);
     if (!$result)
     {
-	printf( "Errormessage: %s\n", mysqli_error($con));
-	$flag=false;
-	die();
+				printf( "Errormessage: %s\n", mysqli_error($con));
+				$flag=false;
+				die();
 	
     }
-    
+    log_audit($KEY,$sql,'Receive BAC Doc',''.$_SESSION['security_name'].'');
     if ($flag)
     {
-	mysqli_commit($con);
+				mysqli_commit($con);
     }
- else 
+ 		else 
      
     {
-	mysqli_rollback($con);
+				mysqli_rollback($con);
+				log_audit($KEY,'','Rollback',''.$_SESSION['security_name'].'');
     }
 }
 
@@ -1024,7 +1075,7 @@ function receiveBacDocument($id)
 ////////////////////////////////////////
 function searchRelease($searchText)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
       
     $sql='SELECT bacdocument_id,bacdocumentdetail,prcost,pr_date FROM bacdocumentlist WHERE (bacdocument_id LIKE "'.$searchText.'%" OR bacdocumentdetail like "%'.$searchText.'%") and receive_release=1 and bacdocument_id not in (select fk_bacdocumentlist_id from bacdocumentlist_tracker
@@ -1083,7 +1134,7 @@ function searchRelease($searchText)
 ////////////////////////////////////////
 function renderRelease($searchText)
 {
-   global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+   global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $docId=mysqli_real_escape_string($con,$searchText);
     
@@ -1238,20 +1289,21 @@ function renderRelease($searchText)
 
 function releaseBacDocument($id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-    
+    $flag=true;
     $sql="UPDATE bacdocumentlist SET receive_release=0 WHERE bacdocument_id = '".$id."' ";
     $result= mysqli_query($con, $sql);
     
-        if (!$result)
+    log_audit($KEY,$sql,'Release BAC Doc',''.$_SESSION['security_name'].'');
+    
+    if (!$result)
     {
-	printf( "Errormessage: %s\n", mysqli_error($con));
-	die();
+			printf( "Errormessage: %s\n", mysqli_error($con));
+			log_audit($KEY,'','Rollback',''.$_SESSION['security_name'].'');
     }
     
-    
-    
+   
 }
 
 
@@ -1262,7 +1314,7 @@ function releaseBacDocument($id)
 ////////////////////////////////////////
 function searchFilterRelease()
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE; 
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
     $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
     $sql="SELECT count(*) as noOfRow FROM bacdocumentlist_tracker WHERE  ";

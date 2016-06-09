@@ -90,7 +90,7 @@ if (mysqli_connect_error())
 
             while ($row = mysqli_fetch_array($RESULT)) 
             {
-                $query="INSERT INTO documentlist_tracker(OFFICE_NAME,SORTORDER,fk_documentlist_id,docprocess) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."','".$_POST['docprocess']."')";
+                $query="INSERT INTO documentlist_tracker(OFFICE_NAME,SORTORDER,fk_documentlist_id,docprocess) VALUES ('".$row['fk_office_name']."','".$row['SORT']."','".$_POST['barcode']."','".$row['docprocess']."')";
                 $outcome=mysqli_query($con,$query);
 
                 if (!$outcome) 

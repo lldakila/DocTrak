@@ -11,13 +11,15 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 require_once("../../../connection.php");
 include ("../common/history.php");
+//LOG ALL USERS LOGGING IN TO THE SYSTEM
+require_once("../../../../audit.php");
+
 date_default_timezone_set($_SESSION['Timezone']);
 global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
 $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 mysqli_autocommit($con,FALSE);
 $flag=true;
-//LOG ALL USERS LOGGING IN TO THE SYSTEM
-require_once("../../../../audit.php");
+
 $KEY=get_key();
 if (mysqli_connect_error()) 
 {

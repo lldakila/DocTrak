@@ -137,7 +137,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																			
 																						<table id="tableBootstrap"
 															               
-															             	data-height="410"
+															             	data-height="405"
 															               data-search="true"
 					               						  				data-pagination="true"
 															               data-toggle="table"

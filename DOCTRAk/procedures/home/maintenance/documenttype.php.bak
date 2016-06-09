@@ -185,7 +185,7 @@
                             <hr class="hrMargin">
                             
 	                      <div class="postright">
-	                        <div class="scroll">      
+	                              
 	                            <table id="responds"
 		                            	data-height="450"
 														      data-toggle="table"
@@ -201,7 +201,7 @@
 															  </thead>
 														    
 	                            </table>
-	                        </div>
+	                        
 	                      </div>
                     </div>
 

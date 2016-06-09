@@ -187,7 +187,7 @@
 
 $('#responds').on('click-row.bs.table', function (e, row, $element) {
 
-		retrieveDocumentTracker(row['barcode']);
+		retrieveDocument(row['barcode']);
 	
 
 });

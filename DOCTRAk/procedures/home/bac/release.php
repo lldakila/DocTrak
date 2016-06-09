@@ -135,7 +135,7 @@ if ($_SESSION['BAC']!=1)
 							                    
 							
 							                        <table id="responds"
-							                        	data-height="450"
+							                        	data-height="430"
 																	      data-toggle="table"
 																	      class="display table table-bordered"
 																	      data-striped="true"
@@ -255,14 +255,14 @@ function clickSearch(doc_Id,docDetail,docCost,docDate)
             },
             success:function(response)
             {
-		if (response=="")
-		{
-		    $.growl.notice({ message: 'Document Released' }); 
-		}
-		else
-		{
-		    $.growl.error({ message: response });
-		}
+							if (response=="")
+							{
+							    $.growl.notice({ message: 'Document Released' }); 
+							}
+							else
+							{
+							    $.growl.error({ message: response });
+							}
                 
 		$("#btnRelease").html('Released');
 		

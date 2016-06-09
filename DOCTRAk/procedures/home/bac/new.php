@@ -152,7 +152,7 @@ date_default_timezone_set($_SESSION['Timezone']);
 																								}
 																								?>
 											
-																								<button id="bacScrap" type="button"  class="btn btn-primary" onclick="javascript:scrapMe()" >Scrap</button>
+																					<!---			<button id="bacScrap" type="button"  class="btn btn-primary" onclick="javascript:scrapMe()" >Scrap</button> --->
 											                          <button id="bacSave" type="button"  class="btn btn-primary"  onclick="return submitSave()">Save</button>
 											                          <button type="button"  class="btn btn-primary" onclick="javascript:newMe()">New</button>
 											                      </div>
@@ -196,7 +196,7 @@ date_default_timezone_set($_SESSION['Timezone']);
 				                        
 				                           
 				                            <table id="responds"
-				                            		data-height="450"
+				                            		data-height="430"
 																	      data-toggle="table"
 																	      class="display table table-bordered"
 																	      data-striped="true"

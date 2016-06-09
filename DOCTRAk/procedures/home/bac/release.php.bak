@@ -132,7 +132,7 @@ if ($_SESSION['BAC']!=1)
 					                    
 					
 							                  <div class="postright">
-							                    <div class="scroll">
+							                    
 							
 							                        <table id="responds"
 							                        	data-height="450"
@@ -151,7 +151,7 @@ if ($_SESSION['BAC']!=1)
 																			  </thead>
 							                            
 							                        </table>
-							                    </div>
+							                    
 							                  </div>
 					                </div>
 					                <div class="tfclear">
@@ -255,14 +255,14 @@ function clickSearch(doc_Id,docDetail,docCost,docDate)
             },
             success:function(response)
             {
-		if (response=="")
-		{
-		    $.growl.notice({ message: 'Document Released' }); 
-		}
-		else
-		{
-		    $.growl.error({ message: response });
-		}
+							if (response=="")
+							{
+							    $.growl.notice({ message: 'Document Released' }); 
+							}
+							else
+							{
+							    $.growl.error({ message: response });
+							}
                 
 		$("#btnRelease").html('Released');
 		

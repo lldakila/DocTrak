@@ -229,8 +229,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		                            <hr class="hrMargin">
                             
 		                          <div class="postright">
-		                            <div class="scroll">
-		                        	                                    
+		                            		                        	                                    
 		                                <table id="responds"
 		                                		data-height="450"
 																	      data-toggle="table"
@@ -249,8 +248,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																			    </tr>
 																			  </thead>
 		                                </table>
-		
-		                            </div>
+				                            
 		                          </div>
                         </div>	
 

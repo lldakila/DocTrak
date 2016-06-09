@@ -246,6 +246,7 @@ $('#responds').on('click-row.bs.table', function (e, row, $element) {
                     },
                     error:function (xhr, ajaxOptions, thrownError){
                         alert(thrownError);
+                        $('#responds').bootstrapTable("hideLoading");
                     }
                 });
             });

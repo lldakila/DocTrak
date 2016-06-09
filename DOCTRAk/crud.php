@@ -873,4 +873,33 @@ function RetrieveBarcodeInfo($document_id)
 		
 		mysqli_close($con);
 	}
+//	
+//	function updateStatusIcon()
+//{
+//    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY; 
+//    $con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+//    
+//    $query='SELECT COUNT(*) as numOfRow FROM bacdocument_monitoring';
+//    
+//    $result=mysqli_query($con,$query)or die(mysqli_error($con));
+//    
+//    while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+//    {
+//
+//        if ($row['numOfRow']<>0)
+//        {
+//            echo '<img  src="'.$_POST['imgPath'].'images/home/icon/exclamation.gif" width="30" height="20" align="left" />'.$row['numOfRow'];
+//            break;
+//        }
+//        else
+//        {
+//            break; 
+//        }
+//    }
+////    
+////    
+//}
+
+
+
 ?>

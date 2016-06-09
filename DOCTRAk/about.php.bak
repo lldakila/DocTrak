@@ -84,7 +84,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     	<div class="container">
     		<div class="row">
         
-        	<div id="post">
+        	<div class="post">
             
             			<div id="post100" class="colsize">
                     <h2 style="padding-top:20px;">ABOUT</h2>

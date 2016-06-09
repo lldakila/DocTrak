@@ -27,5 +27,3 @@
         return $result[0];
         
     }
-    
-    ?>

@@ -217,7 +217,7 @@ $(document).ready(function()
 //function clickSearch(doc_Id,docDetail,docCost,docDate)
 function clickSearch(doc_Id)
 {
-     alert (doc_Id);
+   
     var module_name="renderReceive";
     //var document_id=doc_Id;
     jQuery.ajax({
@@ -257,16 +257,16 @@ function clickSearch(doc_Id)
             },
             success:function(response)
             {
-		if (response=="")
-		{
-		    $.growl.notice({ message: 'Document Received' }); 
-		}
-		else
-		{
-		    $.growl.error({ message: response });
-		}
+							if (response=="")
+							{
+							    $.growl.notice({ message: 'Document Received' }); 
+							}
+							else
+							{
+							    $.growl.error({ message: response });
+							}
                 
-		$("#btnReceive").html('Receive');
+							$("#btnReceive").html('Receive');
 		
             },
             error:function (xhr, ajaxOptions, thrownError)

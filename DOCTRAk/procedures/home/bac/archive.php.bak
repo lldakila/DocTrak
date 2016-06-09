@@ -230,6 +230,11 @@ function clickSearch(doc_Id,docDetail,docCost,docDate)
         });
             
  }
+ 
+$('#responds').on('click-row.bs.table', function (e, row, $element) {
+
+clickSearch(row['barcode']);
+});
 
 </script>
 </body>

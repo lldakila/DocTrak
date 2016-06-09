@@ -12,7 +12,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 date_default_timezone_set($_SESSION['Timezone']);
 require_once('../../../procedures/connection.php');
 require_once('../document/common/encrypt.php');
-
+//LOG ALL USERS LOGGING IN TO THE SYSTEM
+require_once("../../../audit.php");
+$KEY=get_key();
 switch($_POST['module'])
 {
     case 'saveMe':
@@ -46,7 +48,7 @@ function SaveLetter()
 {
     global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-    
+    global $KEY;
     if (mysqli_connect_error()) 
     {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -90,7 +92,9 @@ function SaveLetter()
 	    
     //INSERT INTO COMMAIL
     $sqlString="INSERT INTO commail(title,note,owner,fk_document_type_id,mail_file,transdate,fk_security_username,fk_office_name) VALUES ('".$mailTitle."','".$mailNote."','".$mailOwner."','".$mailType."','{$docData}','".$transdate."','".$_SESSION['usr']."','".$_SESSION['OFFICE']."')";
-   
+    
+   	log_audit($KEY,$sqlString,'New Comm Letter',$_SESSION['security_name']);  
+   	
     $result=mysqli_query($con,$sqlString);
     if (!$result) 
     {
@@ -130,6 +134,8 @@ function SaveLetter()
 	$result=mysqli_query($con,$sqlString1);
 	// echo $sqlString1."<br>";
 //	die();
+	log_audit($KEY,$sqlString1,'New Comm Letter',$_SESSION['security_name']); 
+	
 	if (!$result) 
 	{
 	    $flag=false;
@@ -145,6 +151,7 @@ function SaveLetter()
 	//INSERT INTO COMMAIL_CON
 	$sqlString="INSERT INTO commail_con(fk_commail_id,fk_mail_id,fk_office_name) VALUES (".$commailID[0].",".$mailID[0].",'".$officeList."') ";
 	$result=mysqli_query($con,$sqlString);
+	log_audit($KEY,$sqlString,'New Comm Letter',$_SESSION['security_name']); 
 	if (!$result) 
 	{
 	    $flag=false;
@@ -155,6 +162,7 @@ function SaveLetter()
 //	INSERT INTO COMOFFICE_CON
 	$sqlString="INSERT INTO comoffice_con(fkcommail_id,fkoffice_name) VALUES ('$commailID[0]','$officeList') ";
 	$result=mysqli_query($con,$sqlString);
+	log_audit($KEY,$sqlString,'New Comm Letter',$_SESSION['security_name']); 
 	if (!$result) 
 	{
 	    $flag=false;
@@ -168,15 +176,15 @@ function SaveLetter()
     //MYSQL TRANSACTION
     if ($flag) 
         {
-	    mysqli_commit($con);
-	    //echo "Letter Saved Successfully";
-	    return true;
+			    mysqli_commit($con);
+			    //echo "Letter Saved Successfully";
+			    return true;
         }
         else 
         {
-	    mysqli_rollback($con);
-	    //log_audit($KEY,'','RolledBack',''.$_SESSION['security_name'].'');
-	    return false;
+				    mysqli_rollback($con);
+				    log_audit($KEY,$sqlString,'Rollback',$_SESSION['security_name']);
+				    return false;
         }
     
     

@@ -597,7 +597,7 @@ $("form#data").submit(function(){
 	    {
 						$.growl.error({ message: data });
 	    }
-	    $("#SaveLetter").html('Save');
+	    			$("#SaveLetter").html('Save');
         },
         cache: false,
         contentType: false,

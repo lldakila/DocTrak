@@ -358,7 +358,7 @@ $('#responds').on('click-row.bs.table', function (e, row, $element)
     //alert(doc_type);
 //    retrieveType(doc_type);
 //    retrieveSender(owner);
-  //  retrieveAttachment(row['commailId']);
+    retrieveAttachment(row['commailId']);
     retrieveOffice(row['commailId']);
 });
 

@@ -132,7 +132,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			                          
 			                            	
 			                        			<div class="postright">
-					                            <div class="scroll">
+					                            
 					                        	                                    
 					                                <table id="responds"
 					                                		data-height="450"
@@ -151,7 +151,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																					  </thead>
 									    											
 					                                </table>
-					                            </div>
+					                            
 					                          </div>
 			                         </div>
 			
