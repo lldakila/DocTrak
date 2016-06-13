@@ -109,30 +109,38 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
                                         
                           </div>
                               <div class="col-xs-12 col-sm-6 col-md-8">
-                              			<form method="post" action="editpassword/process.php" onsubmit="return validate();" enctype="multipart/form-data">
-                                    	<div id="table">
-                              				<table>
-                                            	<tr>	
-                                                    <td>Current Password:</td>
-                                                    <td><input id="currentpass" class="form-control" type="password" name="currentpass" /></td>
-                                                </tr>
-                                                <tr><td><br /><br /></td>
-                                                                                                </tr>
-                                                <tr>	
-                                                    <td>New Password:</td>
-                                                    <td><input id="newpass" class="form-control" type="password" name="newpass" /></td>
-                                                </tr>
+                              			<form method="post" action="editpassword/process.php" onsubmit="return validate();" enctype="multipart/form-data" class="form-horizontal">
+                                    	
+                                    		
+                                    				<div class='form-group'>
+																					    <label for='Current Password' class='col-xs-6 col-md-4 control-label'>Current Password:</label>
+																					    <div class='col-xs-12 col-sm-6 col-md-8'>
+																					      <input type='password' name='currentpass' id='currentpass' class='form-control' />
+																					    </div>
+																					  </div>
+																					  <br /><br />
+																					  
+																					  <div class='form-group'>
+																					    <label for='New Password' class='col-xs-6 col-md-4 control-label'>New Password:</label>
+																					    <div class='col-xs-12 col-sm-6 col-md-8'>
+																					      <input type='password' name='newpass' id='newpass' class='form-control' />
+																					    </div>
+																					  </div>
+																					  
+																					  <div class='form-group'>
+																					    <label for='Verify Password' class='col-xs-6 col-md-4 control-label'>Verify Password:</label>
+																					    <div class='col-xs-12 col-sm-6 col-md-8'>
+																					      <input type='password' name='verifypass' id='verifypass' class='form-control' />
+																					    </div>
+																					  </div>
+																					
+                                    		
+                              							<div style="float:right;">
                                                 
-                                                <tr>	
-                                                    <td>Verify Password:</td>
-                                                    <td><input id="verifypass" class="form-control" type="password" name="verifypass" /></td>
-                                                </tr>
-                                                <tr>
-                                                	<td></td>
-                                                	<td style="float:right;"><input class="btn btn-primary" type="submit" value="Update" /></td>
-                                                </tr>
-                                            </table>
-                                         </div>
+                                                <input class="btn btn-primary" type="submit" value="Update" />
+                                                
+                                            </div>
+                                         
                                          </form>
                                          
         <?php

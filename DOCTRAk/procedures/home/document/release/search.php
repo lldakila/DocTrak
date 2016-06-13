@@ -68,7 +68,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
 //
 //        echo "</td>";
 //        echo"</tr>";
-array_push($resultArray, array("barcode"=>$var["DOCUMENT_ID"],"title"=>$var["DOCUMENT_TITLE"],"date"=>$var["transdate"],"description"=>$var["DOCUMENT_DESCRIPTION"],"template"=>$var["template_name"]
+array_push($resultArray, array("comment"=>getComment($_SESSION['keytracker']),"barcode"=>$var["DOCUMENT_ID"],"title"=>$var["DOCUMENT_TITLE"],"date"=>$var["transdate"],"description"=>$var["DOCUMENT_DESCRIPTION"],"template"=>$var["template_name"]
 		 							,"type"=>$var["FK_DOCUMENTTYPE_ID"]));
          }
 //      }
@@ -77,4 +77,24 @@ array_push($resultArray, array("barcode"=>$var["DOCUMENT_ID"],"title"=>$var["DOC
         
       }
 echo json_encode($resultArray);
+
+
+function getComment($documentlistTrackerId)
+{
+		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+    
+    $sql="select forrelease_comment from documentlist_tracker where documentlist_tracker_id = ".$documentlistTrackerId." ";
+    $values=mysqli_query($con,$sql);
+    $recordset=mysqli_fetch_array($values);
+    return $recordset['forrelease_comment'];
+    
+    
+    
+
+
+
+}
+
+
 ?>

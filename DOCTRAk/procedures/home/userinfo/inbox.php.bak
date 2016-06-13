@@ -85,7 +85,7 @@ date_default_timezone_set($_SESSION['Timezone']);
     	<div class="container">
     		<div class="row">
         
-        	<div id="post">
+        	<div class="post">
             
             			<div id="post100" class="colsize">
                      <h2 style="padding-top:20px;">INBOX</h2>
@@ -119,13 +119,13 @@ date_default_timezone_set($_SESSION['Timezone']);
 															               	
 																             		data-height="445"
 																               	data-checkbox-header = "false"
-						               						  				data-pagination="true"
+						               						  			data-pagination="true"
 																               	data-toggle="table"
 																               	class="display table table-bordered"
 															               >
 															               		<thead>
 																			            <tr>
-																			            	<th data-checkbox="true"	data-formatter="stateFormatter" data-field="state"></th>
+																			     <!--       	<th data-checkbox="true"	data-formatter="stateFormatter" data-field="state"></th> -->
 																			            	<th data-field="id" data-visible="false" >id</th>
 																			            	<th data-field="Sender" data-sortable="true">Sender</th>
 																		                <th data-field="Document" data-sortable="true">Document</th>
@@ -169,7 +169,16 @@ date_default_timezone_set($_SESSION['Timezone']);
 				
       //  if ($row['MAILSTATUS']==0)
 				//{
-				  echo "<tr><td>".$row['MAILSTATUS']."</td>";
+				if ($row['MAILSTATUS']==0)
+				{
+//				  echo "<tr class ='info'><td>".$row['MAILSTATUS']."</td>";
+				  echo "<tr class ='info'>";
+				}
+				else
+				{
+//					echo "<tr><td>".$row['MAILSTATUS']."</td>";
+					echo "<tr>";
+				}
 				    echo "<td>".$row['MAIL_ID']."</td>";
 				 	
 			//	}

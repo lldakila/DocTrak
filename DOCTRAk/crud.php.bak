@@ -13,6 +13,7 @@ include ("procedures/home/document/common/history.php");
 //LOG ALL USERS LOGGING IN TO THE SYSTEM
 require_once("audit.php");
 require_once ("message.php");
+ $KEY=get_key();
 switch($_POST['module'])
 {
     case 'newDocu':
@@ -56,7 +57,7 @@ switch($_POST['module'])
 //NEW DOCUMENT FUNCTION
 function NewDocument()
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY;
     $cons=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     mysqli_autocommit($cons,FALSE);
     $flag=true;
@@ -74,7 +75,7 @@ function NewDocument()
             }
         //LOG
 
-            $KEY=get_key();
+           
             log_audit($KEY,$query,'New Document',''.$_SESSION['security_name'].'');
 
             //SELECT DATA WITH THESAME TEMPLATE SELECTED
@@ -131,7 +132,7 @@ function NewDocument()
 //SEARCH USER SCANNED FROM BARCODE
 function searchUser($user_Id,$docid)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $_userid=mysqli_real_escape_string($con,$user_Id);
 
@@ -209,7 +210,7 @@ function searchUser($user_Id,$docid)
 //CHECK IF MASTER USER
 	function checkIfMaster($userName)
 	{
-		  global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+		  global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY;
 	    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 	    $_userid=mysqli_real_escape_string($con,$userName);
 	    
@@ -231,7 +232,7 @@ function searchUser($user_Id,$docid)
 //GET SECURITY NAME
 function getUser($user_Id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $_userid=mysqli_real_escape_string($con,$user_Id);
     if (mysqli_connect_error())
@@ -254,7 +255,7 @@ function getUser($user_Id)
 //RECIEVE DOCUMENT FUNCTION
 function receiveDocument($document_id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id,$KEY;
     $cons=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $docID=mysqli_real_escape_string($cons,$document_id);
     mysqli_autocommit($cons,FALSE);
@@ -280,7 +281,7 @@ function receiveDocument($document_id)
              //echo "Something went wrong.<br>" .$query ;
         }
 
-        $KEY=get_key();
+       
         log_audit($KEY,$query,'Receive Document',''.$_SESSION['security_name'].'');
 
 
@@ -346,7 +347,7 @@ function receiveDocument($document_id)
 //RELEASE DOCUMENT FUNCTION
 function ReleaseDocument($document_id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id,$KEY;
     $cons=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $docID=mysqli_real_escape_string($cons,$document_id);
     mysqli_autocommit($cons,FALSE);
@@ -374,7 +375,7 @@ function ReleaseDocument($document_id)
             echo mysqli_error($cons)."<br>";
         }
 
-        $KEY=get_key();
+       
         log_audit($KEY,$query,'Release Document',''.$_SESSION['security_name'].'');
 
         //CHECK IF OWNER INPUTTED/SCANNED IS VALID
@@ -463,7 +464,7 @@ function ReleaseDocument($document_id)
 //FOR RELEASE GOVERNMENT STATISUS
 function ForReleaseDocument($document_id)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id,$cons;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id,$cons,$KEY;
     $cons=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $docID=mysqli_real_escape_string($cons,$document_id);
     mysqli_autocommit($cons,FALSE);
@@ -485,7 +486,7 @@ function ForReleaseDocument($document_id)
         $flag=false;
         $errMsg= mysqli_error($cons)."<br>";
     }
-    $KEY=get_key();
+   
     log_audit($KEY,$query,'For Release Document',''.$_SESSION['security_name'].'');
     $query="SELECT fk_office_name_documentlist,FK_SECURITY_USERNAME,DOCUMENT_ID,DOCUMENT_TITLE,TRANSDATE,FK_DOCUMENTTYPE_ID FROM documentlist JOIN documentlist_tracker ON documentlist.DOCUMENT_ID = documentlist_tracker.FK_DOCUMENTLIST_ID WHERE DOCUMENTLIST_TRACKER_ID = ".$_tracker_id;
 
@@ -557,15 +558,22 @@ function ForReleaseDocument($document_id)
 //SEARCH DOCUMENT ON SCAN OF BARCODE / AJAX FUNCTION
 function searchDocInfo($docID)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY,$_tracker_id;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     $document_id=mysqli_real_escape_string($con,$docID);
-    $sql='SELECT documentlist.document_title as title,document_type.description as type,office.office_description as office,
+    $sql='SELECT distinct documentlist.document_id, documentlist.document_title as title,document_type.description as type,office.office_description as office, 
         document_template.template_name as template FROM documentlist JOIN
         document_type ON documentlist.fk_documenttype_id = document_type.documenttype_id JOIN
         document_template ON documentlist.fk_template_id = document_template.template_id JOIN
-        office on documentlist.fk_office_name_documentlist = office.office_name
+        office on documentlist.fk_office_name_documentlist = office.office_name 
         WHERE documentlist.document_id = "'.$document_id.'" ';
+//        $sql='SELECT distinct documentlist.document_id, documentlist.document_title as title,document_type.description as type,office.office_description as office, 
+//        document_template.template_name as template, documentlist_tracker.forrelease_comment as forreleasecomment FROM documentlist JOIN
+//        document_type ON documentlist.fk_documenttype_id = document_type.documenttype_id JOIN
+//        document_template ON documentlist.fk_template_id = document_template.template_id JOIN
+//        office on documentlist.fk_office_name_documentlist = office.office_name JOIN
+//        documentlist_tracker on documentlist.document_id = documentlist_tracker.fk_documentlist_id
+//        WHERE documentlist.document_id = "'.$document_id.'" ';
 //    echo $sql;
 //    die();
     $values=mysqli_query($con,$sql);
@@ -619,6 +627,20 @@ function searchDocInfo($docID)
         </div>
 
      ";
+     	
+     	if ($_POST['module']=='searchReleaseDocument')
+     	{
+     			if ($resultSet['forreleasecomment']!=null)
+     			{
+     				//echo $resultSet['forreleasecomment'];
+     				
+     				
+     				echo '<script> $("#DocComment").val("'.getComment($_tracker_id).'");</script>';
+     				
+     			}
+     			
+     	}
+     	
     }
     else
     {
@@ -660,9 +682,27 @@ function searchDocInfo($docID)
     mysqli_close($con);
 }
 
+
+
+function getComment($documentlistTrackerId)
+{
+		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id,$KEY;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+    
+    $sql="select forrelease_comment from documentlist_tracker where documentlist_tracker_id = ".$documentlistTrackerId." ";
+    $values=mysqli_query($con,$sql);
+    $recordset=mysqli_fetch_array($values);
+    return $recordset['forrelease_comment'];
+    
+    
+    
+}
+
+
+
 function SearchFilter($document_id,$action)
 {
-    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id;
+    global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$_tracker_id,$KEY;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 
     $sql="SELECT FORRELEASE_VAL,RELEASED_VAL,RECEIVED_VAL,OFFICE_NAME, DOCUMENTLIST_TRACKER_ID, FK_DOCUMENTLIST_ID,SORTORDER FROM documentlist_tracker WHERE FK_DOCUMENTLIST_ID = '".$document_id."' ORDER BY SORTORDER ASC";
@@ -791,7 +831,7 @@ function SearchFilter($document_id,$action)
 function RetrieveBarcodeInfo($document_id)
 {
 	
-		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
     
     $sql="SELECT received_val,released_val,forrelease_val,office_description,complete,scrap FROM 
@@ -851,7 +891,7 @@ function RetrieveBarcodeInfo($document_id)
 	function feedback()
 	{
 		
-		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+		global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE,$KEY;
     $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);	
     
     
@@ -899,4 +939,7 @@ function RetrieveBarcodeInfo($document_id)
 ////    
 ////    
 //}
+
+
+
 ?>

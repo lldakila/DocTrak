@@ -27,14 +27,14 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 
 <!-- new header ---------------------------------------------->
 <header>
-		<div class="mailNoti">
+		<div class="mailNoti" >
 			<div class="container">	
 					<div class="row">
-						<div class="col-xs-6 col-md-8">
+						<div class="col-md-6  ">
 						</div>
-						<div class="col-xs-6 col-md-4">
+						<div class="col-md-6">
 							
-							<div class="menuMail">
+							<div class="menuMail" style="float:right; width:330px;">
 								
 								<?php
         
@@ -46,12 +46,14 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 									   
 									 $result=mysqli_query($con,$query)or die(mysqli_error($con));
 										 //$sql=;
+										 echo "<div class='row'>";
+										 echo '<div class="col-md-12">';
 									 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 									 
 									 {
-													echo '<div id="mailNotify">';
-													echo '<span id="mailNoti" class="">';
-													echo '<div id="mails" class="col-xs-6 col-sm-3 badge">';
+													echo '<div id="mailNotify" style="float:left;">';
+													echo '<span id="mailNoti">';
+													echo '<div id="mails" class="badge">';
 													// echo '<span  id="mailNoti" class="badge"><a href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php"><img  src="'.$PROJECT_ROOT.'images/home/icon/exclamation.gif" width="30" height="20" align="left" /></a>'.$row['mailcount'].'</span>';
 												if ($row['mailcount']<>0)
 												{
@@ -71,7 +73,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 													
 													 if ($row['numOfRow']<>0)
 													{
-														echo '<div   class="col-xs-6 col-sm-3 badge">';
+														echo '<div  id="bacnoti" class=" badge">';
 														echo '<ul class="nav1 navbar-nav1">
 															<li role="presentation" class="dropdown">';
 														
@@ -121,11 +123,12 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 												
 												echo '</span>';
 												echo '</div>';
+												
 									   
 													
 												echo "<div id='Admin'><p>Hi, <a href=".$PROJECT_ROOT."procedures/home/userinfo/userinfo.php>".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."</a> | <a href=".$PROJECT_ROOT."procedures/home/logout.php style='color:#fff;'>Logout</a></p></div>";
 									
-									
+									echo '<div class="tclear"></div>';
 									
 									
 									mysqli_free_result($result);
@@ -134,8 +137,8 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 								
 								
 								
-								
-								
+								</div>
+								</div>
 							</div>
 								
 								
@@ -158,8 +161,8 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 								<h3>
 									<?php
 
-                                            echo $_SESSION['HeaderTitle']. "<span style='font-size:12px;'>&nbsp; " .$_SESSION['Version'];
-                                            echo "</span>";
+                        echo $_SESSION['HeaderTitle']. "<span style='font-size:12px;'>&nbsp; " .$_SESSION['Version'];
+                        echo "</span>";
         				?>
 								</h3><p>Provincial Government of La Union</p>
 							</a>
@@ -305,6 +308,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 									</ul>
 								</div><!-- /.navbar-collapse -->
 							</nav>
+							
 							<div class="tclear"></div>
 							
 						</div>

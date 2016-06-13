@@ -119,12 +119,19 @@
 //    echo "</table>";
 //    echo "</td></tr>";
  //   echo "</div>";
-    
+ 
+ 
+ 
+
 echo "<div id='scroll'>";
-    echo '<table id="historydata" data-height="450"
-		      data-toggle="table"
-		      class="display table table-bordered"
-		      data-striped="true">';
+    echo '<table id="historydata" 
+    data-height="460"
+										                        										
+     data-sort-name="name"
+     data-sort-order="asc"
+     class="display table table-bordered"
+		      
+		      >';
     echo "<thead>
     			<tr>
 						<th>Step</th>

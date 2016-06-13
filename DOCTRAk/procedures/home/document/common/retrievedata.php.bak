@@ -119,27 +119,34 @@
 //    echo "</table>";
 //    echo "</td></tr>";
  //   echo "</div>";
-    
+ 
+ 
+ 
+    die();
 echo "<div id='scroll'>";
-    echo '<table id="historydata" data-height="450"
-		      data-toggle="table"
-		      class="display table table-bordered"
-		      data-striped="true">';
+    echo '<table id="historydata" 
+    data-height="460"
+										                        										
+     data-sort-name="name"
+     data-sort-order="asc"
+     class="display table table-bordered"
+		      
+		      >';
     echo "<thead>
     			<tr>
-						<th data-sortable='true'>Step</th>
-						<th data-sortable='true'>Office</th>
-						<th data-sortable='true'>Received by</th>
-						<th data-sortable='true'>Received from</th>
-						<th data-sortable='true'>Received date</th>
-						<th data-sortable='true'>Received comment</th>
-						<th data-sortable='true'>For release</th>	
-						<th data-sortable='true'>For release comment</th>	
-						<th data-sortable='true'>For release date</th>
-						<th data-sortable='true'>Release by</th>		
-						<th data-sortable='true'>Release to</th>
-						<th data-sortable='true'>Release date</th>		
-						<th data-sortable='true'>Release comment</th>				
+						<th>Step</th>
+						<th>Office</th>
+						<th>Received by</th>
+						<th>Received from</th>
+						<th>Received date</th>
+						<th>Received comment</th>
+						<th>For release</th>	
+						<th>For release comment</th>	
+						<th>For release date</th>
+						<th>Release by</th>		
+						<th>Release to</th>
+						<th>Release date</th>		
+						<th>Release comment</th>				
 			    </tr>
 			  	</thead>";
 		mysqli_free_result($result);

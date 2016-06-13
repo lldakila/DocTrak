@@ -4,9 +4,11 @@
 //    header('Location:../../index.php');
 //}
 //
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+date_default_timezone_set($_SESSION['Timezone']);
     if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd']))
     {
         $_SESSION['in'] ="start";
@@ -64,26 +66,34 @@ function renderForm($action)
 //                <th>REMARKS</th>
 //          </tr> 
 //            ';
+				if ($_POST['retrieveAll']=='true')
+				{
+					$limitOn="limit 100";
+				}
+				else
+				{
+					$limitOn="";
+				}
+		
 
          if ($_SESSION['GROUP']=='ADMIN' OR $_SESSION['GROUP']=='POWER ADMIN')
             {
                 $SQLquery="select document_id,document_title,fk_documenttype_id,priority,fk_office_name_documentlist,
-                office_name,received_date,forrelease_date,received_comment,released_comment from documentlist join security_user 
+                office_name,received_date,forrelease_date,received_comment,released_comment,transdate from documentlist join security_user 
                 on documentlist.fk_security_username = security_user.security_username join document_type
                 on documentlist.fk_documenttype_id = document_type.documenttype_id  join documentlist_tracker
-                on documentlist.document_id=documentlist_tracker.fk_documentlist_id WHERE scrap=0 and complete=0 group by document_id order by transdate desc ";
+                on documentlist.document_id=documentlist_tracker.fk_documentlist_id WHERE scrap=0 and complete=0 group by document_id order by transdate desc ".$limitOn;
             }
         else
             {
                 $SQLquery="select document_id,document_title,fk_documenttype_id,priority,fk_office_name_documentlist,
-                office_name,received_date,forrelease_date,received_comment,released_comment from documentlist join security_user 
+                office_name,received_date,forrelease_date,received_comment,released_comment,transdate from documentlist join security_user 
                 on documentlist.fk_security_username = security_user.security_username join document_type
                 on documentlist.fk_documenttype_id = document_type.documenttype_id  join documentlist_tracker
                 on documentlist.document_id=documentlist_tracker.fk_documentlist_id WHERE scrap=0 and complete=0 
-                and fk_office_name_documentlist = '".$_SESSION['OFFICE']."' group by document_id order by transdate desc";
+                and fk_office_name_documentlist = '".$_SESSION['OFFICE']."' group by document_id order by transdate desc ".$limitOn;
             }
-//	    echo  $SQLquery;
-//	    die();
+	  
                 $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
                 $rowcolor='';
                 $resultArray=array();
@@ -93,7 +103,11 @@ function renderForm($action)
                         if (SummaryFilter($row['document_id'],$action))
                             {
                             	   
-                								array_push($resultArray, array("barcode"=>$row['document_id'],"title"=>$row['document_title'],"type"=>$row['fk_documenttype_id'],"office"=>$row['fk_office_name_documentlist'],"officeloc"=>$docLocation,"received"=>$dateReceived,"forrelease"=>$dateForrelease,"release"=>$dateReleased,"status"=>$docStatus,"remark"=>$docRemarks));
+                            	   
+                            	   $date = date_create($row['transdate']);
+                            	   
+                            	  
+                								array_push($resultArray, array("barcode"=>$row['document_id'],"title"=>$row['document_title'],"type"=>$row['fk_documenttype_id'],"office"=>$row['fk_office_name_documentlist'],"transdate"=>date_format($date,'m-d-Y'),"officeloc"=>$docLocation,"received"=>$dateReceived,"forrelease"=>$dateForrelease,"release"=>$dateReleased,"status"=>$docStatus,"remark"=>$docRemarks));
             
          
 //                                if ($rowcolor=="blue")
@@ -163,12 +177,13 @@ function SummaryFilter($docid,$module)
 //                            FROM documentlist_tracker WHERE fk_documentlist_id = "'.$docid.'"  AND
 //                            RECEIVED_DATE IS NOT null ORDER BY sortorder DESC LIMIT 1';
 
-              
+              	
                     $SQLquery='SELECT received_date,released_date,forrelease_date,office_name,
                             released_comment,forrelease_comment,received_comment
                             FROM documentlist_tracker WHERE fk_documentlist_id = "'.$docid.'"   
                             
                             ORDER BY sortorder DESC LIMIT 1';
+              
 //       echo $SQLquery;
 //       die();
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

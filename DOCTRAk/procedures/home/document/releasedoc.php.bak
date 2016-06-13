@@ -231,17 +231,18 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		                          <div class="postright">
 		                            		                        	                                    
 		                                <table id="responds"
-		                                		data-height="450"
+		                                		data-height="430"
 																	      data-toggle="table"
 																	      class="display table table-bordered"
 		                                >
 		                                
 		                                		<thead>
 																			    <tr>
+																			    		<th class="col-md-2"  data-visible="false" data-field="comment" data-sortable="true">comment</th>
 																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
-																							<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
+																							<th class="col-md-8" data-field="title" data-sortable="true">Title</th>
 																							<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
-																							<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+																							<th data-visible="false" data-field="description" data-sortable="true">description</th>
 																							<th data-visible="false" data-field="template" data-sortable="true">template</th>
 																							<th data-visible="false" data-field="type" data-sortable="true">type</th>
 																							
@@ -293,6 +294,11 @@ $('#responds').on('click-row.bs.table', function (e, row, $element) {
 		
 		document.process.primarykey.value=row['barcode'];
 		document.process.barcode.value=row['barcode'];
+	//	document.process.barcode.value=row['comment'];
+		
+		$('#comment').selectpicker('val',row['comment']);
+		$('#comment').selectpicker('refresh');
+		
 		retrieveAttachment(row['barcode']);
 	
    

@@ -154,7 +154,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 														                            $con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
 														                            $query="SELECT Message FROM message WHERE Message_Module = 'tracking' ORDER BY Message";
 														                            $result=mysqli_query($con,$query);
-														                            echo '<select id="comment" class="form-control input-size">';
+														                            echo '<select id="comment" class="form-control selectpicker input-size">';
 														                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
 														                            {
 														                                echo '<option>';
@@ -238,10 +238,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		                                
 		                                		<thead>
 																			    <tr>
+																			    		<th class="col-md-2"  data-visible="false" data-field="comment" data-sortable="true">comment</th>
 																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
-																							<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
+																							<th class="col-md-8" data-field="title" data-sortable="true">Title</th>
 																							<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
-																							<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+																							<th data-visible="false" data-field="description" data-sortable="true">description</th>
 																							<th data-visible="false" data-field="template" data-sortable="true">template</th>
 																							<th data-visible="false" data-field="type" data-sortable="true">type</th>
 																							
@@ -293,6 +294,11 @@ $('#responds').on('click-row.bs.table', function (e, row, $element) {
 		
 		document.process.primarykey.value=row['barcode'];
 		document.process.barcode.value=row['barcode'];
+	//	document.process.barcode.value=row['comment'];
+		
+		$('#comment').selectpicker('val',row['comment']);
+		$('#comment').selectpicker('refresh');
+		
 		retrieveAttachment(row['barcode']);
 	
    

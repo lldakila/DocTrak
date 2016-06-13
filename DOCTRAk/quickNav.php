@@ -79,7 +79,7 @@ function renderForm($formName)
 
                         <label style='float:left; margin-right:56px; padding-top:7px; padding-bottom:10px;'>Type</label>
                         <div class='fixinput' style='width:31.3%;'>
-                          <select id='DocType' name='type' class='form-control' >     ";
+                          <select id='DocType' name='type' class='form-control selectpicker' data-live-search='true' >     ";
 
                             $query="select DOCUMENTTYPE_ID from document_type";
                                 
@@ -587,7 +587,14 @@ function saveBacMonitor($tracker_id)
 		echo "<br>";
 		echo "Description : <b>".$resultRow['template_description']."</b>";
 		echo " 
-				<table class='table table-bordered table-striped'><tr><td><b>Step</b></td><td><b>Process</b></td><td><b>Office</b></td></tr>
+				<table class='display table table-bordered table-hover table-striped'>
+				<thead><tr>
+				
+					<th >Step</th>
+					<th >Process</th>
+					<th >Office</th>
+				</tr>
+				</thead>
 		
 		
 		";

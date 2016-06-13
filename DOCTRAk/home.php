@@ -37,7 +37,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 <link href="css/bootstrap-submenu.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap-select.css" />
 
+<script src="js/bootstrap-select.js"></script>
 
 </head>
 
@@ -119,7 +121,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 				<div class="container">
     				<div class="row">
 
-			        	<div class="postTable">
+			        	<div class="col-md-12 postTable">
 			
 											<div class="card">
 													<ul class="nav nav-tabs" role="tablist">
@@ -149,6 +151,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 														                <th data-field="title" data-sortable="true">Title</th>
 														                <th data-field="type" data-sortable="true">Type</th>
 														                <th data-field="office" data-sortable="true">Originating Office</th>
+														                 <th data-field="transdate" data-sortable="true"  data-width="20%"> Date </th>
 														                <th data-field="officeloc" data-sortable="true">Document Location</th>
 														                <th data-field="received" data-sortable="true">Date Received</th>
 														                <th data-field="forrelease" data-sortable="true">ForRelease Date</th>
@@ -164,16 +167,34 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																		</div>
 														
 																		<div class="SHOWinput">
-																				<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
-																				<div class="alignRIGHT">
-																				  <select id="type" name="type" class="form-control" onchange="refreshList()">
-																				  <option value='All'>All Documents</option>
-																				  <option value='Pending'>Pending Documents</option>
-																				  <option value='Approved'>Approved Documents</option>
-																				
-																				  </select>
+																			<div class='row'>
+																				<div class="col-md-7 col-xs-7">
+																						<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
+																						<div class="alignRIGHT">
+																						  <select id="type" name="type" class="form-control" onchange="refreshList()">
+																						  <option value='All'>All Documents</option>
+																						  <option value='Pending'>Pending Documents</option>
+																						  <option value='Approved'>Approved Documents</option>
+																						
+																						  </select>
+																						</div>
 																				</div>
-																				<p>*Click document to view full details.</p>
+																				
+																				<div class="col-md-5 col-xs-5">
+																					
+																					<div style="text-align:right;">
+																						<label class="checkbox-inline">
+																						  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 300 records</font>
+																						</label>
+																					<!--	<label class="checkbox-inline">
+																						   <p>*Click document to view full details.</p> 
+																						</label> -->
+																					</div>
+																					
+																				</div>
+																				
+																				
+																			</div>
 																		</div>
 																
 														  </div>
@@ -196,6 +217,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 										                <th data-field="title" data-sortable="true">name</th>
 										                <th data-field="type" data-sortable="true">address</th>
 										                <th data-field="office" data-sortable="true">age</th>
+										               
 										                <th data-field="officeloc" data-sortable="true">age</th>
 										                <th data-field="received" data-sortable="true">age</th>
 										                <th data-field="forrelease" data-sortable="true">age</th>
@@ -262,7 +284,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
    
   ?>
 <!------------------------------------ end footer ------------------------------------->
-
    <!-- Modal -->
        <?php
        include('modal.php');
@@ -270,20 +291,21 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <!-- End Modal -->
 
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap-select.css" />
-<script src="js/bootstrap-select.js"></script>
+
+
 
 <script type="text/javascript">
     //AUTOFUNCTION ON LOAD
-    function refreshList()
+    function refreshList(retrieveAlldata)
     {
         //alert(document.getElementById("type").value);
-        var myData = 'action='+ document.getElementById("type").value;
+        
+        var myData = document.getElementById("type").value;
        jQuery.ajax({
                 type: "POST",
                 url:"renderHome.php",
                 dataType:"json", // Data type, HTML, json etc.
-                data:myData,
+                data:{action:myData,retrieveAll:retrieveAlldata},
                 beforeSend: function() {
                            // $("#docList").html("<div id='loading'><img src='images/home/ajax-loader.gif' align='middle' /></div>");
                           $('#tableBootstrap').bootstrapTable("showLoading");
@@ -370,7 +392,24 @@ $(document).ready(function(){
 
 		$('#feedbackDiv').feedBackBox();
 		
-		refreshList();
+		refreshList(true);
+		
+		$('#chkRecord').click(function() {
+			 
+        if ($("#chkRecord").prop('checked'))
+        {
+        	refreshList(true);
+        
+        }
+        else
+        	{
+        		refreshList(false);
+        	
+        	}
+    });
+		
+		$('.selectpicker').selectpicker();
+		
 });
 
 
@@ -384,5 +423,9 @@ $('#tableBootstrap').on('click-row.bs.table', function (e, row, $element) {
 
 
 </script>
+
+
+
+
 </body>
 </html>
