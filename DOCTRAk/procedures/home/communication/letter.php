@@ -120,8 +120,8 @@
 																	    <div class="col-sm-10">
 																	    		<select name='mail_type' id='mail_type' class="selectpicker form-control">
 																						 <?php
-																							require_once('../../../procedures/connection.php');
-																		
+																							//require_once('../../../procedures/connection.php');
+																							
 																							$query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
 																							foreach($query as $var) {
 																							echo "<option data-subtext='".$var['DOCUMENTTYPE_ID']."'>".$var['DOCUMENTTYPE_ID']."</option>";
@@ -178,7 +178,7 @@
 																					
 																					        $_SESSION['number_counter']=0;
 																					        //$query=select_info_multiple_key("select office_name from office ORDER BY OFFICE_NAME");
-																					        $query="select office_name, office_description from office ORDER BY OFFICE_NAME";
+																					        $query="select office_name, office_description from office where office_name in (select fk_office_name from security_user) ORDER BY OFFICE_NAME ";
 																									$result=mysqli_query($con,$query)or die(mysqli_error($con));
 //																					        foreach($result as $var) {
 //																					            echo "<option data-subtext='".$var['office_description']."'>".$var['office_name']."</option>";

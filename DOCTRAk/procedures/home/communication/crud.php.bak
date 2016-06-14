@@ -127,7 +127,12 @@ function SaveLetter()
 //		$query_result=mysqli_query($con,$query);
 //		while ($query_recordset=mysqli_fetch_array($query_result))
 //		{
+//echo $officeList;
+//echo getOffice($officeList);
+//die();
 	$sqlString1="INSERT INTO mail (mailcontent, fk_security_username_owner, maildate, mailtitle, fk_security_username_sender,fk_table) VALUES ('".$document_message."', '".getOffice($officeList)."', '".$transdate."', '".$mailTitle."', '".$_SESSION['usr']."', 'Communication Letter')";
+echo $sqlString1."<br>";
+
 //$sqlString1="INSERT INTO mail (mailcontent, fk_security_username_owner, maildate, mailtitle, fk_security_username_sender,fk_table) VALUES ('".$document_message."', '".$query_recordset['security_username']."', '".$transdate."', '".$mailTitle."', '".$_SESSION['usr']."', 'Communication Letter')";
 
 //	$sqlString="INSERT INTO mail (mailcontent, fk_security_username_owner, maildate, mailtitle, fk_security_username_sender,fk_table) VALUES ('".$document_message."', '".$security_ownermail[0]."', '".$transdate."', '".$mailTitle."', '".$_SESSION['usr']."', 'Communication Letter')";
@@ -151,7 +156,7 @@ function SaveLetter()
 	//INSERT INTO COMMAIL_CON
 	$sqlString="INSERT INTO commail_con(fk_commail_id,fk_mail_id,fk_office_name) VALUES (".$commailID[0].",".$mailID[0].",'".$officeList."') ";
 	$result=mysqli_query($con,$sqlString);
-	log_audit($KEY,sqlString,'New Comm Letter',$_SESSION['security_name']); 
+	log_audit($KEY,$sqlString,'New Comm Letter',$_SESSION['security_name']); 
 	if (!$result) 
 	{
 	    $flag=false;

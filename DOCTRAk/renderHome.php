@@ -95,7 +95,7 @@ function renderForm($action)
             }
 	  
                 $result=mysqli_query($con,$SQLquery)or die(mysqli_error($con));
-                $rowcolor='';
+//                $rowcolor='';
                 $resultArray=array();
                 
                 while ($row = mysqli_fetch_assoc($result))

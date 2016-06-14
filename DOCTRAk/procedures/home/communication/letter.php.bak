@@ -91,7 +91,7 @@
        <div class="container">
     				<div class="row">
     					
-							    <div class="post">
+							    <div id="post">
 							    	<div id="post100" class="colsize">
 							    		<h2 style="padding-top:20px;">LETTER</h2>
 							    		<hr class="hrMargin" style="margin-bottom:10px;">
@@ -120,7 +120,7 @@
 																	    <div class="col-sm-10">
 																	    		<select name='mail_type' id='mail_type' class="selectpicker form-control">
 																						 <?php
-																							require_once('../../../procedures/connection.php');
+																							//require_once('../../../procedures/connection.php');
 																		
 																							$query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
 																							foreach($query as $var) {

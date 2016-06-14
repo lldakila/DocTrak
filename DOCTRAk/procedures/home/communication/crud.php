@@ -127,7 +127,12 @@ function SaveLetter()
 //		$query_result=mysqli_query($con,$query);
 //		while ($query_recordset=mysqli_fetch_array($query_result))
 //		{
+//echo $officeList;
+//echo getOffice($officeList);
+//die();
 	$sqlString1="INSERT INTO mail (mailcontent, fk_security_username_owner, maildate, mailtitle, fk_security_username_sender,fk_table) VALUES ('".$document_message."', '".getOffice($officeList)."', '".$transdate."', '".$mailTitle."', '".$_SESSION['usr']."', 'Communication Letter')";
+
+
 //$sqlString1="INSERT INTO mail (mailcontent, fk_security_username_owner, maildate, mailtitle, fk_security_username_sender,fk_table) VALUES ('".$document_message."', '".$query_recordset['security_username']."', '".$transdate."', '".$mailTitle."', '".$_SESSION['usr']."', 'Communication Letter')";
 
 //	$sqlString="INSERT INTO mail (mailcontent, fk_security_username_owner, maildate, mailtitle, fk_security_username_sender,fk_table) VALUES ('".$document_message."', '".$security_ownermail[0]."', '".$transdate."', '".$mailTitle."', '".$_SESSION['usr']."', 'Communication Letter')";

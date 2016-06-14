@@ -153,19 +153,28 @@
 														</div>
 
                         </div>
-                        <div id="codetable">
-                            <div class="scroll">
-                        				<table id="historydata">
+                        <div id="">
+                            <div  class="containers">
+                            	<table id="historydata"
+															               
+									             		data-height="350"
+									               	data-search="true"
+             						  				data-pagination="true"
+									               	data-toggle="table"
+									               	class="display table table-bordered"
+															>
+                        					<thead>
                                 	<tr>
-                                						<th>No</th>
-                                            <th>BARCODE</th>
-                                            <th>TITLE</th>
-                                            <th>OFFICE</th>
-                                            <th>OWNER</th>
-                                            <th>DATE</th>
-                                            <th>TYPE</th>
+                                		<th data-field="no" data-sortable="true">No</th>
+                          						<th data-field="barcode" data-sortable="true">Barcode</th>
+                                      <th data-field="title" data-sortable="true">Title</th>
+                                      <th data-field="office" data-sortable="true">Office</th>
+                                      <th data-field="owner" data-sortable="true">Owner</th>
+                                      <th data-field="date" data-sortable="true">Date</th>
+                                     <!-- <th data-field="type" data-sortable="true">Type</th> -->
+                                      
                                   </tr>
-
+																	</thead>															
 
                                </table>
                             </div>
@@ -217,17 +226,20 @@
 			    jQuery.ajax({
 				    type: "POST",
 				    url:"doccons/search.php",
-				    dataType:"text", // Data type, HTML, json etc.
+				    dataType:"json", // Data type, HTML, json etc.
 				  	data:{vdatefrom:datefrom,vdateto:dateto,vreceived:received,vreleased:released,vapproved:approved,vmydoc:mydoc},
 				  	beforeSend: function() 
 				  	{
-            	$("#filter").html('wait..');
-            	$("#historydata").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+//            	$("#filter").html('wait..');
+//            	$("#historydata").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
+            	 $('#historydata').bootstrapTable("showLoading");
             },
 				    success:function(response)
 				    {
-					    $("#historydata").html(response);
- 							$("#filter").html('Filter');
+							$('#historydata').bootstrapTable("hideLoading");
+							$('#historydata').bootstrapTable("load",response);
+//					    $("#historydata").html(response);
+// 							$("#filter").html('Filter');
 				    },
 				    error:function (xhr, ajaxOptions, thrownError){
 					    alert(thrownError);
@@ -345,6 +357,15 @@ $('#approved').change(function() {
     
 
 $('#feedbackDiv').feedBackBox();
+
+$('#historydata').on('click-row.bs.table', function (e, row, $element) {
+ //    console.log(row);
+     retrieveDocument(row['barcode']);
+     $('#myModal').modal('show');
+   
+});
+
+
 
     });
 

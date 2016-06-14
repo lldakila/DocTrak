@@ -106,9 +106,8 @@ function renderForm($action)
                             	   
                             	   $date = date_create($row['transdate']);
                             	   
-                            	   echo date_format($date,'m-d-Y');
-                            	   die();
-                								array_push($resultArray, array("barcode"=>$row['document_id'],"title"=>$row['document_title'],"type"=>$row['fk_documenttype_id'],"office"=>$row['fk_office_name_documentlist'],"transdate"=>$row['transdate'],"officeloc"=>$docLocation,"received"=>$dateReceived,"forrelease"=>$dateForrelease,"release"=>$dateReleased,"status"=>$docStatus,"remark"=>$docRemarks));
+                            	  
+                								array_push($resultArray, array("barcode"=>$row['document_id'],"title"=>$row['document_title'],"type"=>$row['fk_documenttype_id'],"office"=>$row['fk_office_name_documentlist'],"transdate"=>date_format($date,'m-d-Y'),"officeloc"=>$docLocation,"received"=>$dateReceived,"forrelease"=>$dateForrelease,"release"=>$dateReleased,"status"=>$docStatus,"remark"=>$docRemarks));
             
          
 //                                if ($rowcolor=="blue")

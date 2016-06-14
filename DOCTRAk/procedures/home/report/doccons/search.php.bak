@@ -19,15 +19,15 @@
 	
 
 	
-	echo "	<tr>
-						<th>No</th>
-            <th>BARCODE</th>
-            <th>TITLE</th>
-            <th>OFFICE</th>
-            <th>OWNER</th>
-            <th>DATE</th>
-           
-            </tr>";
+//	echo "	<tr>
+//						<th>No</th>
+//            <th>BARCODE</th>
+//            <th>TITLE</th>
+//            <th>OFFICE</th>
+//            <th>OWNER</th>
+//            <th>DATE</th>
+//           
+//            </tr>";
 
 		$datefrom=date_format($datefrom, 'Y-m-d');	
 		$dateto=date_format($dateto, 'Y-m-d');	
@@ -153,46 +153,55 @@
 											}
 											
 											
-											$sql="select document_id,document_title,office.office_description,security_user.security_name,documentlist.transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username
+											$sql="select document_id, document_title, office.office_description, security_user.security_name, documentlist.transdate from documentlist join security_user on documentlist.fk_security_username = security_user.security_username
 									join office on documentlist.fk_office_name_documentlist = office.office_name
 									where documentlist.scrap<>1  ".$noneCheckedProcess."
 									 ".$mydoc_b."  ".$filterDoctrackListUser."
 									  order by documentlist.transdate desc
 									";
 	}
-//    echo $sql;
+	echo $sql;
+	die(); 
+//    echo $sql;<div style="text-align: center"><div style="text-align: center"></div></div>
 //    die();
     //echo "select document_id,document_title,fk_template_id,fk_documenttype_id,transdate,security_name from documentlist join security_user on documentlist.fk_security_username = security_user.security_username WHERE document_id LIKE '%".$_POST['search_string']."%' OR document_title LIKE '%".$_POST['search_string']."%' OR security_name LIKE '%".$_POST['search_string']."%'    ORDER BY transdate desc";
 	$result=mysqli_query($con,$sql);
 //	echo $sql;
 //	die();
-$rowcolor="blue";
+//$rowcolor="blue";
 $counterA=1;
+$resultArray=array();
 	while ($resultSet=mysqli_fetch_array($result))
 	{
 			
-	    if ($rowcolor=="blue")
-	    {
-	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor" onClick="addRowHandlers();">';
-	        // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
-	        $rowcolor="notblue";
-	    }
-	    else
-	    {
-	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor1" onClick="addRowHandlers();">';
-	        // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
-	        $rowcolor="blue";
-	    }
-				echo "<td>".$counterA."</td>";
-	    	echo "<td>".$resultSet['document_id']."</td>";
-		    echo "<td>".$resultSet['document_title']."</td>";
-		    echo "<td>".$resultSet['office_description']."</td>";
-		    echo "<td>".$resultSet['security_name']."</td>";
-		    echo "<td>".$resultSet['transdate']."</td>";
+//	    if ($rowcolor=="blue")
+//	    {
+//	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor" onClick="addRowHandlers();">';
+//	        // echo '<tr id="id" onclick="function(\'string\',\'string\')">';
+//	        $rowcolor="notblue";
+//	    }
+//	    else
+//	    {
+//	        echo '<tr id="'.$resultSet["document_id"].'" class="usercolor1" onClick="addRowHandlers();">';
+//	        // echo "<tr  id='".$var["SECURITY_NAME"]."' bgcolor='#2CC1F7'> <td>";
+//	        $rowcolor="blue";
+//	    }
+//				echo "<td>".$counterA."</td>";
+//	    	echo "<td>".$resultSet['document_id']."</td>";
+//		    echo "<td>".$resultSet['document_title']."</td>";
+//		    echo "<td>".$resultSet['office_description']."</td>";
+//		    echo "<td>".$resultSet['security_name']."</td>";
+//		    echo "<td>".$resultSet['transdate']."</td>";
+//		    
+//		    echo "</tr>";
 		    
-		    echo "</tr>";
+//		    $counterA++;
+		    
+		    array_push($resultArray, array("no"=>$counterA,"barcode"=>$resultSet['document_id'],"title"=>$resultSet['document_title'],"office"=>$resultSet['office_description'],"owner"=>$resultSet['security_name'],"date"=>$resultSet['transdate']));
 		    
 		    $counterA++;
+		    
+		    
 	 /*   echo "<td style='width:80px;'>";
 	    echo $var["document_id"];
 	    echo "</td><td>";
@@ -204,10 +213,10 @@ $counterA=1;
 	    echo "</td>";*/
 
 
-	
-
+}
+	echo json_encode($resultArray);
 		
-	}
+	die();
 
 	function SearchFilter($document_id)
 	{

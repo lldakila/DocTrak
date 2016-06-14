@@ -1,27 +1,15 @@
 [Open Files]
 Active File Display Mode=1
-Active File Index=0
-Open File Line0=26840
-Open File Line1=2552
-Open File Line2=21795
-Open File Line3=2080
-Open File Line4=31240
-Open File Pos0=28634
-Open File Pos1=3056
-Open File Pos2=22224
-Open File Pos3=2557
-Open File Pos4=32062
+Active File Index=1
+Open File Line0=24578
+Open File Line1=5636
+Open File Pos0=25352
+Open File Pos1=6787
 Open File Window Pos0=0,1,-1,-1,-1,-1,3,26,1006,624
 Open File Window Pos1=0,1,-1,-1,-1,-1,3,26,1006,624
-Open File Window Pos2=0,1,-1,-1,-1,-1,3,26,1006,624
-Open File Window Pos3=0,1,-1,-1,-1,-1,3,26,1006,624
-Open File Window Pos4=0,1,-1,-1,-1,-1,3,26,1006,624
-Open File0=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\releasedoc.php
-Open File1=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\release\search.php
-Open File2=D:\OneDrive\Projects\DocTrak\DOCTRAk\crud.php
-Open File3=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\common\SearchFilter.php
-Open File4=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\maintenance\users.php
-Open File5=
+Open File0=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\report\doccons.php
+Open File1=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\report\doccons\search.php
+Open File2=
 Remember Files=1
 
 [Project Information]
@@ -31,9 +19,13 @@ Remember Files=1
 	.\=1
 	.\ - procedures=1
 	.\ - procedures - home=1
-	.\ - procedures - home - document - new=1
 	.\ - procedures - home - maintenance - user=1
 	.\ - procedures - home - report - history=1
-	.\ - procedures - home - userinfo - messaging=1
 	.\ - report - onprocess=1
-
+	.\ - procedures - home - userinfo - messaging=1
+	.\ - procedures - home - document - forrelease=1
+	.\ - procedures - home - document - common=1
+	.\ - procedures - home - document - release=1
+	.\ - procedures - home - communication=1
+	.\ - procedures - home - report=1
+	.\ - procedures - home - report - doccons=1
