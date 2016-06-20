@@ -166,12 +166,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 															        </table>
 																		</div>
 														
-																		<div class="SHOWinput">  
+																		<div class="SHOWinput">
 																			<div class='row'>
 																				<div class="col-md-7 col-xs-7">
 																						<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
 																						<div class="alignRIGHT">
-																						  <select id="type" name="type" class="form-control" onchange="refreshList($('#chkRecord').is(':checked'))">
+																						  <select id="type" name="type" class="form-control" onchange="refreshList()">
 																						  <option value='All'>All Documents</option>
 																						  <option value='Pending'>Pending Documents</option>
 																						  <option value='Approved'>Approved Documents</option>
@@ -184,7 +184,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																					
 																					<div style="text-align:right;">
 																						<label class="checkbox-inline">
-																						  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 100 records</font>
+																						  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 300 records</font>
 																						</label>
 																					<!--	<label class="checkbox-inline">
 																						   <p>*Click document to view full details.</p> 
@@ -291,10 +291,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     //AUTOFUNCTION ON LOAD
     function refreshList(retrieveAlldata)
     {
-    	//alert(retrieveAlldata);
-//    	alert($('#chkRecord').is(':checked'));
         //alert(document.getElementById("type").value);
-       // alert($('#chkRecord').val());
+        
         var myData = document.getElementById("type").value;
        jQuery.ajax({
                 type: "POST",
@@ -384,7 +382,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 $(document).ready(function(){
 
-
+	alert("Docprocess update use only");
 		$('#feedbackDiv').feedBackBox();
 		
 		refreshList(true);

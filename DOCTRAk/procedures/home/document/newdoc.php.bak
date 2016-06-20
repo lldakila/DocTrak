@@ -279,7 +279,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 															
                         	                                    
 	                                <table id="responds"
-		                                	data-height="440"
+		                                	data-height="430"
 																      data-toggle="table"
 																      class="display table table-bordered"
 																      data-striped="true"
@@ -482,6 +482,11 @@ $(document).ready(function() {
 //                });
 //            }
 //        });
+	$('select').change(function () {
+     var optionSelected = $(this).find("option:selected");
+     var valueSelected  = optionSelected.val();
+     var textSelected   = optionSelected.text();
+ });
    
 })
 $('#feedbackDiv').feedBackBox();
@@ -577,6 +582,7 @@ function myFunction(e) {
    
 });
 
+	
 
 </script>
 

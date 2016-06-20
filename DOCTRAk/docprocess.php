@@ -27,8 +27,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap-table.css" />
-<script src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.growl.js"></script>
 
 
@@ -133,94 +133,66 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 													</ul>
 
 														<div class="tab-content">
+															
 														  <div id="home" class="tab-pane fade in active">
+														  	
+														  	
+														  	
+														  	
+																<div class="row">
+																<div class="col-md-4">
+																
+																
 																
 																		<div id='docList' class="containers">
 																			
-																						<table id="tableBootstrap"
-															               
+																						<table id="tblprocess"
 															             	data-height="405"
-															               data-search="true"
-					               						  				data-pagination="true"
 															               data-toggle="table"
 															               class="display table table-bordered"
 															               >
-															            <thead>
-															            <tr>
-															            	<th data-field="barcode" data-sortable="true">Barcode</th>
-														                <th data-field="title" data-sortable="true">Title</th>
-														                <th data-field="type" data-sortable="true">Type</th>
-														                <th data-field="office" data-sortable="true">Originating Office</th>
-														                 <th data-field="transdate" data-sortable="true"  data-width="20%"> Date </th>
-														                <th data-field="officeloc" data-sortable="true">Document Location</th>
-														                <th data-field="received" data-sortable="true">Date Received</th>
-														                <th data-field="forrelease" data-sortable="true">ForRelease Date</th>
-														                <th data-field="release" data-sortable="true">Date Released</th>
-														                <th data-field="status" data-sortable="true">Status</th>
-														                <th data-field="remark" data-sortable="true">Remark</th>
-										                
-															               
-															               
-															            </tr>
-															            </thead>
+															             <thead>
+													            <tr>
+													                <th data-field="barcode" data-sortable="true">Barcode</th>
+													                <th data-field="title" data-sortable="true">Title</th>
+													                <th data-field="office" data-sortable="true">Office</th>
+													               
+													               
+													            </tr>
+													            </thead>
 															        </table>
 																		</div>
-														
-																		<div class="SHOWinput">  
-																			<div class='row'>
-																				<div class="col-md-7 col-xs-7">
-																						<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
-																						<div class="alignRIGHT">
-																						  <select id="type" name="type" class="form-control" onchange="refreshList($('#chkRecord').is(':checked'))">
-																						  <option value='All'>All Documents</option>
-																						  <option value='Pending'>Pending Documents</option>
-																						  <option value='Approved'>Approved Documents</option>
-																						
-																						  </select>
-																						</div>
-																				</div>
+																		
+																		</div>
+																		
+																		
+																		<div class="col-md-8">
+																			<div id="docinfo">
 																				
-																				<div class="col-md-5 col-xs-5">
-																					
-																					<div style="text-align:right;">
-																						<label class="checkbox-inline">
-																						  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 100 records</font>
-																						</label>
-																					<!--	<label class="checkbox-inline">
-																						   <p>*Click document to view full details.</p> 
-																						</label> -->
-																					</div>
-																					
-																				</div>
+																				
 																				
 																				
 																			</div>
+																		
+																		
 																		</div>
+														
+														
+														
+														</div>
+														
+														
+														
+														
+														
+																		
 																
 														  </div>
 														  <div id="stats" class="tab-pane fade">
 <!------------------------------------------- STATS  --------------------------------><!------------------------------------------- STATS  -------------------------------->
 <!------------------------------------------- STATS  --------------------------------><!------------------------------------------- STATS  -------------------------------->
 															
-														 <table id="tableBootstraps"
-										               
-										               data-height="460"
-										               
-               										
-										               data-sort-name="name"
-										               data-sort-order="asc"
-										               class="display table table-bordered"
-										               >
-										            <thead>
-										            <tr>
-										                <th data-field="barcode" data-sortable="true">Barcode</th>
-										                <th data-field="title" data-sortable="true">Title</th>
-										                <th data-field="office" data-sortable="true">Office</th>
-										               
-										               
-										            </tr>
-										            </thead>
-										        </table>
+														
 															
 															
 <!------------------------------------------- STATS --------------------------------><!------------------------------------------- STATS  -------------------------------->
@@ -230,28 +202,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 															
 															</p>
 														  </div>
-															<div id="info" class="tab-pane fade">
 														
-																<p>Whats New (v1.17)</p>
-																<ul>
-																	<li>Improved Searching and Loading Speed</li>
-																	<li>Incorporating Template Flow on document creation</li>
-																	<li>New Home Page</li>
-																	<li>Addition of Reports on Document Transactions</li>
-																	<li>Feedback Module</li>
-																	<li>and much more..</li>
-																</ul> 
-																<br>
-																<p>Upcoming Release</p>
-																<ul>
-																	<li>Mobile Friendly Site</li>													
-																	<li>Improved Gui</li>
-																	<li>Improved System Manual</li>
-																	<li>More Reports</li>
-																	<li>Possible inclusion of BAC and Communication Modules</li>
-																	<li>and much more</li>
-																</ul>
-															</div>
 														</div>
 											</div>
 			
@@ -260,6 +211,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			
 			
 			            </div>
+			            
 
         		</div>
 				</div>
@@ -274,6 +226,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     include_once('footer.php');
     //require_once("/procedures/connection.php");
     include_once($PROJECT_ROOT.'qvJscript.php');
+   
+   
    
   ?>
 <!------------------------------------ end footer ------------------------------------->
@@ -291,10 +245,8 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     //AUTOFUNCTION ON LOAD
     function refreshList(retrieveAlldata)
     {
-    	//alert(retrieveAlldata);
-//    	alert($('#chkRecord').is(':checked'));
         //alert(document.getElementById("type").value);
-       // alert($('#chkRecord').val());
+        
         var myData = document.getElementById("type").value;
        jQuery.ajax({
                 type: "POST",
@@ -324,32 +276,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         }); 
     }
 
-    //FUNCTION THAT REFRESH THE LIST OF DOCUMENTS WHEN CHANGED ON COMBOBOX 
-    function addRowHandlers()
-    {
-       
-            var table = document.getElementById('tableBootstrap');
-             alert (table);
-
-        var rows = table.getElementsByTagName("tr");
-        for (i = 0; i < rows.length; i++) {
-            var currentRow = table.rows[i];
-            var createClickHandler =
-                function(row)
-                {
-                    return function() {
-                                            var cell = row.getElementsByTagName("td")[0];
-                                            var id = cell.innerHTML;
-
-
-                                           retrieveDocument(id);
-                                           $('#myModal').modal('show');
-                                     };
-                };
-
-            currentRow.onclick = createClickHandler(currentRow);
-        }
-    }
+   
     
     //FUNCTION THAT RETRIEVES THE DOCUMENT FROM addRowHandlers() AND OPENS MODAL FORM
     function retrieveDocument(BarcodeId)
@@ -384,37 +311,141 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 $(document).ready(function(){
 
-
+	alert("Docprocess update use only");
 		$('#feedbackDiv').feedBackBox();
+		renderDocProcessList();
+		//refreshList(true);
 		
-		refreshList(true);
-		
-		$('#chkRecord').click(function() {
-			 
-        if ($("#chkRecord").prop('checked'))
-        {
-        	refreshList(true);
-        
-        }
-        else
-        	{
-        		refreshList(false);
-        	
-        	}
+//		$('#chkRecord').click(function() {
+//			 
+//        if ($("#chkRecord").prop('checked'))
+//        {
+//        	refreshList(true);
+//        
+//        }
+//        else
+//        	{
+//        		refreshList(false);
+//        	
+//        	}
+//    });
+//		
+//		$('.selectpicker').selectpicker();
+
+ $("select").change(function(event) {
+        // this.append wouldn't work
+        alert(event.target.id);
     });
-		
-		$('.selectpicker').selectpicker();
-		
+  
+
+ 
 });
+		
+function sendData(id,value)
+{
+	var mod="updateDocProcess";
+	jQuery.ajax({
+      type: "POST",
+      url:"docprocess/crud.php",
+      dataType:"text", // Data type, HTML, json etc.
+      data:{module:mod,trackerid:id,processvalue:value},
+      beforeSend: function() {
+                 // $("#docList").html("<div id='loading'><img src='images/home/ajax-loader.gif' align='middle' /></div>");
+               // $('#tblprocess').bootstrapTable("showLoading");
+          },
+
+      success:function(response){
+					if (response=='success')
+					{
+						
+							$.growl.notice({ message: "Update success" });
+					}
+					else
+						{
+							$.growl.error({ message: response });
+						}
+							
+						
+      },
+      error:function (xhr, ajaxOptions, thrownError){
+//          alert(thrownError);
+          	$.growl.error({ message: thrownError });
+      }
+            });
+	
+}
+	
+function renderDocProcessList()
+{
+	var mod="renderDocProcessList";
+	jQuery.ajax({
+      type: "POST",
+      url:"docprocess/crud.php",
+      dataType:"json", // Data type, HTML, json etc.
+      data:{module:mod},
+      beforeSend: function() {
+                 // $("#docList").html("<div id='loading'><img src='images/home/ajax-loader.gif' align='middle' /></div>");
+                $('#tblprocess').bootstrapTable("showLoading");
+          },
+
+      success:function(response){
+                  //$("#docList").html(response);
+                  $('#tblprocess').bootstrapTable("hideLoading");
+                 
+                   $('#tblprocess').bootstrapTable("load",response);
+
+      },
+      error:function (xhr, ajaxOptions, thrownError){
+          alert(thrownError);
+      }
+            });
+}
+
+function renderProcessListInfo(barcodeNo)
+{
+	var mod="renderProcessListInfo";
+	
+	jQuery.ajax({
+      type: "POST",
+      url:"docprocess/crud.php",
+      dataType:"html", // Data type, HTML, json etc.
+      data:{module:mod,docID:barcodeNo},
+      beforeSend: function() {
+                  $("#docinfo").html("<div id='loading'><img src='images/home/ajax-loader.gif' align='middle' /></div>");
+              //  $('#tblprocess').bootstrapTable("showLoading");
+          },
+
+      success:function(response){
+                  $("#docinfo").html(response);
+                //  $('#tblprocess').bootstrapTable("hideLoading");
+                 
+                 //  $('#tblprocess').bootstrapTable("load",response);
+
+      },
+      error:function (xhr, ajaxOptions, thrownError){
+          alert(thrownError);
+      }
+            });
+	
+}
 
 
-$('#tableBootstrap').on('click-row.bs.table', function (e, row, $element) {
+
+
+$('#tblprocess').on('click-row.bs.table', function (e, row, $element) {
  //    console.log(row);
-    retrieveDocument(row['barcode']);
-    $('#myModal').modal('show');
+   renderProcessListInfo(row['barcode']);
+   
 });
 
-           
+
+        
+//function getName()
+//{
+//		//alert($(this).attr('name'));
+//		 alert(event.target.id);
+//}
+// 
 
 
 </script>

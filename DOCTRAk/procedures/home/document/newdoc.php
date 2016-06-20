@@ -482,6 +482,7 @@ $(document).ready(function() {
 //                });
 //            }
 //        });
+
    
 })
 $('#feedbackDiv').feedBackBox();
@@ -577,6 +578,7 @@ function myFunction(e) {
    
 });
 
+	
 
 </script>
 

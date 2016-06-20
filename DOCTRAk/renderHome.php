@@ -66,6 +66,7 @@ function renderForm($action)
 //                <th>REMARKS</th>
 //          </tr> 
 //            ';
+
 				if ($_POST['retrieveAll']=='true')
 				{
 					$limitOn="limit 100";

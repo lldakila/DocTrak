@@ -1,6 +1,27 @@
 [Open Files]
-Active File Display Mode=-1
-Open File0=
+Active File Display Mode=1
+Active File Index=1
+Open File Line0=7676
+Open File Line1=521
+Open File Line2=39840
+Open File Line3=6668
+Open File Line4=26310
+Open File Pos0=23830
+Open File Pos1=915
+Open File Pos2=40584
+Open File Pos3=1289
+Open File Pos4=27908
+Open File Window Pos0=0,1,-1,-1,-1,-1,3,26,1006,624
+Open File Window Pos1=0,1,-1,-1,-1,-1,3,26,1006,624
+Open File Window Pos2=0,1,-1,-1,-1,-1,3,26,1006,624
+Open File Window Pos3=0,1,-1,-1,-1,-1,3,26,1006,624
+Open File Window Pos4=0,1,-1,-1,-1,-1,3,26,1006,624
+Open File0=D:\OneDrive\Projects\DocTrak\DOCTRAk\docprocess.php
+Open File1=D:\OneDrive\Projects\DocTrak\DOCTRAk\docprocess\crud.php
+Open File2=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\document\newdoc.php
+Open File3=D:\OneDrive\Projects\DocTrak\DOCTRAk\crud.php
+Open File4=D:\OneDrive\Projects\DocTrak\DOCTRAk\procedures\home\bac\new.php
+Open File5=
 Remember Files=1
 
 [Project Information]
@@ -8,8 +29,11 @@ Remember Files=1
 	Working Time=27684
 
 [Folders]
+	.\=1
+	.\ - docprocess=1
 	.\ - procedures=1
-	.\ - procedures - home=1
+	.\ - procedures - home - document=1
 	.\ - procedures - home - userinfo - editprofile=1
 	.\ - report=1
-	.\=1
+	.\ - procedures - home - bac=1
+	.\ - procedures - index=1

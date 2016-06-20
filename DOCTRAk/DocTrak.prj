@@ -11,3 +11,5 @@
 	Create Tagfile=0
 [Files]
 	0=.\
+[Group Filter]
+	.\=*.php;*.css;*.html;*.js;
