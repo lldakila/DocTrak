@@ -17,7 +17,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
  	echo $_SESSION['Title']. "" .$_SESSION['Version'];
 //<script src="js/bootstrap.min.js"></script>
-	
+
 ?>
 </title>
 
@@ -50,7 +50,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     include_once('header.php');
     //require_once("/procedures/connection.php");
     include_once($PROJECT_ROOT.'qvJscript.php');
-   
+
     ?>
 <!------------------------------------------- end header -------------------------------->
 
@@ -58,8 +58,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="content">
 
 		<div id="leftmenu">
-		
-		    
+
 			    <div id='cssmenu'>
 							<ul>
 							   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
@@ -82,14 +81,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 								   </li>'; */
 								   }
 								   ?>
-					
+
 							</ul>
 			    </div>
 		</div>
-		
+
 		<div id="rightmenu">
-		
-		    
+
 			    <div id='cssmenu'>
 							<ul>
 							   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
@@ -112,126 +110,106 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 							   </li>'; */
 							   }
 							   ?>
-					
+
 							</ul>
 			    </div>
-		</div> 
+		</div>
 
 		<div class="main">
 				<div class="container">
     				<div class="row">
 
 			        	<div class="col-md-12 postTable">
-			
+
 											<div class="card">
 													<ul class="nav nav-tabs" role="tablist">
 														<li class="active" role="presentation"><a href="#home" aria-controls="profile" role="tab" data-toggle="tab">Docs</a></li>
 														<li role="presentation"><a href="#stats" aria-controls="home" role="tab" data-toggle="tab">Statistics</a></li>
-														
+
 														<li role="presentation"><a href="#info" aria-controls="messages" role="tab" data-toggle="tab">Info</a></li>
-														
+
 													</ul>
 
 														<div class="tab-content">
 														  <div id="home" class="tab-pane fade in active">
-																
+
 																		<div id='docList' class="containers">
-																			
-																						<table id="tableBootstrap"
-															               
-															             	data-height="405"
-															               data-search="true"
-					               						  				data-pagination="true"
-															               data-toggle="table"
-															               class="display table table-bordered"
-															               >
-															            <thead>
-															            <tr>
-															            	<th data-field="barcode" data-sortable="true">Barcode</th>
-														                <th data-field="title" data-sortable="true">Title</th>
-														                <th data-field="type" data-sortable="true">Type</th>
-														                <th data-field="office" data-sortable="true">Originating Office</th>
-														                 <th data-field="transdate" data-sortable="true"  data-width="20%"> Date </th>
-														                <th data-field="officeloc" data-sortable="true">Document Location</th>
-														                <th data-field="received" data-sortable="true">Date Received</th>
-														                <th data-field="forrelease" data-sortable="true">ForRelease Date</th>
-														                <th data-field="release" data-sortable="true">Date Released</th>
-														                <th data-field="status" data-sortable="true">Status</th>
-														                <th data-field="remark" data-sortable="true">Remark</th>
-										                
-															               
-															               
-															            </tr>
-															            </thead>
-															        </table>
+
+								<table id="tableBootstrap"
+
+				             	data-height="405"
+				               data-search="true"
+				  				data-pagination="true"
+				               data-toggle="table"
+				               class="display table table-bordered"
+				               >
+				            <thead>
+				            <tr>
+				            	<th data-field="barcode" data-sortable="true">Barcode</th>
+			                <th data-field="title" data-sortable="true">Title</th>
+			                <th data-field="type" data-sortable="true">Type</th>
+			                <th data-field="office" data-sortable="true">Originating Office</th>
+			                 <th data-field="transdate" data-sortable="true"  data-width="20%"> Date </th>
+			                <th data-field="officeloc" data-sortable="true">Document Location</th>
+			                <th data-field="received" data-sortable="true">Date Received</th>
+			                <th data-field="forrelease" data-sortable="true">ForRelease Date</th>
+			                <th data-field="release" data-sortable="true">Date Released</th>
+			                <th data-field="status" data-sortable="true">Status</th>
+			                <th data-field="remark" data-sortable="true">Remark</th>
+
+				            </tr>
+				            </thead>
+				        </table>
 																		</div>
-														
-																		<div class="SHOWinput">  
-																			<div class='row'>
-																				<div class="col-md-7 col-xs-7">
-																						<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
-																						<div class="alignRIGHT">
-																						  <select id="type" name="type" class="form-control" onchange="refreshList($('#chkRecord').is(':checked'))">
-																						  <option value='All'>All Documents</option>
-																						  <option value='Pending'>Pending Documents</option>
-																						  <option value='Approved'>Approved Documents</option>
-																						
-																						  </select>
-																						</div>
-																				</div>
-																				
-																				<div class="col-md-5 col-xs-5">
-																					
-																					<div style="text-align:right;">
-																						<label class="checkbox-inline">
-																						  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 100 records</font>
-																						</label>
-																					<!--	<label class="checkbox-inline">
-																						   <p>*Click document to view full details.</p> 
-																						</label> -->
-																					</div>
-																					
-																				</div>
-																				
-																				
-																			</div>
-																		</div>
-																
-														  </div>
-														  <div id="stats" class="tab-pane fade">
-<!------------------------------------------- STATS  --------------------------------><!------------------------------------------- STATS  -------------------------------->
-<!------------------------------------------- STATS  --------------------------------><!------------------------------------------- STATS  -------------------------------->
-															
-														 <table id="tableBootstraps"
-										               
-										               data-height="460"
-										               
-               										
-										               data-sort-name="name"
-										               data-sort-order="asc"
-										               class="display table table-bordered"
-										               >
-										            <thead>
-										            <tr>
-										                <th data-field="barcode" data-sortable="true">Barcode</th>
-										                <th data-field="title" data-sortable="true">Title</th>
-										                <th data-field="office" data-sortable="true">Office</th>
-										               
-										               
-										            </tr>
-										            </thead>
-										        </table>
-															
-															
-<!------------------------------------------- STATS --------------------------------><!------------------------------------------- STATS  -------------------------------->
-<!------------------------------------------- STATS  --------------------------------><!------------------------------------------- STATS  -------------------------------->
-															<p>
-															
-															
-															</p>
-														  </div>
+
+									<div class="SHOWinput">
+										<div class='row'>
+											<div class="col-md-7 col-xs-7">
+													<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
+													<div class="alignRIGHT">
+													  <select id="type" name="type" class="form-control" onchange="refreshList($('#chkRecord').is(':checked'))">
+													  <option value='All'>All Documents</option>
+													  <option value='Pending'>Pending Documents</option>
+													  <option value='Approved'>Approved Documents</option>
+
+													  </select>
+													</div>
+											</div>
+
+											<div class="col-md-5 col-xs-5">
+
+												<div style="text-align:right;">
+													<label class="checkbox-inline">
+													  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 100 records</font>
+													</label>
+												<!--	<label class="checkbox-inline">
+													   <p>*Click document to view full details.</p> 
+													</label> -->
+												</div>
+
+											</div>
+
+										</div>
+										</div>
+
+									  </div>
+<!------------------------------------------- STATS  -------------------------------->
+									  <div id="stats" class="tab-pane fade">
+
+										  </div>
+
+<!------------------------------------------- STATS  -------------------------------->
 															<div id="info" class="tab-pane fade">
-														
+																<p>Whats New (v2.00)</p>
+																<ul>
+																	<li>Mobile Friendly Site</li>
+																	<li>Improved Gui</li>
+																	<li>Improved System Manual</li>
+																	<li>More Reports</li>
+																	<li>Faster Home Page Loading</li>
+																	<li>and much more..</li>
+																</ul>
+																<br>
 																<p>Whats New (v1.17)</p>
 																<ul>
 																	<li>Improved Searching and Loading Speed</li>
@@ -240,16 +218,11 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																	<li>Addition of Reports on Document Transactions</li>
 																	<li>Feedback Module</li>
 																	<li>and much more..</li>
-																</ul> 
+																</ul>
 																<br>
 																<p>Upcoming Release</p>
 																<ul>
-																	<li>Mobile Friendly Site</li>													
-																	<li>Improved Gui</li>
-																	<li>Improved System Manual</li>
-																	<li>More Reports</li>
-																	<li>Possible inclusion of BAC and Communication Modules</li>
-																	<li>and much more</li>
+																	<li>Possible inclusion of BAC and Communication Modules</
 																</ul>
 															</div>
 														</div>

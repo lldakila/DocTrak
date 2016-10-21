@@ -128,20 +128,19 @@
 																		  <div class="form-group">
 																			    <label class="col-sm-2 control-label">Group:</label>
 																			    <div class="col-sm-10">
-											                       <select id="group" name="group" class="form-control selectpicker" data-live-search="true" > <option></option>
-											
-																				       <?php
-																				           
-																										mysqli_free_result($result);
-																				           $query="select SECURITY_GROUPNAME,security_name from security_group";
-																				           $result=mysqli_query($con,$query);
-																				           while ($var=mysqli_fetch_array($result)) {
-																				              echo "<option selected='true' value = '".$var['SECURITY_GROUPNAME']."' data-subtext='".$var['security_name']."'>".$var['SECURITY_GROUPNAME']."</option>";
-																				           }
-																						
-																						
-																						   ?>
-								                             </select>
+					                       <select id="group" name="group" class="form-control selectpicker" data-live-search="true" > <option></option>
+
+											       <?php
+
+																	mysqli_free_result($result);
+											           $query="select SECURITY_GROUPNAME,security_name from security_group";
+											           $result=mysqli_query($con,$query);
+											           while ($var=mysqli_fetch_array($result)) {
+											              echo "<option selected='true' value = '".$var['SECURITY_GROUPNAME']."' data-subtext='".$var['security_name']."'>".$var['SECURITY_GROUPNAME']."</option>";
+											           }
+
+													   ?>
+		                             </select>
 																			    </div>
 																		  </div>
 																		  
@@ -184,65 +183,62 @@
 																					
 
 																					?>
-											
-											                  		 <!--- BUTTONS ACTIVITY START --->
-											
-											                        <div class="input1">
-												                         	<input id="security_user" name="security_user" type="hidden" value="0"/>
-												                        	<input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
-												                         	<input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
-												                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-											                        </div>
-											                           <!--- BUTTONS ACTIVITY END--->
-											
-											              </div>
 
-						   								</form>
+				                  		 <!-- BUTTONS ACTIVITY START -->
+				                        <div class="input1">
+					                         	<input id="security_user" name="security_user" type="hidden" value="0"/>
+					                        	<input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
+					                         	<input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
+					                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
+				                        </div>
+					                           <!-- BUTTONS ACTIVITY END -->
+
+							              </div>
+
+		   								</form>
 
 
 
                   		</div>
-                        
+
                         <div id="postright0" class="col-xs-6 col-md-4">
-                        
-                        	
+
                             	<form id="tfnewsearch" method="post">
-                                    
+
                                         <div class="input-group">
                                                 <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
                                                 <span class="input-group-btn">
                                                 	<button id="search_user" class="btn btn-default">Search </button>
                                               	</span>
                                         </div>
-                                    
-															</form>	
-                                
-                          
+
+															</form>
+
                             	<hr class="hrMargin">
-                            
-	                          <div class="postright"> 
-	                            
-	                        	                                    
+
+	                          <div class="postright">
+
 	                                <table id="responds"
 	                                		data-height="430"
-																      data-toggle="table"
-																      class="display table table-bordered"
-																      data-striped="true"
-	                                >
+									      data-toggle="table"
+									      class="display table table-bordered"
+									      data-striped="true"
+                                >
 	                                	<thead>
-																	    <tr>
-																					<th class="col-md-2"  data-field="username" data-sortable="true">Username</th>
-																					<th  class="col-md-8" data-field="name" data-sortable="true">Name</th>
-																					
-																	    </tr>
-																	  </thead>
-																    
+									    <tr>
+											<th class="col-md-2"  data-field="username" data-sortable="true">Username</th>
+											<th  class="col-md-6" data-field="name" data-sortable="true">Name</th>
+											<th  class="col-md-2" data-field="office" data-sortable="true">Office</th>
+											<th  class="col-md-2" data-field="group" data-sortable="true">Group</th>
+
+									    </tr>
+									  </thead>
+
 	                                </table>
-	                            
+
 	                          </div>
                         </div>
-                        
-                        
+
                         <div class="tfclear"></div>
                 </div>
 						</div>

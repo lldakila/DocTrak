@@ -9,14 +9,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
     require_once("../../../connection.php");
 		$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-    $query="select SECURITY_USERNAME,SECURITY_NAME,fk_Security_GroupName,fk_Office_Name from security_user WHERE SECURITY_NAME LIKE '%".$_POST['search_string']."%' OR SECURITY_USERNAME LIKE '%".$_POST['search_string']."%' ORDER BY SECURITY_USERNAME";
+    $query="select SECURITY_USERNAME,SECURITY_NAME,fk_Security_GroupName,fk_Office_Name from security_user WHERE SECURITY_NAME LIKE '%".$_POST['search_string']."%' OR SECURITY_USERNAME LIKE '%".$_POST['search_string']."%'  or fk_Office_Name like '%".$_POST['search_string']."%'  ORDER BY SECURITY_USERNAME";
     
     $result=mysqli_query($con,$query)or die(mysqli_error($con));
 		$resultArray=array();
 		 while ($var = mysqli_fetch_assoc($result))
 		 	{
-		 			array_push($resultArray, array("username"=>$var["SECURITY_USERNAME"],"name"=>$var["SECURITY_NAME"],"group"=>$var["fk_Security_GroupName"]
-		 							,"office"=>$var["fk_Office_Name"]));
+		 			array_push($resultArray, array("username"=>$var["SECURITY_USERNAME"],"name"=>$var["SECURITY_NAME"],"group"=>$var["fk_Security_GroupName"],"office"=>$var["fk_Office_Name"]));
 		 	
 
 //if ($query) {
