@@ -27,6 +27,7 @@
     ?>
 </title>
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
@@ -89,103 +90,96 @@
        <div id="post">
        		<div class="container">
     				<div class="row">
-							<div class="post">
-                <div id="post100" class="colsize">
+						<div class="post">
+							<div id="post100" class="colsize">
 
-                    	<div id="headform">
-
-										
-														<div class="checkHistory">		
-																	
-																			<div class="panel panel-info">
-																			  <div class="panel-heading">FILTER</div>
-																			  <div class="panel-body">
-																			  
-																					<div id="headtable">
-																						
-																						
-																						<form class="form-inline">
-																						  <div class="form-group">
-																							<label for="exampleInputName2">Date From:</label>
-																							<input type="date" class="form-control" id="datefrom" name="datefrom" placeholder="Date From" value="<?php echo date('Y-m-d'); ?>" />
-																						  </div>
-																						  <div class="form-group">
-																							<label for="exampleInputEmail2">Date To:</label>
-																							<input type="date" class="form-control" id="dateto" placeholder="Date To" value="<?php echo date('Y-m-d'); ?>" />
-																						  </div>
-																							
-																							<div class="form-group">
-																							
-																								<div style="float:left; padding-right:15px;">
-																									<label class="checkbox-inline">
-																									<input type="checkbox" id="received" value="option1" class="checkbox"> Received
-																									</label>
-																									<label class="checkbox-inline">
-																									  <input type="checkbox" id="released" value="option1"> Released
-																									</label>
-																									<label class="checkbox-inline">
-																									  <input type="checkbox" id="approved" value="option1"> Approved
-																									</label>
-																									<label class="checkbox-inline">
-																									  <input type="checkbox" id="mydoc" value="option1"> My Doc
-																									</label>
-																					
-																								</div>
-																								
-																								
-																							</div>
-																						<button id="filter" name="filter" class="btn btn-primary">Filter </button>
-																						
-																						
-																						</form>
-																						
-																					</div>
-																					<div class="tfclear"></div>
-																						
-																				
-																				
-																				
-																			  </div>
-																			</div>
-																	
-																	
+								<div id="headform">
+					
+									<div class="checkHistory">				
+										<div class="panel panel-info">
+										  <div class="panel-heading">FILTER</div>
+											<div class="panel-body">
+										  
+												<div id="headtable">
+													
+													<form class="form-inline">
+													  <div class="form-group">
+														<label for="exampleInputName2">Date From:</label>
+														<input type="date" class="form-control" id="datefrom" name="datefrom" placeholder="Date From" value="<?php echo date('Y-m-d'); ?>" />
+													  </div>
+													  <div class="form-group">
+														<label for="exampleInputEmail2">Date To:</label>
+														<input type="date" class="form-control" id="dateto" placeholder="Date To" value="<?php echo date('Y-m-d'); ?>" />
+													  </div>
+														
+														<div class="form-group">
+														
+															<div style="float:left; padding-right:15px;">
+																<label class="checkbox-inline">
+																<input type="checkbox" id="received" value="option1" class="checkbox"> Received
+																</label>
+																<label class="checkbox-inline">
+																  <input type="checkbox" id="released" value="option1"> Released
+																</label>
+																<label class="checkbox-inline">
+																  <input type="checkbox" id="approved" value="option1"> Approved
+																</label>
+																<label class="checkbox-inline">
+																  <input type="checkbox" id="mydoc" value="option1"> My Doc
+																</label>
+												
+															</div>
+															
 															
 														</div>
+														<button id="filter" name="filter" class="btn btn-primary">Filter</button>
+													
+													</form>
+													
+												</div>
+												<div class="tfclear"></div>
+											
+											
+											</div>
+										</div>	
+									</div>
 
-                        </div>
-                        <div id="">
-                            <div  class="containers">
-                            	<table id="historydata"
-															               
-									             		data-height="350"
-									               	data-search="true"
-             						  				data-pagination="true"
-									               	data-toggle="table"
-									               	class="display table table-bordered"
-															>
-                        					<thead>
-                                	<tr>
-                                		<th data-field="no" data-sortable="true">No</th>
-                          						<th data-field="barcode" data-sortable="true">Barcode</th>
-                                      <th data-field="title" data-sortable="true">Title</th>
-                                      <th data-field="office" data-sortable="true">Office</th>
-                                      <th data-field="owner" data-sortable="true">Owner</th>
-                                      <th data-field="date" data-sortable="true">Date</th>
-                                     <!-- <th data-field="type" data-sortable="true">Type</th> -->
-                                      
-                                  </tr>
-																	</thead>															
+								</div>
+									
+								<div  class="containers">
+									<table id="historydata"										   
+									data-height="320"
+									data-search="true"
+									data-pagination="true"
+									data-toggle="table"
+									class="display table table-bordered"
+									>
+									
+										<thead>
+											<tr>
+												<th data-field="no" data-sortable="true">No</th>
+														<th data-field="barcode" data-sortable="true">Barcode</th>
+											  <th data-field="title" data-sortable="true">Title</th>
+											  <th data-field="office" data-sortable="true">Office</th>
+											  <th data-field="owner" data-sortable="true">Owner</th>
+											  <th data-field="date" data-sortable="true">Date</th>
+											 <!-- <th data-field="type" data-sortable="true">Type</th> -->
+											  
+										  </tr>
+										</thead>															
 
-                               </table>
-                            </div>
-                        </div>
-
-
-                </div>
-                <div class="tfclear"></div>
-              </div>
+								   </table>
+								</div>
+								
+								<button id="DocConprint" name="print" class="btn btn-primary pull-right" style="margin-top:5px;"><span class="glyphicon glyphicon-print"></span> Print</button>
+								
+								<div class="tfclear"></div>
+							</div>
+							
+							
 						</div>
-          </div>     
+					</div>
+			</div>     
        </div>
     </div>
 
