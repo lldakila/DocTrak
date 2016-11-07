@@ -252,12 +252,18 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 										<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Report <b class="caret"></b></a>
 											<ul class="dropdown-menu navbar-right" role="menu">
 												<li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Document Tracking</span></a>
-															<ul class="dropdown-menu down-bgcolor">
-																<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doccons.php"; ?>"><span>Document Consolidation</span></a></li>
-																<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>Office Document Flow</span></a></li>
-																<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docsummary.php"; ?>"><span>Consolidated Accomplishment</span></a></li>
-															</ul>
-														</li>
+													<ul class="dropdown-menu down-bgcolor">
+														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doccons.php"; ?>"><span>Document Consolidation</span></a></li>
+														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>Office Document Flow</span></a></li>
+														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docsummary.php"; ?>"><span>Consolidated Accomplishment</span></a></li>
+													</ul>
+												</li>
+												<li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>BAC</span></a>
+													<ul class="dropdown-menu down-bgcolor">
+														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/history.php"; ?>"><span>History</span></a></li>
+														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/consolidoc.php"; ?>"><span>Consolidated Document</span></a></li>
+													</ul>
+												</li>
 											</ul>
 											<!--<ul class="dropdown-menu">
 												<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/dochistory.php"; ?>">Document History</a></li>

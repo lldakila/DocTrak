@@ -234,9 +234,9 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 			                        	                                    
 			                                <table id="responds"
 			                                	data-height="430"
-																	      data-toggle="table"
-																	      class="display table table-bordered"
-																	      data-striped="true"
+												data-toggle="table"
+												class="display table table-bordered"
+												data-striped="true"
 			                                	>
 			                                	<thead>
 																			    <tr>
