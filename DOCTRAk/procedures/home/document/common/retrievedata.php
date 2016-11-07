@@ -132,23 +132,23 @@ echo "<div id='scroll'>";
      class="display table table-bordered"
 		      
 		      >';
-    echo "<thead>
+    echo "	<thead>
     			<tr>
-						<th>Step</th>
-						<th>Office</th>
-						<th>Received by</th>
-						<th>Received from</th>
-						<th>Received date</th>
-						<th>Received comment</th>
-						<th>For release</th>	
-						<th>For release comment</th>	
-						<th>For release date</th>
-						<th>Release by</th>		
-						<th>Release to</th>
-						<th>Release date</th>		
-						<th>Release comment</th>				
+					<th>Step</th>
+					<th>Office</th>
+					<th>Received by</th>
+					<th>Received from</th>
+					<th>Received date</th>
+					<th>Received comment</th>
+					<th>For release</th>	
+					<th>For release comment</th>	
+					<th>For release date</th>
+					<th>Release by</th>		
+					<th>Release to</th>
+					<th>Release date</th>		
+					<th>Release comment</th>				
 			    </tr>
-			  	</thead>";
+			</thead>";
 		mysqli_free_result($result);
 		$result=mysqli_query($con,$sql);
     while ($query=mysqli_fetch_array($result))
