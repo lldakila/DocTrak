@@ -145,11 +145,11 @@
 									</div>
 
 								</div>
-									
+										<!-- data-search="true" -->
 								<div  class="containers">
 									<table id="historydata"										   
 									data-height="320"
-									data-search="true"
+								
 									data-pagination="true"
 									data-toggle="table"
 									class="display table table-bordered"
