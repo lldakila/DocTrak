@@ -1,5 +1,5 @@
 <footer>
-		<div class="footer">
+		<div class="footer" id="footer">
 				<div class="footerbg">
 						<div class="container">
 								<div class="row">
@@ -23,11 +23,11 @@
                              <img <?php
                                 $printme="src=".$PROJECT_ROOT."images/home/logo/misdlogo.png";
                                 echo $printme;
-                                ?> width="35" height="30" alt="MISD" title="MISD" align="left" />
+                                ?> width="30" height="25" alt="MISD" title="MISD" align="left" />
                              <img <?php
                                 $printme="src=".$PROJECT_ROOT."images/home/logo/pglu-logo.png";
                                 echo $printme;
-                                ?> width="35" height="30" alt="PGLU" title="PGLU" align="left" />
+                                ?> width="30" height="25" alt="PGLU" title="PGLU" align="left" />
                          	</div>
 											</div>
 								</div>
