@@ -21,6 +21,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -65,32 +72,32 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="content">
 
 		<div id="leftmenu">
-				<div id='cssmenu'>
+			<div id='cssmenu'>
+				<ul>
+					<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
 						<ul>
-						   	<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-						      <ul>
-									 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
-									 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-								 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-								 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-						      </ul>
-						   	</li>
-						   	
-						   <?php
-						   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-						   {
-						      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-						      <ul>
-							 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-							 <li><a href="#"><span>Check In</span></a></li>
-						 <li><a href="#"><span>Backlog</span></a></li>
-						      </ul>
-						   </li>'; */
-						   }
-						   ?>
-				
+							<li><a href='javascript:newDocument()'><span>New</span></a></li>
+							<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+							<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+							<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
 						</ul>
-			  </div>
+					</li>
+					
+				   <?php
+				   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+				   {
+					  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+					  <ul>
+					 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+					 <li><a href="#"><span>Check In</span></a></li>
+				 <li><a href="#"><span>Backlog</span></a></li>
+					  </ul>
+				   </li>'; */
+				   }
+				   ?>
+		
+				</ul>
+			</div>
 		</div>
 
 	<div class="content">
@@ -104,167 +111,166 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
             			<div class="post">
             				
             					<div id="post100" class="col-xs-12 col-md-8">
-                        <h2>RECEIVE DOCUMENT</h2>
-													<hr class="hrMargin" style="margin-bottom:10px;">
-                        	<form name="process" method="post" action="receive/process.php" onsubmit="return validate();" enctype="multipart/form-data">
+									<h2>RECEIVE DOCUMENT</h2>
+									<hr class="hrMargin" style="margin-bottom:10px;">
+										<form name="process" method="post" action="receive/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
-    												<div class="table1 form-horizontal">
-									    				
-									    					<div class="form-group">
-																    <label class="col-sm-2 control-label">From:</label>
-																    <div class="col-sm-10">
-																      	<input type="text" class="form-control" id="userId" placeholder="Scan ID...">
-																    </div>
-															  </div>
-															  
-															  <div class="form-group">
-																    <label class="col-sm-2 control-label">BarCode No:</label>
-																    <div class="col-sm-10">
-																    		<input id="primarykey" readonly="readonly" name="primarykey" type="hidden" />
-																      	<input type="hidden" readonly="readonly" class="form-control" id="barcode" name="barcode" placeholder="Title">
-																      	<input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
-																    </div>
-																</div>
-																
-																<div class="form-group">
-																    <label class="col-sm-2 control-label">Title:</label>
-																    <div class="col-sm-10">
-																      	<input type="text" class="form-control" id="title" readonly="readonly" name="title" placeholder="">
-																    </div>
-																</div>
-																
-																<div class="form-group">
-																    <label class="col-sm-2 control-label">Document Type:</label>
-																    <div class="col-sm-10">
-																      	<input type="text" class="form-control" id="documenttype" readonly="readonly" name="documenttype" placeholder="">
-																    </div>
-																</div>
-																
-																<div class="form-group">
-																    <label class="col-sm-2 control-label">Template:</label>
-																    <div class="col-sm-10">
-																      	<input type="text" class="form-control" id="template" readonly="readonly" name="template" placeholder="">
-																    </div>
-																</div>
-																
-																<div class="form-group">
-																    <label class="col-sm-2 control-label">Comment:</label>
-																    <div class="col-sm-10">
-																    		
-																    				<?php                      
-									                            require_once("../../connection.php");
-									                            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-									                            $con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
-									                            $query="SELECT Message FROM message WHERE Message_Module = 'tracking' ORDER BY Message";
-									                            $result=mysqli_query($con,$query);
-									                            echo '<select id="comment" class="form-control">';
-									                            while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-									                            {
-									                                echo '<option>';
-									                                echo $row['Message'];
-									                                echo '</option>';
-									                            }
-									                            echo '<option value="other">Other</option>';
-									                            echo '</select>';
-										                        ?>
-																      	
-																    </div>
-																</div>
-																
-																<div class="form-group">
-																    <label class="col-sm-2 control-label"></label>
-																    <div class="col-sm-10">
-																      	<textarea class="form-control" rows="5" id="commenttext" readonly="readonly" name="commenttext"></textarea>
-																    </div>
-																</div>
-																
-																<div class="form-group">
-																    <label class="col-sm-2 control-label">Attachment:</label>
-																    <div class="col-sm-10">
-																      	<span id="attachment"></span>
-																    </div>
-																</div>
+											<div class="table1 form-horizontal">
+												
+												<div class="form-group">
+													<label class="col-sm-2 control-label">From:</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="userId" placeholder="Scan ID...">
+													</div>
+												</div>
+											  
+												<div class="form-group">
+													<label class="col-sm-2 control-label">BarCode No:</label>
+													<div class="col-sm-10">
+															<input id="primarykey" readonly="readonly" name="primarykey" type="hidden" />
+														<input type="hidden" readonly="readonly" class="form-control" id="barcode" name="barcode" placeholder="Title">
+														<input id="barcodeno" readonly="readonly" name="barcodeno" type="text" class="form-control"/>
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Title:</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="title" readonly="readonly" name="title" placeholder="">
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Document Type:</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="documenttype" readonly="readonly" name="documenttype" placeholder="">
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Template:</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="template" readonly="readonly" name="template" placeholder="">
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Comment:</label>
+													<div class="col-sm-10">
+															
+														<?php                      
+															require_once("../../connection.php");
+															global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+															$con=mysqli_connect($DB_HOST, $DB_USER,$DB_PASS,$BD_TABLE);
+															$query="SELECT Message FROM message WHERE Message_Module = 'tracking' ORDER BY Message";
+															$result=mysqli_query($con,$query);
+															echo '<select id="comment" class="form-control">';
+															while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+															{
+																echo '<option>';
+																echo $row['Message'];
+																echo '</option>';
+															}
+															echo '<option value="other">Other</option>';
+															echo '</select>';
+														?>
+														
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-sm-2 control-label"></label>
+													<div class="col-sm-10">
+														<textarea class="form-control" rows="5" id="commenttext" readonly="readonly" name="commenttext"></textarea>
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Attachment:</label>
+													<div class="col-sm-10">
+														<span id="attachment"></span>
+													</div>
+												</div>
 
-                    					<?php
-         
-																if($_SESSION['operation']=='save')
-																	{
-																		echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Received Successfully</div>";
-																  }
-																    else if ($_SESSION['operation']=='error') 
-																  {
-																    echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
-																    echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";
-																  }
-																
-																     $_SESSION['operation']='clear';
+												<?php
 
-															?>
+												if($_SESSION['operation']=='save')
+													{
+														echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Received Successfully</div>";
+												  }
+													else if ($_SESSION['operation']=='error') 
+												  {
+													echo"<div style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. </div>";
+													echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong.</div>";
+												  }
+												
+													 $_SESSION['operation']='clear';
 
-					                  		<!--- BUTTONS ACTIVITY START --->
-					                      <div class="input1">
-					                         <input type="submit" value="Receive" class="btn btn-primary"/>
-					                      </div>
-					                      <!--- BUTTONS ACTIVITY END--->
+												?>
 
-                  					</div>
+												<!--- BUTTONS ACTIVITY START --->
+												<div class="input1">
+													<input type="submit" value="Receive" class="btn btn-primary" id="btn"/>
+												</div>
+												<!--- BUTTONS ACTIVITY END--->
 
-                    			</form>
+											</div>
 
-                  		</div>
+										</form>
 
-                        <div id="postright0" class="col-xs-6 col-md-4">
-                        
-	                            	<form id="tfnewsearch" method="post">
-	                                    <div class="input-group">
-	                                        <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-	                                        <span class="input-group-btn">
-	                                        <button id="search_receiveddoc" class="btn btn-default">Search</button>
-	                                        </span>
-	                                    </div>	
-	                              </form>	
-    
-		                            <!--AUTOSUGGEST SEARCH START-->
-		                        			<!--<div id="display"></div>-->
-		                        		<!--AUTOSUGGEST SEARCH END-->
-		                        		<hr class="hrMargin">
-                        
-			                         	<div class="postright">  
-			                            
-			                        	                                    
-			                                <table id="responds"
-			                                	data-height="430"
-												data-toggle="table"
-												class="display table table-bordered"
-												data-striped="true"
-			                                	>
-			                                	<thead>
-																			    <tr>
-																							<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
-																							<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
-																							<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
-																							<th  data-visible="false" data-field="description" data-sortable="true">description</th>
-																							<th data-visible="false" data-field="template" data-sortable="true">template</th>
-																							<th data-visible="false" data-field="type" data-sortable="true">type</th>
-																							
-																			    </tr>
-																			  </thead>
-			                                	
-			                                </table>
+								</div>
+
+								<div id="postright0" class="col-xs-6 col-md-4">
+								
+									<form id="tfnewsearch" method="post">
+										<div class="input-group">
+											<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+											<span class="input-group-btn">
+											<button id="search_receiveddoc" class="btn btn-default btn-search" id="btn">Search</button>
+											</span>
+										</div>	
+									</form>	
 			
-			                            
-			                          </div>
-                        </div>
+									<!--AUTOSUGGEST SEARCH START-->
+										<!--<div id="display"></div>-->
+									<!--AUTOSUGGEST SEARCH END-->
+									<hr class="hrMargin">
+					
+									<div class="postright">  
+									
+																		
+										<table id="responds"
+										data-height="430"
+										data-toggle="table"
+										class="display table table-bordered"
+										data-striped="true"
+										>
+											<thead>
+												<tr>
+													<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+													<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
+													<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
+													<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+													<th data-visible="false" data-field="template" data-sortable="true">template</th>
+													<th data-visible="false" data-field="type" data-sortable="true">type</th>		
+												</tr>
+											</thead>
+											
+										</table>
+		
+									
+									</div>
+								</div>
 							
-            		        <div class="tfclear"></div>
-            		  </div>
+								<div class="tfclear"></div>
+						</div>
             		</div>
-            </div> 
-          </div>
+				</div> 
+			</div>
             
-      </div>
+		</div>
         
-  </div>
+	</div>
     
 </div>
 <!------------------------------------ end content ------------------------------------->

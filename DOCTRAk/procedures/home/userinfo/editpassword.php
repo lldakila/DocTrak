@@ -20,6 +20,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 </title>
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
 
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -49,31 +55,31 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="content">
 
 	<div id="leftmenu">
-			<div id='cssmenu'>
-				<ul>
-				   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-				      <ul>
-							 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
-							 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-						 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-						 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-				      </ul>
-				   </li>
-				   <?php
-				   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-				   {
-				      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-				      <ul>
-					 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-					 <li><a href="#"><span>Check In</span></a></li>
-				 <li><a href="#"><span>Backlog</span></a></li>
-				      </ul>
-				   </li>'; */
-				   }
-				   ?>
-		
-				</ul>
-		  </div>
+		<div id='cssmenu'>
+			<ul>
+				<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+					<ul>
+						<li><a href='javascript:newDocument()'><span>New</span></a></li>
+						<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+						<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+						<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+					</ul>
+				</li>
+			   <?php
+			   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+			   {
+				  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				  <ul>
+				 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+				 <li><a href="#"><span>Check In</span></a></li>
+			 <li><a href="#"><span>Backlog</span></a></li>
+				  </ul>
+			   </li>'; */
+			   }
+			   ?>
+	
+			</ul>
+		</div>
 	</div>
 
 	<div class="main">
@@ -81,116 +87,116 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
     	<div class="container">
     		<div class="row">
         
-        	<div id="post">
+				<div id="post">
             
-            			<div id="post100" class="colsize">
-                      <h2 style="padding-top:20px;">USER INFO - EDIT PASSWORD</h2>
+					<div id="post100" class="colsize">
+						<h2 style="padding-top:20px;">USER INFO - EDIT PASSWORD</h2>
                       	<hr class="hrMargin" style="margin-bottom:10px;">
                         
                         	<div class="col-xs-6 col-sm-3">
                             
-                                        <div id="nav">
-                                                <h4>PROFILE</h4>
-                                                <ol>
-                                                        <li><a href="userinfo.php"><span>PROFILE INFO</span></a></li>
-							<!--<li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>-->
-                                                        <li><a href="editpassword.php"><span>EDIT PASSWORD</span></a></li>
-                                                </ol>
-                                        </div>
+								<div id="nav">
+									<h4>PROFILE</h4>
+									<ol>
+										<li><a href="userinfo.php"><span>PROFILE INFO</span></a></li>
+										<!--<li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>-->
+										<li><a href="editpassword.php"><span>EDIT PASSWORD</span></a></li>
+									</ol>
+								</div>
+								
+								<div id="nav">
+									<h4>MESSAGE</h4>
+									<ol>
+										<li><a href="inbox.php"><span>INBOX</span></a></li>
+<!--                                            <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
+										<li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
+									</ol>
+								</div>
                                         
-                                        <div id="nav">
-                                                <h4>MESSAGE</h4>
-                                                <ol style="height: 345px;">
-                                                        <li><a href="inbox.php"><span>INBOX</span></a></li>
-<!--                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
-                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
-                                                </ol>
-                                        </div>
-                                        
-                          </div>
-                              <div class="col-xs-12 col-sm-6 col-md-8">
-                              			<form method="post" action="editpassword/process.php" onsubmit="return validate();" enctype="multipart/form-data" class="form-horizontal">
-                                    	
-                                    		
-                                    				<div class='form-group'>
-																					    <label for='Current Password' class='col-xs-6 col-md-4 control-label'>Current Password:</label>
-																					    <div class='col-xs-12 col-sm-6 col-md-8'>
-																					      <input type='password' name='currentpass' id='currentpass' class='form-control' />
-																					    </div>
-																					  </div>
-																					  <br /><br />
-																					  
-																					  <div class='form-group'>
-																					    <label for='New Password' class='col-xs-6 col-md-4 control-label'>New Password:</label>
-																					    <div class='col-xs-12 col-sm-6 col-md-8'>
-																					      <input type='password' name='newpass' id='newpass' class='form-control' />
-																					    </div>
-																					  </div>
-																					  
-																					  <div class='form-group'>
-																					    <label for='Verify Password' class='col-xs-6 col-md-4 control-label'>Verify Password:</label>
-																					    <div class='col-xs-12 col-sm-6 col-md-8'>
-																					      <input type='password' name='verifypass' id='verifypass' class='form-control' />
-																					    </div>
-																					  </div>
-																					
-                                    		
-                              							<div style="float:right;">
-                                                
-                                                <input class="btn btn-primary" type="submit" value="Update" />
-                                                
-                                            </div>
+							</div>
+						  
+							<div class="col-xs-12 col-sm-6 col-md-8">
+								<form method="post" action="editpassword/process.php" onsubmit="return validate();" enctype="multipart/form-data" class="form-horizontal">
+								
+									
+									<div class='form-group'>
+										<label for='Current Password' class='col-xs-6 col-md-4 control-label'>Current Password:</label>
+										<div class='col-xs-12 col-sm-6 col-md-8'>
+											<input type='password' name='currentpass' id='currentpass' class='form-control' />
+										</div>
+									</div>
+									<br /><br />
+																	  
+									<div class='form-group'>
+										<label for='New Password' class='col-xs-6 col-md-4 control-label'>New Password:</label>
+										<div class='col-xs-12 col-sm-6 col-md-8'>
+											<input type='password' name='newpass' id='newpass' class='form-control' />
+										</div>
+									</div>
+																	  
+									<div class='form-group'>
+										<label for='Verify Password' class='col-xs-6 col-md-4 control-label'>Verify Password:</label>
+										<div class='col-xs-12 col-sm-6 col-md-8'>
+											<input type='password' name='verifypass' id='verifypass' class='form-control' />
+										</div>
+									</div>							
+							
+									<div style="float:right;">
+								
+										<input class="btn btn-primary" type="submit" value="Update" id="btn" />
+								
+									</div>
+								 
+								</form>
                                          
-                                         </form>
-                                         
-        <?php
+								<?php
 
 
-                             echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
+									 echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
 
-                             if($_SESSION['operation']=='save')
-                             {
+									 if($_SESSION['operation']=='save')
+									 {
 
-                                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully</div>";
-
-
-                             }
-
-                             elseif($_SESSION['operation']=='error')
-                             {
-
-                                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful.</div>";
-                             }
-
-                                                         elseif($_SESSION['operation']=='passwordValidation')
-                                                         {
-
-                                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Old password verification error.</div>";
-                             }
+											 echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully</div>";
 
 
-                             $_SESSION['operation']='clear';
+									 }
 
-                             echo "</div>";
+									 elseif($_SESSION['operation']=='error')
+									 {
+
+											 echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful.</div>";
+									 }
+
+										elseif($_SESSION['operation']=='passwordValidation')
+										{
+
+												echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Old password verification error.</div>";
+										}
 
 
-     ?>
+									 $_SESSION['operation']='clear';
+
+									 echo "</div>";
+
+
+								?>
                                          
                                          
-                              </div>
-                              <div class="tfclear"></div>	
+							</div>
+						  <div class="tfclear"></div>	
     
     
 							
-                  </div>
-                        <div class="tfclear"></div>
+					</div>
+					<div class="tfclear"></div>
 
             
-          </div>
-        </div>
-      </div>
+				</div>
+			</div>
+		</div>
     
-  </div>
+	</div>
 
 </div>
 <!------------------------------------------- end content -------------------------------->

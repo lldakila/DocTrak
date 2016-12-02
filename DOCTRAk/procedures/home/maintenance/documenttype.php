@@ -26,6 +26,13 @@
 </title>
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -55,164 +62,159 @@
 <div class="content">
 
 	<div id="leftmenu">
-			<div id='cssmenu'>
-				<ul>
-				   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-				      <ul>
-								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
-								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-				      </ul>
-				   </li>
-				   <?php
-				   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-				   	{
-				      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-				      <ul>
-								 	<li><a href="javascript:bacDocument()"><span>New</span></a></li>
-								 	<li><a href="#"><span>Check In</span></a></li>
-							 		<li><a href="#"><span>Backlog</span></a></li>
-					    </ul>
-					   </li>'; */
-				   	}
-				   ?>
-		
-				</ul>
-		  </div>
+		<div id='cssmenu'>
+			<ul>
+				<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+					<ul>
+						<li><a href='javascript:newDocument()'><span>New</span></a></li>
+						<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+						<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+						<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+					</ul>
+				</li>
+			   <?php
+			   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+				{
+				  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				  <ul>
+								<li><a href="javascript:bacDocument()"><span>New</span></a></li>
+								<li><a href="#"><span>Check In</span></a></li>
+								<li><a href="#"><span>Backlog</span></a></li>
+					</ul>
+				   </li>'; */
+				}
+			   ?>
+	
+			</ul>
+		</div>
 	</div>
 
 	<div class="main">
     	<div id="post">
-        <div class="container">
-					<div class="row">
-							<div class="post">
+			<div class="container">
+				<div class="row">
+					<div class="post">
         
-          			<div id="post100" class="col-xs-12 col-md-8">
-                    <h2>DOCUMENT TYPE</h2>
-                    <hr class="hrMargin" style="margin-bottom:10px;">
+						<div id="post100" class="col-xs-12 col-md-8">
+							<h2>DOCUMENT TYPE</h2>
+							<hr class="hrMargin" style="margin-bottom:10px;">
 
-                       	<form name="documenttype" method="post" action="type/process.php"  onsubmit="return validate();">
+								<form name="documenttype" method="post" action="type/process.php"  onsubmit="return validate();">
 
-									    					<div class="table1 form-horizontal">
-									    						
-									    							<div class="form-group">
-																		    <label class="col-sm-2 control-label">Document Name:</label>
-																		    <div class="col-sm-10">
-																		    		<input id="primarykey" name="primarykey" type="hidden" />
-										                        <input id="document_name" name="document_name" type="text" class="form-control" /> 
-																		    </div>
-																	  </div>
-																	  
-																	  <div class="form-group">
-																		    <label class="col-sm-2 control-label">Description:</label>
-																		    <div class="col-sm-10">
-										                        <input id="description" name="description" type="text" class="form-control" /> 
-																		    </div>
-																	  </div>
-																	  
-																	  <div class="form-group">
-																		    <label class="col-sm-2 control-label">Priority:</label>
-																		    <div class="col-sm-10">
-										                       	<select id="priority" name="priority" class="form-control">
-								                              <option>High</option>
-								                              <option>Medium</option>
-								                              <option>Low</option>
-							                             	</select> 
-																		    </div>
-																	  </div>
-																	  
-																	  <div class="form-group">
-																		    <label class="col-sm-2 control-label">Public:</label>
-																		    <div class="col-sm-10">
-										                       	<input id="publicyes" name="publicradio" type="radio" value="Yes"/>Yes &nbsp;
-											                        	<input id="publicno" name="publicradio" type="radio" value="No" checked="checked"/>No
-																		    </div>
-																	  </div>
+									<div class="table1 form-horizontal">
+										
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Document Name:</label>
+											<div class="col-sm-10">
+												<input id="primarykey" name="primarykey" type="hidden" />
+												<input id="document_name" name="document_name" type="text" class="form-control" /> 
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Description:</label>
+											<div class="col-sm-10">
+												<input id="description" name="description" type="text" class="form-control" /> 
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Priority:</label>
+											<div class="col-sm-10">
+												<select id="priority" name="priority" class="form-control">
+													<option>High</option>
+													<option>Medium</option>
+													<option>Low</option>
+												</select> 
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Public:</label>
+											<div class="col-sm-10">
+												<input id="publicyes" name="publicradio" type="radio" value="Yes"/>Yes &nbsp;
+												<input id="publicno" name="publicradio" type="radio" value="No" checked="checked"/>No
+											</div>
+										</div>
+		
+											<?php
+				 
+											   if($_SESSION['operation']=='save'){
 									
-									                    <?php
-									         
-																	           if($_SESSION['operation']=='save'){
-																	
-																	                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
-																	
-																	            }  elseif($_SESSION['operation']=='delete'){
-																	
-																	                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-																	                }
-																	                 elseif($_SESSION['operation']=='update'){
-																	
-																	                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
-																	                }
-																	
-																	               $_SESSION['operation']='clear';
-																				
-																				
-																				?>
+													echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
 									
-									                  		 <!--- BUTTONS ACTIVITY START --->
+												}  elseif($_SESSION['operation']=='delete'){
 									
-									                        <div class="input1">
-							                                <input id="type_mode" name="type_mode" type="hidden" />
-							                                <input  type="submit" value="Delete" onclick="document.getElementById('type_mode').value='delete';" class="btn btn-danger" />
-							                                
-							                                <input type="submit" value="Save" onclick="document.getElementById('type_mode').value='save';" class="btn btn-primary" />
-							                                <input type="button" value="New" onclick="javascript:cleartext();" class="btn btn-primary" />
-									                                
-									                        </div>
-									                           <!--- BUTTONS ACTIVITY END--->
+														 echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+													}
+													 elseif($_SESSION['operation']=='update'){
 									
-									              </div>
+														 echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+													}
+									
+												   $_SESSION['operation']='clear';
+													
+													
+											?>
+		
+										<!--- BUTTONS ACTIVITY START --->								
+										<div class="input1">
+											<input id="type_mode" name="type_mode" type="hidden" />
+											<input  type="submit" value="Delete" onclick="document.getElementById('type_mode').value='delete';" class="btn btn-danger"  id="btn"/>
+											
+											<input type="submit" value="Save" onclick="document.getElementById('type_mode').value='save';" class="btn btn-primary" id="btn" />
+											<input type="button" value="New" onclick="javascript:cleartext();" class="btn btn-primary" id="btn" />																			
+										</div>
+										<!--- BUTTONS ACTIVITY END--->
+			
+									</div>
 
-					   						</form>
-                </div>
+								</form>
+						</div>
                     
-                    <div id="postright0" class="col-xs-6 col-md-4">
+						<div id="postright0" class="col-xs-6 col-md-4">
                     
                     		
                             
                             <form id="tfnewsearch" method="post">
                                 
-                                    <div class="input-group">
-        																	<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-        																	<span class="input-group-btn">
-                                          	<button id="search_type" class="btn btn-default">Search </button>
-                                        	</span>
-                                    </div>
+								<div class="input-group">
+									<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+									<span class="input-group-btn">
+									<button id="search_type" class="btn btn-default btn-search">Search </button>
+									</span>
+								</div>
                                 
-														</form>	
+							</form>	
            							
                             <hr class="hrMargin">
                             
-	                      <div class="postright">
+							<div class="postright">
 	                              
 	                            <table id="responds"
 		                            	data-height="430"
-														      data-toggle="table"
-														      class="display table table-bordered"
-														      data-striped="true"
+										data-toggle="table"
+										class="display table table-bordered"
+										data-striped="true"
 	                            >
 	                            	<thead>
-															    <tr>
-																			<th class="col-md-2"  data-field="id" data-sortable="true">Document Name</th>
-																			<th  class="col-md-8" data-field="description" data-sortable="true">Description</th>
-																			
-															    </tr>
-															  </thead>
+										<tr>
+											<th class="col-md-2"  data-field="id" data-sortable="true">Document Name</th>
+											<th  class="col-md-8" data-field="description" data-sortable="true">Description</th>													
+										</tr>
+									</thead>
 														    
 	                            </table>
 	                        
-	                      </div>
-                    </div>
-
-
-                    <div class="tfclear"></div>
-              </div>
+							</div>
+						</div>
+						<div class="tfclear"></div>
 					</div>
 				</div>
-      </div>
+			</div>
+		</div>
 
-  </div>
+	</div>
 
 </div>
 <!------------------------------------ end content ------------------------------------->

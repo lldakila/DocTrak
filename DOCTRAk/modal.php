@@ -2,7 +2,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close btn-danger" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close btn-danger" id="btn" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Document Tracker</h4>
               </div>
               <div class="modal-body">
@@ -21,7 +21,7 @@
           <div class="modal-dialog" style="width: 600px;">
             <div class="modal-content ">
               <div class="modal-header">
-                <button type="button" class="close btn-danger" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close btn-danger" id="btn" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabels">Document Tracker</h4>
               </div>
               <div class="modal-body">
