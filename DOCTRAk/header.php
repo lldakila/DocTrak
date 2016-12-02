@@ -30,121 +30,193 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 		<div class="mailNoti" >
 			<div class="container">	
 					<div class="row">
-						<div class="col-md-6  ">
-						</div>
 						<div class="col-md-6">
-							
-							<div class="menuMail" style="float:right; width:330px;">
-								
-								<?php
+						</div>
+						
+						<div class="col-md-6">
+							<div class="navbar-buttons navbar-header pull-right" role="navigation">
+								<ul class="nav ace-nav" id="ace-nav">
+
+									<li class="purple" id="purple">
+									
+										<?php
         
-									 require_once("procedures/connection.php");
-									 global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-										 
-									 $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-									 $query="SELECT mail_id, COUNT(mail_id) as mailcount FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
-									   
-									 $result=mysqli_query($con,$query)or die(mysqli_error($con));
-										 //$sql=;
-										 echo "<div class='row'>";
-										 echo '<div class="col-md-12">';
-									 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
-									 
-									 {
-													echo '<div id="mailNotify" style="float:left;">';
-													echo '<span id="mailNoti">';
-													echo '<div id="mails" class="badge">';
-													// echo '<span  id="mailNoti" class="badge"><a href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php"><img  src="'.$PROJECT_ROOT.'images/home/icon/exclamation.gif" width="30" height="20" align="left" /></a>'.$row['mailcount'].'</span>';
-												if ($row['mailcount']<>0)
-												{
-													echo '<a href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php"><img  src="'.$PROJECT_ROOT.'images/home/icon/testmail.gif" width="30" height="20" />'.$row['mailcount'].'</a>&nbsp';
-												}
-												//CHECK IF THERE ARE DEADLINE BAC DOCUMENTS
-										}			
-												 checkDocumentDeadline();
-												 echo '</div>';
+											 require_once("procedures/connection.php");
+											 global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+												 
+											 $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+											 $query="SELECT mail_id, COUNT(mail_id) as mailcount FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+											   
+											 $result=mysqli_query($con,$query)or die(mysqli_error($con));
+												 //$sql=;
+											 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+											 
+											if (($_SESSION['BAC']==1) or ($_SESSION['GROUP']=='POWER ADMIN'))
+											{
+												$sqlString='SELECT COUNT(*) as numOfRow FROM bacdocument_monitoring';
+												$result=mysqli_query($con,$sqlString)or die(mysqli_error($con));
+												$row = mysqli_fetch_array($result);
 												
-											  
-												if (($_SESSION['BAC']==1) or ($_SESSION['GROUP']=='POWER ADMIN'))
-												{
-													$sqlString='SELECT COUNT(*) as numOfRow FROM bacdocument_monitoring';
-													$result=mysqli_query($con,$sqlString)or die(mysqli_error($con));
-													$row = mysqli_fetch_array($result);
-													
-													 if ($row['numOfRow']<>0)
-													{
-														echo '<div  id="bacnoti" class=" badge">';
-														echo '<ul class="nav1 navbar-nav1">
-															<li role="presentation" class="dropdown">';
+												if ($row['numOfRow']<>0)
+												{													
+													echo '<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+																<i class="ace-icon fa fa-bell icon-animated-bell"></i>
+																<span class="badge badge-important" id="badge">'.$row['numOfRow'].'</span>
+															</a>';
+															
+													echo '
+														<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+															<li class="dropdown-header">
+																<i class="ace-icon fa fa-exclamation-triangle"></i>
+																'.$row['numOfRow'].' Notifications
+															</li>
+														';
 														
-														echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">';
-														echo '<img  src="'.$PROJECT_ROOT.'images/home/icon/exclamation.gif" width="30" height="20" />'.$row['numOfRow'];
-														echo '</a>';
-														//echo '</span>';
-														echo '<ul class="dropdown-menu down-bgcolor dropdown-menu-right" style="font-size:12px;">';
-							
 														/////////////////
 														///START BAC NOTIFICATION
 														/////////////////
 														$sqlQuery='SELECT bacdocument_id,fk_officename_bacdocumentlist,bacdocumentdetail,activity,prcost FROM bacdocument_monitoring JOIN bacdocumentlist_tracker ON bacdocument_monitoring.fk_bacdocumentlist_tracker_id = bacdocumentlist_tracker.bacdocumentlist_tracker_id JOIN bacdocumentlist ON bacdocumentlist_tracker.fk_bacdocumentlist_id = bacdocumentlist.bacdocument_id';
 											
-													 $recSet=mysqli_query($con,$sqlQuery);
+														$recSet=mysqli_query($con,$sqlQuery);
 														//$resultSet=  mysqli_fetch_array($recSet);
 														$rowCounter=1;
-							
+														
 														while ($resultSet = mysqli_fetch_array($recSet,MYSQLI_ASSOC))
 														{
-															echo '<li><a href="javascript:RenderBacMonitor(\''.$resultSet['bacdocument_id'].'\')">';
-							
-															echo $resultSet['fk_officename_bacdocumentlist'].' - '.$resultSet['bacdocumentdetail'].' - '.$resultSet['activity'].' ('.number_format($resultSet['prcost'], 2, '.', ',').')';
-															echo '</a>';
-															if($rowCounter!=mysqli_num_rows($recSet))
-															{
-																echo '<li class="divider linebgcolor"></li>';
-															}
-															$rowCounter++;
-															 echo '</li>';
-														}
-							
-							
-														//////
-														echo '</ul></li></ul>';
-														echo '</div>';
-							
-													}
-													
-													
+															
+															 
+															 echo '
+																<li class="dropdown-content">
+																	<ul class="dropdown-menu dropdown-navbar navbar-pink">
+																	';
+																	
+																	echo '
+																		<li>
+																			<a href="javascript:RenderBacMonitor(\''.$resultSet['bacdocument_id'].'\')">
+																		';
+																	echo $resultSet['fk_officename_bacdocumentlist'].' - '.$resultSet['bacdocumentdetail'].' - '.$resultSet['activity'].' ('.number_format($resultSet['prcost'], 2, '.', ',').')';
+																	
+																	echo '
+																			</a>
+																		</li>
+																		';
+																echo '
+																	</ul>
+																</li>';
+														}	
+
+														echo '	
+															<li class="dropdown-footer">
+																<a href="#">
+																	See all notifications
+																	<i class="ace-icon fa fa-arrow-right"></i>
+																</a>
+															</li>
+														</ul>';
 													
 												}
-												else
+											}
+											else
 												{
 													echo '<span  id="deadlineNoti" class="badge"></span>'; 
 												}
+
+										?>
+									</li>
+
+									<li class="green" id="green">
+									
+										<?php
+        
+											 require_once("procedures/connection.php");
+											 global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+												 
+											 $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+											 $query="SELECT mail_id, COUNT(mail_id) as mailcount FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+											   
+											 $result=mysqli_query($con,$query)or die(mysqli_error($con));
+												 //$sql=;
+											 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+												 
+											 {
 												
-												echo '</span>';
-												echo '</div>';
-												
-									   
-													
-												echo "<div id='Admin'><p> <a href=".$PROJECT_ROOT."procedures/home/userinfo/userinfo.php>Hi,".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."</a> | <a href=".$PROJECT_ROOT."procedures/home/logout.php style='color:#fff;'>Logout</a></p></div>";
+												if ($row['mailcount']<>0)
+												{
+													//echo '<a href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php"><img  src="'.$PROJECT_ROOT.'images/home/icon/testmail.gif" width="30" height="20" />'.$row['mailcount'].'</a>&nbsp';
+													echo '<a data-toggle="dropdown" class="dropdown-toggle" href="'.$PROJECT_ROOT.'procedures/home/userinfo/inbox.php">
+																<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
+																<span class="badge badge-success" id="badge">'.$row['mailcount'].'</span>
+															</a>';
+															
+													echo '
+														<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+															<li class="dropdown-header">
+																<i class="ace-icon fa fa-envelope-o"></i>
+																'.$row['mailcount'].' Messages
+															</li>
+
+															<li class="dropdown-content">
+																<ul class="dropdown-menu dropdown-navbar">
+																	<li>
+																		<a href="#" class="clearfix">
+																			<img src="assets/avatars/avatar.png" class="msg-photo" alt="Alexs Avatar" />
+																			<span class="msg-body">
+																				<span class="msg-title">
+																					<span class="blue">Alex:</span>
+																					Ciao sociis natoque penatibus et auctor ...
+																				</span>
+
+																				<span class="msg-time">
+																					<i class="ace-icon fa fa-clock-o"></i>
+																					<span>a moment ago</span>
+																				</span>
+																			</span>
+																		</a>
+																	</li>
+
+																</ul>
+															</li>
+
+															<li class="dropdown-footer">
+																<a href="inbox.html">
+																	See all messages
+																	<i class="ace-icon fa fa-arrow-right"></i>
+																</a>
+															</li>
+														</ul>';
+												}
+												//CHECK IF THERE ARE DEADLINE BAC DOCUMENTS
+
+											 }
+					
+										?>
+									</li>
 									
-									echo '<div class="tclear"></div>';
-									
-									
-									mysqli_free_result($result);
-					   
-								?>	
+									<li>
+										<?php
+        
+											 require_once("procedures/connection.php");
+											 global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+												 
+											 $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+											 $query="SELECT mail_id, COUNT(mail_id) as mailcount FROM mail WHERE FK_SECURITY_USERNAME_OWNER = '".$_SESSION['usr']."' AND MAILSTATUS=0";
+											   
+											 $result=mysqli_query($con,$query)or die(mysqli_error($con));
+												 //$sql=;
+											 while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC))
+											 
+											echo "<div id='Admin' class='menuMail'><p> <a href=".$PROJECT_ROOT."procedures/home/userinfo/userinfo.php>Hi,".$_SESSION['security_name']." of ".$_SESSION['OFFICE']."</a> | <a href=".$PROJECT_ROOT."procedures/home/logout.php style='color:#fff;'>Logout</a></p></div>";
+											
+											mysqli_free_result($result);
+										?>
+									</li>
+	
+								</ul>
 								
 								
-								
-								</div>
-								</div>
 							</div>
-								
-								
-							<div class="tclear"></div>
-							
 						</div>
+						
 					</div>
 			</div>
 		</div>
@@ -157,7 +229,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
                                 $printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png";
                                 echo $printme;
                                 ?>
-                                        width="90" height="80" alt="PGLU" title="DocTrak" align="left" />
+                                        width="80" height="70" alt="PGLU" title="DocTrak" align="left" />
 								<h3>
 									<?php
 
@@ -186,7 +258,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 								</ul>
 							</div> -->
 							
-							<nav class="navbar navbar-inverse1 navbar-static-top marginBottom-0" role="navigation">
+							<nav class="navbar navbar-static-top marginBottom-0" id="navbar-inverse1" role="navigation">
 								<div class="navbar-header">
 									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
 										<span class="sr-only">Toggle navigation</span>
@@ -251,14 +323,14 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 										</li>
 										<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Report <b class="caret"></b></a>
 											<ul class="dropdown-menu navbar-right" role="menu">
-												<li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Document Tracking</span></a>
+												<li class="dropdown-submenu" id="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>Document Tracking</span></a>
 													<ul class="dropdown-menu down-bgcolor">
 														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doccons.php"; ?>"><span>Document Consolidation</span></a></li>
 														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/doconprocess.php"; ?>"><span>Office Document Flow</span></a></li>
 														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/docsummary.php"; ?>"><span>Consolidated Accomplishment</span></a></li>
 													</ul>
 												</li>
-												<li class="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>BAC</span></a>
+												<li class="dropdown-submenu" id="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span>BAC</span></a>
 													<ul class="dropdown-menu down-bgcolor">
 														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/history.php"; ?>"><span>History</span></a></li>
 														<li><a href="<?php echo $PROJECT_ROOT."procedures/home/report/consolidoc.php"; ?>"><span>Consolidated Document</span></a></li>
@@ -287,7 +359,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
                                               <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/office.php">Office</a></li>
                                              
                                         <li class="divider"></li>
-                                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Security</a>
+                                        <li class="dropdown dropdown-submenu" id="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Security</a>
                                             <ul class="dropdown-menu down-bgcolor">
                                                 <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/users.php">Users</a></li>
                                                 <li><a href="'.$PROJECT_ROOT.'procedures/home/maintenance/group.php">Group</a></li>
@@ -301,7 +373,7 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 										
 										<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
 											<ul class="dropdown-menu navbar-right" id="ulheader">
-												<li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Manual</a>
+												<li class="dropdown dropdown-submenu" id="dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Manual</a>
                                                     <ul class="dropdown-menu down-bgcolor">
                                                     	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21917&authkey=!AE_FMAlza931EV0&ithint=file%2cpdf" ><span>Document Manual</span></a></li>
                                                     	<li><a target='_blank' href="https://onedrive.live.com/redir?resid=30BD84299085B6FB!21824&authkey=!APqDiAq2vDQLtd8&ithint=file%2cpdf" ><span>Financial Document Templates</span></a></li>
