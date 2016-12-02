@@ -12,6 +12,16 @@ require_once('fpdf/fpdf.php');
 require_once('fpdi/fpdi.php');
 require_once("../../../connection.php");
 
+if(!json_decode($_POST['data'], true)) exit();
+// var_dump($_POST['data']);
+// $_POST['data'] = html_entity_decode($_POST['data']);
+ // var_dump($_POST['data']);
+$_POST['data'] = json_decode($_POST['data'], true);
+ // var_dump($_POST['data']);
+
+ //  exit();
+
+
 date_default_timezone_set($_SESSION['Timezone']);
 
 $textAlignment="C";
@@ -43,12 +53,12 @@ function Header()
     $this->Cell(195.9,4,'City of San Fernando',0,1,'C');
     $this->Ln(5);
     $this->SetFont('BOOKOS','B',14);
-    $this->Cell(195.9,4,'OFFICE OF THE GOVERNOR',0,1,'C');
-    // $this->Ln(2);
+    // $this->Cell(195.9,4,'OFFICE OF THE GOVERNOR',0,1,'C');
+    $this->Ln(4);
     // $this->SetFont('BOOKOS','I',14);
     // $this->Cell(195.9,4,'HUMAN RESOURCE MANAGEMENT DIVISION',0,1,'C');
 
-	$this->Ln(2);
+	$this->Ln(8);
     $this->SetLineWidth(.5);
     $this->SetDrawColor(1,162,255);
     $this->Line(10,$this->GetY(),205.9,$this->GetY());
@@ -147,26 +157,22 @@ function CheckPageBreak($h)
 	$this->Line(10, $contentY+5, 205, $contentY+5);
 
 
-	$this->SetXY(10, $contentY);
-	$this->MultiCell(49, 5, "Applicant",1,'C');
+    $this->SetXY(10, $contentY);
+    $this->MultiCell(30, 5, "Barcode",1,'C');
 
+    $this->SetXY(40, $contentY);
+    $this->MultiCell(40, 5, "Title",1,'C');
 
-	$this->SetXY(59, $contentY);
-	$this->MultiCell(30, 5, "Position",1,'C');
+    $this->SetXY(80, $contentY);
+    $this->MultiCell(50, 5, "Office",1,'C');
 
-	$this->SetXY(89, $contentY);
-	$this->MultiCell(20, 5, "Item No",1,'C');
+    $this->SetXY(130, $contentY);
+    $this->MultiCell(40, 5, "Owner",1,'C');
 
-	$this->SetXY(109, $contentY);
-	$this->MultiCell(20, 5, "SG",1,'C');
-
-	$this->SetXY(129, $contentY);
-	$this->MultiCell(49, 5, "Department",1,'C');
-
-	$this->SetXY(178, $contentY);
-	$this->MultiCell(30, 5, "Date Applied",1,'C');
-	$this->SetFont('Helvetica',"");
-	$this->SetFontSize(8);
+    $this->SetXY(170, $contentY);
+    $this->MultiCell(38, 5, "Date",1,'C');
+    $this->SetFont('Helvetica');
+    $this->SetFontSize(8);
     }
 }
 
@@ -233,23 +239,54 @@ $pdf->SetRightMargin(10);
 $fontUsed='Helvetica';
 $pdf->SetFont($fontUsed,"B");
 $pdf->SetTextColor(0, 0, 0);
-$pdf->SetFontSize(12);
+$pdf->SetFontSize(10);
 $pdf->AliasNbPages();
 $pdf->AddPage("P","Letter");
 
 
 
 
+// $a=json_encode($_POST);
 
 
+    // $pdf->Cell(195.9,4,$a,0,1,'C');
+$contentY=$pdf->GetY()+5;
+
+$pdf->SetXY(10, $contentY);
+$pdf->MultiCell(30, 5, "Barcode",1,'C');
+
+$pdf->SetXY(40, $contentY);
+$pdf->MultiCell(40, 5, "Title",1,'C');
+
+$pdf->SetXY(80, $contentY);
+$pdf->MultiCell(50, 5, "Office",1,'C');
+
+$pdf->SetXY(130, $contentY);
+$pdf->MultiCell(40, 5, "Owner",1,'C');
+
+$pdf->SetXY(170, $contentY);
+$pdf->MultiCell(38, 5, "Date",1,'C');
+
+//Table with 20 rows and 4 columns
+$pdf->SetWidths(array(30,40,50,40,38));
+srand(microtime()*1000000);
+$pdf->SetFont($fontUsed);
+$pdf->SetFontSize(8);
 
 
+// $key=array();
+// $key=$_POST['data'];
+// echo $key['data'][0]['no'];
+// // exit();
+// print_r($_POST['data']['data'][0]);
+// exit();
 
-
-
-
-
-
+// var_dump($_POST);
+// exit();
+foreach ($_POST['data']['data'] as $key ) 
+{
+    $pdf->Row(array($key['barcode'],$key['title'],$key['office'],$key['owner'],$key['date']));
+}
 
 
 $pdf->Output();
@@ -260,5 +297,5 @@ function getDepartment($username)
 	$con = mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
 
 
-	
+
 }

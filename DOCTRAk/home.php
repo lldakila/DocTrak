@@ -23,6 +23,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <link href="css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
+<link rel="stylesheet" href="css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="fonts/fonts.googleapis.com.css" />
 
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
@@ -33,7 +39,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 
 <script src="js/bootstrap-table.js"></script>
-
 
 
 <link href="css/bootstrap-submenu.min.css" rel="stylesheet" />
@@ -121,122 +126,120 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 			        	<div class="col-md-12 postTable">
 
-											<div class="card">
-													<ul class="nav nav-tabs" role="tablist">
-														<li class="active" role="presentation"><a href="#home" aria-controls="profile" role="tab" data-toggle="tab">Docs</a></li>
-														<li role="presentation"><a href="#stats" aria-controls="home" role="tab" data-toggle="tab">Statistics</a></li>
+							<div class="card">
+								<ul class="nav nav-tabs" role="tablist">
+									<li class="active" role="presentation"><a href="#home" aria-controls="profile" role="tab" data-toggle="tab">Docs</a></li>
+									<li role="presentation"><a href="#stats" aria-controls="home" role="tab" data-toggle="tab">Statistics</a></li>
 
-														<li role="presentation"><a href="#info" aria-controls="messages" role="tab" data-toggle="tab">Info</a></li>
+									<li role="presentation"><a href="#info" aria-controls="messages" role="tab" data-toggle="tab">Info</a></li>
 
-													</ul>
+								</ul>
 
-														<div class="tab-content">
-														  <div id="home" class="tab-pane fade in active">
+									<div class="tab-content">
+										<div id="home" class="tab-pane fade in active dataTables_wrapper form-inline no-footer">
 
-																		<div id='docList' class="containers">
+											<div id='docList' class="containers">
 
-								<table id="tableBootstrap"
+												<table id="tableBootstrap"
+												data-height="405"
+											   data-search="true"
+												data-pagination="true"
+											   data-toggle="table"
+											   class="table table-striped table-bordered table-hover dataTable no-footer"
+											   >
+											   
+													<thead>
+													<tr>
+														<th data-field="barcode" data-sortable="true">Barcode</th>
+													<th data-field="title" data-sortable="true">Title</th>
+													<th data-field="type" data-sortable="true">Type</th>
+													<th data-field="office" data-sortable="true">Originating Office</th>
+													 <th data-field="transdate" data-sortable="true"  data-width="20%"> Date </th>
+													<th data-field="officeloc" data-sortable="true">Document Location</th>
+													<th data-field="received" data-sortable="true">Date Received</th>
+													<th data-field="forrelease" data-sortable="true">ForRelease Date</th>
+													<th data-field="release" data-sortable="true">Date Released</th>
+													<th data-field="status" data-sortable="true">Status</th>
+													<th data-field="remark" data-sortable="true">Remark</th>
 
-				             	data-height="405"
-				               data-search="true"
-				  				data-pagination="true"
-				               data-toggle="table"
-				               class="display table table-bordered"
-				               >
-				            <thead>
-				            <tr>
-				            	<th data-field="barcode" data-sortable="true">Barcode</th>
-			                <th data-field="title" data-sortable="true">Title</th>
-			                <th data-field="type" data-sortable="true">Type</th>
-			                <th data-field="office" data-sortable="true">Originating Office</th>
-			                 <th data-field="transdate" data-sortable="true"  data-width="20%"> Date </th>
-			                <th data-field="officeloc" data-sortable="true">Document Location</th>
-			                <th data-field="received" data-sortable="true">Date Received</th>
-			                <th data-field="forrelease" data-sortable="true">ForRelease Date</th>
-			                <th data-field="release" data-sortable="true">Date Released</th>
-			                <th data-field="status" data-sortable="true">Status</th>
-			                <th data-field="remark" data-sortable="true">Remark</th>
-
-				            </tr>
-				            </thead>
-				        </table>
-																		</div>
-
-									<div class="SHOWinput">
-										<div class='row'>
-											<div class="col-md-7 col-xs-7">
-													<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
-													<div class="alignRIGHT">
-													  <select id="type" name="type" class="form-control" onchange="refreshList($('#chkRecord').is(':checked'))">
-													  <option value='All'>All Documents</option>
-													  <option value='Pending'>Pending Documents</option>
-													  <option value='Approved'>Approved Documents</option>
-
-													  </select>
-													</div>
+													</tr>
+													</thead>
+												</table>
 											</div>
 
-											<div class="col-md-5 col-xs-5">
+											<div class="SHOWinput">
+												<div class='row'>
+													<div class="col-md-7 col-xs-7">
+															<label style="float: left; padding-top: 7px; margin-right:10px;">Filter:</label>
+															<div class="alignRIGHT">
+															  <select id="type" name="type" class="form-control" onchange="refreshList($('#chkRecord').is(':checked'))">
+															  <option value='All'>All Documents</option>
+															  <option value='Pending'>Pending Documents</option>
+															  <option value='Approved'>Approved Documents</option>
 
-												<div style="text-align:right;">
-													<label class="checkbox-inline">
-													  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 100 records</font>
-													</label>
-												<!--	<label class="checkbox-inline">
-													   <p>*Click document to view full details.</p> 
-													</label> -->
-												</div>
-
-											</div>
-
-										</div>
-										</div>
-
-									  </div>
-<!------------------------------------------- STATS  -------------------------------->
-									  <div id="stats" class="tab-pane fade">
-
-										  </div>
-
-<!------------------------------------------- STATS  -------------------------------->
-															<div id="info" class="tab-pane fade">
-																<p>Whats New (v2.00)</p>
-																<ul>
-																	<li>Mobile Friendly Site</li>
-																	<li>Improved Gui</li>
-																	<li>Improved System Manual</li>
-																	<li>More Reports</li>
-																	<li>Faster Home Page Loading</li>
-																	<li>and much more..</li>
-																</ul>
-																<br>
-																<p>Whats New (v1.17)</p>
-																<ul>
-																	<li>Improved Searching and Loading Speed</li>
-																	<li>Incorporating Template Flow on document creation</li>
-																	<li>New Home Page</li>
-																	<li>Addition of Reports on Document Transactions</li>
-																	<li>Feedback Module</li>
-																	<li>and much more..</li>
-																</ul>
-																<br>
-																<p>Upcoming Release</p>
-																<ul>
-																	<li>Possible inclusion of BAC and Communication Modules</
-																</ul>
+															  </select>
 															</div>
+													</div>
+
+													<div class="col-md-5 col-xs-5">
+
+														<div style="text-align:right;">
+															<label class="checkbox-inline">
+															  <input id="chkRecord" type="checkbox" checked> <font style='font-size:10px;'>Show last 100 records</font>
+															</label>
+														<!--	<label class="checkbox-inline">
+															   <p>*Click document to view full details.</p> 
+															</label> -->
 														</div>
+
+													</div>
+
+												</div>
 											</div>
-			
-			                    
-			            	 <div class="tfclear"></div>
-			
+
+										</div>
+<!------------------------------------------- STATS  -------------------------------->
+										<div id="stats" class="tab-pane fade">
+
+										 </div>
+
+<!------------------------------------------- STATS  -------------------------------->
+										<div id="info" class="tab-pane fade">
+											<p>Whats New (v2.00)</p>
+											<ul>
+												<li>Mobile Friendly Site</li>
+												<li>Improved Gui</li>
+												<li>Improved System Manual</li>
+												<li>More Reports</li>
+												<li>Faster Home Page Loading</li>
+												<li>and much more..</li>
+											</ul>
+											<br>
+											<p>Whats New (v1.17)</p>
+											<ul>
+												<li>Improved Searching and Loading Speed</li>
+												<li>Incorporating Template Flow on document creation</li>
+												<li>New Home Page</li>
+												<li>Addition of Reports on Document Transactions</li>
+												<li>Feedback Module</li>
+												<li>and much more..</li>
+											</ul>
+											<br>
+											<p>Upcoming Release</p>
+											<ul>
+												<li>Possible inclusion of BAC and Communication Modules</
+											</ul>
+										</div>
+									</div>
+							</div>
+
+							<div class="tfclear"></div>
 			
 			            </div>
 
-        		</div>
+					</div>
 				</div>
-    </div>
+		</div>
 
 </div>
 <!------------------------------------------- end content -------------------------------->
@@ -255,9 +258,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
        include('modal.php');
        ?>
 <!-- End Modal -->
-
-
-
 
 
 <script type="text/javascript">
