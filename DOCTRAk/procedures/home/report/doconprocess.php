@@ -26,6 +26,13 @@
 </title>
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -55,110 +62,106 @@
 <div class="content">
 
 	<div id="leftmenu">
-			<div id='cssmenu'>
-				<ul>
-				   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-				      <ul>
-								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
-								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-				      </ul>
-				   </li>
-				</ul>
-		    </div>
+		<div id='cssmenu'>
+			<ul>
+				<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+					<ul>
+						<li><a href='javascript:newDocument()'><span>New</span></a></li>
+						<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+						<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+						<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 	</div>
 
     <div class="main">
             
-       <div id="post">
-					<div class="container">
-    					<div class="row">
-									<div class="post">
-				                <div id="post100" class="colsize">
+		<div id="post">
+			<div class="container">
+				<div class="row">
+					<div class="post">
+						<div id="post100" class="colsize">
 				                	 
-				                    <div id="headform">
+							<div id="headform">
 				
 														
-																			<div class="checkHistory">
-																												
-																						
-																						
-																						
-																								<div class="panel panel-info">
-																								  <div class="panel-heading">FILTER</div>
-																								  <div class="panel-body">
-																								  
-																										<div style="/* margin-top:10px; */">
-																											
-																											
-																											<form class="form-inline">
-																											  <div class="form-group">
-																												<label >Date From:</label>
-																												<input type="date" class="form-control" id="datefrom" name="datefrom" placeholder="Date From" value="<?php echo date('Y-m-d'); ?>" />
-																											  </div>
-																											  <div class="form-group">
-																												<label >Date To:</label>
-																												<input type="date" class="form-control" id="dateto" placeholder="Date To" value="<?php echo date('Y-m-d'); ?>" />
-																											  </div>
-																											  <div class="form-group">
-																												
-																												
-																											  <?php
-																											  //require_once("../../../procedures/connection.php");
-																												if (($_SESSION['GROUP']=='POWER ADMIN')or ($_SESSION['GROUP']=='ADMIN'))
-																												{
-																													echo '<label style="padding-right:6px;">Office</label>';
-																											  echo '<div class="form-group">';
-																											  
-																												echo '<select id="offices" class="form-control selectpicker" data-live-search="true" showSubtext="true" style="width:100px;" >';
-																												//<option class="bs-title-option" value="">Choose office.....</option>';
-																												
+								<div class="checkHistory">
+											
+									<div class="panel panel-info">
+										<div class="panel-heading">
+											FILTER																
+										</div>
+											<div class="panel-body">
+									  
+												<div style="/* margin-top:10px; */">
 												
-																													$query1=select_info_multiple_key("select office_name, office_description from office order by office_name asc");
-																							           foreach($query1 as $var)
-																							           {
-																							              echo "<option data-subtext='".$var['office_description']."' value='".$var['office_name']."' >".$var['office_name']."</option>";
-																							           }
-																							           echo '</select>';
-																											  echo '</div>';
-																											}
-																												?>
-																											<button id="filter" name="filter" class="btn btn-primary">Filter</button>
-																										
-																											  </div>
-																											
-																											</form>
-																											
-																										</div>
-																										<div class="tfclear"></div>
-																										
-																									
-																						
-																									
-																								  </div>
-																								</div>
-																								
-																								
-																	
-												                      	<div id="codetable">
-												                            <div id="historydata" class="row" style="margin-top:10px;">
-												                        		
-												                            </div>
-												                        </div>
-												                      
-												                      
-																				
-																			</div>
+												
+													<form class="form-inline">
+														<div class="form-group">
+															<label >Date From:</label>
+															<input type="date" class="form-control" id="datefrom" name="datefrom" placeholder="Date From" value="<?php echo date('Y-m-d'); ?>" />
+														</div>
+														<div class="form-group">
+															<label >Date To:</label>
+															<input type="date" class="form-control" id="dateto" placeholder="Date To" value="<?php echo date('Y-m-d'); ?>" />
+														</div>
+														<div class="form-group">
+														
+														
+															<?php
+															//require_once("../../../procedures/connection.php");
+															if (($_SESSION['GROUP']=='POWER ADMIN')or ($_SESSION['GROUP']=='ADMIN'))
+															{
+																echo '<label style="padding-right:6px;">Office</label>';
+																echo '<div class="form-group">';
+														  
+																echo '<select id="offices" class="form-control selectpicker" data-live-search="true" showSubtext="true" style="width:100px;" >';
+																//<option class="bs-title-option" value="">Choose office.....</option>';
+															
+
+																$query1=select_info_multiple_key("select office_name, office_description from office order by office_name asc");
+																   foreach($query1 as $var)
+																   {
+																	  echo "<option data-subtext='".$var['office_description']."' value='".$var['office_name']."' >".$var['office_name']."</option>";
+																   }
+																   echo '</select>';
+																	echo '</div>';
+															}
+															?>
+															<button id="filter" name="filter" class="btn btn-primary">Filter</button>
+												
+														</div>
+													
+													</form>
+												
+												</div>
+												<div class="tfclear"></div>
+																																			
+											</div>
+									</div>
+									
+									
+		
+									<div id="codetable">
+										<div id="historydata" class="row" style="margin-top:10px;">
+											
+										</div>
+									</div>
+						  
+						  
+									
+								</div>
 										
 								
-				                    </div>
+							</div>
 				
-				                </div>
-				          </div>
-				      </div>
-				  </div>
-       </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 
 </div>

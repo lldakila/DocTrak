@@ -33,6 +33,6 @@ while ($row=  mysqli_fetch_array($result))
     }
 }
 echo '</select>';
-echo '<input type=submit value="Rollback" class="btn btn-primary" />';
+echo '<input type=submit value="Rollback" class="btn btn-primary" id="btn" />';
 mysqli_free_result($result);
 mysqli_close($con);

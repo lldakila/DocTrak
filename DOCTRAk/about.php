@@ -21,6 +21,12 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 </title>
 <link href="css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
+<link rel="stylesheet" href="css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="fonts/fonts.googleapis.com.css" />
 
 <link rel="icon" href="images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />

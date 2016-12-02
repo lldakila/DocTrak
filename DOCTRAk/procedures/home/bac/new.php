@@ -40,6 +40,13 @@ date_default_timezone_set($_SESSION['Timezone']);
 
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -70,164 +77,159 @@ date_default_timezone_set($_SESSION['Timezone']);
 <div class="content">
 
 	<div id="leftmenu">
-			<div id='cssmenu'>
+		<div id='cssmenu'>
+			<ul>
+				<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
 					<ul>
-					   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-					      <ul>
-									 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
-									 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-								 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-								 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-					      </ul>
-					   </li>
-					   <?php
-					   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-					   {
-					      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-					      <ul>
-						 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-						 <li><a href="#"><span>Check In</span></a></li>
-					 <li><a href="#"><span>Backlog</span></a></li>
-					      </ul>
-					   </li>'; */
-					   }
-					   ?>
-			
+						<li><a href='javascript:newDocument()'><span>New</span></a></li>
+						<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+						<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+						<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
 					</ul>
-		  </div>
+				</li>
+			   <?php
+			   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+			   {
+				  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				  <ul>
+				 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+				 <li><a href="#"><span>Check In</span></a></li>
+			 <li><a href="#"><span>Backlog</span></a></li>
+				  </ul>
+			   </li>'; */
+			   }
+			   ?>
+	
+			</ul>
+		</div>
 	</div>
 
     
 	<div class="main">
     
-      <div id="post">
+		<div id="post">
       		<div class="container">
-      				<div class="row">
-      						<div class="post">
+				<div class="row">
+					<div class="post">
       							
-      								<div id="post100" class="col-xs-12 col-md-8">
-          							<h2>NEW BAC Document</h2>
-          							<hr class="hrMargin" style="margin-bottom:10px;">
+						<div id="post100" class="col-xs-12 col-md-8">
+							<h2>NEW BAC Document</h2>
+							<hr class="hrMargin" style="margin-bottom:10px;">
 
-									          <form method="post">
+								<form method="post">
 									
-											          <div class="table1 form-horizontal">
-													          <div class="form-group">
-																		    <label class="col-sm-2 control-label">BarCode:</label>
-																		    <div class="col-sm-10">
-																		    		<input id="barcodenoKey"  readonly="readonly" type="hidden" class="form-control"/>
-													                          <input id="barcodeno" name="barcodeno" type="text" class="form-control"/>
-																		    </div>
-																	  </div>
-																	  
-																	  <div class="form-group">
-																		    <label class="col-sm-2 control-label">Details:</label>
-																		    <div class="col-sm-10">
-																		      	<input type="text" class="form-control" id="title" name="title" placeholder="Title">
-																		    </div>
-																		</div>
-																		
-																		<div class="form-group">
-																		    <label class="col-sm-2 control-label">Cost:</label>
-																		    <div class="col-sm-10">
-																		      	<input type="text" class="form-control" id="documentamount" name="documentamount" placeholder="Cost">
-																		    </div>
-																		</div>    
-											             	
-											             	<div class="form-group">
-																		    <label class="col-sm-2 control-label">Date:</label>
-																		    <div class="col-sm-10">
-																		      	<input id="docDate" name="template" type="text" class="form-control" value="<?php echo date('m/d/Y'); ?>" placeholder="Month/Day/Year"/>
-																		    </div>
-																		</div>
-													 
-											          
-											               				<!--- BUTTONS ACTIVITY START --->
-											
-											                      <div class="input1">
-																								<?php
-																								if (($_SESSION['GROUP']=='POWER ADMIN') OR ($_SESSION['GROUP']=='POWER USER'))
-																								{
-																								echo "<button id='bacDelete' type='button'  class='btn btn-danger' onclick='javascript:deleteMe()' >Delete</button>";
-																								}
-																								?>
-											
-																					<!---			<button id="bacScrap" type="button"  class="btn btn-primary" onclick="javascript:scrapMe()" >Scrap</button> --->
-											                          <button id="bacSave" type="button"  class="btn btn-primary"  onclick="return submitSave()">Save</button>
-											                          <button type="button"  class="btn btn-primary" onclick="javascript:newMe()">New</button>
-											                      </div>
-											              <!--- BUTTONS ACTIVITY END--->
-											          </div>
-									          </form>
-         
-									          <!-- activity information --->
-									             <div id='fademessage' style="color:#000; text-align:center;font-family: 'Lucida Grande', 'Tahoma', 'Verdana', 'sans-serif';">
-									                 
-									                 
-									                 
-									            
-									             </div>
-									             <!--  activity information   --->
+									<div class="table1 form-horizontal">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">BarCode:</label>
+											<div class="col-sm-10">
+													<input id="barcodenoKey"  readonly="readonly" type="hidden" class="form-control"/>
+											  <input id="barcodeno" name="barcodeno" type="text" class="form-control"/>
 											</div>
+										</div>
+									  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Details:</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="title" name="title" placeholder="Title">
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Cost:</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control" id="documentamount" name="documentamount" placeholder="Cost">
+											</div>
+										</div>    
+							
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Date:</label>
+											<div class="col-sm-10">
+												<input id="docDate" name="template" type="text" class="form-control" value="<?php echo date('m/d/Y'); ?>" placeholder="Month/Day/Year"/>
+											</div>
+										</div>
+					 
+					  
+										<!--- BUTTONS ACTIVITY START --->
+			
+										<div class="input1">
+											<?php
+											if (($_SESSION['GROUP']=='POWER ADMIN') OR ($_SESSION['GROUP']=='POWER USER'))
+											{
+											echo "<button id='bacDelete' type='button' class='btn btn-danger btn-del' onclick='javascript:deleteMe()' >Delete</button>";
+											}
+											?>
+			
+													<!---			<button id="bacScrap" type="button"  class="btn btn-primary" onclick="javascript:scrapMe()" >Scrap</button> --->
+											<button id="bacSave" type="button" class="btn btn-primary btn-save" onclick="return submitSave()">Save</button>
+											<button type="button"  class="btn btn-primary" id="btn" onclick="javascript:newMe()">New</button>
+										</div>
+										<!--- BUTTONS ACTIVITY END--->
+									</div>
+								</form>
+         
+								<!-- activity information --->
+								<div id='fademessage' style="color:#000; text-align:center;font-family: 'Lucida Grande', 'Tahoma', 'Verdana', 'sans-serif';">
+									 
+									 
+									 
+								
+								</div>
+								 <!--  activity information   --->
+						</div>
 											
-                    <div id="postright0" class="col-xs-6 col-md-4">
-                    
-                        
-                            <div id="tfnewsearch">
-		                            <form id="searchform">
-		                                
-	                                    <div class="input-group">
-		                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-		                                    <span class="input-group-btn">
-		                                    	<button id="search_doc" class="btn btn-default" type="submit" >Search </button>
-		                                  	</span>
-	                                    </div>
-		                                
-		                            </form>
-                            </div>
-                            
-               
-                             		<!--AUTOSUGGEST SEARCH START-->
-                                 <!--<div id="display"></div>-->
-                                 <!--AUTOSUGGEST SEARCH END-->
-																<hr class="hrMargin">
-                        
-				                      <div class="postright">
-				                        
-				                           
-				                            <table id="responds"
-				                            		data-height="430"
-																	      data-toggle="table"
-																	      class="display table table-bordered"
-																	      data-striped="true"
-				                            >     
-				                            	<thead>
-																		    <tr>
-																						<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
-																						<th  class="col-md-4" data-field="detail" data-sortable="true">Detail</th>
-																						<th  class="col-md-3" data-field="cost" data-sortable="true">Cost</th>
-																						<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
-																					
-																						
-																		    </tr>
-																		  </thead>                    
-				                                 <!--<tr class='usercolortest'>
-																					 <th class='sizeBARCODE2'>BARCODE</th>
-																					 <th class='sizeDETAIL'>DETAIL</th>
-																					 <th class='sizeCOST'>COST</th>
-																			 			<th>DATE</th>
-																		     </tr>-->
-																		</table>
-				                        
-				                      </div>
-                        
-                    </div>
-                    <div class="tfclear"></div>
-          				</div>
+						<div id="postright0" class="col-xs-6 col-md-4">
+						
+							<div id="tfnewsearch">
+								<form id="searchform">
+									
+									<div class="input-group">
+										<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+										<span class="input-group-btn">
+											<button id="search_doc" class="btn btn-default btn-search" type="submit" >Search </button>
+										</span>
+									</div>
+									
+								</form>
+							</div>
+							<!--AUTOSUGGEST SEARCH START-->
+							<!--<div id="display"></div>-->
+							<!--AUTOSUGGEST SEARCH END-->
+							<hr class="hrMargin">
+							
+							<div class="postright">
+							
+							   
+								<table id="responds"
+										data-height="430"
+										data-toggle="table"
+										class="display table table-bordered"
+										data-striped="true"
+								>     
+									<thead>
+										<tr>
+											<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+											<th  class="col-md-4" data-field="detail" data-sortable="true">Detail</th>
+											<th  class="col-md-3" data-field="cost" data-sortable="true">Cost</th>
+											<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>											
+										</tr>
+									</thead>                    
+									 <!--<tr class='usercolortest'>
+																		 <th class='sizeBARCODE2'>BARCODE</th>
+																		 <th class='sizeDETAIL'>DETAIL</th>
+																		 <th class='sizeCOST'>COST</th>
+																			<th>DATE</th>
+																 </tr>-->
+								</table>
+							
+							</div>
+							
+						</div>
+						<div class="tfclear"></div>
+					</div>
           		</div>
-          </div>
 			</div>
-  </div>
+		</div>
+	</div>
             
 </div>
 <!------------------------------------ end content ------------------------------------->
@@ -246,13 +248,6 @@ date_default_timezone_set($_SESSION['Timezone']);
        ?>
 <!-- End Modal -->
 
-<link href="../../../css/bootstrap.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href="../../../css/home.css" />
-<link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
-<link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
-
-<script src="../../../js/bootstrap-select.js"></script>
-<script src="../../../js/jquery.growl.js"></script>
 <script language="JavaScript" type="text/javascript">
 
 

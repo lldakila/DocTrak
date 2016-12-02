@@ -22,6 +22,12 @@ date_default_timezone_set($_SESSION['Timezone']);
 
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
 
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -53,31 +59,31 @@ date_default_timezone_set($_SESSION['Timezone']);
 <div class="content">
 
 	<div id="leftmenu">
-			<div id='cssmenu'>
+		<div id='cssmenu'>
+			<ul>
+				<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
 					<ul>
-					   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-					      <ul>
-								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
-								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-					      </ul>
-					   </li>
-					   <?php
-					   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-					   {
-					      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-					      <ul>
-						 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-						 <li><a href="#"><span>Check In</span></a></li>
-					 <li><a href="#"><span>Backlog</span></a></li>
-					      </ul>
-					   </li>'; */
-					   }
-					   ?>
-			
+						<li><a href='javascript:newDocument()'><span>New</span></a></li>
+						<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+						<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+						<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
 					</ul>
-		 	</div>
+				</li>
+			   <?php
+			   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+			   {
+				  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				  <ul>
+				 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+				 <li><a href="#"><span>Check In</span></a></li>
+			 <li><a href="#"><span>Backlog</span></a></li>
+				  </ul>
+			   </li>'; */
+			   }
+			   ?>
+
+			</ul>
+		</div>
 	</div>
 
 	<div class="main">
@@ -85,141 +91,138 @@ date_default_timezone_set($_SESSION['Timezone']);
     	<div class="container">
     		<div class="row">
         
-        	<div id="post">
+				<div id="post">
             
-            			<div id="post100" class="colsize">
-                     <h2 style="padding-top:20px;">INBOX</h2>
-							    		<hr class="hrMargin" style="margin-bottom:10px;">
+					<div id="post100" class="colsize">
+						<h2 style="padding-top:20px;">INBOX</h2>
+						<hr class="hrMargin" style="margin-bottom:10px;">
                         
                         	<div class="col-xs-6 col-sm-3">
                             
-                                        <div id="nav">
-                                                <h4>PROFILE</h4>
-                                                <ol>
-                                                        <li><a href="userinfo.php"><span>PROFILE INFO</span></a></li>
-						<!--<li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>-->
-                                                        <li><a href="editpassword.php"><span>EDIT PASSWORD</span></a></li>
-                                                </ol>
-                                        </div>
-                                        
-                                        <div id="nav">
-                                                <h4>MESSAGE</h4>
-                                                <ol style="height: 345px;">
-                                                        <li><a href="inbox.php"><span>INBOX</span></a></li>
+								<div id="nav">
+									<h4>PROFILE</h4>
+										<ol>
+											<li><a href="userinfo.php"><span>PROFILE INFO</span></a></li>
+											<!--<li><a href="editprofile.php"><span>EDIT PROFILE</span></a></li>-->
+											<li><a href="editpassword.php"><span>EDIT PASSWORD</span></a></li>
+										</ol>
+								</div>
+								
+								<div id="nav">
+									<h4>MESSAGE</h4>
+										<ol>
+											<li><a href="inbox.php"><span>INBOX</span></a></li>
 <!--                                                        <li><a href="sentitems.php"><span>SENT ITEMS</span></a></li>
-                                                        <li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
-                                                </ol>
-                                        </div>
+											<li><a href="newmessage.php"><span>NEW MESSAGE</span></a></li>-->
+										</ol>
+								</div>
                                         
-                           </div>
-                              <div id="mailcontent" class="col-xs-12 col-sm-6 col-md-8">
-                              			
-                                        <div id="inboxtable">
-                                        		<table id="MailData"
-															               	
-																             		data-height="445"
-																               	data-checkbox-header = "false"
-						               						  			data-pagination="true"
-																               	data-toggle="table"
-																               	class="display table table-bordered"
-															               >
-															               		<thead>
-																			            <tr>
-																			     <!--       	<th data-checkbox="true"	data-formatter="stateFormatter" data-field="state"></th> -->
-																			            	<th data-field="id" data-visible="false" >id</th>
-																			            	<th data-field="Sender" data-sortable="true">Sender</th>
-																		                <th data-field="Document" data-sortable="true">Document</th>
-																		                <th data-field="Title" data-sortable="true">Title</th>
-																		                <th data-field="Message" data-sortable="true">Message</th>
-																		                <th data-field="Date" data-sortable="true">Date</th>
-																		                  
-																			            </tr>
-																			          </thead>
-                                                	
-
-                    <?php
-
-                            require_once("../../connection.php");
-                            global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
-                            $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
-                            $query="SELECT MAIL_ID,MAILCONTENT, FK_TABLE, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM mail JOIN security_user ON
-                                    mail.FK_SECURITY_USERNAME_SENDER = security_user.SECURITY_USERNAME WHERE FK_SECURITY_USERNAME_OWNER
-                                    = '".$_SESSION['usr']."'  ORDER BY MAILDATE DESC";
-                                    
-//                            echo $query;
-//                            die();
-                            $RESULT=mysqli_query($con,$query) or die(mysqli_error($con));
-                           // echo "<input id='mailid' type='text'/>";
-			    $date_prev='2011/07/18';
-			    $date_prev= 'Feb 19, 1985';
-//			    $recSet=  mysqli_fetch_row($RESULT);
-//			    $date_prev=$recSet['4'];
-			    
-        while ($row = mysqli_fetch_array($RESULT))
-        {
-				
-				$date = date_create($row['MAILDATE']);
-				$date_to_compare=date_format($date,'M d, Y');
-			
-//				if (print_r($date_prev,true) != $date_to_compare)
-//				{  
-//				    echo "<tr><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td></tr>";
-//				}
-//				
-				
-      //  if ($row['MAILSTATUS']==0)
-				//{
-				if ($row['MAILSTATUS']==0)
-				{
-//				  echo "<tr class ='info'><td>".$row['MAILSTATUS']."</td>";
-				  echo "<tr class ='info'>";
-				}
-				else
-				{
-//					echo "<tr><td>".$row['MAILSTATUS']."</td>";
-					echo "<tr>";
-				}
-				    echo "<td>".$row['MAIL_ID']."</td>";
-				 	
-			//	}
-
-			//	else
-			//	{
-				//    echo "<tr  ><td>".$row['MAILSTATUS']."</td>";
-				    
-				//}
-
-				echo    "<td>".$row['SECURITY_NAME']."</td>
-				    <td>".$row['FK_TABLE']."</td>
-				    <td>".$row['MAILTITLE']."</td>
-				    <td><font><div class='y6'>".substr($row['MAILCONTENT'],0,60)."</font></div></td>
-
-				    <td>".date_format($date,'M d, Y-H:i')."</td>
-				    </tr>";
-
-				$date_prev=date_format($date,'M d, Y');
-       }
-
-                    ?>
-
-
-                                                </table>
-                                        </div> 
-                                         
-                              </div>
-                              <div class="tfclear"></div>	
-    
-    
+							</div>
 							
-                  </div>
-                        <div class="tfclear"></div>
+							<div id="mailcontent" class="col-xs-12 col-sm-6 col-md-9">
+                              			
+								<div id="inboxtable">
+									<table id="MailData"
+																
+										data-height="445"
+										data-checkbox-header = "false"
+										data-pagination="true"
+										data-toggle="table"
+										class="display table table-bordered"
+									>
+										<thead>
+											<tr>
+												<!--<th data-checkbox="true"	data-formatter="stateFormatter" data-field="state"></th> -->
+												<th data-field="id" data-visible="false" >id</th>
+												<th data-field="Sender" data-sortable="true">Sender</th>
+												<th data-field="Document" data-sortable="true">Document</th>
+												<th data-field="Title" data-sortable="true">Title</th>
+												<th data-field="Message" data-sortable="true">Message</th>
+												<th data-field="Date" data-sortable="true">Date</th>
+																			  
+											</tr>
+										</thead>
+											
 
-            
-          </div>
-        </div>
-      </div>
+										<?php
+
+											require_once("../../connection.php");
+											global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+											$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+											$query="SELECT MAIL_ID,MAILCONTENT, FK_TABLE, MAILTITLE, MAILDATE,MAILSTATUS,SECURITY_NAME FROM mail JOIN security_user ON
+													mail.FK_SECURITY_USERNAME_SENDER = security_user.SECURITY_USERNAME WHERE FK_SECURITY_USERNAME_OWNER
+													= '".$_SESSION['usr']."'  ORDER BY MAILDATE DESC";
+													
+				//                            echo $query;
+				//                            die();
+											$RESULT=mysqli_query($con,$query) or die(mysqli_error($con));
+										   // echo "<input id='mailid' type='text'/>";
+											$date_prev='2011/07/18';
+											$date_prev= 'Feb 19, 1985';
+							//			    $recSet=  mysqli_fetch_row($RESULT);
+							//			    $date_prev=$recSet['4'];
+			
+											while ($row = mysqli_fetch_array($RESULT))
+											{
+													
+													$date = date_create($row['MAILDATE']);
+													$date_to_compare=date_format($date,'M d, Y');
+												
+									//				if (print_r($date_prev,true) != $date_to_compare)
+									//				{  
+									//				    echo "<tr><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td><td style='height:1px; padding:1px 1px;'></td></tr>";
+									//				}
+									//				
+													
+										  //  if ($row['MAILSTATUS']==0)
+													//{
+													if ($row['MAILSTATUS']==0)
+													{
+									//				  echo "<tr class ='info'><td>".$row['MAILSTATUS']."</td>";
+													  echo "<tr class ='info'>";
+													}
+													else
+													{
+									//					echo "<tr><td>".$row['MAILSTATUS']."</td>";
+														echo "<tr>";
+													}
+														echo "<td>".$row['MAIL_ID']."</td>";
+														
+												//	}
+
+												//	else
+												//	{
+													//    echo "<tr  ><td>".$row['MAILSTATUS']."</td>";
+														
+													//}
+
+													echo    "<td>".$row['SECURITY_NAME']."</td>
+														<td>".$row['FK_TABLE']."</td>
+														<td>".$row['MAILTITLE']."</td>
+														<td><font><div class='y6'>".substr($row['MAILCONTENT'],0,60)."</font></div></td>
+
+														<td>".date_format($date,'M d, Y-H:i')."</td>
+														</tr>";
+
+													$date_prev=date_format($date,'M d, Y');
+										   }
+
+										?>
+
+
+									</table>
+								</div> 
+                                         
+							</div>
+							<div class="tfclear"></div>	
+	
+					</div>
+
+				</div>
+			</div>
+		</div>
     
-  </div>
+	</div>
 
 </div>
 <!------------------------------------------- end content -------------------------------->

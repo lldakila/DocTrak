@@ -23,6 +23,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -53,97 +60,96 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="content">
     <div id="leftmenu">
         <div id='cssmenu'>
-		<ul>
-		   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-		      <ul>
-			 <li><a href='javascript:newDocument()'><span>New</span></a></li>
-			 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-		 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-		 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-		      </ul>
-		   </li>
-		   <?php
-		   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-		   {
-		      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-		      <ul>
-			 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-			 <li><a href="#"><span>Check In</span></a></li>
-		 <li><a href="#"><span>Backlog</span></a></li>
-		      </ul>
-		   </li>'; */
-		   }
-		   ?>
+			<ul>
+				<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+					<ul>
+						<li><a href='javascript:newDocument()'><span>New</span></a></li>
+						<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+						<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+						<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+					</ul>
+			   </li>
+			   <?php
+			   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+			   {
+				  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				  <ul>
+				 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+				 <li><a href="#"><span>Check In</span></a></li>
+			 <li><a href="#"><span>Backlog</span></a></li>
+				  </ul>
+			   </li>'; */
+			   }
+			   ?>
 
-		</ul>
+			</ul>
 	    </div>
     </div>
     
     <div class="main">
     	
-            <div id="post">
-            		<div class="container">
-			       				<div class="row">
-			       						<div class="post">
-						                <div id="post100" class="col-xs-12 col-md-8">
-						                    <h2>BAC Archive</h2>
-						          					<hr class="hrMargin" style="margin-bottom:10px;">          
-						          
-						                    <div id="BacHistory">
-						                        <!--AJAX DATA INSERTED HERE-->
-						                    </div>
-						                    
-						                </div>
-						                
-						                <div id="postright0" class="col-xs-6 col-md-4">
-						
-						                    
-						                        <form id="tfnewsearch" method="post">
-						                            
-						                                <div class="input-group">
-						                                    <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-						                                    <span class="input-group-btn">
-						                                    	<button id="search_document" class="btn btn-default">Search </button>
-						                                  	</span>
-						                                </div>
-						                            
-						                        </form>
-						
-						                        <!--AUTOSUGGEST SEARCH START-->
-						                        <!-- <div id="display"></div>-->
-						                        <!--AUTOSUGGEST SEARCH END-->
-						                        <hr class="hrMargin">
-						                    
-																	<div class="postright">
-								                    
-								
-								                        <table id="responds"
-								                        		data-height="430"
-																			      data-toggle="table"
-																			      class="display table table-bordered"
-																			      data-striped="true"
-								                        >
-								                        	<thead>
-																				    <tr>
-																								<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
-																								<th  class="col-md-4" data-field="detail" data-sortable="true">Detail</th>
-																								<th  class="col-md-3" data-field="cost" data-sortable="true">Cost</th>
-																								<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
+		<div id="post">
+			<div class="container">
+				<div class="row">
+					<div class="post">
+						<div id="post100" class="col-xs-12 col-md-8">
+							<h2>BAC Archive</h2>
+									<hr class="hrMargin" style="margin-bottom:10px;">          
+				  
+							<div id="BacHistory">
+								<!--AJAX DATA INSERTED HERE-->
+							</div>
 							
-																				    </tr>
-																				  </thead>
-								                            
-								                        </table>
-								                    
-								                  </div>
-						                </div>
-						                <div class="tfclear">
-						                <!-- USED FOR FLOATING -->
-						                </div>
-						            </div>
-						        </div>
-						    </div>
-            </div>
+						</div>
+						                
+						<div id="postright0" class="col-xs-6 col-md-4">
+		
+							
+							<form id="tfnewsearch" method="post">
+								
+								<div class="input-group">
+									<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+									<span class="input-group-btn">
+										<button id="search_document" class="btn btn-default btn-search">Search </button>
+									</span>
+								</div>
+								
+							</form>
+	
+							<!--AUTOSUGGEST SEARCH START-->
+							<!-- <div id="display"></div>-->
+							<!--AUTOSUGGEST SEARCH END-->
+							<hr class="hrMargin">
+						
+							<div class="postright">
+								
+			
+								<table id="responds"
+										data-height="430"
+										data-toggle="table"
+										class="display table table-bordered"
+										data-striped="true"
+								>
+									<thead>
+										<tr>
+											<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+											<th  class="col-md-4" data-field="detail" data-sortable="true">Detail</th>
+											<th  class="col-md-3" data-field="cost" data-sortable="true">Cost</th>
+											<th class="col-md-3"  data-field="date" data-sortable="true">Date</th>
+										</tr>
+									</thead>
+									
+								</table>
+								
+							</div>
+						</div>
+						<div class="tfclear">
+						<!-- USED FOR FLOATING -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 
 </div>

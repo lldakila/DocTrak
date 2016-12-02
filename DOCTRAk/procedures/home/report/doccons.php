@@ -29,6 +29,13 @@
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -118,7 +125,7 @@
 														
 															<div style="float:left; padding-right:15px;">
 																<label class="checkbox-inline">
-																<input type="checkbox" id="received" value="option1" class="checkbox"> Received
+																<input type="checkbox" id="received" value="option1" class="checkbox" style="margin-top:4px;"> Received
 																</label>
 																<label class="checkbox-inline">
 																  <input type="checkbox" id="released" value="option1"> Released
@@ -134,7 +141,7 @@
 															
 															
 														</div>
-														<button id="filter" name="filter" class="btn btn-primary">Filter</button>
+														<button id="filter" name="filter" class="btn btn-primary btn-filter">Filter</button>
 													
 													</form>
 													

@@ -27,13 +27,13 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 
 <!-- new header ---------------------------------------------->
 <header>
+
+	<div class="navbar navbar-default navbar-fixed-top" id="nav-bg" role="navigation">
 		<div class="mailNoti" >
 			<div class="container">	
 					<div class="row">
-						<div class="col-md-6">
-						</div>
-						
-						<div class="col-md-6">
+							
+						<div class="col-md-12">
 							<div class="navbar-buttons navbar-header pull-right" role="navigation">
 								<ul class="nav ace-nav" id="ace-nav">
 
@@ -221,56 +221,34 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 			</div>
 		</div>
 		
-		<div id="header">
-			<div class="container">	
-					<div class="row">
-						<div class="col-xs-6 col-md-4 image">
-							<a href="<?php echo $PROJECT_ROOT."index.php"; ?>"> <img <?php
-                                $printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png";
-                                echo $printme;
-                                ?>
-                                        width="80" height="70" alt="PGLU" title="DocTrak" align="left" />
-								<h3>
-									<?php
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="navbar-header image">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a href="<?php echo $PROJECT_ROOT."index.php"; ?>"> <img <?php
+							$printme="src=".$PROJECT_ROOT."images/home/doctraklogo2.png";
+							echo $printme;
+							?>
+									width="80" height="70" alt="PGLU" title="DocTrak" align="left" />
+							<h3 class="wrap">
+								<?php
 
-                        echo $_SESSION['HeaderTitle']. "<span style='font-size:12px;'>&nbsp; " .$_SESSION['Version'];
-                        echo "</span>";
-        				?>
-								</h3><p>Provincial Government of La Union</p>
-							</a>
-						</div>
-
-					  
-						<div class="col-xs-6 col-md-8">
-							<!-- <div class="navbarA">
-								<ul class="nav nav-pills">
-								  <li><a href="#">Home</a></li>
-								  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Document<b class="caret"></b></a>
-									<ul class="dropdown-menu">
-									  <li><a href="#">New Document</a></li>
-									</ul>
-								  </li>
-								  <li><a href="#">BAC</a></li>
-								  <li><a href="#">Communication</a></li>
-								  <li><a href="#">Report</a></li>
-								  <li><a href="#">Maintenanace</a></li>
-								  <li><a href="#">Help</a></li>
-								</ul>
-							</div> -->
-							
-							<nav class="navbar navbar-static-top marginBottom-0" id="navbar-inverse1" role="navigation">
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-										<span class="sr-only">Toggle navigation</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-								  
-								</div>
-								
-								<div class="collapse navbar-collapse" id="navbar-collapse-1">
-									<ul class="nav navbar-nav">
+									echo $_SESSION['HeaderTitle']. "<span style='font-size:12px;'>&nbsp; " .$_SESSION['Version'];
+									echo "</span>";
+								?>
+							</h3><p class="wrap">Provincial Government of La Union</p>
+						</a>
+					</div>
+					
+					<div id="navHeader" class="navbar-collapse collapse pull-right">
+						<ul class="nav navbar-nav" id="navbar">
 										
 										<li><a href="<?php echo $PROJECT_ROOT."home.php"; ?>">Home</a></li>
 										<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Document <b class="caret"></b></a>
@@ -290,29 +268,29 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 										
 										<?php
                                 
-                                echo '
-                                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    BAC<b class="caret"></b></span>
-                                    </a>
-                                    <ul class="dropdown-menu">';
-                                    echo '<li><a href='.$PROJECT_ROOT.'procedures/home/bac/new.php>New</a></li>';
-                                    if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-                                    {
-                                    echo '
-                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/receive.php>Receive Doc</a></li>
-                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/release.php>Release Doc</a></li>
-																				<li><a href='.$PROJECT_ROOT.'procedures/home/bac/checkin.php>Check In</a></li>
-                                        <li class="divider"></li>';
-                                    }
-                                    //<li><a href='.$PROJECT_ROOT.'procedures/home/bac/backlog.php><span>Backlog</span></a></li>
-                                    echo '
-                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/monitor.php>Monitoring</a></li>
-                                        <li><a href='.$PROJECT_ROOT.'procedures/home/bac/archive.php>Archive</a></li>
-                                    ';
-                                    echo '</ul></li>';
+											echo '
+											<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+												BAC<b class="caret"></b></span>
+												</a>
+												<ul class="dropdown-menu">';
+												echo '<li><a href='.$PROJECT_ROOT.'procedures/home/bac/new.php>New</a></li>';
+												if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+												{
+												echo '
+													<li><a href='.$PROJECT_ROOT.'procedures/home/bac/receive.php>Receive Doc</a></li>
+													<li><a href='.$PROJECT_ROOT.'procedures/home/bac/release.php>Release Doc</a></li>
+																							<li><a href='.$PROJECT_ROOT.'procedures/home/bac/checkin.php>Check In</a></li>
+													<li class="divider"></li>';
+												}
+												//<li><a href='.$PROJECT_ROOT.'procedures/home/bac/backlog.php><span>Backlog</span></a></li>
+												echo '
+													<li><a href='.$PROJECT_ROOT.'procedures/home/bac/monitor.php>Monitoring</a></li>
+													<li><a href='.$PROJECT_ROOT.'procedures/home/bac/archive.php>Archive</a></li>
+												';
+												echo '</ul></li>';
                                 
                                 
-                                ?>
+										?>
 										
 										
 										<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Communication <b class="caret"></b></a>
@@ -384,18 +362,13 @@ echo '<script src="'.$PROJECT_ROOT.'js/jquery.feedBackBox.js"></script>';
 											</ul>
 										</li>
 									</ul>
-								</div><!-- /.navbar-collapse -->
-							</nav>
-							
-							<div class="tclear"></div>
-							
-						</div>
-						
-						
-					  
 					</div>
+				</div>
 			</div>
 		</div>
+	</div>
+		
+		
 	
 </header>	
 <!-- end new header ------------------------------------------->

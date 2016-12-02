@@ -21,6 +21,13 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -69,29 +76,29 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 <div class="content">
 
 	<div id="leftmenu">
-			<div id='cssmenu'>
-					<ul>
-					   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-					      <ul>
-						 <li><a href='javascript:newDocument()'><span>New</span></a></li>
-						 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-						 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-						 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-					      </ul>
-					   </li>
-					   <?php
-					   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-					   {
-					      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-					      <ul>
-						 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
-						 <li><a href="#"><span>Check In</span></a></li>
-					 <li><a href="#"><span>Backlog</span></a></li>
-					      </ul>
-					   </li>'; */
-					   }
-					   ?>
-					</ul>
+		<div id='cssmenu'>
+			<ul>
+			   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+				  <ul>
+				 <li><a href='javascript:newDocument()'><span>New</span></a></li>
+				 <li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+				 <li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+				 <li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+				  </ul>
+			   </li>
+			   <?php
+			   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+			   {
+				  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				  <ul>
+				 <li><a href="javascript:bacDocument()"><span>New</span></a></li>
+				 <li><a href="#"><span>Check In</span></a></li>
+			 <li><a href="#"><span>Backlog</span></a></li>
+				  </ul>
+			   </li>'; */
+			   }
+			   ?>
+			</ul>
 	    </div>
 	</div>
 
@@ -102,218 +109,218 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
         	<div id="post">
         		
         		<div class="container">
-								<div class="row">
-									<div class="post">
-            
-            				<div id="post100" class="col-xs-12 col-md-8">
-                        <h2>NEW DOCUMENT</h2>
-                        <hr class="hrMargin" style="margin-bottom:10px;">
-														<form name="process" method="post" action="new/process.php" onsubmit="return validate();" enctype="multipart/form-data">
+					<div class="row">
+						<div class="post">
 
-    															<div class="table1 form-horizontal">
-    																	
-													    					<div class="form-group">
-																				    <label class="col-sm-2 control-label">BarCode:</label>
-																				    <div class="col-sm-10">
-																				    		<input id="primarykey" name="primarykey" type="hidden" />
-																				      	<input type="text" class="form-control" id="barcodeinput" name="barcode" placeholder="BarCode">
-																				    </div>
-																			  </div>
-																			  
-																			  <div class="form-group">
-																				    <label class="col-sm-2 control-label">Title:</label>
-																				    <div class="col-sm-10">
-																				      	<input type="text" class="form-control" id="title" name="title" placeholder="Title">
-																				    </div>
-																				</div>
-																				
-																				<div class="form-group">
-																				    <label class="col-sm-2 control-label">Description:</label>
-																				    <div class="col-sm-10">
-																				      	<input type="text" class="form-control" id="description" name="description" placeholder="Description">
-																				    </div>
-																				</div>
-																				
-																				<div class="form-group">
-																				    <label class="col-sm-2 control-label">Type:</label>
-																				    <div class="col-sm-10">
-																				    		<select id="type" name="type" class="form-control">
-																				    				<?php
-																								           require_once("../../connection.php");
-																								
-																								           $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
-																								
-																								           foreach($query as $var) {
-																								              echo "<option>".$var['DOCUMENTTYPE_ID']."</option>";
-																								           }
-																								           										           																					
-																								    ?>
-																				    		</select>
-																				      	
-																				    </div>
-																				</div>									
-																				
-																				<div class="form-group">
-																				    <label class="col-sm-2 control-label">Template:</label>
-																				    <div class="col-sm-10">
-																				    		
-																				    				<?php
-																				    				
-																				    				echo '<select id="template" name="template" class="form-control selectpicker" onchange="templateView()" data-live-search="true">';
-																						           //require_once("../../connection.php");
-																						          
-																						                 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template order by template_name asc");
-																						           foreach($query1 as $var)
-																						           {
-																						              echo "<option data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."' selected='selected'>".$var['template_name']."</option>";
-																						           }
-																						        echo "</select>";
+							<div id="post100" class="col-xs-12 col-md-8">
+								<h2>NEW DOCUMENT</h2>
+								<hr class="hrMargin" style="margin-bottom:10px;">
+									<form name="process" method="post" action="new/process.php" onsubmit="return validate();" enctype="multipart/form-data">
 
-																											echo "<p style='font-size:11px'><a class='viewTemplateLinks' target='_blank' id ='viewTemplateLink' style='color:#00556F;'  href='".$PROJECT_ROOT."'/procedures/home/document/common/viewtemplate.php?template_id=".$var['TEMPLATE_ID']."'>View Template</a></p>";
-																										
-																						    		?>
-																				    		
-																				      	
-																				    </div>
-																				</div>
-																				
-																				<div class="form-group">
-																				    <label class="col-sm-2 control-label">PDF File:</label>
-																				    <div class="col-sm-10">
-																				      	<input id="file" name="pdffile" type="file" class="filestyle" accept=".pdf">
-																				    </div>
-																				</div>
-
-									                    <?php
-									            
-									                    echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
-									           								if($_SESSION['operation']=='save')
-									           								{
-									
-									                						echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully</div>";
-									
-									            							}  elseif($_SESSION['operation']=='delete')
-									            							
-									            							{
-									                     				echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully</div>";
-									                					}
-									           									elseif($_SESSION['operation']=='update')
-									           								{
-									
-																	               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully</div>";
-																	          }
-									           									elseif($_SESSION['operation']=='error')
-									           								{
-									
-																	               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful.<br>";
-																	               echo $_SESSION['message'];
-																	               echo "</div>";
-																	          }
-									           									elseif($_SESSION['operation']=='scrap')
-									           								{
-									
-																		           echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Scrapped successfully.</div>";
-																	          }
-									           									elseif($_SESSION['operation']=='complete')
-									           								{
-									
-																		           echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Document is completed. Delete failed.</div>";
-																	          }
-
-														               $_SESSION['operation']='clear';
-														               $_SESSION['message']='';
-									
-								        								echo "</div>";
-																				?>
-									
-									                  		 <!--- BUTTONS ACTIVITY START --->
-									
-									                        <div class="input1">
-									                            
-									                            <?php
-																							//if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
-									
-									                            if($_SESSION['GROUP']=='POWER ADMIN')
-														                    {
-															                    $value="document.getElementById('document_hidden').value='delete';";
-															                    echo '<input  type="submit" value="Delete"  onClick="'.$value.'" class="btn btn-danger" />';
-														                    }
-									                            if ($_SESSION['GROUP']!='ADMIN') 
-									                            	{
-									                                    $value="document.getElementById('document_hidden').value='scrap';";
-									                                    echo '<input  type="submit" value="Scrap"  onClick="'.$value.'" class="btn btn-primary"/>';
-									                            	}
-																							?>
-											                         <input id="document_hidden" name="document_hidden" type="hidden" value=""/>
-											                         <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';" class="btn btn-primary"/>
-											                         <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary"/>
-	                     
-                   
-                         									</div>
-                           								<!--- BUTTONS ACTIVITY END--->
-
-                  								</div>
-
-						   							</form>
-                            
-
-                  	</div>
-
-                        <div id="postright0" class="col-xs-6 col-md-4">
-                        	
-                        		<form id="tfnewsearch" method="post">
-													    <div class="input-group">
-													      <input id="search_string" name="search_string" type="text" class="form-control" placeholder="search...">
-													      <span class="input-group-btn">
-													        <button id="search_document" class="btn btn-default" type="button">Search</button>
-													      </span>
-													    </div><!-- /input-group -->
-													  </form>
-									  				<!--AUTOSUGGEST SEARCH START-->
-                            <!--<div id="display"></div>-->
-                            <!--AUTOSUGGEST SEARCH END-->
-                        		<hr class="hrMargin">
-                            <!-------- search table ----->
-                            	
-                            	<div class="postright">
+										<div class="table1 form-horizontal">
 															
-                        	                                    
-	                                <table id="responds"
-		                                	data-height="430"
-																      data-toggle="table"
-																      class="display table table-bordered"
-																      data-striped="true"
-	                                	>
-	                                	<thead>
-																    <tr>
-																				<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
-																				<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
-																				<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
-																				<th  data-visible="false" data-field="description" data-sortable="true">description</th>
-																				<th data-visible="false" data-field="template" data-sortable="true">template</th>
-																				<th data-visible="false" data-field="type" data-sortable="true">type</th>
-																				<th data-visible="false" data-field="scrap" data-sortable="true">scrap</th>
-																    </tr>
-																  </thead>
-											            </table>
-											            
-											            
-										        		
-										        	</div>		
-															   	
-                          	<!------ end search table ----->
-                            
-                        </div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label">BarCode:</label>
+													<div class="col-sm-10">
+															<input id="primarykey" name="primarykey" type="hidden" />
+														<input type="text" class="form-control" id="barcodeinput" name="barcode" placeholder="BarCode">
+													</div>
+												</div>
+												  
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Title:</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="title" name="title" placeholder="Title">
+													</div>
+												</div>
+													
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Description:</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="description" name="description" placeholder="Description">
+													</div>
+												</div>
+													
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Type:</label>
+													<div class="col-sm-10">
+															<select id="type" name="type" class="form-control">
+																	<?php
+																		   require_once("../../connection.php");
+																
+																		   $query=select_info_multiple_key("select DOCUMENTTYPE_ID from document_type");
+																
+																		   foreach($query as $var) {
+																			  echo "<option>".$var['DOCUMENTTYPE_ID']."</option>";
+																		   }
+																																																			
+																	?>
+															</select>
+														
+													</div>
+												</div>									
+													
+												<div class="form-group">
+													<label class="col-sm-2 control-label">Template:</label>
+													<div class="col-sm-10">
+															
+														<?php
+														
+															echo '<select id="template" name="template" class="form-control selectpicker" onchange="templateView()" data-live-search="true" style="width:100%;">';
+													   //require_once("../../connection.php");
+													  
+															 $query1=select_info_multiple_key("select TEMPLATE_ID, template_name,fk_office_name,template_description from document_template order by template_name asc");
+															foreach($query1 as $var)
+															{
+															echo "<option style='width:100%;' data-subtext='".$var['template_description']."' value='".$var['TEMPLATE_ID']."' selected='selected'>".$var['template_name']."</option>";
+															}
+															echo "</select>";
 
-                        <div class="tfclear"></div>
-                	</div>
-                </div>
-           	</div>
-          </div>
+															echo "<p style='font-size:11px'><a class='viewTemplateLinks' target='_blank' id ='viewTemplateLink' style='color:#00556F;'  href='".$PROJECT_ROOT."'/procedures/home/document/common/viewtemplate.php?template_id=".$var['TEMPLATE_ID']."'>View Template</a></p>";
+															
+														?>
+															
+														
+													</div>
+												</div>
+													
+												<div class="form-group">
+													<label class="col-sm-2 control-label">PDF File:</label>
+													<div class="col-sm-10">
+														<input id="file" name="pdffile" type="file" class="filestyle" accept=".pdf">
+													</div>
+												</div>
+
+												<?php
+					
+													echo "<div id='message' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>";
+													if($_SESSION['operation']=='save')
+													{
+			
+														echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully</div>";
+			
+													}  elseif($_SESSION['operation']=='delete')
+													
+													{
+														echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully</div>";
+													}
+														elseif($_SESSION['operation']=='update')
+													{
+			
+														   echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully</div>";
+													}
+														elseif($_SESSION['operation']=='error')
+													{
+			
+														   echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Something went wrong. Operation not Successful.<br>";
+														   echo $_SESSION['message'];
+														   echo "</div>";
+													}
+														elseif($_SESSION['operation']=='scrap')
+													{
+			
+														   echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Scrapped successfully.</div>";
+													}
+														elseif($_SESSION['operation']=='complete')
+													{
+			
+														   echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Document is completed. Delete failed.</div>";
+													}
+
+													   $_SESSION['operation']='clear';
+													   $_SESSION['message']='';
+					
+														echo "</div>";
+													?>
+		
+											<!--- BUTTONS ACTIVITY START --->
+		
+											<div class="input1">
+										
+												<?php
+																			//if($_SESSION['GROUP']=='POWER USER' or $_SESSION['GROUP']=='POWER ADMIN')
+					
+												if($_SESSION['GROUP']=='POWER ADMIN')
+															{
+																$value="document.getElementById('document_hidden').value='delete';";
+																echo '<input  type="submit" value="Delete"  onClick="'.$value.'" class="btn btn-danger" id="btn"/>';
+															}
+												if ($_SESSION['GROUP']!='ADMIN') 
+													{
+														$value="document.getElementById('document_hidden').value='scrap';";
+														echo '<input  type="submit" value="Scrap"  onClick="'.$value.'" class="btn btn-primary" id="btn"/>';
+													}
+												?>
+												 <input id="document_hidden" name="document_hidden" type="hidden" value=""/>
+												 <input type="submit" value="Save" onClick="document.getElementById('document_hidden').value='save';" class="btn btn-primary" id="btn"/>
+												 <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" id="btn"/>
+	 
+
+											</div>
+											<!--- BUTTONS ACTIVITY END--->
+
+										</div>
+
+									</form>
+				
+
+							</div>
+
+							<div id="postright0" class="col-xs-6 col-md-4">
+								
+								<form id="tfnewsearch" method="post">
+									<div class="input-group">
+									  <input id="search_string" name="search_string" type="text" class="form-control" placeholder="search...">
+									  <span class="input-group-btn">
+										<button id="search_document" class="btn btn-default btn-search" type="button">Search</button>
+									  </span>
+									</div><!-- /input-group -->
+								</form>
+													<!--AUTOSUGGEST SEARCH START-->
+								<!--<div id="display"></div>-->
+								<!--AUTOSUGGEST SEARCH END-->
+									<hr class="hrMargin">
+								<!-------- search table ----->
+								
+								<div class="postright">
+															
+																
+									<table id="responds"
+										data-height="430"
+										data-toggle="table"
+										class="display table table-bordered"
+										data-striped="true"
+									>
+										<thead>
+											<tr>
+												<th class="col-md-2"  data-field="barcode" data-sortable="true">Barcode</th>
+												<th  class="col-md-8" data-field="title" data-sortable="true">Title</th>
+												<th class="col-md-2"  data-field="date" data-sortable="true">Date</th>
+												<th  data-visible="false" data-field="description" data-sortable="true">description</th>
+												<th data-visible="false" data-field="template" data-sortable="true">template</th>
+												<th data-visible="false" data-field="type" data-sortable="true">type</th>
+												<th data-visible="false" data-field="scrap" data-sortable="true">scrap</th>
+											</tr>
+										</thead>
+									</table>
+														
+														
+														
+								</div>		
+																	
+								<!------ end search table ----->
+								
+							</div>
+
+							<div class="tfclear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
         
-      </div>
+		</div>
     
-  </div>
+	</div>
 
 </div>
 <!------------------------------------ end content ------------------------------------->

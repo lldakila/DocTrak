@@ -27,6 +27,13 @@
 </title>
 <link href="../../../css/bootstrap.css" rel="stylesheet"/>
 <link rel="stylesheet" type="text/css" href="../../../css/home.css" />
+<link rel="stylesheet" href="../../../css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="../../../font-awesome/4.2.0/css/font-awesome.min.css" />
+
+<!-- text fonts -->
+	<link rel="stylesheet" href="../../../fonts/fonts.googleapis.com.css" />
+
 <link rel="stylesheet" type="text/css" href="../../../css/bootstrap-select.css" />
 <link rel="icon" href="../../../images/home/icon/pglu.ico" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="../../../css/jquery.growl.css" />
@@ -56,195 +63,193 @@
 <div class="content">
 
 	<div id="leftmenu">
-			<div id='cssmenu'>
-				<ul>
-				   <li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
-				      <ul>
-								 	<li><a href='javascript:newDocument()'><span>New</span></a></li>
-								 	<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
-							 		<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
-							 		<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
-				      </ul>
-				   </li>
-				   <?php
-				   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
-				   {
-				      /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
-				      <ul>
-							 	<li><a href="javascript:bacDocument()"><span>New</span></a></li>
-							 	<li><a href="#"><span>Check In</span></a></li>
-						 		<li><a href="#"><span>Backlog</span></a></li>
-				      </ul>
-				   </li>'; */
-				   }
-				   ?>
-		
-				</ul>
-		  </div>
+		<div id='cssmenu'>
+			<ul>
+				<li class="bottomline topraduis"><a href='#'><span>DOC</span></a>
+					<ul>
+						<li><a href='javascript:newDocument()'><span>New</span></a></li>
+						<li><a href='javascript:receiveDocument()'><span>Receive</span></a></li>
+						<li><a href='javascript:releaseDocument()'><span>Release</span></a></li>
+						<li><a href='javascript:forpickupDocument()'><span>For Release</span></a></li>
+					</ul>
+				</li>
+			   <?php
+			   if ($_SESSION['BAC']==1 OR $_SESSION['GROUP']=='POWER ADMIN')
+			   {
+				  /* echo '<li class="bottomraduis"><a href="#"><span>BAC</span></a>
+				  <ul>
+							<li><a href="javascript:bacDocument()"><span>New</span></a></li>
+							<li><a href="#"><span>Check In</span></a></li>
+							<li><a href="#"><span>Backlog</span></a></li>
+				  </ul>
+			   </li>'; */
+			   }
+			   ?>
+	
+			</ul>
+		</div>
 	</div>
 
 	<div class="main">
-      <div id="post">
+		<div id="post">
          	<div class="container">
-						<div class="row">
-								<div class="post">
-            					<div id="post100" class="col-xs-12 col-md-8">
-                        <h2>USERS</h2>
-                        <hr class="hrMargin" style="margin-bottom:10px;">
+				<div class="row">
+					<div class="post">
+						<div id="post100" class="col-xs-12 col-md-8">
+							<h2>USERS</h2>
+							<hr class="hrMargin" style="margin-bottom:10px;">
                         
                              	<form name="process" method="post" action="user/process.php" onsubmit="return validate();">
 
-											    					<div class="table1 form-horizontal">
-											    						
-											    						<div class="form-group">
-																			    <label class="col-sm-2 control-label">Username:</label>
-																			    <div class="col-sm-10">
-																			    		<input id="primarykey" name="primarykey" type="hidden" />
-											                        <input id="username" name="username" type="text" class="form-control" /> 
-																			    </div>
-																		  </div>
-																		  
-																		  <div class="form-group">
-																			    <label class="col-sm-2 control-label">Password:</label>
-																			    <div class="col-sm-10">
-											                        <input id="password" name="password" type="password" class="form-control" /> 
-																			    </div>
-																		  </div>
-																		  
-																		  <div class="form-group">
-																			    <label class="col-sm-2 control-label">Verify:</label>
-																			    <div class="col-sm-10">
-											                        <input id="verify" name="verify" type="password" class="form-control" /> 
-																			    </div>
-																		  </div>
-																		  
-																		  <div class="form-group">
-																			    <label class="col-sm-2 control-label">Fullname:</label>
-																			    <div class="col-sm-10">
-											                        <input id="name" name="name" type="text" class="form-control" /> 
-																			    </div>
-																		  </div>
-																		  
-																		  <div class="form-group">
-																			    <label class="col-sm-2 control-label">Group:</label>
-																			    <div class="col-sm-10">
-					                       <select id="group" name="group" class="form-control selectpicker" data-live-search="true" > <option></option>
+									<div class="table1 form-horizontal">
+										
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Username:</label>
+											<div class="col-sm-10">
+												<input id="primarykey" name="primarykey" type="hidden" />
+												<input id="username" name="username" type="text" class="form-control" /> 
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Password:</label>
+											<div class="col-sm-10">
+												<input id="password" name="password" type="password" class="form-control" /> 
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Verify:</label>
+											<div class="col-sm-10">
+												<input id="verify" name="verify" type="password" class="form-control" /> 
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Fullname:</label>
+											<div class="col-sm-10">
+												<input id="name" name="name" type="text" class="form-control" /> 
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Group:</label>
+											<div class="col-sm-10">
+												<select id="group" name="group" class="form-control selectpicker" data-live-search="true" > <option></option>
 
-											       <?php
+													<?php
 
 																	mysqli_free_result($result);
-											           $query="select SECURITY_GROUPNAME,security_name from security_group";
-											           $result=mysqli_query($con,$query);
-											           while ($var=mysqli_fetch_array($result)) {
-											              echo "<option selected='true' value = '".$var['SECURITY_GROUPNAME']."' data-subtext='".$var['security_name']."'>".$var['SECURITY_GROUPNAME']."</option>";
-											           }
+													   $query="select SECURITY_GROUPNAME,security_name from security_group";
+													   $result=mysqli_query($con,$query);
+													   while ($var=mysqli_fetch_array($result)) {
+														  echo "<option selected='true' value = '".$var['SECURITY_GROUPNAME']."' data-subtext='".$var['security_name']."'>".$var['SECURITY_GROUPNAME']."</option>";
+													   }
 
-													   ?>
-		                             </select>
-																			    </div>
-																		  </div>
-																		  
-																		  <div class="form-group">
-																			    <label class="col-sm-2 control-label">Office:</label>
-																			    <div class="col-sm-10">
-											                       <select id="office" name="office" class="form-control selectpicker" data-live-search="true"> 
+													?>
+												</select>
+											</div>
+										</div>
+										  
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Office:</label>
+											<div class="col-sm-10">
+												<select id="office" name="office" class="form-control selectpicker" data-live-search="true"> 
+		
+													<?php
+													  
+																	mysqli_free_result($result);
+													   $query="select OFFICE_NAME, OFFICE_DESCRIPTION from office";
+													   $result=mysqli_query($con,$query);
+													   while ($var=mysqli_fetch_array($result)) {
+														  echo "<option selected='true' value = '".$var['OFFICE_NAME']."' data-subtext='".$var['OFFICE_DESCRIPTION']."'>".$var['OFFICE_NAME']."</option>";
+													   }
 											
-																					       <?php
-																					          
-																											mysqli_free_result($result);
-																					           $query="select OFFICE_NAME, OFFICE_DESCRIPTION from office";
-																					           $result=mysqli_query($con,$query);
-																					           while ($var=mysqli_fetch_array($result)) {
-																					              echo "<option selected='true' value = '".$var['OFFICE_NAME']."' data-subtext='".$var['OFFICE_DESCRIPTION']."'>".$var['OFFICE_NAME']."</option>";
-																					           }
-																					
-																					
-																					    		?>
-								                             </select>
-																			    </div>
-																		  </div>
 											
-											                    <?php
-											            
-																		           if($_SESSION['operation']=='save'){
-																		
-																		                echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
-																		
-																		            }  elseif($_SESSION['operation']=='delete'){
-																		
-																		                     echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
-																		                }
-																		           elseif($_SESSION['operation']=='update'){
-																		
-																		               echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
-																		           }
-																		
-																		               $_SESSION['operation']='clear';
-																					
+													?>
+												</select>
+											</div>
+										</div>
+			
+										<?php
+						
+										   if($_SESSION['operation']=='save'){
+								
+												echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Saved Successfully </div>";
+								
+											}  elseif($_SESSION['operation']=='delete'){
+								
+													 echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Deleted Successfully </div>";
+												}
+										   elseif($_SESSION['operation']=='update'){
+								
+											   echo"<div id='fade' style='color:#000; text-align:center;font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;'>Updated Successfully </div>";
+										   }
+								
+											   $_SESSION['operation']='clear';
+													
 
-																					?>
+										?>
 
-				                  		 <!-- BUTTONS ACTIVITY START -->
-				                        <div class="input1">
-					                         	<input id="security_user" name="security_user" type="hidden" value="0"/>
-					                        	<input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" />
-					                         	<input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" />
-					                          <input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" />
-				                        </div>
-					                           <!-- BUTTONS ACTIVITY END -->
+										<!-- BUTTONS ACTIVITY START -->
+										<div class="input1">
+											<input id="security_user" name="security_user" type="hidden" value="0"/>
+											<input  type="submit" value="Delete"  onClick="document.getElementById('security_user').value='delete';" class="btn btn-danger" id="btn" />
+											<input type="submit" value="Save" onClick="document.getElementById('security_user').value='save';" class="btn btn-primary" id="btn" />
+											<input type="button" value="New" onClick="javascript:cleartext();" class="btn btn-primary" id="btn" />
+										</div>
+										<!-- BUTTONS ACTIVITY END -->
 
-							              </div>
+									</div>
 
-		   								</form>
-
-
+								</form>
 
                   		</div>
 
                         <div id="postright0" class="col-xs-6 col-md-4">
 
-                            	<form id="tfnewsearch" method="post">
+							<form id="tfnewsearch" method="post">
 
-                                        <div class="input-group">
-                                                <input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
-                                                <span class="input-group-btn">
-                                                	<button id="search_user" class="btn btn-default">Search </button>
-                                              	</span>
-                                        </div>
+									<div class="input-group">
+										<input id="search_string" type="text" name="search_string" class="form-control" placeholder="search..." />
+										<span class="input-group-btn">
+											<button id="search_user" class="btn btn-default btn-search">Search </button>
+										</span>
+									</div>
 
-															</form>
+							</form>
 
-                            	<hr class="hrMargin">
+							<hr class="hrMargin">
 
-	                          <div class="postright">
+							<div class="postright">
 
-	                                <table id="responds"
-	                                		data-height="430"
-									      data-toggle="table"
-									      class="display table table-bordered"
-									      data-striped="true"
-                                >
-	                                	<thead>
-									    <tr>
-											<th class="col-md-2"  data-field="username" data-sortable="true">Username</th>
-											<th  class="col-md-6" data-field="name" data-sortable="true">Name</th>
-											<th  class="col-md-2" data-field="office" data-sortable="true">Office</th>
-											<th  class="col-md-2" data-field="group" data-sortable="true">Group</th>
+								<table id="responds"
+										data-height="430"
+									  data-toggle="table"
+									  class="display table table-bordered"
+									  data-striped="true"
+							>
+									<thead>
+									<tr>
+										<th class="col-md-2"  data-field="username" data-sortable="true">Username</th>
+										<th  class="col-md-6" data-field="name" data-sortable="true">Name</th>
+										<th  class="col-md-2" data-field="office" data-sortable="true">Office</th>
+										<th  class="col-md-2" data-field="group" data-sortable="true">Group</th>
 
-									    </tr>
-									  </thead>
+									</tr>
+								  </thead>
 
-	                                </table>
+								</table>
 
-	                          </div>
+							</div>
                         </div>
 
                         <div class="tfclear"></div>
-                </div>
-						</div>
 					</div>
-      </div>
-  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
 <!------------------------------------ end content ------------------------------------->
