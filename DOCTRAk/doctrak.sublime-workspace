@@ -3,10 +3,70 @@
 	{
 		"selected_items":
 		[
+			[
+				"var",
+				"var_dump〔function〕"
+			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "procedures/home/report/doccons.php",
+			"settings":
+			{
+				"buffer_size": 13159,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "procedures/home/document/common/retrievedata.php",
+			"settings":
+			{
+				"buffer_size": 8978,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "home.php",
+			"settings":
+			{
+				"buffer_size": 13656,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<?php\n\n\ndefine('FPDF_FONTPATH','fpdf/font');\nrequire_once('fpdf/fpdf.php');\nrequire_once('fpdi/fpdi.php');\n// initialize DB connection\nrequire_once('../../essential/session.php');\ninclude(\"../../essential/connection.php\");\n\nif (!AmIAdmin($_SESSION['username']))  die();\n// $position=listOfOpenPosition();\n\n// initiate FPDI\n// $pdf = new FPDI();\n// set the source file\n\n// require('fpdf/fpdf.php');\n\n// global $textAlignments;\n$textAlignment=\"C\";\nclass PDF extends FPDF\n{\n\n\tvar $widths;\n\tvar $aligns;\n\nfunction Header()\n{\n\t$this->AddFont('BOOKOS','','BOOKOS.php');\n\t$this->AddFont('BOOKOS','B','BOOKOSB.php');\n\t$this->AddFont('BOOKOS','BI','BOOKOSBI.php');\n\t$this->AddFont('BOOKOS','I','BOOKOSI.php');\n\n    $this->SetFont('BOOKOS','',10);\n\n \t$this->Image('fpdf/resources/pglu.gif',8,9,24,24);\n \t$this->Image('fpdf/resources/iloveLU.gif',180,9,28);\n\n    $this->Ln(8);\n    $this->Cell(195.9,4,'Republic of the Philippines',0,1,'C');\n    $this->Ln(1);\n    $this->SetFont('BOOKOS','B',12);\n    $this->Cell(195,4,'PROVINCE OF LA UNION',0,1,'C');\n    $this->Ln(1);\n    $this->SetFont('BOOKOS','',10);\n    $this->Cell(195.9,4,'City of San Fernando',0,1,'C');\n    $this->Ln(5);\n    $this->SetFont('BOOKOS','B',14);\n    $this->Cell(195.9,4,'OFFICE OF THE GOVERNOR',0,1,'C');\n    $this->Ln(2);\n    $this->SetFont('BOOKOS','I',14);\n    $this->Cell(195.9,4,'HUMAN RESOURCE MANAGEMENT DIVISION',0,1,'C');\n\n\t$this->Ln(2);\n    $this->SetLineWidth(.5);\n    $this->SetDrawColor(1,162,255);\n    $this->Line(10,$this->GetY(),205.9,$this->GetY());\n    $this->Ln(1.1);\n    $this->SetLineWidth(.7);\n    $this->Line(10,$this->GetY(),205.9,$this->GetY());\n    $this->Ln(5);\n    \n\n    //////////////////////\n\n\n\n\n}\n\nfunction Footer()\n{\n    // Position at 1.5 cm from bottom\n    // $this->SetY(-15);\n    // // Arial italic 8\n    // $this->SetFont('Arial','I',8);\n    // // Page number\n    // $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');\n\t$this->SetXY(10,$this->GetPageHeight()-20);\n\t$this->SetLineWidth(.7);\n\t$this->SetDrawColor(1,162,255);\n\t$this->Line(6,$this->GetY(),209,$this->GetY());\n\t$this->Ln(1.1);\n\t$this->SetLineWidth(.5);\n\t$this->Line(5.8,$this->GetY(),209.2,$this->GetY());\n\n\t$this->Ln(2);\n\t$this->SetFont('Times','',10);\n\n\t$this->Cell(195.9,4,'Tel. No. (072) 242-5550 loc. 215, 223, 224, 225, 256',0,1,'C');\n\t$this->Cell(195.9,4,'Direct Line: (072) 607-4552',0,1,'C');\n\n\t$this->SetXY(10,$this->GetPageHeight()-28);\n\t$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');\n}\n\n\nfunction SetWidths($w)\n{\n    //Set the array of column widths\n    $this->widths=$w;\n}\n\nfunction SetAligns($a)\n{\n    //Set the array of column alignments\n    $this->aligns=$a;\n}\n\nfunction Row($data)\n{\n\tglobal $textAlignment;\n    //Calculate the height of the row\n    $nb=0;\n    for($i=0;$i<count($data);$i++)\n        $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));\n    $h=5*$nb;\n    //Issue a page break first if needed\n    $this->CheckPageBreak($h);\n    //Draw the cells of the row\n    for($i=0;$i<count($data);$i++)\n    {\n        $w=$this->widths[$i];\n        $a=isset($this->aligns[$i]) ? $this->aligns[$i] : 'L';\n        //Save the current position\n        $x=$this->GetX();\n        $y=$this->GetY();\n        //Draw the border\n        $this->Rect($x,$y,$w,$h);\n        //Print the text\n        $this->MultiCell($w,5,$data[$i],0,$textAlignment);\n        //Put the position to the right of the cell\n        $this->SetXY($x+$w,$y);\n    }\n    //Go to the next line\n    $this->Ln($h);\n}\n\nfunction CheckPageBreak($h)\n{\n    //If the height h would cause an overflow, add a new page immediately\n    if($this->GetY()+$h>$this->PageBreakTrigger)\n    {\n        $this->AddPage($this->CurOrientation,$this->CurPageSize);\n\n    $this->SetFont('Helvetica',\"B\");\n\t$contentY=$this->GetY()+5;\n\t$this->SetFontSize(10);\n\t$this->Line(10, $contentY, 205, $contentY);\n\t$this->Line(10, $contentY+5, 205, $contentY+5);\n\n\n\t$this->SetXY(10, $contentY);\n\t$this->MultiCell(49, 5, \"Applicant\",1,'C');\n\n\n\t$this->SetXY(59, $contentY);\n\t$this->MultiCell(30, 5, \"Position\",1,'C');\n\n\t$this->SetXY(89, $contentY);\n\t$this->MultiCell(20, 5, \"Item No\",1,'C');\n\n\t$this->SetXY(109, $contentY);\n\t$this->MultiCell(20, 5, \"SG\",1,'C');\n\n\t$this->SetXY(129, $contentY);\n\t$this->MultiCell(49, 5, \"Department\",1,'C');\n\n\t$this->SetXY(178, $contentY);\n\t$this->MultiCell(30, 5, \"Date Applied\",1,'C');\n\t$this->SetFont('Helvetica',\"\");\n\t$this->SetFontSize(8);\n    }\n}\n\nfunction NbLines($w,$txt)\n{\n    //Computes the number of lines a MultiCell of width w will take\n    $cw=&$this->CurrentFont['cw'];\n    if($w==0)\n        $w=$this->w-$this->rMargin-$this->x;\n    $wmax=($w-2*$this->cMargin)*1000/$this->FontSize;\n    $s=str_replace(\"\\r\",'',$txt);\n    $nb=strlen($s);\n    if($nb>0 and $s[$nb-1]==\"\\n\")\n        $nb--;\n    $sep=-1;\n    $i=0;\n    $j=0;\n    $l=0;\n    $nl=1;\n    while($i<$nb)\n    {\n        $c=$s[$i];\n        if($c==\"\\n\")\n        {\n            $i++;\n            $sep=-1;\n            $j=$i;\n            $l=0;\n            $nl++;\n            continue;\n        }\n        if($c==' ')\n            $sep=$i;\n        $l+=$cw[$c];\n        if($l>$wmax)\n        {\n            if($sep==-1)\n            {\n                if($i==$j)\n                    $i++;\n            }\n            else\n                $i=$sep+1;\n            $sep=-1;\n            $j=$i;\n            $l=0;\n            $nl++;\n        }\n        else\n            $i++;\n    }\n    return $nl;\n}\n\n\n}\n\n\n\n\n$pdf = new PDF();\n\n// $pdf->setSourceFile(\"format/letterhead.pdf\");\n\n// import page 1\n// $tplIdx = $pdf->importPage(1);\n$pdf->SetMargins(0,0,0);\n$pdf->SetAutoPageBreak('on',25);\n$pdf->SetLeftMargin(10);\n$pdf->SetRightMargin(10);\n$fontUsed='Helvetica';\n$pdf->SetFont($fontUsed,\"B\");\n$pdf->SetTextColor(0, 0, 0);\n$pdf->SetFontSize(12);\n$pdf->AliasNbPages();\n$pdf->AddPage(\"P\",\"Letter\");\n\n\n// $pdf->useTemplate($tplIdx, null, null, 0, 0, true);\n// $pdf->SetXY(54, $pdf->GetY());\n\nif (($_GET['department']=='%')AND($_GET['position']=='%'))\n{\n\t$pdf->MultiCell(195.9, 7, \"List of Applicants\",0,'C');\n}\nelseif (($_GET['department']=='%') AND ($_GET['position']!='%'))\n{\n\t$pdf->MultiCell(195.9, 7, \"List of Applicants for \".getPositionName($_GET['position']).\"\",0,'C');\n}\nelseif (($_GET['department']!='%') AND ($_GET['position']!='%'))\n{\n\t$pdf->MultiCell(195.9, 7, \"List of Application on \".getDepartmentName($_GET['department']).\"\",0,'C');\n\t$pdf->MultiCell(195.9, 7, \"(\".getPositionName($_GET['position']).\")\",0,'C');\n}\nelseif (($_GET['department']!='%') AND ($_GET['position']=='%'))\n{\n\t$pdf->MultiCell(195.9, 7, \"List of Application on \".getDepartmentName($_GET['department']).\"\",0,'C');\n}\n\n$pdf->SetFont($fontUsed);\n// $pdf->SetXY(54, $pdf->GetY());\n$pdf->SetFontSize(10);\n$pdf->MultiCell(195.9, 7, \"as of \".date(\"F j, Y\").\"\",0,'C');\n\n\n$pdf->SetFont($fontUsed,\"B\");\n$contentY=$pdf->GetY()+5;\n$pdf->Line(10, $contentY, 205, $contentY);\n$pdf->Line(10, $contentY+5, 205, $contentY+5);\n\n\n$pdf->SetXY(10, $contentY);\n$pdf->MultiCell(49, 5, \"Applicant\",1,'C');\n\n\n$pdf->SetXY(59, $contentY);\n$pdf->MultiCell(30, 5, \"Position\",1,'C');\n\n$pdf->SetXY(89, $contentY);\n$pdf->MultiCell(20, 5, \"Item No\",1,'C');\n\n$pdf->SetXY(109, $contentY);\n$pdf->MultiCell(20, 5, \"SG\",1,'C');\n\n$pdf->SetXY(129, $contentY);\n$pdf->MultiCell(49, 5, \"Department\",1,'C');\n\n$pdf->SetXY(178, $contentY);\n$pdf->MultiCell(30, 5, \"Date Applied\",1,'C');\n\n$pdf->SetFont($fontUsed);\n$pdf->SetFontSize(8);\n$Ycoord=$contentY+5;\n$yPosition=$pdf->GetY();\n\nglobal $DB_HOST, $DB_USER,$DB_PASS, $DB_SCHEMA;\n$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_SCHEMA);\n\n$position = array();\n\n\t$sql=\"SELECT `jobopening`.`position` AS position, `jobopening`.`itemno` AS itemNo, `jobopening`.`salarygrade` AS salaryGrade, `m_department`.`description` AS department, `security_user`.`lname` AS lName, `security_user`.`fname` AS fName, `application`.`dateapplied` AS dateApplied FROM application JOIN jobopening ON application.jobopening_fk = jobopening.jobopening_pk JOIN security_user ON application.securityuser_fk = security_user.email JOIN m_department ON jobopening.department_fk = m_department.department_pk WHERE `application`.`status` = 'P' AND department_pk like '\".$_GET['department'].\"' AND jobopening_pk LIKE '\".$_GET['position'].\"' \";\n$myQuery=mysqli_query($con,$sql);\n\t// $resultArray=array();\n// $pdf->setX(10);\n$pdf->SetWidths(array(49,30,20,20,49,30));\nsrand(microtime()*1000000);\n\nwhile ($ApplicantData=mysqli_fetch_array($myQuery))\n{\n\t// $pdf->setX(10);\n\n\t$pdf->Row(array($ApplicantData['lName'].\", \". $ApplicantData['fName'],$ApplicantData['position'],$ApplicantData['itemNo'],$ApplicantData['salaryGrade'],$ApplicantData['department'],date_format(date_create($ApplicantData['dateApplied']), 'F d, Y')));\n\n}\n\n\n$pdf->Output();\n\n\n\n\n\n\n\n\n\nfunction textAlign($text,$textAlign)\n{\n\tglobal $textAlignment;\n\t$textAlignment=$textAlign;\n\treturn $text;\n}\n\n\n\n\n\n\n\n\n\n\n\nfunction getDepartmentName($department_pk)\n{\n\tglobal $DB_HOST, $DB_USER,$DB_PASS, $DB_SCHEMA;\n\t$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_SCHEMA);\n\n\t$sql=\"SELECT description FROM m_department WHERE department_pk = '\".$department_pk.\"' \";\n\t$myQuery=mysqli_query($con,$sql);\n\t$result=mysqli_fetch_array($myQuery);\n\tmysqli_close($con);\n\treturn $result['description'];\n\n}\n\nfunction getPositionName($positionID)\n{\n\tglobal $DB_HOST, $DB_USER,$DB_PASS, $DB_SCHEMA;\n\t$con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$DB_SCHEMA);\n\n\t$sql=\"SELECT position FROM jobopening WHERE jobopening_pk = '\".$positionID.\"' \";\n\t$myQuery=mysqli_query($con,$sql);\n\t$result=mysqli_fetch_array($myQuery);\n\tmysqli_close($con);\n\treturn $result['position'];\n}\n",
+			"file": "procedures/home/report/pdf/rptListofApplicants.php",
+			"file_size": 11387,
+			"file_write_time": 131229622510754258,
+			"settings":
+			{
+				"buffer_size": 9551,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "procedures/home/report/pdf/doccons.php",
+			"settings":
+			{
+				"buffer_size": 6899,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "procedures/home/report/doccons/search.php",
+			"settings":
+			{
+				"buffer_size": 9015,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -40,7 +100,14 @@
 	},
 	"expanded_folders":
 	[
-		"/D/OneDrive/Projects/DocTrak/DOCTRAk"
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk",
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk/procedures",
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk/procedures/home",
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk/procedures/home/document",
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk/procedures/home/document/common",
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk/procedures/home/report",
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk/procedures/home/report/doccons",
+		"/D/OneDrive/Projects/DocTrak/DOCTRAk/procedures/home/report/pdf"
 	],
 	"file_history":
 	[
@@ -49,7 +116,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -63,6 +130,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"DocConprint",
+			"data",
+			"id=\"data\"",
+			"id=\"data",
+			"$Ycoord",
+			"$yPosition",
+			"yPosition",
+			"SetWidths",
+			"textAlignment",
+			"Row",
+			"console.log",
+			"Applicant",
+			"send",
+			"<form",
+			"dateto",
+			"form",
+			"<form",
+			"console",
+			"textAlignment"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -80,18 +166,501 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "procedures/home/report/doccons.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13159,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9337,
+								9337
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content"
+							],
+							"function_name_status_row": 285,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 4396.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "procedures/home/document/common/retrievedata.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8978,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								295,
+								295
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"function_name_status_row": 10,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "home.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13637,
+								13637
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"function_name_status_row": 395,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 6426.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "procedures/home/report/pdf/rptListofApplicants.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9551,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7311,
+								7358
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"function_name_status_row": 303,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5451.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "procedures/home/report/pdf/doccons.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6899,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								302,
+								302
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"function_name_status_row": 12,
+							"open_with_edit": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "procedures/home/report/doccons/search.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9015,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7950,
+								7950
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content"
+							],
+							"function_name_status_row": 196,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 594.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 26.0
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"layout":
 	{
@@ -124,7 +693,7 @@
 	"project": "doctrak.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -162,7 +731,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 256.0,
+	"side_bar_width": 333.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

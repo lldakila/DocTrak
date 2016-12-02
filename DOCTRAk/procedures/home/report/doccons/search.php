@@ -197,7 +197,7 @@ $resultArray=array();
 		    
 //		    $counterA++;
 		    
-		    array_push($resultArray, array("no"=>$counterA,"barcode"=>$resultSet['document_id'],"title"=>$resultSet['document_title'],"office"=>$resultSet['office_description'],"owner"=>$resultSet['security_name'],"date"=>$resultSet['transdate']));
+		    array_push($resultArray, array("no"=>"<span class='no'>".$counterA."</span>","barcode"=>"<span class='barcode'>".$resultSet['document_id']."</span>","title"=>"<span class='title'>".$resultSet['document_title']."</span>","office"=>"<span class='office'>".$resultSet['office_description']."</span>","owner"=>"<span class='owner'>".$resultSet['security_name']."</span>","date"=>"<span class='date'>".date_format(date_create($resultSet['transdate']), 'F d, Y')."</span>"));
 		    
 		    $counterA++;
 		    

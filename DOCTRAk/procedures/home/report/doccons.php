@@ -43,6 +43,8 @@
 <script src="../../../js/bootstrap-select.js"></script>
 
 <link href="../../../css/bootstrap-submenu.min.css" rel="stylesheet" />    
+
+<script type="text/javascript" src="../../../js/blockUI.js"></script>
 </head>
 
 <body>
@@ -143,14 +145,20 @@
 											</div>
 										</div>	
 									</div>
+<form id='send' method="post" target='_blank' action='pdf/doccons.php'>
+<!-- <input type='text' name='data' id='data' > -->
 
+<textarea name='data' id='data'  style="display:none;">
+</textarea>
+
+</form>
 								</div>
 										<!-- data-search="true" -->
 								<div  class="containers">
 									<table id="historydata"										   
 									data-height="320"
 								
-									data-pagination="true"
+									
 									data-toggle="table"
 									class="display table table-bordered"
 									>
@@ -183,6 +191,7 @@
        </div>
     </div>
 
+
 </div>
 <!------------------------------------ end content ------------------------------------->
 
@@ -197,7 +206,7 @@
 <!-- Modal -->
   
 <!-- End Modal -->
-    
+
     <script language="JavaScript" type="text/javascript">
 
 
@@ -224,6 +233,7 @@
 				  	data:{vdatefrom:datefrom,vdateto:dateto,vreceived:received,vreleased:released,vapproved:approved,vmydoc:mydoc},
 				  	beforeSend: function() 
 				  	{
+				  		$.blockUI();
 //            	$("#filter").html('wait..');
 //            	$("#historydata").html("<div id='loading' style='width:340px;'><img src='../../../images/home/ajax-loader.gif' /></div>");
             	 $('#historydata').bootstrapTable("showLoading");
@@ -232,13 +242,14 @@
 				    {
 							$('#historydata').bootstrapTable("hideLoading");
 							$('#historydata').bootstrapTable("load",response);
-//					    $("#historydata").html(response);
-// 							$("#filter").html('Filter');
+							$.unblockUI();
 				    },
 				    error:function (xhr, ajaxOptions, thrownError){
 					    alert(thrownError);
+					     $.unblockUI();
 				    }
 			    });
+			   
 		    });
 
 /////////////////////////////////////////////////////////
@@ -265,31 +276,31 @@
 
 
 	  
-function addRowHandlers()
-    {
+// function addRowHandlers()
+//     {
        
-            var table = document.getElementById('historydata');
-             //alert (table);
+//             var table = document.getElementById('historydata');
+//              //alert (table);
 
-        var rows = table.getElementsByTagName("tr");
-        for (i = 0; i < rows.length; i++) {
-            var currentRow = table.rows[i];
-            var createClickHandler =
-                function(row)
-                {
-                    return function() {
-                                            var cell = row.getElementsByTagName("td")[1];
-                                            var id = cell.innerHTML;
+//         var rows = table.getElementsByTagName("tr");
+//         for (i = 0; i < rows.length; i++) {
+//             var currentRow = table.rows[i];
+//             var createClickHandler =
+//                 function(row)
+//                 {
+//                     return function() {
+//                                             var cell = row.getElementsByTagName("td")[1];
+//                                             var id = cell.innerHTML;
 
 																			
-                                           retrieveDocument(id);
-                                           $('#myModal').modal('show');
-                                     };
-                };
+//                                            retrieveDocument(id);
+//                                            $('#myModal').modal('show');
+//                                      };
+//                 };
 
-            currentRow.onclick = createClickHandler(currentRow);
-        }
-    }
+//             currentRow.onclick = createClickHandler(currentRow);
+//         }
+//     }
     
     //FUNCTION THAT RETRIEVES THE DOCUMENT FROM addRowHandlers() AND OPENS MODAL FORM
     function retrieveDocument(BarcodeId)
@@ -353,15 +364,74 @@ $('#approved').change(function() {
 $('#feedbackDiv').feedBackBox();
 
 $('#historydata').on('click-row.bs.table', function (e, row, $element) {
- //    console.log(row);
      retrieveDocument(row['barcode']);
      $('#myModal').modal('show');
    
 });
 
-
-
     });
+
+
+//PRINTABLE FORMAT
+
+$('#DocConprint').click(function (event){
+
+ var data = '{';
+var rowData;
+$.blockUI();
+$("#DocConprint").html('please wait...');
+
+
+if ($($('#historydata tbody tr')[0]).hasClass('no-records-found')) {
+		// data = data.substring(0,data.length-1);
+	}
+	else
+	{
+		 data += '"data": [';
+		$('#historydata tbody tr').each(function(i, o)
+		{
+			data += '{';
+			$('span', $(o)).each(function(i, o) 
+			{
+				// rowData=o.innerHTML;
+				// rowData.replace('/"' , '/'');
+				// data += '"'+o.className+'":"'+o.innerHTML+'",';
+				data += '"'+o.className+'":'+JSON.stringify(o.innerHTML)+',';
+				
+			});
+// console.log(data);
+			data = data.substring(0,data.length-1);
+			data += '},';
+		});
+
+		data = data.substring(0,data.length-1);
+		 data += ']';
+	}
+
+
+
+
+
+
+  data += '}';
+
+  //data = JSON.parse(data);
+ // data = JSON.stringify(data);
+
+	
+// console.log(JSON.parse(data));
+ // data = JSON.stringify(data);
+
+	
+	$('#data').val(data);
+	$('#send').submit();
+
+$('#DocConprint').html("<span class='glyphicon glyphicon-print'></span> Print");
+$.unblockUI();
+});
+
+
+
 
 
 
