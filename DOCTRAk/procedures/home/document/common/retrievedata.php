@@ -6,7 +6,8 @@
         $_SESSION['in'] ="start";
         header('Location:../../../../index.php');
 }
-
+// var_dump($_POST);
+// exit();
     require_once("../../../connection.php");
     require_once("../common/encrypt.php");
     
@@ -18,9 +19,13 @@
 					security_user on documentlist.fk_security_username = security_user.security_username join 
 					document_template on documentlist.fk_template_id = document_template.template_id
 					join office on documentlist.fk_office_name_documentlist = office.office_name where document_id = '".$_POST['documentTracker']."' ";
-		
+		// echo $sql;
+		// exit();
+	
 		$result=mysqli_query($con,$sql);
+  
 		$query=mysqli_fetch_array($result);
+
 	
     echo "<div id='details' class='retriveDataAllign'>";
     echo "<div class='row'>";

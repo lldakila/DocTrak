@@ -68,7 +68,6 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 		?>
 <!------------------------------------------- end header -------------------------------->
 
-<!------------------------------------ content ------------------------------------->
 <div class="content">
 
 	<div id="leftmenu">
@@ -117,7 +116,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 																
 										</div>
 									</div>
-			
+				
 							</div>
 
 							<div id="postright0" class="col-xs-6 col-md-4">
@@ -137,7 +136,7 @@ if(!isset($_SESSION['usr']) || !isset($_SESSION['pswd'])){
 									<!--<div id="display"></div>-->
 									<!--AUTOSUGGEST SEARCH END-->        
 									<hr class="hrMargin">
-									  <!-------- search table ----->
+									
 									<div class="postright">  				                          
 														
 										<table id="responds"
@@ -221,10 +220,12 @@ $('#responds').on('click-row.bs.table', function (e, row, $element) {
 	        },
             ajaxError: function() {
 		        $("#ajaxhistory").html("<div id='loading'><img src='../../../images/home/ajax-loader.gif' /></div>");
+
 	        },
             success:function(response){
                         $("#ajaxhistory").html(response);
-                
+                        $("#ajaxhistory").append("<button id='DocConprint' name='print' class='btn btn-primary pull-right' style='margin-top:5px;'><span class='glyphicon glyphicon-print'></span> Print</button>");
+                		
             },
             error:function (xhr, ajaxOptions, thrownError){
                 alert(thrownError);
