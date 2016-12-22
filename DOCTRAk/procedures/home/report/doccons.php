@@ -312,17 +312,20 @@
     //FUNCTION THAT RETRIEVES THE DOCUMENT FROM addRowHandlers() AND OPENS MODAL FORM
     function retrieveDocument(BarcodeId)
     {
+    	// console.log(BarcodeId);
             var myData = 'documentTracker='+BarcodeId; //build a post data structure
+             var Barcode=$("#"+BarcodeId+"").text();
+            // console.log(Barcode);
             jQuery.ajax({
                 type: "POST",
                 url:"../../../procedures/home/document/common/retrievedata.php",
                 dataType:"text", // Data type, HTML, json etc.
-                data:myData,
+                data:{documentTracker:Barcode},
                 beforeSend: function() {
-                    $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
+                    $("#responds").html("<div id='loadingModal'><img src='../../../images/home/ajax-loader.gif' /></div>");
                     },
                 ajaxError: function() {
-                    $("#responds").html("<div id='loadingModal'><img src='images/home/ajax-loader.gif' /></div>");
+                    $("#responds").html("<div id='loadingModal'><img src='../../../images/home/ajax-loader.gif' /></div>");
                     },
                 success:function(response){
                     $("#responds").html(response);
@@ -371,7 +374,8 @@ $('#approved').change(function() {
 $('#feedbackDiv').feedBackBox();
 
 $('#historydata').on('click-row.bs.table', function (e, row, $element) {
-     retrieveDocument(row['barcode']);
+     retrieveDocument(row['no']);
+     // alert(row['no']);
      $('#myModal').modal('show');
    
 });
@@ -382,7 +386,7 @@ $('#historydata').on('click-row.bs.table', function (e, row, $element) {
 //PRINTABLE FORMAT
 
 $('#DocConprint').click(function (event){
-
+ 
  var data = '{';
 var rowData;
 $.blockUI();
@@ -426,7 +430,7 @@ if ($($('#historydata tbody tr')[0]).hasClass('no-records-found')) {
  // data = JSON.stringify(data);
 
 	
-// console.log(JSON.parse(data));
+console.log(JSON.parse(data));
  // data = JSON.stringify(data);
 
 	
